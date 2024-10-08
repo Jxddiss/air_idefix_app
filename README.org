@@ -1,10 +1,11 @@
-Ce projet est une base pour le projet de développement d'application du cours 420-G55-RO.
+DESCRIPTION:
 
-Vous devez :
- - Créer une divergence par équipe
- - Ajouter tous les membres de votre équipe comme «Chargé de maintenance»
- - Remplir le [[évaluation/proposition.org][formulaire de proposition]]
- - Remplacer ce fichier README par une «page d'accueil» de votre projet
- - Facultativement, ajouter un fichier de licence
+Il s'agit d'un service qui permait de parcourir des vols et de faire des réservations pour ceux-ci. Chaque utilisateur a un profil en tant que client.
 
-   [[./licence.png]]
+Les clients peuvent:
+
+Créer une réservation en selectionnant un vol selon la date, la destination et la classe de voyage.
+modifier leurs informations personnelles telles que leur nom, prénom, préférence de repas(allergies), préférence de voyage (destinations favorites) et leur numéro de passeport.
+Consulter leurs réservations pour vérifier les informations.
+Modifier une réservation en ajustant les détails comme leur préférences, le siège, ou la date
+Consulter la liste de vols selon les critères comme la date, le prix et la destination.
