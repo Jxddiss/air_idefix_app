@@ -7,16 +7,18 @@ La proposition doit être approuvée par l'enseignant. Par contre, les détails 
 ** Équipe
 
 - Nom des coéquipiers (3 ou 4 personnes) :
-  1 :
-  2 :
-  3 :
-  4 :
+  1 : Nicholson Rainville Jacques
+  2 : Teddy Cabrel Ekeu Mbouatchi
+  3 : Cristina Candanedo
+  4 : Rami Kassan
   
 - Horaire de rencontre hebdomadaire (1h) : 
 
 ** Projet
 
 - Thématique (quel est le domaine d'application de votre travail) :
+
+L'application permet de faire des réservation de vols.
   
 - Problème à résoudre (du point de vue de l'utilisateur, quel sera la plus-value de votre app) :
   
