@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/bienvenueVue">
+
+    <fragment
+        android:id="@+id/bienvenueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.BienvenueVue"
+        android:label="fragment_bienvenue_vue"
+        tools:layout="@layout/fragment_bienvenue_vue" />
+    <fragment
+        android:id="@+id/rechercherUnVolVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.RechercherUnVolVue"
+        android:label="fragment_rechercher_un_vol_vue"
+        tools:layout="@layout/fragment_rechercher_un_vol_vue" />
+    <fragment
+        android:id="@+id/listeDeVolsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ListeDeVolsVue"
+        android:label="fragment_liste_de_vols_vue"
+        tools:layout="@layout/fragment_liste_de_vols_vue" />
+    <fragment
+        android:id="@+id/listeRéservationsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ListeRéservationsVue"
+        android:label="fragment_liste_reservations_vue"
+        tools:layout="@layout/fragment_liste_reservations_vue" />
+    <fragment
+        android:id="@+id/réservationSpécifiqueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
+        android:label="fragment_reservation_specifique_vue"
+        tools:layout="@layout/fragment_reservation_specifique_vue" />
+</navigation>
