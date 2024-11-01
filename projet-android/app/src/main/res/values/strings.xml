@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Client_Reservation_vol</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bienvenue">Bienvenue!</string>
+    <string name="message_bienvenue">Prêt pour votre prochaine aventure?</string>
+    <string name="fond_ecran_bienvenue_description">Image du ciel</string>
+    <string name="imageButton_mes_voyages_description">Bouton qui mène vers la page mes voyages</string>
+    <string name="imgButton_recherche_description">Bouton qui mène vers la page de recherche d\'un vol</string>
+    <string name="label_mes_voyages_card">Mes Voyages</string>
+    <string name="label_rechercher_un_vol_card">Rechercher un vol</string>
 </resources>

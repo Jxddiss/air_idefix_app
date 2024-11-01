@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutBienvenue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".présentation.vue.BienvenueVue">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBienvenue"
+        android:layout_width="0dp"
+        android:layout_height="395dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="30dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imgBienvenue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/fond_ecran_bienvenue_description"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bienvenue_fond_ecran" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBienvenueText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fond_transparent_noir_bas">
+
+            <TextView
+                android:id="@+id/textViewBienvenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="316dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/bienvenue"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewMessageBienvenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="360dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/message_bienvenue"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnMesVoyages"
+        android:layout_width="169dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="124dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cardViewBienvenue">
+
+        <TextView
+            android:id="@+id/textViewMesVoyages"
+            android:layout_width="103dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/label_mes_voyages_card"
+            android:textColor="@color/couleur_principale"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMesVoyages"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/couleur_principale"
+            android:contentDescription="@string/imageButton_mes_voyages_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnRechercheVols"
+        android:layout_width="169dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="124dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewBienvenue">
+
+        <TextView
+            android:id="@+id/textViewRechercheVols"
+            android:layout_width="135dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/label_rechercher_un_vol_card"
+            android:textColor="@color/couleur_principale"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonRechercheVols"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/couleur_principale"
+            android:contentDescription="@string/imgButton_recherche_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
