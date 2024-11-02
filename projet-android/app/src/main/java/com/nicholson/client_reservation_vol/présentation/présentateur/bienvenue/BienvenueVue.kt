@@ -1,4 +1,4 @@
-package com.nicholson.client_reservation_vol.présentation.vue
+package com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.nicholson.client_reservation_vol.R
-import com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue.BienvenuePrésentateur
 import com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue.ContratVuePrésentateurBienvenue.*
 
 class BienvenueVue : Fragment(), IBienvenueVue {
