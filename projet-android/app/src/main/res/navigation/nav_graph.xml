@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bienvenueVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue.BienvenueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.bienvenue.BienvenueVue"
         android:label="fragment_bienvenue_vue"
         tools:layout="@layout/fragment_bienvenue_vue" >
         <action

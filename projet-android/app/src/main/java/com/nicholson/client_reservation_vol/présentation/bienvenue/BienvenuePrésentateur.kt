@@ -1,5 +1,5 @@
-package com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue
-import com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue.ContratVuePrésentateurBienvenue.*
+package com.nicholson.client_reservation_vol.présentation.bienvenue
+import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
 
 class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBienvenuePrésentateur {
     override fun traiterDemandeRedirectionListeReservations() {

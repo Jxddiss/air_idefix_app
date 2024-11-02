@@ -1,4 +1,4 @@
-package com.nicholson.client_reservation_vol.présentation.présentateur.bienvenue
+package com.nicholson.client_reservation_vol.présentation.bienvenue
 
 interface ContratVuePrésentateurBienvenue {
     interface IBienvenueVue {
