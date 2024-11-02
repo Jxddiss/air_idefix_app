@@ -9,7 +9,18 @@
         android:id="@+id/bienvenueVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.BienvenueVue"
         android:label="fragment_bienvenue_vue"
-        tools:layout="@layout/fragment_bienvenue_vue" />
+        tools:layout="@layout/fragment_bienvenue_vue" >
+        <action
+            android:id="@+id/action_bienvenueVue_vers_rechercherUnVolVue"
+            app:destination="@id/rechercherUnVolVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_bienvenueVue_vers_listeRéservationsVue"
+            app:destination="@id/listeRéservationsVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/rechercherUnVolVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.RechercherUnVolVue"
