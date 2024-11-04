@@ -25,10 +25,16 @@
         android:id="@+id/rechercherUnVolVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.RechercherUnVolVue"
         android:label="fragment_rechercher_un_vol_vue"
-        tools:layout="@layout/fragment_rechercher_un_vol_vue" />
+        tools:layout="@layout/fragment_rechercher_un_vol_vue" >
+        <action
+            android:id="@+id/action_rechercherUnVolVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/listeDeVolsVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.ListeDeVolsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeDeVolsVue"
         android:label="fragment_liste_de_vols_vue"
         tools:layout="@layout/fragment_liste_de_vols_vue" />
     <fragment

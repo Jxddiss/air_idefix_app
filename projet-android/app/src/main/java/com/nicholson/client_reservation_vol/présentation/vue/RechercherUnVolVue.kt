@@ -14,6 +14,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.nicholson.client_reservation_vol.R
 import java.time.Year
 
@@ -24,7 +27,8 @@ class RechercherUnVolVue : Fragment() {
     private lateinit var btnAllerEtRetourn:Button
     private lateinit var btnAllerSimple:Button
     private lateinit var choisirDateRetour: EditText
-
+    private lateinit var btnRechercher : Button
+    private lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,6 +88,15 @@ class RechercherUnVolVue : Fragment() {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
         }
         return view
+    }
+
+    override fun onViewCreated( vue: View, savedInstanceState: Bundle? ) {
+        super.onViewCreated( vue, savedInstanceState )
+        navController = Navigation.findNavController( vue )
+        btnRechercher = vue.findViewById( R.id.btnRechercher )
+        btnRechercher.setOnClickListener {
+            navController.navigate( R.id.action_rechercherUnVolVue_vers_listeDeVolsVue )
+        }
     }
 
     //Fonction pour afficher le calendrier
