@@ -13,12 +13,10 @@ import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
-import kotlinx.coroutines.handleCoroutineException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
-import kotlin.time.Duration
 
 class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList: ArrayList<Vol>):
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>(){
@@ -29,7 +27,7 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
             var dateDepart : TextView
             var imageView : ImageView
             var tempsUnite : TextView
-            //var progressTemp : ProgressBar
+            var progressTemp : ProgressBar
 
             init {
                 tempsRestant = itemView.findViewById(R.id.textTempsRestant)
@@ -37,7 +35,7 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
                 dateDepart = itemView.findViewById(R.id.textDate)
                 imageView = itemView.findViewById(R.id.imgDestination)
                 tempsUnite = itemView.findViewById(R.id.textTempsUnite)
-                //progressTemp = itemView.findViewById<ProgressBar>(R.id.progressBarTime)
+                progressTemp = itemView.findViewById<ProgressBar>(R.id.progressBarTime)
             }
         }
 
@@ -69,6 +67,13 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
         if(timeRemaining > 24){
              timeRemaining = ChronoUnit.DAYS.between(tempMtn, volDate)
              unitTemp = "Jours"
+        }
+
+        if(unitTemp=="Jours"){
+            holder.progressTemp.progress = 30-timeRemaining.toInt()
+        }
+        else{
+            holder.progressTemp.progress =30 - 1
         }
 
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:elevation="600dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -86,31 +87,37 @@
 
             <ProgressBar
                 android:id="@+id/progressBarTime"
-                android:layout_width="145dp"
-                android:layout_height="135dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="155dp"
+                android:layout_height="139dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/circle_shape"
                 android:indeterminate="false"
-                android:max="100"
-                android:progress="100"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:max="30"
+                android:progress="0"
+                android:progressDrawable="@drawable/circle_progress_bar"
+                app:layout_constraintBottom_toTopOf="@+id/textDestination"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.194" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btnConsulteVoyage"
             android:layout_width="357dp"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/round_rectangle_button"
+            android:backgroundTint="#6E171C33"
+            android:drawableEnd="@drawable/no_line_arrow"
             android:fontFamily="@font/lexend"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text="Consulter mon voyage"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:cornerRadius="7dp"
+            app:strokeColor="#CECECE"
+            app:strokeWidth="1dp" />
 
     </androidx.cardview.widget.CardView>
 
