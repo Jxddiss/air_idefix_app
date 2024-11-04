@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/listeDeVolsVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeDeVolsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeVolsVue"
         android:label="fragment_liste_de_vols_vue"
         tools:layout="@layout/fragment_liste_de_vols_vue" />
     <fragment
