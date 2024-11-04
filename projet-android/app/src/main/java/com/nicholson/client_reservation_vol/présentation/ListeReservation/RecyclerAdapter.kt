@@ -4,10 +4,13 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
@@ -18,8 +21,11 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 
-class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList: ArrayList<Vol>):
+
+class RecyclerAdapter(var reservationList: MutableList<Réservation>, var volList: MutableList<Vol>, val appVue : View):
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>(){
+
+        lateinit var navController: NavController
 
         class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             var tempsRestant :TextView
@@ -28,6 +34,7 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
             var imageView : ImageView
             var tempsUnite : TextView
             var progressTemp : ProgressBar
+            var btnConsulterVoyage : Button
 
             init {
                 tempsRestant = itemView.findViewById(R.id.textTempsRestant)
@@ -36,12 +43,12 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
                 imageView = itemView.findViewById(R.id.imgDestination)
                 tempsUnite = itemView.findViewById(R.id.textTempsUnite)
                 progressTemp = itemView.findViewById<ProgressBar>(R.id.progressBarTime)
+                btnConsulterVoyage = itemView.findViewById(R.id.btnConsulteVoyage)
             }
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var itemView : View = LayoutInflater.from(parent.context).inflate(R.layout.list_reservations,parent,false)
-
         return MyViewHolder(itemView)
     }
 
@@ -49,15 +56,13 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
         return reservationList.size
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        var vol = findVolById(volList ,reservationList[position].idVol)
-
-
+        val vol = findVolById(volList ,reservationList[position].idVol)
         val volDate : LocalDateTime = vol.dateDepart
         val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("fr"))
         val dateFormater = volDate.format(formatter)
+        navController = Navigation.findNavController(appVue)
 
         val tempMtn : LocalDateTime = LocalDateTime.now()
 
@@ -76,7 +81,6 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
             holder.progressTemp.progress =30 - 1
         }
 
-
         val destination : String = vol.aeroportFin.pays
 
         val url_photo : String = vol.aeroportFin.ville.url_photo
@@ -90,13 +94,13 @@ class RecyclerAdapter(var reservationList: ArrayList<Réservation>, var volList:
         holder.destination.text = destination
         holder.dateDepart.text = dateFormater.toString()
 
-
-
+        holder.btnConsulterVoyage.setOnClickListener{
+            navController.navigate(R.id.action_listeRéservationsVue_vers_réservationSpécifiqueVue)
+        }
     }
 
-    fun findVolById(volList: List<Vol>, id: String): Vol {
-
-        return volList.firstOrNull { it.numeroVol == id } ?: throw (Exception())
+    fun findVolById(volList: List<Vol>, id: Int): Vol {
+        return volList.first{ it.id == id }
     }
 
 

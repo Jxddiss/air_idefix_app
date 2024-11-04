@@ -13,16 +13,14 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="89dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="256dp"
-                android:layout_height="match_parent"
+                android:layout_width="257dp"
+                android:layout_height="79dp"
                 android:fontFamily="@font/lexend"
-                android:paddingLeft="25dp"
-                android:paddingTop="30dp"
-                android:paddingBottom="40dp"
+                android:gravity="center"
                 android:text="@string/mes_voyages"
                 android:textColor="@color/couleur_principale"
                 android:textSize="34sp" />
@@ -30,7 +28,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="85dp"
                 android:src="@drawable/mes_voyages" />
 
         </LinearLayout>
@@ -43,7 +41,23 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerVoyages"
             android:layout_width="match_parent"
-            android:layout_height="580dp" />
+            android:layout_height="630dp" />
+
+        <Button
+            android:id="@+id/btnRechercherFromVoyages"
+            android:layout_width="236dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
+            android:drawableRight="@drawable/avion_btn"
+            android:fontFamily="@font/lexend"
+            android:text="Rechercher"
+            android:textColor="@color/couleur_principale"
+            android:textSize="16sp"
+            app:cornerRadius="6dp" />
     </LinearLayout>
+
+
 
 </FrameLayout>

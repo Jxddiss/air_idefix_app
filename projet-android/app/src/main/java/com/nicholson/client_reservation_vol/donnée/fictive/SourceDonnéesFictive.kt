@@ -213,8 +213,8 @@ class SourceDonnéesFictive {
             Vol(
                 id = 4,
                 numeroVol = "AD004",
-                aeroportDebut = listAeoroport[3],
-                aeroportFin = listAeoroport[1],
+                aeroportDebut = listAeoroport[1],
+                aeroportFin = listAeoroport[3],
                 dateDepart = LocalDateTime.now().plusDays(20),
                 dateArrivee = LocalDateTime.now().plusDays(20).plusHours(7),
                 avion = listAvion[3],

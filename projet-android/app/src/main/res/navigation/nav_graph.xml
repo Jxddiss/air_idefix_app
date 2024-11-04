@@ -35,7 +35,16 @@
         android:id="@+id/listeRéservationsVue"
         android:name="com.nicholson.client_reservation_vol.présentation.ListeReservation.ListeRéservationsVue"
         android:label="fragment_liste_reservations_vue"
-        tools:layout="@layout/fragment_liste_reservations_vue" />
+        tools:layout="@layout/fragment_liste_reservations_vue" >
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_rechercherUnVolVue"
+            app:destination="@id/rechercherUnVolVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_réservationSpécifiqueVue"
+            app:destination="@id/réservationSpécifiqueVue" />
+    </fragment>
     <fragment
         android:id="@+id/réservationSpécifiqueVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
