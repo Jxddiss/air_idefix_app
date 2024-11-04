@@ -5,6 +5,6 @@ data class Siège(
     val classe: String,
     val statut: String,
     val avion_id: Int,
-    val numéroRéservation: String
+    val idRéservation: Int
 )
 
