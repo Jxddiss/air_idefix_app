@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".présentation.vue.ListeRéservationsVue">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            android:paddingLeft="80px"
+            android:paddingTop="80px"
+            android:paddingBottom="80px"
+            android:text="@string/mes_voyages"
+            android:textColor="@color/couleur_principale"
+            android:textSize="34sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#8F8F8F" />
+    </LinearLayout>
 
 </FrameLayout>
