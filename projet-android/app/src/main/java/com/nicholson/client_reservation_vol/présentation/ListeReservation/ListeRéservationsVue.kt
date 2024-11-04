@@ -55,20 +55,20 @@ class ListeRéservationsVue : Fragment() {
         super.onViewCreated(vue, savedInstanceState)
 
         val client = Client(1, "Doe", "John", "123 Main St", "A12345678", "john.doe@example.com", "123-456-7890")
-        val siege = Siège("E12", "Économique", "occupé", 101, "RES12345")
+        val siege = Siège("E12", "Économique", "occupé", 101, 1)
 
         val paris = Ville(
             id = 1,
             nom = "Paris",
             pays = "France",
-            url_photo = "https://example.com/photos/paris.jpg"
+            url_photo = "https://media.istockphoto.com/id/635758088/photo/sunrise-at-the-eiffel-tower-in-paris-along-the-seine.jpg?s=612x612&w=0&k=20&c=rdy3aU1CDyh66mPyR5AAc1yJ0yEameR_v2vOXp2uuMM="
         )
 
         val newYork = Ville(
             id = 2,
             nom = "New York",
             pays = "USA",
-            url_photo = "drawable/new_york"
+            url_photo = "https://media.istockphoto.com/id/1454217037/photo/statue-of-liberty-and-new-york-city-skyline-with-manhattan-financial-district-world-trade.jpg?s=612x612&w=0&k=20&c=6V54_qVlDfo59GLEdY2W8DOjLbbHTJ9y4AnJ58a3cis="
 
         )
 
@@ -104,8 +104,8 @@ class ListeRéservationsVue : Fragment() {
             numeroVol = "FLIGHT001",
             aeroportDebut = aeroportCharlesDeGaulle,
             aeroportFin = aeroportJFK,
-            dateDepart = LocalDateTime.now().plusHours(2),
-            dateArrivee = LocalDateTime.now().plusHours(10),
+            dateDepart = LocalDateTime.of(2024, 11, 6, 14, 30),
+            dateArrivee = LocalDateTime.of(2024, 11, 6, 16, 30),
             avion = avion,
             prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
             poidsMaxBag = 20,
@@ -113,13 +113,30 @@ class ListeRéservationsVue : Fragment() {
             durée = 5.toDuration(DurationUnit.HOURS)
         )
 
-        val reservation = Réservation("RES12345" ,"FLIGHT001", listOf(client), listOf(siege))
+        val vol2 = Vol(
+            id = 2,
+            numeroVol = "FLIGHT002",
+            aeroportDebut = aeroportJFK,
+            aeroportFin = aeroportCharlesDeGaulle,
+            dateDepart = LocalDateTime.of(2024, 11, 14, 14, 30),
+            dateArrivee = LocalDateTime.of(2024, 11, 16, 16, 30),
+            avion = avion,
+            prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+            poidsMaxBag = 20,
+            statutVol = listOf(volStatut),
+            durée = 5.toDuration(DurationUnit.HOURS)
+        )
 
-        val reservation2 = Réservation("RES12345" ,"FLIGHT001", listOf(client), listOf(siege))
+
+
+        val reservation = Réservation(1 ,"RES123", "FLIGHT001", listOf(client), listOf(siege))
+
+        val reservation2 = Réservation(2 ,"RES321", "FLIGHT002", listOf(client), listOf(siege))
 
         volList = ArrayList()
 
         volList.add(vol)
+        volList.add(vol2)
 
         reservationList = ArrayList()
 
