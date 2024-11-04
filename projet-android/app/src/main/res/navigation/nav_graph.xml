@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_liste_de_vols_vue" />
     <fragment
         android:id="@+id/listeRéservationsVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.ListeRéservationsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.ListeReservation.ListeRéservationsVue"
         android:label="fragment_liste_reservations_vue"
         tools:layout="@layout/fragment_liste_reservations_vue" />
     <fragment
