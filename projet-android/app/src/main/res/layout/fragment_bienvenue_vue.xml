@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutBienvenue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".présentation.bienvenue.BienvenueVue">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBienvenue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start_start"
+        app:layout_constraintTop_toTopOf="@id/guideline_img_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom">
+
+        <ImageView
+            android:id="@+id/imgBienvenue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/fond_ecran_bienvenue_description"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bienvenue_fond_ecran" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBienvenueText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fond_transparent_noir_bas">
+
+            <TextView
+                android:id="@+id/textViewBienvenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/bienvenue"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/textViewMessageBienvenue" />
+
+            <TextView
+                android:id="@+id/textViewMessageBienvenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/message_bienvenue"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_text_bienvenue"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_bienvenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnMesVoyages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/guideline_start_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_start_end"
+        app:layout_constraintTop_toTopOf="@id/guideline_button_top">
+
+        <TextView
+            android:id="@+id/textViewMesVoyages"
+            android:layout_width="103dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/label_mes_voyages_card"
+            android:textColor="@color/couleur_principale"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMesVoyages"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/couleur_principale"
+            android:contentDescription="@string/imageButton_mes_voyages_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnRechercheVols"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/guideline_end_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end_end"
+        app:layout_constraintTop_toTopOf="@id/guideline_button_top">
+
+        <TextView
+            android:id="@+id/textViewRechercheVols"
+            android:layout_width="135dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/label_rechercher_un_vol_card"
+            android:textColor="@color/couleur_principale"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonRechercheVols"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/couleur_principale"
+            android:contentDescription="@string/imgButton_recherche_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.475" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.525" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_button_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

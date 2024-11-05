@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".présentation.ListeReservation.ListeRéservationsVue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="89dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="257dp"
+                android:layout_height="79dp"
+                android:fontFamily="@font/lexend"
+                android:gravity="center"
+                android:text="@string/mes_voyages"
+                android:textColor="@color/couleur_principale"
+                android:textSize="34sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:src="@drawable/mes_voyages" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#8F8F8F" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerVoyages"
+            android:layout_width="match_parent"
+            android:layout_height="630dp" />
+
+        <Button
+            android:id="@+id/btnRechercherFromVoyages"
+            android:layout_width="236dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
+            android:drawableRight="@drawable/avion_btn"
+            android:fontFamily="@font/lexend"
+            android:text="Rechercher"
+            android:textColor="@color/couleur_principale"
+            android:textSize="16sp"
+            app:cornerRadius="6dp" />
+    </LinearLayout>
+
+
+
+</FrameLayout>

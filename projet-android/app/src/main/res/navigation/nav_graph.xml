@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/bienvenueVue">
+
+    <fragment
+        android:id="@+id/bienvenueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.bienvenue.BienvenueVue"
+        android:label="fragment_bienvenue_vue"
+        tools:layout="@layout/fragment_bienvenue_vue" >
+        <action
+            android:id="@+id/action_bienvenueVue_vers_rechercherUnVolVue"
+            app:destination="@id/rechercherUnVolVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_bienvenueVue_vers_listeRéservationsVue"
+            app:destination="@id/listeRéservationsVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/rechercherUnVolVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.RechercherUnVolVue"
+        android:label="fragment_rechercher_un_vol_vue"
+        tools:layout="@layout/fragment_rechercher_un_vol_vue" >
+        <action
+            android:id="@+id/action_rechercherUnVolVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/listeDeVolsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeVolsVue"
+        android:label="fragment_liste_de_vols_vue"
+        tools:layout="@layout/fragment_liste_de_vols_vue" />
+    <fragment
+        android:id="@+id/listeRéservationsVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.ListeReservation.ListeRéservationsVue"
+        android:label="fragment_liste_reservations_vue"
+        tools:layout="@layout/fragment_liste_reservations_vue" >
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_rechercherUnVolVue"
+            app:destination="@id/rechercherUnVolVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_réservationSpécifiqueVue"
+            app:destination="@id/réservationSpécifiqueVue"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/réservationSpécifiqueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
+        android:label="fragment_reservation_specifique_vue"
+        tools:layout="@layout/fragment_reservation_specifique_vue" />
+</navigation>
