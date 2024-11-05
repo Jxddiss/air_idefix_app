@@ -49,7 +49,8 @@
             app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_listeRéservationsVue_vers_réservationSpécifiqueVue"
-            app:destination="@id/réservationSpécifiqueVue" />
+            app:destination="@id/réservationSpécifiqueVue"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/réservationSpécifiqueVue"
