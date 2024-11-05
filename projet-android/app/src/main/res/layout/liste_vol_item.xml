@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/fond_bord_arrondis"
+    android:elevation="40dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewDateDépart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="TextView"
+            android:textColor="@color/couleur_principale"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewPrixÉcono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/couleur_principale"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="137dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDurée"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/long_arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
