@@ -28,7 +28,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/mes_voyages" />
 
         </LinearLayout>
@@ -41,7 +41,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerVoyages"
             android:layout_width="match_parent"
-            android:layout_height="630dp" />
+            android:layout_height="582dp" />
 
         <Button
             android:id="@+id/btnRechercherFromVoyages"
