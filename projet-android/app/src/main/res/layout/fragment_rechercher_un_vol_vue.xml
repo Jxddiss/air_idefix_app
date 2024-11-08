@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="52dp"
+            android:drawableRight="@drawable/avion"
             android:fontFamily="@font/lexend"
             android:text="Rechercher un vol  "
-            android:drawableRight="@drawable/avion"
             android:textColor="@color/couleur_principale"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,9 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
-                android:textColor="@color/couleur_principale"
                 android:hint="De"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,8 +147,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
                 android:hint="Vers"
-                android:textColor="@color/couleur_principale"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -182,8 +182,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:drawableRight="@drawable/calendrier"
-                android:textColor="@color/couleur_principale"
-                android:fontFamily="@font/lexend" />
+                android:fontFamily="@font/lexend"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -255,6 +255,7 @@
             <EditText
                 android:id="@+id/ChoisirNombrePassangers"
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="52dp"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
@@ -278,11 +279,11 @@
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:layout_marginBottom="3dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
             android:drawableRight="@drawable/avion_btn"
             android:fontFamily="@font/lexend"
             android:text="Rechercher"
             android:textColor="@color/couleur_principale"
-            android:backgroundTint="@color/couleur_btn_jaune"
             android:textSize="16sp"
             app:cornerRadius="6dp"
             app:layout_constraintBottom_toBottomOf="parent"

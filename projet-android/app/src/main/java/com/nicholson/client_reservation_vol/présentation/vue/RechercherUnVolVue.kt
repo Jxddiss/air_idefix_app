@@ -73,6 +73,9 @@ class RechercherUnVolVue : Fragment() {
         }
         // Set OnClickListener pour  "Aller Simple" button
         btnAllerSimple.setOnClickListener {
+            // Changement du color de btnAllerSimple quand il est click
+            btnAllerSimple.setBackgroundColor(resources.getColor(R.color.couleurAppuyée, null))
+            btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleur_btn_typeVol, null))
             // Disable le EditText pour date selection
             choisirDateRetour.isEnabled = false
             choisirDateRetour.requestFocus()
@@ -80,6 +83,9 @@ class RechercherUnVolVue : Fragment() {
 
         // Set OnClickListener pour  "Aller-et-Retourn" button
         btnAllerEtRetourn.setOnClickListener {
+            // Changement du color de btnAllerEtRetourn quand il est click
+            btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleurAppuyée, null))
+            btnAllerSimple.setBackgroundColor(resources.getColor(R.color.couleur_btn_typeVol, null))
             // Enable le EditText pour date selection
             choisirDateRetour.isEnabled = true
             choisirDateRetour.requestFocus()
