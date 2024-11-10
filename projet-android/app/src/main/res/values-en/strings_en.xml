@@ -16,7 +16,7 @@
     <string name="anglais">English</string>
     <string name="fran_ais">French</string>
     <string name="langue_pr_f_r_e">Preferred Language</string>
-    <string name="rechercher_un_vol">Search for a Flight</string>
+    <string name="rechercher_un_vol">Search for a Flight  </string>
     <string name="aller_simple">One-Way</string>
     <string name="aller_retour">Round-Trip</string>
     <string name="de">From</string>
@@ -32,8 +32,9 @@
     <string name="si_ge">Seat:</string>
     <string name="jours">days</string>
     <string name="consulter_mon_voyage">View my trip</string>
-    <string name="rechercher">Search</string>
-    <string name="Rechercher">Search</string>
+    <string name="rechercher">Search </string>
+    <string name="le_24_janvier_2025">January 24th 2025</string>
+    <string name="_24_janvier_2025">January 24th 2025</string>
 
 
 
