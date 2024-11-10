@@ -30,5 +30,6 @@
     <string name="si_ge">Siège:</string>
     <string name="jours">jours</string>
     <string name="consulter_mon_voyage">Consulter mon voyage</string>
+    <string name="Rechercher">Rechercher</string>
 
 </resources>

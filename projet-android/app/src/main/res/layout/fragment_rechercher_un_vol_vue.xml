@@ -282,7 +282,7 @@
             android:backgroundTint="@color/couleur_btn_jaune"
             android:drawableRight="@drawable/avion_btn"
             android:fontFamily="@font/lexend"
-            android:text="Rechercher"
+            android:text="@string/Rechercher"
             android:textColor="@color/couleur_principale"
             android:textSize="16sp"
             app:cornerRadius="6dp"
