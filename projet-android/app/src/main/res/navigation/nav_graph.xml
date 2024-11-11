@@ -68,5 +68,14 @@
         android:id="@+id/preferences_vue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.Preferences"
         android:label="fragment_preferences_vue"
-        tools:layout="@layout/fragment_preferences_vue" />
+        tools:layout="@layout/fragment_preferences_vue" >
+
+        <!-- Action returner a bienvenue -->
+        <action
+            android:id="@+id/action_preferencesVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
 </navigation>

@@ -12,6 +12,7 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.fragment.findNavController
 import com.nicholson.client_reservation_vol.MainActivity
 import com.nicholson.client_reservation_vol.R
 import org.xmlpull.v1.XmlPullParser
@@ -56,6 +57,12 @@ class Preferences : Fragment() {
                     setLanguage("es")
                 }
             }
+        }
+
+        // ajoute - btn  acepter pour aller dans le bienvenue
+        val btnAccepter: Button = view.findViewById(R.id.btnAccepter)
+        btnAccepter.setOnClickListener {
+            findNavController().navigate(R.id.action_preferencesVue_vers_bienvenueVue)
         }
 
         return view
