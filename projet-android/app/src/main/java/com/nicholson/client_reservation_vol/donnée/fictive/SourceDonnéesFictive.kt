@@ -1,15 +1,16 @@
 package com.nicholson.client_reservation_vol.donnée.fictive
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.nicholson.client_reservation_vol.domaine.entité.*
+import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import java.time.LocalDateTime
+import kotlin.random.Random
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
 
-class SourceDonnéesFictive {
+class SourceDonnéesFictive : SourceDeDonnées {
     companion object{
+
         val client = Client(
             1,
             "Doe",
@@ -161,7 +162,8 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(5).plusHours(2),
                 dateArrivee = LocalDateTime.now().plusDays(5).plusHours(10),
                 avion = listAvion[0],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Business" to Random.nextDouble(550.56, 897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -180,7 +182,8 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(17).plusHours(2),
                 dateArrivee = LocalDateTime.now().plusDays(17).plusHours(10),
                 avion = listAvion[1],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Business" to Random.nextDouble(550.56, 897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -199,7 +202,8 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(10),
                 dateArrivee = LocalDateTime.now().plusDays(10).plusHours(7),
                 avion = listAvion[2],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Business" to Random.nextDouble(550.56, 897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -218,7 +222,8 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(20),
                 dateArrivee = LocalDateTime.now().plusDays(20).plusHours(7),
                 avion = listAvion[3],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Business" to Random.nextDouble(550.56, 897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -244,4 +249,7 @@ class SourceDonnéesFictive {
         }
     }
 
+    override fun getListeVol(): List<Vol> {
+        return listVol
+    }
 }
