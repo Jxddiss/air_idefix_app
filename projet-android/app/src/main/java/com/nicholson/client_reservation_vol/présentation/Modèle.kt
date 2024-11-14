@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation
 
+import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
@@ -21,6 +22,13 @@ class Modèle private constructor() {
         get(){
             if ( field.isEmpty() ){
                 field = sourceDeDonnées.getListeVol()
+            }
+            return field
+        }
+    var listeRéservation : MutableList<Réservation> = mutableListOf()
+        get(){
+            if (field.isEmpty() ){
+                field = sourceDeDonnées.getListRéservation()
             }
             return field
         }

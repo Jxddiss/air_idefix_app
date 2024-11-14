@@ -252,4 +252,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
     override fun getListeVol(): List<Vol> {
         return listVol
     }
+
+    override fun getListRéservation(): MutableList<Réservation> {
+        return listeRéservation
+    }
 }
