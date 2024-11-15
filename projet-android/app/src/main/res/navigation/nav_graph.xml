@@ -89,6 +89,6 @@
         android:label="fragment_choisir_info_vue" />
     <fragment
         android:id="@+id/choisirClasseVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirClasseVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.choisirclasse.ChoisirClasseVue"
         android:label="fragment_choisir_classe_vue" />
 </navigation>
