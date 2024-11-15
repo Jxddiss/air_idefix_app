@@ -25,6 +25,7 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
     lateinit var textViewNomVilleArrivée : TextView
     lateinit var textViewCodeAéroportArrivée : TextView
     lateinit var textViewDurée : TextView
+    lateinit var textViewNomDestination : TextView
     lateinit var navController: NavController
 
     override fun onCreateView(
@@ -46,6 +47,7 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
         textViewNomVilleArrivée = vue.findViewById( R.id.textViewNomVilleArrivée )
         textViewCodeAéroportArrivée = vue.findViewById( R.id.textViewCodeAéroportArrivée )
         textViewDurée = vue.findViewById( R.id.textViewDurée )
+        textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         navController = Navigation.findNavController( vue )
         présentateur?.traiterDémarage()
     }
@@ -59,6 +61,8 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
         textViewNomVilleArrivée.text = volChoixClassOTD.nomVilleArrivée
         textViewCodeAéroportArrivée.text = volChoixClassOTD.codeAéroportArrivée
         textViewDurée.text = volChoixClassOTD.durée
+        textViewNomDestination.text =
+            "Vol de ${volChoixClassOTD.nomVilleDépart} à ${volChoixClassOTD.nomVilleArrivée}"
 
         Glide.with(requireContext())
             .load( volChoixClassOTD.urlPhotoVilleArrivé )
