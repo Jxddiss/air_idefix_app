@@ -33,4 +33,9 @@ class Modèle private constructor() {
             return field
         }
 
+    var indiceVolCourrant : Int = 0
+
+    fun getVolCourrant() : Vol{
+        return listeVol[indiceVolCourrant]
+    }
 }

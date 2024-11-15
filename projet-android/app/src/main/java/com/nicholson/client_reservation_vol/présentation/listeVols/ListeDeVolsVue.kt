@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,7 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     lateinit var recyclerVol : RecyclerView
     lateinit var imageViewDestination : ImageView
     lateinit var textViewNomDestination : TextView
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,7 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         recyclerVol = vue.findViewById( R.id.RecyclerVols )
         présentateur?.traiterObtenirVols()
+        navController = Navigation.findNavController( vue )
     }
 
 
@@ -52,6 +56,9 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
 
     private fun ajouterAdaptateurVolAuRecycler( listeDeVols : List<VolListItemOTD> ){
         adaptateur = RecyclerAdapterVol( listeDeVols )
+        adaptateur.itemCliquéÉvènement = {
+            présentateur?.traiterVolCliqué( it )
+        }
         recyclerVol.layoutManager = LinearLayoutManager( requireContext() )
         recyclerVol.itemAnimator = DefaultItemAnimator()
         recyclerVol.adapter = adaptateur
@@ -62,5 +69,9 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         Glide.with( requireContext() )
             .load( urlImage )
             .into( imageViewDestination )
+    }
+
+    override fun redirigerVersChoixClasse() {
+        navController.navigate( R.id.action_listeDeVolsVue_vers_choisirClasseVue )
     }
 }

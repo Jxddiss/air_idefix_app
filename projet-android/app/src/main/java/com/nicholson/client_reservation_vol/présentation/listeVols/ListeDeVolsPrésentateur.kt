@@ -36,4 +36,9 @@ class ListeDeVolsPrésentateur (
         vue.afficherInfoDestination( villeAléatoire.nom, villeAléatoire.url_photo )
         vue.afficherVols( listeVolsOTD )
     }
+
+    override fun traiterVolCliqué( index: Int ) {
+        modèle.indiceVolCourrant = index
+        vue.redirigerVersChoixClasse()
+    }
 }

@@ -11,6 +11,8 @@ import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 class RecyclerAdapterVol( val volListItemOTDS : List<VolListItemOTD> ) :
     RecyclerView.Adapter<RecyclerAdapterVol.MyViewHolder>() {
 
+    var itemCliquéÉvènement: ((Int) ->Unit)? = null
+
     class MyViewHolder( itemView : View ) : RecyclerView.ViewHolder( itemView ) {
 
         val textViewDateDépart : TextView = itemView
@@ -63,6 +65,10 @@ class RecyclerAdapterVol( val volListItemOTDS : List<VolListItemOTD> ) :
         holder.textViewCodeAéroportDépart.text = volListItemOTDS[position].codeAéroportDépart
         holder.textViewCodeAéroportArrivée.text = volListItemOTDS[position].codeAéroportArrivée
         holder.textViewDurée.text = volListItemOTDS[position].durée
+
+        holder.itemView.setOnClickListener{
+            itemCliquéÉvènement?.invoke(position)
+        }
     }
 
     override fun getItemCount(): Int = volListItemOTDS.size

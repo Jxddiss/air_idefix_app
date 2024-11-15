@@ -163,7 +163,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(5).plusHours(10),
                 avion = listAvion[0],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -183,7 +184,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(17).plusHours(10),
                 avion = listAvion[1],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -203,7 +205,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(10).plusHours(7),
                 avion = listAvion[2],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -223,7 +226,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(20).plusHours(7),
                 avion = listAvion[3],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
