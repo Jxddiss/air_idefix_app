@@ -70,9 +70,25 @@
             android:id="@+id/action_modifierReservationVue_to_choisirSiegeVue"
             app:destination="@id/choisirSiegeVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_to_choisirInfoVue"
+            app:destination="@id/choisirInfoVue"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_to_choisirClasseVue"
+            app:destination="@id/choisirClasseVue"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/choisirSiegeVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirSiegeVue"
         android:label="fragment_choisir_siege_vue" />
+    <fragment
+        android:id="@+id/choisirInfoVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirInfoVue"
+        android:label="fragment_choisir_info_vue" />
+    <fragment
+        android:id="@+id/choisirClasseVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirClasseVue"
+        android:label="fragment_choisir_classe_vue" />
 </navigation>

@@ -45,6 +45,16 @@ class modifierReservationVue : Fragment() {
             val navController = Navigation.findNavController(view)
             navController.navigate(R.id.action_modifierReservationVue_to_choisirSiegeVue)
         }
+        val BtnModifierInformation: ImageButton = view.findViewById(R.id.BtnModifierInformation)
+        BtnModifierInformation.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+            navController.navigate(R.id.action_modifierReservationVue_to_choisirInfoVue)
+        }
+        val BtnModifierClasse: ImageButton = view.findViewById(R.id.BtnModifierClasse)
+        BtnModifierClasse.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+            navController.navigate(R.id.action_modifierReservationVue_to_choisirClasseVue)
+        }
     }
 
 }
