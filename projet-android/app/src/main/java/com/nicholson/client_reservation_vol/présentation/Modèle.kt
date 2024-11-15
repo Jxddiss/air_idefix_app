@@ -2,10 +2,13 @@ package com.nicholson.client_reservation_vol.présentation
 
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import java.time.LocalDateTime
 
-class Modèle private constructor() {
+class Modèle private constructor( private val volService : VolService = VolService() ) {
 
     companion object{
         @Volatile
@@ -18,10 +21,15 @@ class Modèle private constructor() {
     }
 
     val sourceDeDonnées : SourceDeDonnées = SourceDonnéesFictive()
+    var indiceVolCourrant : Int = 0
+    var filtreVolCourrant = FiltreRechercheVol(
+        LocalDateTime.now(), "YUL", "JFK"
+    )
+
     var listeVol : List<Vol> = listOf()
         get(){
             if ( field.isEmpty() ){
-                field = sourceDeDonnées.getListeVol()
+                field = volService.obtenirListeVol()
             }
             return field
         }
@@ -33,4 +41,11 @@ class Modèle private constructor() {
             return field
         }
 
+    fun getVolCourrant() : Vol =
+        volService.obtenirVolParId( listeVol[indiceVolCourrant].id )
+
+    fun obtenirListeVolParFiltre() : List<Vol> {
+        listeVol = volService.obtenirListeVolParFiltre( filtreVolCourrant )
+        return listeVol
+    }
 }

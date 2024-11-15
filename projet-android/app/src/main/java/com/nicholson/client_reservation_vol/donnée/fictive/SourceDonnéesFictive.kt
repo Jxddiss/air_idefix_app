@@ -2,6 +2,7 @@ package com.nicholson.client_reservation_vol.donnée.fictive
 
 import com.nicholson.client_reservation_vol.domaine.entité.*
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 import kotlin.random.Random
 import kotlin.time.DurationUnit
@@ -163,11 +164,12 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(5).plusHours(10),
                 avion = listAvion[0],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 1,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
@@ -183,11 +185,12 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(17).plusHours(10),
                 avion = listAvion[1],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 2,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
@@ -203,7 +206,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(10).plusHours(7),
                 avion = listAvion[2],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -223,11 +227,75 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 dateArrivee = LocalDateTime.now().plusDays(20).plusHours(7),
                 avion = listAvion[3],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
-                    "Business" to Random.nextDouble(550.56, 897.89)),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 4,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS)
+            ),
+            Vol(
+                id = 5,
+                numeroVol = "AD005",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusHours(1),
+                dateArrivee = LocalDateTime.now().plusHours(7),
+                avion = listAvion[2],
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 5,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS)
+            ),
+            Vol(
+                id = 6,
+                numeroVol = "AD006",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusDays(15),
+                dateArrivee = LocalDateTime.now().plusDays(15).plusHours(7),
+                avion = listAvion[3],
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 6,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS)
+            ),
+            Vol(
+                id = 7,
+                numeroVol = "AD007",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusDays(25),
+                dateArrivee = LocalDateTime.now().plusDays(25).plusHours(7),
+                avion = listAvion[3],
+                prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 7,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
@@ -249,9 +317,21 @@ class SourceDonnéesFictive : SourceDeDonnées {
         }
     }
 
-    override fun getListeVol(): List<Vol> {
-        return listVol
-    }
+    override fun obtenirListeVol(): List<Vol> = listVol
+
+    override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> =
+        listVol.filter {
+            it.dateDepart >= filtre.dateDébut && it.dateDepart < filtre.dateDébut.plusDays(30)
+                    && it.aeroportDebut.code == filtre.codeAéroportDébut
+                    && it.aeroportFin.code == filtre.codeAéroportFin
+        }
+
+
+    override fun obtenirVolParId(id: Int): Vol =
+         listVol.single {
+            it.id == id
+        }
+
 
     override fun getListRéservation(): MutableList<Réservation> {
         return listeRéservation
