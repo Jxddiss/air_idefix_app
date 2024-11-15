@@ -20,6 +20,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
             }
     }
 
+    // À remplacer par des services lié à chaque collection
     val sourceDeDonnées : SourceDeDonnées = SourceDonnéesFictive()
     var indiceVolCourrant : Int = 0
     var filtreVolCourrant = FiltreRechercheVol(
@@ -47,5 +48,9 @@ class Modèle private constructor( private val volService : VolService = VolServ
     fun obtenirListeVolParFiltre() : List<Vol> {
         listeVol = volService.obtenirListeVolParFiltre( filtreVolCourrant )
         return listeVol
+    }
+
+    fun obtenirVolParId( id : Int ) : Vol{
+        return volService.obtenirVolParId( id )
     }
 }
