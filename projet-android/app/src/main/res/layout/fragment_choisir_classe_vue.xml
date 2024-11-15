@@ -81,6 +81,187 @@
         app:layout_constraintTop_toTopOf="@+id/cardView">
 
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="361dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="12:20"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Montréal"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="YUL"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="137dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDurée"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="6h18"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/long_arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="18:38"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Cancun"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="BEN"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="156dp"
+            android:layout_height="142dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Économique"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Affaires"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Première"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="97dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="78dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.631"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="960,56$" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="1796,56$" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="3796,56$" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
