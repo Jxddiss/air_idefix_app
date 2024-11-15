@@ -13,9 +13,8 @@ class ListeDeVolsPrésentateur (
     val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
 
     override fun traiterObtenirVols() {
-        val listeDeVols = modèle.listeVol
-        val indexAléatoire = listeDeVols.indices.random()
-        val villeAléatoire =  listeDeVols[indexAléatoire].aeroportFin.ville
+        val listeDeVols = modèle.obtenirListeVolParFiltre()
+        val villeDestination =  listeDeVols[0].aeroportFin.ville
         val listeVolsOTD = listeDeVols.map {
             VolListItemOTD(
                 dateDépart = it.dateDepart.format( formatterDate ),
@@ -33,7 +32,7 @@ class ListeDeVolsPrésentateur (
             )
         }
 
-        vue.afficherInfoDestination( villeAléatoire.nom, villeAléatoire.url_photo )
+        vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
         vue.afficherVols( listeVolsOTD )
     }
 
