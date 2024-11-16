@@ -20,12 +20,6 @@
             app:destination="@id/listeRéservationsVue"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
-        <!--  action pour navigate a Preferences -->
-        <action
-            android:id="@+id/action_bienvenueVue_vers_preferencesVue"
-            app:destination="@id/preferences_vue"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/rechercherUnVolVue"
@@ -63,19 +57,5 @@
         android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
         android:label="fragment_reservation_specifique_vue"
         tools:layout="@layout/fragment_reservation_specifique_vue" />
-    <!--  preferencesVue fragment -->
-    <fragment
-        android:id="@+id/preferences_vue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.Preferences"
-        android:label="fragment_preferences_vue"
-        tools:layout="@layout/fragment_preferences_vue" >
-
-        <!-- Action returner a bienvenue -->
-        <action
-            android:id="@+id/action_preferencesVue_vers_bienvenueVue"
-            app:destination="@id/bienvenueVue"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
-    </fragment>
 
 </navigation>

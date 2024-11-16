@@ -22,7 +22,6 @@ class  MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appliquerLangueDePreferences()
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -41,42 +40,7 @@ class  MainActivity : AppCompatActivity() {
         miseEnPlaceDeLaBarreDeNavigation()
     }
 
-    private fun setLanguage(languageCode: String) {
-        val locale = when (languageCode) {
-            "fr" -> Locale.FRENCH
-            "en" -> Locale.ENGLISH
-            "es" -> Locale("es")
-            else -> Locale.getDefault()
-        }
-        Locale.setDefault(locale)
 
-        val config = resources.configuration
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-        refreshUI()
-    }
-
-    private fun refreshUI() {
-        val fragmentActuel = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
-        fragmentActuel?.let {
-            supportFragmentManager.beginTransaction().detach(it).attach(it).commit()
-        }
-    }
-
-    private fun appliquerLangueDePreferences() {
-        val preferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
-        val langueSauvegardée = preferences.getString("language", "fr") ?: "fr"
-        setLanguage(langueSauvegardée)
-    }
-
-    fun surChangementDeLangue(languageCode: String) {
-        // Save the selected language in SharedPreferences
-        val editor = getSharedPreferences("app_preferences", Context.MODE_PRIVATE).edit()
-        editor.putString("language", languageCode)
-        editor.apply()
-
-        setLanguage(languageCode)
-    }
 
 
     private fun miseEnPlaceDeLaBarreDeNavigation(){
@@ -104,7 +68,7 @@ class  MainActivity : AppCompatActivity() {
 
         buttonPréfrérencesNav.setOnClickListener {
             navController.navigate(
-                resId = R.id.preferences_vue,
+                resId = R.id.listeRéservationsVue,
                 args = null,
                 navOptions = navOptions
             )
