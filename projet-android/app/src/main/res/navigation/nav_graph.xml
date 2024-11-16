@@ -37,6 +37,7 @@
         android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeVolsVue"
         android:label="fragment_liste_de_vols_vue"
         tools:layout="@layout/fragment_liste_de_vols_vue" >
+
         <action
             android:id="@+id/action_listeDeVolsVue_vers_choisirClasseVue"
             app:destination="@id/choisirClasseVue"

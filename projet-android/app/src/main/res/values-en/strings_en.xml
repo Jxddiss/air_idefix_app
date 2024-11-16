@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">Client_Reservation_vol</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bienvenue">Welcome!</string>
+    <string name="message_bienvenue">Ready for your next adventure?</string>
+    <string name="fond_ecran_bienvenue_description">Sky Image</string>
+    <string name="imageButton_mes_voyages_description">Button that leads to the "My Trips" page</string>
+    <string name="imgButton_recherche_description">Button that leads to the flight search page</string>
+    <string name="label_mes_voyages_card">My Trips</string>
+    <string name="label_rechercher_un_vol_card">Search a flight</string>
+    <string name="mes_voyages">My Trips</string>
+    <string name="espagnol">Spanish</string>
+    <string name="anglais">English</string>
+    <string name="fran_ais">French</string>
+    <string name="langue_pr_f_r_e">Preferred Language</string>
+    <string name="rechercher_un_vol">Search for a Flight  </string>
+    <string name="aller_simple">One-Way</string>
+    <string name="aller_retour">Round-Trip</string>
+    <string name="de">From</string>
+    <string name="vers">To</string>
+    <string name="d_part">Departure</string>
+    <string name="retour">Return</string>
+    <string name="nombre_de_passangers">Number of Passengers</string>
+    <string name="accepter">Accept</string>
+    <string name="d_part_le">Departure on</string>
+    <string name="arriv_e_le">Arrival on</string>
+    <string name="classe">Class:</string>
+    <string name="si_ge">Seat:</string>
+    <string name="jours">days</string>
+    <string name="consulter_mon_voyage">View my trip</string>
+    <string name="rechercher">Search </string>
+    <string name="le_24_janvier_2025">January 24th 2025</string>
+    <string name="_24_janvier_2025">January 24th 2025</string>
+    <string name="description_bouton_navigation_accueil">Image of the navigation button to home</string>
+
+
+
+
+
+
+
+
+</resources>

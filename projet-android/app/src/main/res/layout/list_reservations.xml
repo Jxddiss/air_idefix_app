@@ -113,7 +113,7 @@
             android:drawableEnd="@drawable/no_line_arrow"
             android:fontFamily="@font/lexend"
             android:gravity="left|center_vertical"
-            android:text="Consulter mon voyage"
+            android:text="@string/consulter_mon_voyage"
             android:textSize="16sp"
             app:cornerRadius="7dp"
             app:strokeColor="#CECECE"
