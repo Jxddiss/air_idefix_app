@@ -39,7 +39,9 @@
         tools:layout="@layout/fragment_liste_de_vols_vue" >
         <action
             android:id="@+id/action_listeDeVolsVue_vers_choisirClasseVue"
-            app:destination="@id/choisirClasseVue" />
+            app:destination="@id/choisirClasseVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/listeRéservationsVue"
@@ -94,5 +96,11 @@
     <fragment
         android:id="@+id/choisirClasseVue"
         android:name="com.nicholson.client_reservation_vol.présentation.choisirclasse.ChoisirClasseVue"
-        android:label="fragment_choisir_classe_vue" />
+        android:label="fragment_choisir_classe_vue" >
+        <action
+            android:id="@+id/action_choisirClasseVue_vers_choisirInfoVue"
+            app:destination="@id/choisirInfoVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

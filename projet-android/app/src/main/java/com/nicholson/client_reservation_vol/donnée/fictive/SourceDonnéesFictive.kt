@@ -244,8 +244,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 numeroVol = "AD005",
                 aeroportDebut = listAeoroport[3],
                 aeroportFin = listAeoroport[1],
-                dateDepart = LocalDateTime.now().plusHours(1),
-                dateArrivee = LocalDateTime.now().plusHours(7),
+                dateDepart = LocalDateTime.now().plusHours(3),
+                dateArrivee = LocalDateTime.now().plusHours(10),
                 avion = listAvion[2],
                 prixParClasse = mapOf("Économique" to Random.nextDouble( 150.10, 467.89 ),
                     "Affaire" to Random.nextDouble(550.56, 897.89),
@@ -304,7 +304,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         )
 
-        val listeRéservation = MutableList(4) {index ->
+        val listeRéservation = MutableList( listVol.size ) { index ->
             Réservation(
                 id = listVol[index].id,
                 numéroRéservation = "RES00${listVol[index].id}",
