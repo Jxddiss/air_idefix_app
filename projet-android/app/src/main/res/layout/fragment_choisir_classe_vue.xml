@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnchange"
+        android:layout_width="438dp"
+        android:layout_height="104dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayoutbottom"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/btnRechercher"
+            android:layout_width="218dp"
+            android:layout_height="49dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
+            android:drawableRight="@drawable/avion_btn"
+            android:elevation="15dp"
+            android:fontFamily="@font/lexend"
+            android:text="Continuer"
+            android:textColor="@color/couleur_principale"
+            android:textSize="16sp"
+            app:cornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.245" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="370dp"
+        android:layout_height="354dp"
+        android:layout_marginTop="48dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewVillechoisirInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fond_bord_arrondis"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textViewNomDestination"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:background="@drawable/fond_transparent_noir_top"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Vol De Montréal à Cancun"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutbottom"
+        android:layout_width="376dp"
+        android:layout_height="565dp"
+        android:layout_marginTop="216dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="361dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="12:20"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Montréal"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="YUL"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="137dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDurée"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="6h18"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/long_arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="18:38"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Cancun"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="BEN"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="156dp"
+            android:layout_height="142dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Économique"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Affaires"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="Première"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="97dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="78dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.631"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/textViewPrixÉconomique"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="960,56$" />
+
+            <TextView
+                android:id="@+id/textViewPrixAffaire"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="1796,56$" />
+
+            <TextView
+                android:id="@+id/textViewPrixPremiere"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="3796,56$" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

@@ -24,7 +24,6 @@
     <string name="d_part">Salida</string>
     <string name="retour">Regreso</string>
     <string name="nombre_de_passangers">Número de Pasajeros</string>
-    <string name="mes_pr_f_rences">Mis preferencias</string>
     <string name="accepter">Aceptar</string>
     <string name="d_part_le">Salida el</string>
     <string name="arriv_e_le">Llegada el</string>
@@ -34,7 +33,7 @@
     <string name="consulter_mon_voyage">Ver mi viaje</string>
     <string name="le_24_janvier_2025">Enero 24 2025</string>
     <string name="_24_janvier_2025">Enero 24 2025</string>
-
+    <string name="description_bouton_navigation_accueil">Imagen del botón de navegación a inicio</string>
 
 
 

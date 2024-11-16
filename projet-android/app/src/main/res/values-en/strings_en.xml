@@ -24,7 +24,6 @@
     <string name="d_part">Departure</string>
     <string name="retour">Return</string>
     <string name="nombre_de_passangers">Number of Passengers</string>
-    <string name="mes_pr_f_rences">My preferences</string>
     <string name="accepter">Accept</string>
     <string name="d_part_le">Departure on</string>
     <string name="arriv_e_le">Arrival on</string>
@@ -35,6 +34,8 @@
     <string name="rechercher">Search </string>
     <string name="le_24_janvier_2025">January 24th 2025</string>
     <string name="_24_janvier_2025">January 24th 2025</string>
+    <string name="description_bouton_navigation_accueil">Image of the navigation button to home</string>
+
 
 
 

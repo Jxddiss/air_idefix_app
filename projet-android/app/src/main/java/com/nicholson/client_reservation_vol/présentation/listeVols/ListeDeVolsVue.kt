@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
 
 class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
@@ -22,6 +25,7 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     lateinit var recyclerVol : RecyclerView
     lateinit var imageViewDestination : ImageView
     lateinit var textViewNomDestination : TextView
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,31 +46,32 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         recyclerVol = vue.findViewById( R.id.RecyclerVols )
         présentateur?.traiterObtenirVols()
+        navController = Navigation.findNavController( vue )
     }
 
 
-    override fun afficherVols( listeDeVols : MutableList<Vol> ) {
-        val indexAléatoire = ( 0 until listeDeVols.size ).random()
-        val villeAléatoire =  listeDeVols[indexAléatoire].aeroportFin.ville
-
-        obtenirInfoDestination(villeAléatoire)
+    override fun afficherVols( listeDeVols : List<VolListItemOTD> ) {
         ajouterAdaptateurVolAuRecycler( listeDeVols )
     }
 
-    private fun ajouterAdaptateurVolAuRecycler( listeDeVols : MutableList<Vol> ){
+    private fun ajouterAdaptateurVolAuRecycler( listeDeVols : List<VolListItemOTD> ){
         adaptateur = RecyclerAdapterVol( listeDeVols )
-        val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager( requireContext() )
-        recyclerVol.layoutManager = layoutManager
+        adaptateur.itemCliquéÉvènement = {
+            présentateur?.traiterVolCliqué( it )
+        }
+        recyclerVol.layoutManager = LinearLayoutManager( requireContext() )
         recyclerVol.itemAnimator = DefaultItemAnimator()
         recyclerVol.adapter = adaptateur
     }
 
-    private fun obtenirInfoDestination(ville : Ville ){
-        textViewNomDestination.text = "Vols vers ${ville.nom}"
-        if ( context != null ) {
-            Glide.with( requireContext() )
-                .load( ville.url_photo )
-                .into( imageViewDestination )
-        }
+    override fun afficherInfoDestination( nomVille : String, urlImage : String ){
+        textViewNomDestination.text = "Vols vers $nomVille"
+        Glide.with( requireContext() )
+            .load( urlImage )
+            .into( imageViewDestination )
+    }
+
+    override fun redirigerVersChoixClasse() {
+        navController.navigate( R.id.action_listeDeVolsVue_vers_choisirClasseVue )
     }
 }

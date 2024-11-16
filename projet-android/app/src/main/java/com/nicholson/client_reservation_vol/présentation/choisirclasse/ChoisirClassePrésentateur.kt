@@ -1,0 +1,41 @@
+package com.nicholson.client_reservation_vol.présentation.choisirclasse
+
+import com.nicholson.client_reservation_vol.domaine.entité.Classe
+import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.VolChoixClassOTD
+import com.nicholson.client_reservation_vol.présentation.choisirclasse.ContratVuePrésentateurChoisirClasse.*
+import java.time.format.DateTimeFormatter
+
+class ChoisirClassePrésentateur(
+    private val vue : IChoisirClasseVue = ChoisirClasseVue()
+) : IChoisirClassePrésentateur {
+    private val modèle : Modèle = Modèle.obtenirInstance()
+    private val formatterDate = DateTimeFormatter.ofPattern( "dd MMMM yyyy" )
+    private val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
+
+    override fun traiterDémarage() {
+        val vol = modèle.getVolCourrant()
+        val volChoixClassOTD = VolChoixClassOTD(
+            dateDépart = vol.dateDepart.format( formatterDate ),
+            heureDépart = vol.dateDepart.format( formatterHeure ),
+            heureArrivée = vol.dateArrivee.format( formatterHeure ),
+            prixÉconomique = String.format( "%.2f$", vol.prixParClasse["Économique"] ),
+            prixAffaire = String.format( "%.2f$", vol.prixParClasse["Affaire"] ),
+            prixPremière = String.format( "%.2f$", vol.prixParClasse["Première"] ),
+            nomVilleDépart = vol.aeroportDebut.ville.nom,
+            nomVilleArrivée = vol.aeroportFin.ville.nom,
+            urlPhotoVilleArrivé = vol.aeroportFin.ville.url_photo,
+            codeAéroportDépart = vol.aeroportDebut.code,
+            codeAéroportArrivée = vol.aeroportFin.code,
+            durée = vol.durée.toComponents {
+                    hrs, min, _, _ ->
+                "${hrs}h${min}"
+            }
+        )
+        vue.miseEnPlace( volChoixClassOTD )
+    }
+
+    override fun traiterContinuer() {
+        TODO("Not yet implemented")
+    }
+}
