@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Locale
 
 class  MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,9 @@ class  MainActivity : AppCompatActivity() {
         miseEnPlaceDeLaBarreDeNavigation()
     }
 
+
+
+
     private fun miseEnPlaceDeLaBarreDeNavigation(){
         val navOptions = NavOptions.Builder()
             .setLaunchSingleTop( true )
@@ -63,7 +68,7 @@ class  MainActivity : AppCompatActivity() {
 
         buttonPréfrérencesNav.setOnClickListener {
             navController.navigate(
-                resId = R.id.listeDeVolsVue,
+                resId = R.id.listeRéservationsVue,
                 args = null,
                 navOptions = navOptions
             )

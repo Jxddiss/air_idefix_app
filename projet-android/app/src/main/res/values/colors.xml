@@ -5,5 +5,6 @@
     <color name="couleur_principale">#2F3969</color>
     <color name="couleur_btn_jaune">#E9E109</color>
     <color name="couleur_btn_typeVol">#BDBDBA</color>
+    <color name="couleurAppuyée">#502F3969</color>
 
 </resources>
