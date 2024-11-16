@@ -7,10 +7,14 @@ interface ContratVuePrésentateurChoisirClasse {
         fun miseEnPlace( volChoixClassOTD : VolChoixClassOTD )
         fun obtenirChoixClasse() : String
         fun redirigerChoixInfo()
+        fun placerVolPrécédent( date : String, prixÉconomique : String )
+        fun placerVolSuivant( date : String, prixÉconomique : String )
     }
 
     interface IChoisirClassePrésentateur{
         fun traiterDémarage()
         fun traiterContinuer()
+        fun traiterDemandeVolSuivant()
+        fun traiterDemandeVolPrécédant()
     }
 }

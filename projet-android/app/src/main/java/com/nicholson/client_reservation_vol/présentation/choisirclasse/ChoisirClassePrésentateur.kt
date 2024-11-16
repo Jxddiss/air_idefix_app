@@ -15,6 +15,8 @@ class ChoisirClassePrésentateur(
 
     override fun traiterDémarage() {
         val vol = modèle.getVolCourrant()
+        val volPrécédent = modèle.getVolPrécédent()
+        val volSuivant = modèle.getVolSuivant()
         val volChoixClassOTD = VolChoixClassOTD(
             dateDépart = vol.dateDepart.format( formatterDate ),
             heureDépart = vol.dateDepart.format( formatterHeure ),
@@ -33,9 +35,27 @@ class ChoisirClassePrésentateur(
             }
         )
         vue.miseEnPlace( volChoixClassOTD )
+        vue.placerVolPrécédent(
+            volPrécédent.dateDepart.format( formatterDate ),
+            String.format( "%.2f$", volPrécédent.prixParClasse["Économique"] )
+        )
+        vue.placerVolSuivant(
+            volSuivant.dateDepart.format( formatterDate ),
+            String.format( "%.2f$", volSuivant.prixParClasse["Économique"] )
+        )
     }
 
     override fun traiterContinuer() {
-        TODO("Not yet implemented")
+        vue.redirigerChoixInfo()
+    }
+
+    override fun traiterDemandeVolSuivant() {
+        modèle.avancerVolCourrant()
+        traiterDémarage()
+    }
+
+    override fun traiterDemandeVolPrécédant() {
+        modèle.reculerVolCourrant()
+        traiterDémarage()
     }
 }

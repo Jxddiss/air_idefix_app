@@ -18,15 +18,15 @@ class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : ILi
         val listeRéservationOTD = listeDeRéservation.map {
 
         val tempMtn : LocalDateTime = LocalDateTime.now()
-        val volDateDepart = findVolById(listeDeVols, it.idVol).dateDepart
+        val volDateDepart = modèle.obtenirVolParId( it.id ).dateDepart
 
         val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("fr"))
         val dateFormater = volDateDepart.format(formatter)
 
         val dateDepart = dateFormater.toString()
-        val destination = findVolById(listeDeVols, it.idVol).aeroportFin.pays
+        val destination = modèle.obtenirVolParId( it.id ).aeroportFin.pays
         var tempsRestant = ChronoUnit.HOURS.between(tempMtn, volDateDepart).toString()
-        val url_photo = findVolById(listeDeVols, it.idVol).aeroportFin.ville.url_photo
+        val url_photo = modèle.obtenirVolParId( it.id ).aeroportFin.ville.url_photo
 
         var tempsUnite = "Heures"
 
@@ -65,7 +65,4 @@ class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : ILi
         vue.redirigerVueRechercherVol()
     }
 
-    private fun findVolById(volList: List<Vol>, id: Int): Vol {
-        return volList.first{ it.id == id }
-    }
 }

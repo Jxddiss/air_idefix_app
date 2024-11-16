@@ -36,7 +36,14 @@
         android:id="@+id/listeDeVolsVue"
         android:name="com.nicholson.client_reservation_vol.présentation.listeVols.ListeDeVolsVue"
         android:label="fragment_liste_de_vols_vue"
-        tools:layout="@layout/fragment_liste_de_vols_vue" />
+        tools:layout="@layout/fragment_liste_de_vols_vue" >
+
+        <action
+            android:id="@+id/action_listeDeVolsVue_vers_choisirClasseVue"
+            app:destination="@id/choisirClasseVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/listeRéservationsVue"
         android:name="com.nicholson.client_reservation_vol.présentation.ListeReservation.ListeRéservationsVue"
@@ -56,6 +63,45 @@
         android:id="@+id/réservationSpécifiqueVue"
         android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
         android:label="fragment_reservation_specifique_vue"
-        tools:layout="@layout/fragment_reservation_specifique_vue" />
-
+        tools:layout="@layout/fragment_reservation_specifique_vue" >
+        <action
+            android:id="@+id/action_réservationSpécifiqueVue_to_modifierReservationVue"
+            app:destination="@id/modifierReservationVue"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifierReservationVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.modifierReservationVue"
+        android:label="fragment_modifier_reservation_vue" >
+        <action
+            android:id="@+id/action_modifierReservationVue_to_choisirSiegeVue"
+            app:destination="@id/choisirSiegeVue"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_to_choisirInfoVue"
+            app:destination="@id/choisirInfoVue"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_to_choisirClasseVue"
+            app:destination="@id/choisirClasseVue"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/choisirSiegeVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirSiegeVue"
+        android:label="fragment_choisir_siege_vue" />
+    <fragment
+        android:id="@+id/choisirInfoVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirInfoVue"
+        android:label="fragment_choisir_info_vue" />
+    <fragment
+        android:id="@+id/choisirClasseVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.choisirclasse.ChoisirClasseVue"
+        android:label="fragment_choisir_classe_vue" >
+        <action
+            android:id="@+id/action_choisirClasseVue_vers_choisirInfoVue"
+            app:destination="@id/choisirInfoVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>
