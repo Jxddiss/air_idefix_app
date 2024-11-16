@@ -46,7 +46,7 @@ class ChoisirClassePrésentateur(
     }
 
     override fun traiterContinuer() {
-        TODO("Not yet implemented")
+        vue.redirigerChoixInfo()
     }
 
     override fun traiterDemandeVolSuivant() {

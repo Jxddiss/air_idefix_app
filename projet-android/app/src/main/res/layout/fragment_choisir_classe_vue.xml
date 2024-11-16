@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/btnRechercher"
+            android:id="@+id/btnContinuerRéservation"
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:backgroundTint="@color/couleur_btn_jaune"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,6 +38,7 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
     lateinit var textViewPrixÉconoVolSuivant : TextView
     lateinit var imageButtonVolPrecedent : ImageButton
     lateinit var imageButtonVolSuivant : ImageButton
+    lateinit var btnContinuerRéservation : Button
     lateinit var navController: NavController
 
     override fun onCreateView(
@@ -78,6 +80,11 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
             présentateur?.traiterDemandeVolSuivant()
         }
 
+        btnContinuerRéservation = vue.findViewById( R.id.btnContinuerRéservation )
+        btnContinuerRéservation.setOnClickListener {
+            présentateur?.traiterContinuer()
+        }
+
         navController = Navigation.findNavController( vue )
         présentateur?.traiterDémarage()
     }
@@ -104,14 +111,12 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
             .into( imageViewVillechoisirInformation )
     }
 
-
-
     override fun obtenirChoixClasse(): String {
         TODO("Not yet implemented")
     }
 
     override fun redirigerChoixInfo() {
-        TODO("Not yet implemented")
+        navController.navigate( R.id.action_choisirClasseVue_vers_choisirInfoVue )
     }
 
     override fun placerVolPrécédent(date: String, prixÉconomique: String) {
