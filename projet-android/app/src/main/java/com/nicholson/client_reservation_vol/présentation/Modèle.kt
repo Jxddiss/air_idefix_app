@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation
 
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
@@ -50,7 +51,39 @@ class Modèle private constructor( private val volService : VolService = VolServ
         return listeVol
     }
 
-    fun obtenirVolParId( id : Int ) : Vol{
+    fun obtenirVolParId( id : Int ) : Vol {
         return volService.obtenirVolParId( id )
+    }
+
+    fun avancerVolCourrant() {
+        if ( indiceVolCourrant < listeVol.size - 1 ){
+            indiceVolCourrant ++
+        } else {
+            indiceVolCourrant = 0
+        }
+    }
+
+    fun reculerVolCourrant() {
+        if( indiceVolCourrant > 0 ){
+            indiceVolCourrant --
+        }else{
+            indiceVolCourrant = listeVol.size - 1
+        }
+    }
+
+    fun getVolPrécédent() : Vol {
+        if ( indiceVolCourrant > 0 ){
+            return listeVol[indiceVolCourrant - 1]
+        } else {
+            return listeVol[listeVol.size - 1]
+        }
+    }
+
+    fun getVolSuivant() : Vol {
+        if ( indiceVolCourrant < listeVol.size - 1 ){
+            return listeVol[indiceVolCourrant + 1]
+        } else {
+            return listeVol[0]
+        }
     }
 }

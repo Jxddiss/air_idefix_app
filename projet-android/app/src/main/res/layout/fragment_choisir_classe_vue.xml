@@ -22,7 +22,7 @@
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:backgroundTint="@color/couleur_btn_jaune"
-            android:drawableRight="@drawable/avion_btn"
+            android:drawableEnd="@drawable/avion_btn"
             android:elevation="15dp"
             android:fontFamily="@font/lexend"
             android:text="Continuer"
@@ -58,21 +58,22 @@
             android:id="@+id/layoutImgDestination"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fond_transparent_noir_top">
+            android:background="@drawable/fond_transparent_noir_top"
+            android:foregroundTint="@color/couleur_principale">
 
             <TextView
                 android:id="@+id/textViewNomDestination"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/lexend"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/lexend"
                 android:text="Vol De Montréal à Cancun"
                 android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintDimensionRatio="2:1"
                 app:layout_constraintEnd_toStartOf="@id/guideline_text_nom_destination_vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/guideline_text_nom_destination"/>
+                app:layout_constraintTop_toTopOf="@id/guideline_text_nom_destination" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_text_nom_destination"
@@ -103,15 +104,177 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_contenu_top">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="361dp"
-            android:layout_height="73dp"
-            android:layout_marginTop="70dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutListVolSlider"
+            android:layout_width="360dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/fond_bord_arrondis"
+            android:backgroundTint="#D0CEC8"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButtonVolPrecedent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:rotationY="180"
+                android:src="@drawable/no_line_arrow"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_btn_precedent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/couleur_principale" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/guideline_end_btn_precedent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_info_vol_precedent">
+
+                <TextView
+                    android:id="@+id/textViewDateVolPrécedent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textViewPrixÉconoVolPrécedent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="?android:attr/colorActivatedHighlight"
+                app:cardCornerRadius="16dp"
+                app:contentPadding="1dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_start_info_vol_suivant"
+                app:layout_constraintStart_toStartOf="@id/guideline_end_info_vol_precedent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fond_bord_arrondis"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewDateDépartSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/couleur_principale" />
+
+                    <TextView
+                        android:id="@+id/textViewPrixÉconomiqueSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/couleur_principale"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_start_btn_suivant"
+                app:layout_constraintStart_toEndOf="@id/guideline_start_info_vol_suivant">
+
+                <TextView
+                    android:id="@+id/textViewDateVolSuivant"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textViewPrixÉconoVolSuivant"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonVolSuivant"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:src="@drawable/no_line_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_btn_suivant"
+                app:tint="@color/couleur_principale" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_btn_precedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.12" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_btn_suivant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.87" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_info_vol_precedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_info_vol_suivant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="361dp"
+            android:layout_height="73dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_info_vol_courrant_top">
 
             <LinearLayout
                 android:layout_width="109dp"
@@ -283,6 +446,13 @@
                 android:textSize="20sp"
                 android:text="3796,56$" />
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_info_vol_courrant_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
