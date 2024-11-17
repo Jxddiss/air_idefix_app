@@ -20,11 +20,12 @@ import androidx.navigation.fragment.findNavController
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.HistoriqueRechercheVue
+import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol
 import com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherVolPresentateur
 import java.time.Year
 private lateinit var modèle: Modèle
 
-class RechercherUnVolVue : Fragment() {
+class RechercherUnVolVue : Fragment(), ContractRechercherVol.Vue  {
     private lateinit var choisirDate: EditText
     private lateinit var calendrier: Calendar
     private lateinit var datePickerDialog: DatePickerDialog
@@ -33,7 +34,9 @@ class RechercherUnVolVue : Fragment() {
     private lateinit var choisirDateRetour: EditText
     private lateinit var btnRechercher : Button
     private lateinit var navController: NavController
-    private val presentateur = RechercherVolPresentateur() // Initialize le presentateur
+    private val présentateur = RechercherVolPresentateur()
+    private lateinit var choisirVilleDe: AutoCompleteTextView
+    private lateinit var choisirVilleVers: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,43 +49,25 @@ class RechercherUnVolVue : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_rechercher_un_vol_vue, container, false)
 
-        //Initialization des objets
+        //Initialization de mes objets
         choisirDate = view.findViewById(R.id.ChosirDate)
         choisirDateRetour = view.findViewById(R.id.ChosirDateRetour)
         btnAllerEtRetourn = view.findViewById(R.id.btnAllerEtRetourn)
         btnAllerSimple=view.findViewById(R.id.btnAllerSimple)
-        modèle = Modèle.obtenirInstance()
-
-        val choisirVilleDe: AutoCompleteTextView = view.findViewById(R.id.ChosirVilleDe)
-        val choisirVilleVers: AutoCompleteTextView = view.findViewById(R.id.ChosirVilleVers)
+        choisirVilleDe = view.findViewById(R.id.ChosirVilleDe)
+        choisirVilleVers = view.findViewById(R.id.ChosirVilleVers)
         btnRechercher = view.findViewById(R.id.btnRechercher)
 
-        // fecth les villes en utilisant le presentateur:
-        val villes = presentateur.obtenirListeVilles().map { it.nom }
+        présentateur.attacherVue(this)
+        présentateur.obtenirListeVilles()
 
-
-        val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes, villes)
-        choisirVilleVers.setAdapter(dropDown)
-        choisirVilleDe.setAdapter(dropDown)
-        //Le drop down pour afficher les villes dans 'DE', des qu'on click afficher avec Toast la ville selectioné
-        choisirVilleDe.setOnItemClickListener { adapterView, _, i, _ ->
-            val itemSelected = adapterView.getItemAtPosition(i) as String
-            Toast.makeText(requireContext(), "Ville: $itemSelected", Toast.LENGTH_SHORT).show()
-        }
-        //Le drop down pour afficher les villes dans 'VERS', des qu'on click afficher avec Toast la ville selectioné
-        choisirVilleVers.setOnItemClickListener { adapterView, _, i, _ ->
-            val itemSelected = adapterView.getItemAtPosition(i) as String
-            Toast.makeText(requireContext(), "Ville: $itemSelected", Toast.LENGTH_SHORT).show()
-        }
-
-
-
-        // Set up pour le date pickers
+        // Set up pour le date (chosir date)
         calendrier = Calendar.getInstance()
         choisirDate.setOnClickListener {
             afficherDatePicker(choisirDate) //afficher le calendrier
         }
-        // Set OnClickListener pour  "Aller Simple" button
+
+        // Set OnClickListener pour "Aller Simple" button
         btnAllerSimple.setOnClickListener {
             // Changement du color de btnAllerSimple quand il est click
             btnAllerSimple.setBackgroundColor(resources.getColor(R.color.couleurAppuyée, null))
@@ -92,7 +77,7 @@ class RechercherUnVolVue : Fragment() {
             choisirDateRetour.requestFocus()
         }
 
-        // Set OnClickListener pour  "Aller-et-Retourn" button
+        // Set OnClickListener pour "Aller-et-Retourn" button
         btnAllerEtRetourn.setOnClickListener {
             // Changement du color de btnAllerEtRetourn quand il est click
             btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleurAppuyée, null))
@@ -108,18 +93,16 @@ class RechercherUnVolVue : Fragment() {
         return view
     }
 
-    override fun onViewCreated( vue: View, savedInstanceState: Bundle? ) {
-        super.onViewCreated( vue, savedInstanceState )
-        navController = Navigation.findNavController( vue )
-        btnRechercher = vue.findViewById( R.id.btnRechercher )
+    override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(vue, savedInstanceState)
+        navController = Navigation.findNavController(vue)
+        btnRechercher = vue.findViewById(R.id.btnRechercher)
         btnRechercher.setOnClickListener {
-            navController.navigate( R.id.action_rechercherUnVolVue_vers_listeDeVolsVue )
+            navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
         }
-
     }
 
-
-    //Fonction pour afficher le calendrier
+    // Fonction pour afficher le calendrier
     private fun afficherDatePicker(editText: EditText) {
         val year = calendrier.get(Calendar.YEAR)
         val month = calendrier.get(Calendar.MONTH)
@@ -132,10 +115,22 @@ class RechercherUnVolVue : Fragment() {
         datePickerDialog.show()
     }
 
+    // method pour aficher la liste de villes dans les dropdowns
+    override fun afficherListeVilles(villes: List<String>) {
+        val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes, villes)
+        choisirVilleVers.setAdapter(dropDown)
+        choisirVilleDe.setAdapter(dropDown)
 
+        // Toast selection pour "De" dropdown
+        choisirVilleDe.setOnItemClickListener { adapterView, _, i, _ ->
+            val itemSelected = adapterView.getItemAtPosition(i) as String
+            Toast.makeText(requireContext(), "Ville: $itemSelected", Toast.LENGTH_SHORT).show()
+        }
+
+        // Toast selection pour "Vers" dropdown
+        choisirVilleVers.setOnItemClickListener { adapterView, _, i, _ ->
+            val itemSelected = adapterView.getItemAtPosition(i) as String
+            Toast.makeText(requireContext(), "Ville: $itemSelected", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
-
-
-
-
-
