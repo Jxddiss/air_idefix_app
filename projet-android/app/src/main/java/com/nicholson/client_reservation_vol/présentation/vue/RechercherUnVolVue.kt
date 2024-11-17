@@ -18,7 +18,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.HistoriqueRechercheVue
+import com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherVolPresentateur
 import java.time.Year
+private lateinit var modèle: Modèle
 
 class RechercherUnVolVue : Fragment() {
     private lateinit var choisirDate: EditText
@@ -29,7 +33,7 @@ class RechercherUnVolVue : Fragment() {
     private lateinit var choisirDateRetour: EditText
     private lateinit var btnRechercher : Button
     private lateinit var navController: NavController
-
+    private val presentateur = RechercherVolPresentateur() // Initialize le presentateur
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +51,15 @@ class RechercherUnVolVue : Fragment() {
         choisirDateRetour = view.findViewById(R.id.ChosirDateRetour)
         btnAllerEtRetourn = view.findViewById(R.id.btnAllerEtRetourn)
         btnAllerSimple=view.findViewById(R.id.btnAllerSimple)
+        modèle = Modèle.obtenirInstance()
 
-        val villes = listOf("Cancun", "Budapest", "Varsovie", "Busan")
         val choisirVilleDe: AutoCompleteTextView = view.findViewById(R.id.ChosirVilleDe)
         val choisirVilleVers: AutoCompleteTextView = view.findViewById(R.id.ChosirVilleVers)
+        btnRechercher = view.findViewById(R.id.btnRechercher)
+
+        // fecth les villes en utilisant le presentateur:
+        val villes = presentateur.obtenirListeVilles().map { it.nom }
+
 
         val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes, villes)
         choisirVilleVers.setAdapter(dropDown)
@@ -67,6 +76,8 @@ class RechercherUnVolVue : Fragment() {
         }
 
 
+
+        // Set up pour le date pickers
         calendrier = Calendar.getInstance()
         choisirDate.setOnClickListener {
             afficherDatePicker(choisirDate) //afficher le calendrier
@@ -93,6 +104,7 @@ class RechercherUnVolVue : Fragment() {
         choisirDateRetour.setOnClickListener {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
         }
+
         return view
     }
 
@@ -103,7 +115,9 @@ class RechercherUnVolVue : Fragment() {
         btnRechercher.setOnClickListener {
             navController.navigate( R.id.action_rechercherUnVolVue_vers_listeDeVolsVue )
         }
+
     }
+
 
     //Fonction pour afficher le calendrier
     private fun afficherDatePicker(editText: EditText) {
@@ -117,6 +131,7 @@ class RechercherUnVolVue : Fragment() {
         }, year, month, day)
         datePickerDialog.show()
     }
+
 
 }
 
