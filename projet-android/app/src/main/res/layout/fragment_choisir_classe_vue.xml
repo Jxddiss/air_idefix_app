@@ -145,7 +145,7 @@
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="@color/couleur_principale"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textViewPrixÉconoVolPrécedent"
@@ -155,7 +155,7 @@
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="@color/couleur_principale"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -213,7 +213,7 @@
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="@color/couleur_principale"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textViewPrixÉconoVolSuivant"
@@ -223,7 +223,7 @@
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="@color/couleur_principale"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -242,14 +242,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.12" />
+                app:layout_constraintGuide_percent="0.08" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_start_btn_suivant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.87" />
+                app:layout_constraintGuide_percent="0.92" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_end_info_vol_precedent"
