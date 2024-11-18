@@ -12,8 +12,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.nicholson.client_reservation_vol.R
-import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
-
+import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 
 
 class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
@@ -54,17 +53,19 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirTéléphone = view.findViewById(R.id.ChoisirTéléphone)
         btnSaveInfo = view.findViewById(R.id.btnSaveInfo)
 
-        val imageUrl = SourceDonnéesFictive.listVille[0].url_photo
-        Glide.with(requireContext()).load(imageUrl).into(imageViewVillechoisirInformation)
 
-        val réservation = SourceDonnéesFictive.listeRéservation[0]
-        val client = réservation.clients[0]
+    }
 
-        ChoisirNom.text = client.nom
-        ChoisirPrenom.text = client.prénom
-        ChoisirNumPasseport.text = client.numéroPasseport
-        ChoisirEmail.text = client.email
-        ChoisirTéléphone.text = client.numéroTéléphone
+    override fun obtenirInfoClient() {
+        val clientOTD = ClientOTD(
+            ChoisirNom.text.toString(),
+            ChoisirPrenom.text.toString(),
+            "",
+            ChoisirNumPasseport.text.toString(),
+            ChoisirEmail.text.toString(),
+            ChoisirTéléphone.text.toString()
+        )
+        présentateur?.traiterObtenirInfo(clientOTD)
     }
 
     override fun redirigerAChoisirSiege() {

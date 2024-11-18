@@ -113,4 +113,8 @@ class Modèle private constructor( private val volService : VolService = VolServ
     fun obtenirClientCourrant(): Client{
         return listeClient[indiceClientCourrant]
     }
+
+    fun ajouterClient(client : Client) {
+        clientService.ajouterClient(client)
+    }
 }
