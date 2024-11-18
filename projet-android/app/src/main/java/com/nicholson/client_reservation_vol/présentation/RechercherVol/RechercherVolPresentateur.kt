@@ -20,7 +20,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     }
 
     override fun obtenirListeVilles() {
-        val villes = modèle.obtenirListeVilles().map { it.nom }
-        vue?.afficherListeVilles(villes)
+        val aéroportsAvecCodes = modèle.obtenirListeAéroports().map { "${it.ville.nom} (${it.code})" }
+        vue?.afficherListeVilles(aéroportsAvecCodes)
     }
 }

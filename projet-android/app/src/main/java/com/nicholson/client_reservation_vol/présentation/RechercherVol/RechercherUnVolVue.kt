@@ -111,9 +111,9 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         datePickerDialog.show()
     }
 
-    // method pour aficher la liste de villes dans les dropdowns
-    override fun afficherListeVilles(villes: List<String>) {
-        val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes, villes)
+    // method pour aficher la liste de villes avec code aerport dans les dropdowns
+    override fun afficherListeVilles(aéroports: List<String>) {
+        val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes,aéroports )
         choisirVilleVers.setAdapter(dropDown)
         choisirVilleDe.setAdapter(dropDown)
 

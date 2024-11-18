@@ -12,5 +12,6 @@ interface SourceDeDonnées {
     fun obtenirVolParId( id : Int ) : Vol
     fun getListRéservation() : MutableList<Réservation>
     fun obtenirListHistorique():List<Historique>
+    fun ajouterHistorique(historique: Historique)
     fun obtenirListeHistoriqueParFiltre(filtre: FiltreRechercheHistorique): List<Historique> //effacer ca
 }

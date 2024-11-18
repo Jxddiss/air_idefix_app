@@ -339,6 +339,9 @@ class SourceDonnéesFictive : SourceDeDonnées {
 
     override fun obtenirListHistorique():List<Historique> = listHistorique
 
+    override fun ajouterHistorique(historique: Historique) {
+        listHistorique.add(historique)
+    }
 
     //EFFACER MON FILTRE
     override fun obtenirListeHistoriqueParFiltre(filtre: FiltreRechercheHistorique): List<Historique> =

@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation
 
 import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
@@ -103,11 +104,21 @@ class Modèle private constructor( private val volService : VolService = VolServ
         }
     }
 
-    //optenir les villes de la sourcedeDonnesFicvtives
-    fun obtenirListeVilles(): List<Ville> {
-        return SourceDonnéesFictive.listVille
+
+
+    fun obtenirListeAéroports(): List<Aeroport> {
+        return SourceDonnéesFictive.listAeoroport
     }
 
+
+    //Funtion pour sauvarger les info pour apres les obtenir dans lhistorique
+    fun ajouterRecherche(historique: Historique) {
+        historiqueService.ajouterHistorique(historique)
+    }
+
+    fun obtenirHistoriqueRecherche(): List<Historique> {
+        return historiqueService.obtenirListeHistorique()
+    }
 
 
 }
