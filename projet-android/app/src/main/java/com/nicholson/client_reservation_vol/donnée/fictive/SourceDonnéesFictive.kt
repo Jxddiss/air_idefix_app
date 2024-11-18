@@ -94,63 +94,19 @@ class SourceDonnéesFictive : SourceDeDonnées {
         val listAvion = mutableListOf(
             Avion(
                 1,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 1,
-                        idRéservation = 1
-                    )
-                },
-                1,
+                "Boeing 737"
             ),
             Avion(
                 2,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 2,
-                        idRéservation = 2
-                    )
-                },
-                2,
+                "Boeing 737"
             ),
             Avion(
                 3,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 3,
-                        idRéservation = 3
-                    )
-                },
-                3,
+                "Boeing 737"
             ),
             Avion(
                 id = 4,
-                type = "Boeing 737",
-                sièges = List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 4,
-                        idRéservation = 4
-                    )
-                },
-                idVol = 4,
+                type = "Boeing 737"
             )
         )
 
@@ -310,21 +266,28 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 numéroRéservation = "RES00${listVol[index].id}",
                 idVol = listVol[index].id,
                 clients = listOf(client),
-                sièges = listVol[index].avion.sièges.filter {
-                    it.idRéservation == listVol[index].id
-                }
+                sièges = List(36){
+                    Siège(
+                        id = it,
+                        numéro = "S00$it",
+                        classe = Classe.ÉCONOMIQUE.toString(),
+                        statut = "occupée",
+                        idAvion = 4,
+                        idRéservation = 4
+                    )
+                },
             )
         }
     }
 
-    override fun obtenirListeVol(): List<Vol> = listVol
+    override fun obtenirListeVol(): List<Vol> = listVol.sortedBy { it.dateDepart }
 
     override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> =
         listVol.filter {
             it.dateDepart >= filtre.dateDébut && it.dateDepart < filtre.dateDébut.plusDays(30)
                     && it.aeroportDebut.code == filtre.codeAéroportDébut
                     && it.aeroportFin.code == filtre.codeAéroportFin
-        }
+        }.sortedBy { it.dateDepart }
 
 
     override fun obtenirVolParId(id: Int): Vol =
