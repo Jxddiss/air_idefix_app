@@ -20,7 +20,7 @@ class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : ILi
         val tempMtn : LocalDateTime = LocalDateTime.now()
         val volDateDepart = modèle.obtenirVolParId( it.id ).dateDepart
 
-        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("fr"))
+        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
         val dateFormater = volDateDepart.format(formatter)
 
         val dateDepart = dateFormater.toString()
