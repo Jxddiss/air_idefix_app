@@ -6,20 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
+import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.ContratVuePrésentateurHistorique.IListeDeHistoriqueVue
+import java.time.LocalDate
 
 
-class HistoriqueRechercheVue : Fragment() {
-    private lateinit var modèle: Modèle  // Your existing model class
+class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.IListeDeHistoriqueVue {
+
+    //private lateinit var modèle: Modèle
     private lateinit var recyclerView: RecyclerView
     private lateinit var rechercheHistoriqueAdapter: HistoriqueRechercheAdapter
+    private lateinit var historiquePrésentateur: HistoriquePrésentateur
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       // modèle = Modèle.obtenirInstance()
+        historiquePrésentateur = HistoriquePrésentateur(this)
 
     }
 
@@ -28,8 +37,25 @@ class HistoriqueRechercheVue : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_historique_recherche_vue, container, false)
+        // Initialize le RecyclerView
+        recyclerView = view.findViewById(R.id.recycler_historique_list)
 
+
+        // Request data
+        //val filtre = FiltreRechercheHistorique("Montreal", "Cancun", "YUL", "BEN", dateDepart = LocalDate.of(2024, 11, 15), dateRetour = LocalDate.of(2024, 11, 22))
+        //historiquePrésentateur.traiterObtenirHistorique(filtre)
 
         return view
     }
+
+    override fun afficherHistorique(listeDeHistorique: List<HistoriqueListItemOTD>) {
+        rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        recyclerView.itemAnimator=DefaultItemAnimator()
+        recyclerView.adapter = rechercheHistoriqueAdapter
+    }
+
+
 }

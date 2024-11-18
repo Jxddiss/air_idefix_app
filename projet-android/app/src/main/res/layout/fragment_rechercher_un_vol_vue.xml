@@ -5,7 +5,7 @@
     android:id="@+id/VueRechercherVol"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".présentation.vue.RechercherUnVolVue">
+    tools:context=".présentation.RechercherVol.RechercherUnVolVue">
 
 
     <!-- Constraint pour afficher le titre du View Rechercher vol -->

@@ -2,8 +2,11 @@ package com.nicholson.client_reservation_vol.donnée.fictive
 
 import com.nicholson.client_reservation_vol.domaine.entité.*
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.Date
 import kotlin.random.Random
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
@@ -315,6 +318,40 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 }
             )
         }
+
+        val listHistorique = mutableListOf(
+            Historique(
+                villeDe="Montreal",
+                villeVers="Cancun",
+                aeroportDe = "YUL",
+                aeroportVers = "BEN",
+                dateDepart = LocalDate.of(2024, 11, 15),
+                dateRetour = LocalDate.of(2024, 11, 22),
+                nbrPassangers = 1
+
+            ),
+            Historique(
+                villeDe = "Toronto",
+                villeVers = "Paris",
+                aeroportDe = "YYZ",
+                aeroportVers = "CDG",
+                dateDepart = LocalDate.of(2024, 11, 10),
+                dateRetour = LocalDate.of(2024, 11, 17),
+                nbrPassangers = 1
+            ),
+            Historique(
+                villeDe = "Toronto",
+                villeVers = "Paris",
+                aeroportDe = "YYZ",
+                aeroportVers = "CDG",
+                dateDepart = LocalDate.of(2025, 1, 10),
+                dateRetour = LocalDate.of(2025, 1, 17),
+                nbrPassangers = 2
+            ),
+        )
+
+
+
     }
 
     override fun obtenirListeVol(): List<Vol> = listVol
@@ -336,4 +373,21 @@ class SourceDonnéesFictive : SourceDeDonnées {
     override fun getListRéservation(): MutableList<Réservation> {
         return listeRéservation
     }
+
+    override fun obtenirListHistorique():List<Historique> = listHistorique
+
+
+    //EFFACER MON FILTRE
+    override fun obtenirListeHistoriqueParFiltre(filtre: FiltreRechercheHistorique): List<Historique> =
+        listHistorique.filter {
+                historique ->
+            historique.villeDe == filtre.villeDe &&
+                    historique.villeVers == filtre.villeVers &&
+                    historique.aeroportDe == filtre.aeroportDe &&
+                    historique.aeroportVers == filtre.aeroportVers &&
+                    historique.dateDepart.isEqual(filtre.dateDepart) &&
+                    historique.dateRetour.isEqual(filtre.dateRetour)
+        }
+
+
 }

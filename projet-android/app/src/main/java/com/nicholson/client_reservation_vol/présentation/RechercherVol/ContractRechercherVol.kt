@@ -1,12 +1,12 @@
 package com.nicholson.client_reservation_vol.présentation.RechercherVol
 
 interface ContractRechercherVol {
-    interface Vue {
+    interface IRechercheVolVue {
         fun afficherListeVilles(villes: List<String>)
     }
 
-    interface Présentateur {
-        fun attacherVue(vue: Vue)
+    interface IRechercheVolVuePrésentateur {
+        fun attacherVue(vue: IRechercheVolVue)
         fun détacherVue()
         fun obtenirListeVilles()
     }

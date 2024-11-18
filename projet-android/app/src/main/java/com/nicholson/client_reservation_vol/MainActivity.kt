@@ -68,7 +68,7 @@ class  MainActivity : AppCompatActivity() {
 
         buttonPréfrérencesNav.setOnClickListener {
             navController.navigate(
-                resId = R.id.action_bienvenueVue_to_historiqueRechercheVue,
+                resId = R.id.historiqueRechercheVue,
                 args = null,
                 navOptions = navOptions
             )

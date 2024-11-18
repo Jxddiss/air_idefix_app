@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/rechercherUnVolVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.RechercherUnVolVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherUnVolVue"
         android:label="fragment_rechercher_un_vol_vue"
         tools:layout="@layout/fragment_rechercher_un_vol_vue" >
         <action
