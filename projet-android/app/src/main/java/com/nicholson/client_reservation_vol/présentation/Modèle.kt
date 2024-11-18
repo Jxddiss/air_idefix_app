@@ -1,15 +1,18 @@
 package com.nicholson.client_reservation_vol.présentation
 
 import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
-class Modèle private constructor( private val volService : VolService = VolService() ) {
+class Modèle private constructor( private val volService : VolService = VolService(),
+                                  private val clientService: ClientService = ClientService() ) {
 
     companion object{
         @Volatile
@@ -24,6 +27,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     // À remplacer par des services lié à chaque collection
     val sourceDeDonnées : SourceDeDonnées = SourceDonnéesFictive()
     var indiceVolCourrant : Int = 0
+    var indiceClientCourrant : Int = 0
     var filtreVolCourrant = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
@@ -39,6 +43,14 @@ class Modèle private constructor( private val volService : VolService = VolServ
         get(){
             if (field.isEmpty() ){
                 field = sourceDeDonnées.getListRéservation()
+            }
+            return field
+        }
+
+    var listeClient : MutableList<Client> = mutableListOf()
+        get(){
+            if(field.isEmpty()){
+                field = clientService.obtenirListeClient()
             }
             return field
         }
@@ -85,5 +97,9 @@ class Modèle private constructor( private val volService : VolService = VolServ
         } else {
             return listeVol[0]
         }
+    }
+
+    fun obtenirClientCourrant(): Client{
+        return listeClient[indiceClientCourrant]
     }
 }

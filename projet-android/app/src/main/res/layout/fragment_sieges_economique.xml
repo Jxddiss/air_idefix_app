@@ -6,12 +6,251 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/constraintLayout30"
+        android:layout_width="390dp"
+        android:layout_height="596dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="114dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="205dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="114dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="114dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="97dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="114dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="45dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="130dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="75dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="130dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="75dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="232dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textView20"
@@ -48,10 +287,12 @@
             app:srcCompat="@drawable/sortie_urgence_droite" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/textView20">
 
@@ -81,23 +322,11 @@
                 android:id="@+id/textViewE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:text="E"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textViewF"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="F"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="87dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,6 +363,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
@@ -164,6 +394,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -203,17 +434,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="4"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="291dp"/>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/siege_libre" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/siege_libre" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
