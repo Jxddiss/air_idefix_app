@@ -152,245 +152,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="205dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="36dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="150dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="36dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="97dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="36dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="45dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="36dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="240dp"
-                android:layout_marginTop="130dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="240dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="240dp"
-                android:layout_marginTop="75dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="33dp"
-                android:layout_marginTop="130dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="70dp"
-                android:layout_height="33dp"
-                android:layout_marginTop="75dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="37dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/siege_libre" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/siege_libre" />
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout44"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="39dp"
-                tools:layout_editor_absoluteY="232dp">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
@@ -429,11 +190,9 @@
                 android:id="@+id/constraintLayout35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                app:layout_constraintHorizontal_bias="0.509"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView20">
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_GH"
+                app:layout_constraintStart_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top_CDE">
 
                 <TextView
                     android:id="@+id/textViewC"
@@ -465,6 +224,7 @@
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:layout_editor_absoluteX="87dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -473,10 +233,10 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="96dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7">
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top_AB_GH"
+                app:layout_constraintEnd_toStartOf="@id/guideline_end_siège_AB">
 
                 <TextView
                     android:id="@+id/textViewA"
@@ -502,13 +262,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout36"
+                android:id="@+id/constraintLayoutGH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8">
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_siège_GH"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top_AB_GH"
+                app:layout_constraintEnd_toStartOf="@id/guideline_end_siège_GH">
 
                 <TextView
                     android:id="@+id/textViewG"
@@ -532,40 +292,286 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout37"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout39"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="39dp"
-                tools:layout_editor_absoluteY="291dp" />
-
             <LinearLayout
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="33dp"
-                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout39"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="200dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35"
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_GH">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/imageViewSiège1"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="C3"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège2"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:contentDescription="D3"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège3"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="E3"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="150dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35"
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_GH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège4"
+                    android:contentDescription="C2"
                     android:layout_width="37dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/siege_libre" />
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/imageViewSiège5"
+                    android:contentDescription="D2"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège6"
+                    android:contentDescription="E2"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35"
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_GH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège7"
+                    android:contentDescription="C1"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège8"
+                    android:contentDescription="D1"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège9"
+                    android:contentDescription="E1"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout35"
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_GH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège10"
+                    android:contentDescription="C0"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège11"
+                    android:contentDescription="D0"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège12"
+                    android:contentDescription="E0"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="150dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_start_siège_GH"
+                app:layout_constraintEnd_toStartOf="@id/guideline_end_siège_GH"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutGH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège13"
+                    android:contentDescription="G3"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège14"
+                    android:contentDescription="H3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_start_siège_GH"
+                app:layout_constraintEnd_toStartOf="@id/guideline_end_siège_GH"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutGH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège15"
+                    android:contentDescription="G1"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège16"
+                    android:contentDescription="H1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/guideline_start_siège_GH"
+                app:layout_constraintEnd_toStartOf="@id/guideline_end_siège_GH"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutGH">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège17"
+                    android:contentDescription="G2"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège18"
+                    android:contentDescription="H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="150dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_siège_AB"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège19"
+                    android:contentDescription="A3"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège20"
+                    android:contentDescription="B3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_siège_AB"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège21"
+                    android:contentDescription="A2"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège22"
+                    android:contentDescription="B2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/siege_libre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_siège_AB"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_siège_AB"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <ImageView
+                    android:id="@+id/imageViewSiège23"
+                    android:contentDescription="A1"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/siege_libre" />
+
+                <ImageView
+                    android:id="@+id/imageViewSiège24"
+                    android:contentDescription="B1"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
@@ -575,12 +581,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="152dp"
-                android:layout_marginTop="236dp"
+                android:layout_marginTop="70dp"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@id/guideline_start_siège_AB"
                 app:layout_constraintHorizontal_bias="0.428"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/guideline_top_AB_GH">
 
                 <TextView
                     android:id="@+id/textView1"
@@ -605,6 +611,48 @@
                     android:text="3"
                     android:textSize="20sp" />
             </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_siège_AB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_siège_AB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_siège_GH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.76"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_siège_GH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_top_AB_GH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_top_CDE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
