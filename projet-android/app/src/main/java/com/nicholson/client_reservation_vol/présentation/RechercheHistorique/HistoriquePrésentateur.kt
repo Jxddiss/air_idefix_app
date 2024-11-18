@@ -11,7 +11,7 @@ class HistoriquePrésentateur (
 
     val modèle: Modèle = Modèle.obtenirInstance()
 
-    override fun traiterObtenirHistorique(filtre: FiltreRechercheHistorique) {
+    override fun traiterObtenirHistorique() {
         val listeDeHistorique = modèle.listeHistorique
 
         val listeHistoriqueOTD = listeDeHistorique.map {

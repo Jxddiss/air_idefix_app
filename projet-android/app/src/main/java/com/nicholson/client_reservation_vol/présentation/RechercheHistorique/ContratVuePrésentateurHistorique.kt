@@ -10,6 +10,6 @@ interface ContratVuePrésentateurHistorique {
     }
 
     interface IListeDeHistoriquePrésentateur {
-        fun traiterObtenirHistorique(filtre: FiltreRechercheHistorique)
+        fun traiterObtenirHistorique()
     }
 }

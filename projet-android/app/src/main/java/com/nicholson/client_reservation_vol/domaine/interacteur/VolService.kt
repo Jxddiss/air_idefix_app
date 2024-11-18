@@ -16,9 +16,4 @@ class VolService( private val sourceDeDonnées: SourceDeDonnées = SourceDonnée
     fun obtenirVolParId( id : Int ) =
         sourceDeDonnées.obtenirVolParId( id )
 
-    fun obtenirListeHistorique() = sourceDeDonnées.obtenirListHistorique()
-
-    //Effacer ca
-    fun obtenirListeHistoriqueParFiltre( filtreHistorique : FiltreRechercheHistorique) : List<Historique> =
-        sourceDeDonnées.obtenirListeHistoriqueParFiltre( filtreHistorique )
 }

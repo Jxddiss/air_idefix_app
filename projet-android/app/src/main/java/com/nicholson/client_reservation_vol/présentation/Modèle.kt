@@ -5,6 +5,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
@@ -13,7 +14,8 @@ import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-class Modèle private constructor( private val volService : VolService = VolService() ) {
+class Modèle private constructor( private val volService : VolService = VolService(),
+                                  private val historiqueService: HistoriqueService = HistoriqueService() ) {
 
     companion object {
         @Volatile
@@ -31,9 +33,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var filtreVolCourrant = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
-    var filtreHistoriqueCourrant = FiltreRechercheHistorique(
-        "Montreal", "Cancun","YUL","BEN",dateDepart = LocalDate.of(2024, 11, 15),dateRetour = LocalDate.of(2024, 11, 22)
-    )
+
 
 
     var listeVol: List<Vol> = listOf()
@@ -54,7 +54,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeHistorique: List<Historique> = listOf()
         get() {
             if (field.isEmpty()) {
-                field = volService.obtenirListeHistorique()
+                field = historiqueService.obtenirListeHistorique()
             }
             return field
         }
@@ -108,11 +108,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
         return SourceDonnéesFictive.listVille
     }
 
-
-    fun obtenirListeHistoriqueParFiltre(filtre: FiltreRechercheHistorique): List<Historique> {
-        listeHistorique = volService.obtenirListeHistoriqueParFiltre(filtre)
-        return listeHistorique
-    }
 
 
 }

@@ -19,7 +19,6 @@ import java.time.LocalDate
 
 class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.IListeDeHistoriqueVue {
 
-    //private lateinit var modèle: Modèle
     private lateinit var recyclerView: RecyclerView
     private lateinit var rechercheHistoriqueAdapter: HistoriqueRechercheAdapter
     private lateinit var historiquePrésentateur: HistoriquePrésentateur
@@ -41,10 +40,7 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
         recyclerView = view.findViewById(R.id.recycler_historique_list)
 
 
-        // Request data
-        //val filtre = FiltreRechercheHistorique("Montreal", "Cancun", "YUL", "BEN", dateDepart = LocalDate.of(2024, 11, 15), dateRetour = LocalDate.of(2024, 11, 22))
-        //historiquePrésentateur.traiterObtenirHistorique(filtre)
-
+        historiquePrésentateur.traiterObtenirHistorique()
         return view
     }
 
