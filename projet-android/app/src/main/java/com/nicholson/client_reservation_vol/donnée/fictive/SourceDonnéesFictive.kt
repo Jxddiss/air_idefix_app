@@ -266,7 +266,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 numéroRéservation = "RES00${listVol[index].id}",
                 idVol = listVol[index].id,
                 clients = listOf(client),
-                sièges = List(36){
+                sièges = List((1..3).random()){
                     Siège(
                         id = it,
                         numéro = "S00$it",
