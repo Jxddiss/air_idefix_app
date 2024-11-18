@@ -12,6 +12,7 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
             || clientOTD.prénom.isEmpty()
             || clientOTD.numéroPasseport.isEmpty() ){
 
+            vue.afficherMessageErreur("Veuillez remplir tous les champs.")
             return
         }
         modele.ajouterClient(convertirClientOTDAClient(clientOTD))
@@ -19,7 +20,7 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
     }
 
     override fun traiterDemandeRedirectionChoisirSiege() {
-
+            vue.obtenirInfoClient()
     }
 
     private fun convertirClientOTDAClient(clientOTD: ClientOTD) : Client{

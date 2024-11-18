@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -27,10 +28,17 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
     lateinit var ChoisirNumPasseport: TextView
     lateinit var ChoisirEmail: TextView
     lateinit var ChoisirTéléphone: TextView
+    lateinit var ChoisirAdresse: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+    override fun afficherMessageErreur(message: String) {
+        requireActivity().runOnUiThread {
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +58,7 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirPrenom = view.findViewById(R.id.ChoisirPrenom)
         ChoisirNumPasseport = view.findViewById(R.id.ChoisirNumPasseport)
         ChoisirEmail = view.findViewById(R.id.ChoisirEmail)
+        ChoisirAdresse = view.findViewById(R.id.ChoisirAdresse)
         ChoisirTéléphone = view.findViewById(R.id.ChoisirTéléphone)
         btnSaveInfo = view.findViewById(R.id.btnSaveInfo)
 
@@ -60,7 +69,7 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         val clientOTD = ClientOTD(
             ChoisirNom.text.toString(),
             ChoisirPrenom.text.toString(),
-            "",
+            ChoisirAdresse.text.toString(),
             ChoisirNumPasseport.text.toString(),
             ChoisirEmail.text.toString(),
             ChoisirTéléphone.text.toString()

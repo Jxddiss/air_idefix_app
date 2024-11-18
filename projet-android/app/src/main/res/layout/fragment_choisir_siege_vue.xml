@@ -26,7 +26,7 @@
             android:drawableRight="@drawable/avion_btn"
             android:elevation="15dp"
             android:fontFamily="@font/lexend"
-            android:text="Continuer"
+            android:text="Réserver"
             android:textColor="@color/couleur_principale"
             android:textSize="16sp"
             app:cornerRadius="6dp"

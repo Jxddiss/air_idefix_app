@@ -7,6 +7,7 @@ interface ContratVueChoisirInfo {
     interface IChoisirInfoVue {
         fun obtenirInfoClient()
         fun redirigerAChoisirSiege()
+        fun afficherMessageErreur(message: String)
     }
 
     interface IChoisirInfoPrésentateur {
