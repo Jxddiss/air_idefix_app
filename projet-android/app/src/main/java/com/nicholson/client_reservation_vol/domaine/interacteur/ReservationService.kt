@@ -6,4 +6,9 @@ import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictiv
 class ReservationService( private val sourceDeDonnées: SourceDeDonnées = SourceDonnéesFictive() ) {
     fun obtenirReservationParid( id : Int ) =
         sourceDeDonnées.obtenirReservationParId( id )
+
+    fun obtenirListReservation() =
+        sourceDeDonnées.obtenirListRéservation()
+
+
 }

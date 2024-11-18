@@ -39,7 +39,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeRéservation : MutableList<Réservation> = mutableListOf()
         get(){
             if (field.isEmpty() ){
-                field = sourceDeDonnées.obtenirListRéservation()
+                field = reservationService.obtenirListReservation()
             }
             return field
         }
