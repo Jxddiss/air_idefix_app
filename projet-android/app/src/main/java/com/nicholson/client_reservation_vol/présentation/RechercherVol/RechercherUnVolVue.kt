@@ -81,16 +81,20 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
         }
 
+        btnRechercher.setOnClickListener {
+            redirigerVersListeVols()
+        }
         return view
     }
+
+    override fun redirigerVersListeVols() {
+        navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
+    }
+
 
     override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
-        btnRechercher = vue.findViewById(R.id.btnRechercher)
-        btnRechercher.setOnClickListener {
-            navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
-        }
     }
 
     // Fonction pour afficher le calendrier
