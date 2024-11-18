@@ -51,6 +51,12 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         choisirVilleVers = view.findViewById(R.id.ChosirVilleVers)
         btnRechercher = view.findViewById(R.id.btnRechercher)
 
+        // Disable pour l'input pour date
+        choisirDate.isFocusable = false
+        choisirDate.isFocusableInTouchMode = false
+        choisirDateRetour.isFocusable = false
+        choisirDateRetour.isFocusableInTouchMode = false
+
         présentateur.attacherVue(this)
         présentateur.obtenirListeVilles()
 

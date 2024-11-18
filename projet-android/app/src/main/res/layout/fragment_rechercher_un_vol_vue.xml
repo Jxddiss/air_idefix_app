@@ -181,6 +181,7 @@
                 android:id="@+id/ChosirDate"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
@@ -220,6 +221,7 @@
                 android:id="@+id/ChosirDateRetour"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
