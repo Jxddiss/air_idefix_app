@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/réservationSpécifiqueVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.RéservationSpécifiqueVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.RéservationSpécifique.RéservationSpécifiqueVue"
         android:label="fragment_reservation_specifique_vue"
         tools:layout="@layout/fragment_reservation_specifique_vue" >
         <action

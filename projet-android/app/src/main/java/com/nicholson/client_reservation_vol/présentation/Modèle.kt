@@ -5,6 +5,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
+import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
@@ -12,7 +13,8 @@ import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
 class Modèle private constructor( private val volService : VolService = VolService(),
-                                  private val clientService: ClientService = ClientService() ) {
+                                  private val clientService: ClientService = ClientService(),
+                                  private val réservationService: RéservationService = RéservationService() ) {
 
     companion object{
         @Volatile
@@ -27,6 +29,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     // À remplacer par des services lié à chaque collection
     val sourceDeDonnées : SourceDeDonnées = SourceDonnéesFictive()
     var indiceVolCourrant : Int = 0
+    var indiceRéservationCourrante : Int = 0
     var indiceClientCourrant : Int = 0
     var filtreVolCourrant = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
@@ -42,7 +45,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeRéservation : MutableList<Réservation> = mutableListOf()
         get(){
             if (field.isEmpty() ){
-                field = sourceDeDonnées.getListRéservation()
+                field = réservationService.obtenirListeRéservation()
             }
             return field
         }
@@ -97,6 +100,14 @@ class Modèle private constructor( private val volService : VolService = VolServ
         } else {
             return listeVol[0]
         }
+    }
+
+    fun obtenirReservationParId( id : Int ): Réservation {
+        return réservationService.obtenirRéservationParid( id )
+    }
+
+    fun obtenirReservationCourrante(): Réservation {
+        return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
     }
 
     fun obtenirClientCourrant(): Client{

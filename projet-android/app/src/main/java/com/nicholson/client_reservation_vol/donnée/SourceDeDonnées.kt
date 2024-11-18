@@ -9,7 +9,8 @@ interface SourceDeDonnées {
     fun obtenirListeVol() : List<Vol>
     fun obtenirListeVolParFiltre( filtre : FiltreRechercheVol ) : List<Vol>
     fun obtenirVolParId( id : Int ) : Vol
-    fun getListRéservation() : MutableList<Réservation>
     fun ajouterClient(client: Client)
     fun obtenirListeClient():MutableList<Client>
+    fun obtenirListeRéservation() : MutableList<Réservation>
+    fun obtenirRéservationParId(id : Int): Réservation
 }

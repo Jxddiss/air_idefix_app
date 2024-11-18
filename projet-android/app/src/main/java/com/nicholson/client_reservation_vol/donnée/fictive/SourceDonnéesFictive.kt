@@ -283,7 +283,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 numéroRéservation = "RES00${listVol[index].id}",
                 idVol = listVol[index].id,
                 clients = listClients,
-                sièges = List(36) {
+                sièges = List((1..3).random()){
                     Siège(
                         id = it,
                         numéro = "S00$it",
@@ -313,9 +313,15 @@ class SourceDonnéesFictive : SourceDeDonnées {
         }
 
 
-    override fun getListRéservation(): MutableList<Réservation> {
+    override fun obtenirListeRéservation(): MutableList<Réservation> {
         return listeRéservation
     }
+
+    override fun obtenirRéservationParId(id : Int): Réservation =
+        listeRéservation.single {
+            it.id == id
+        }
+
 
     override fun ajouterClient( client : Client) {
         listClients.add(client)

@@ -5,7 +5,7 @@ import com.nicholson.client_reservation_vol.présentation.OTD.RéservationListIt
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 
 
-class ContratVuePrésentateurListeRéservation {
+interface ContratVuePrésentateurListeRéservation {
     interface IListeDeRéservationsVue {
         fun afficherRéservations( listeDeReservation : MutableList<RéservationListItemOTD>)//, listeDeVols : MutableList<VolListItemOTD>?, vue : View?)
         fun redirigerPageRéservationSpécifique();
@@ -14,7 +14,7 @@ class ContratVuePrésentateurListeRéservation {
 
     interface IListeDeRéservationsPrésentateur{
         fun traiterObtenirRéservation();
-        fun traiterRéservationCliqué();
+        fun traiterRéservationCliqué( index : Int );
         fun traiterBtnRechercheVolCliqué();
     }
 }
