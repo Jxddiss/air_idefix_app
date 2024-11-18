@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 import com.nicholson.client_reservation_vol.R
 
 class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
@@ -24,6 +25,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var btnAllerSimple: Button
     private lateinit var choisirDateRetour: EditText
     private lateinit var btnRechercher : Button
+    private lateinit var nbrPassangers:EditText
     private lateinit var navController: NavController
     private val présentateur = RechercherVolPresentateur()
     private lateinit var choisirVilleDe: AutoCompleteTextView
@@ -82,13 +84,22 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         }
 
         btnRechercher.setOnClickListener {
-            redirigerVersListeVols()
+           présentateur.traiterActionRecherche()
         }
         return view
     }
-
     override fun redirigerVersListeVols() {
         navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
+    }
+
+    //New funtion
+    override fun obtenirInfoRecherche(){
+        présentateur.traiterInfoRecherche(
+            choisirVilleDe.text.toString(),
+            choisirVilleVers.text.toString(),
+            choisirDate.text.toString(),
+            choisirDateRetour.text.toString(),
+            1.toString())
     }
 
 

@@ -116,6 +116,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
         historiqueService.ajouterHistorique(historique)
     }
 
+
     fun obtenirHistoriqueRecherche(): List<Historique> {
         return historiqueService.obtenirListeHistorique()
     }
