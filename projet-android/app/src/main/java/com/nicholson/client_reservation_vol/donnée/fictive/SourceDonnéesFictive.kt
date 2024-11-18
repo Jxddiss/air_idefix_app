@@ -296,11 +296,11 @@ class SourceDonnéesFictive : SourceDeDonnées {
         }
 
 
-    override fun obtenirListRéservation(): MutableList<Réservation> {
+    override fun obtenirListeRéservation(): MutableList<Réservation> {
         return listeRéservation
     }
 
-    override fun obtenirReservationParId( id : Int): Réservation =
+    override fun obtenirRéservationParId(id : Int): Réservation =
         listeRéservation.single {
             it.id == id
         }

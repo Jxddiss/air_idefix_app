@@ -2,14 +2,14 @@ package com.nicholson.client_reservation_vol.présentation
 
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
-import com.nicholson.client_reservation_vol.domaine.interacteur.ReservationService
+import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
-class Modèle private constructor( private val volService : VolService = VolService(), private val reservationService: ReservationService = ReservationService() ) {
+class Modèle private constructor( private val volService : VolService = VolService(), private val réservationService: RéservationService = RéservationService() ) {
 
     companion object{
         @Volatile
@@ -39,7 +39,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeRéservation : MutableList<Réservation> = mutableListOf()
         get(){
             if (field.isEmpty() ){
-                field = reservationService.obtenirListReservation()
+                field = réservationService.obtenirListeRéservation()
             }
             return field
         }
@@ -89,10 +89,10 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     fun obtenirReservationParId( id : Int ): Réservation {
-        return reservationService.obtenirReservationParid( id )
+        return réservationService.obtenirRéservationParid( id )
     }
 
     fun obtenirReservationCourrante(): Réservation {
-        return reservationService.obtenirReservationParid(listeRéservation[indiceRéservationCourrante].id)
+        return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
     }
 }
