@@ -57,7 +57,8 @@ class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : ILi
         vue.afficherRéservations(listeRéservationOTD)
     }
 
-    override fun traiterRéservationCliqué() {
+    override fun traiterRéservationCliqué( index : Int ) {
+        modèle.indiceRéservationCourrante = index
         vue.redirigerPageRéservationSpécifique()
     }
 

@@ -70,7 +70,7 @@ class ListeRéservationsVue : Fragment(),
     fun ajouterAdaptateurRéservationAuRecycler(listeDeRéservation: MutableList<RéservationListItemOTD>){//, listeDeVols: MutableList<VolListItemOTD>, vue: View){
         adaptateur = RecyclerAdapter(listeDeRéservation)
         adaptateur.itemCliquéÉvènement = {
-            position : Int -> présentateur?.traiterRéservationCliqué()
+            présentateur?.traiterRéservationCliqué( it )
         }
 
         recycler.layoutManager = LinearLayoutManager(requireContext())
