@@ -54,11 +54,9 @@
     <string name="nom_modif">Last name:</string>
     <string name="prenom_modif">Name:</string>
     <string name="telephone">Telephone:</string>
-
-
-
-
-
+    <string name="occupe">Occupied</string>
+    <string name="disponible">Available</string>
+    <string name="sortie_d_urgence">Emergency Exit</string>
 
 
 </resources>

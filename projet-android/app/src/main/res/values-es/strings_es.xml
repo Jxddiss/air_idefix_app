@@ -53,7 +53,9 @@
     <string name="nom_modif">Apellido:</string>
     <string name="prenom_modif">Nombre:</string>
     <string name="telephone">Telefono:</string>
-
+    <string name="occupe">Ocupado</string>
+    <string name="disponible">Disponible</string>
+    <string name="sortie_d_urgence">Salida de auxilio</string>
 
 
 </resources>

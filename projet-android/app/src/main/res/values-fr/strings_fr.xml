@@ -52,8 +52,9 @@
     <string name="nom_modif">Nom:</string>
     <string name="prenom_modif">Prénom:</string>
     <string name="telephone">Téléphone:</string>
-
-
+    <string name="occupe">Occupé</string>
+    <string name="disponible">Disponible</string>
+    <string name="sortie_d_urgence">Sortie d\'urgence</string>
 
 
 </resources>
