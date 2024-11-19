@@ -24,7 +24,6 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         )
 
-
         val listVille = mutableListOf(
             Ville(
                 id = 1,
@@ -113,6 +112,17 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         )
 
+        val listSièges = List((10..20).random()){
+            Siège(
+                id = it,
+                numéro = ('A'..'H').random().toString() + ((1..3).random()).toString(),
+                classe = Classe.ÉCONOMIQUE.toString(),
+                statut = "occupée",
+                idRéservation = (1..7).random(),
+                idVol = (1..7).random()
+            )
+        }
+
         val listVol = mutableListOf(
             Vol(
                 id = 1,
@@ -135,7 +145,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 8.toDuration(DurationUnit.HOURS)
+                durée = 8.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 1
+                }
             ),
             Vol(
                 id = 2,
@@ -158,7 +171,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 8.toDuration(DurationUnit.HOURS)
+                durée = 8.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 2
+                }
             ),
             Vol(
                 id = 3,
@@ -181,7 +197,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 3
+                }
             ),
             Vol(
                 id = 4,
@@ -204,7 +223,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 4
+                }
             ),
             Vol(
                 id = 5,
@@ -227,7 +249,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 5
+                }
             ),
             Vol(
                 id = 6,
@@ -250,7 +275,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 6
+                }
             ),
             Vol(
                 id = 7,
@@ -273,26 +301,22 @@ class SourceDonnéesFictive : SourceDeDonnées {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 7
+                }
             )
         )
 
         val listeRéservation = MutableList(listVol.size) { index ->
             Réservation(
-                id = listVol[index].id,
+                id = index + 1,
                 numéroRéservation = "RES00${listVol[index].id}",
                 idVol = listVol[index].id,
                 clients = listClients,
-                sièges = List((1..3).random()){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 4,
-                        idRéservation = 4
-                    )
-                },
+                sièges = listSièges.filter{
+                    it.idRéservation == index + 1
+                }
             )
         }
     }
