@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
@@ -16,6 +19,8 @@ import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratV
 class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
     lateinit var textViewNomDestination: TextView
     lateinit var imageViewVillechoisirInformation: ImageView
+    lateinit var btnConfirmerRéservation : Button
+    lateinit var navController: NavController
     var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
 
     override fun onCreateView(
@@ -40,6 +45,11 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
             présentateur?.vérifierStatutSiège( imageViewSiège.id,
                 imageViewSiège.contentDescription.toString() )
         }
+        btnConfirmerRéservation = vue.findViewById( R.id.btnConfirmerRéservation )
+        btnConfirmerRéservation.setOnClickListener {
+            présentateur?.traiterConfirmerRéservation()
+        }
+        navController = vue.findNavController()
         présentateur?.traiterDémarage()
     }
 
@@ -78,6 +88,10 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         requireActivity().runOnUiThread {
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun redirigerVersMesRéservation() {
+        navController.navigate( R.id.action_choisirSiegeVue_vers_listeRéservationsVue )
     }
 
 }

@@ -8,6 +8,7 @@ interface ContratVuePrésentateurChoisirSiège {
         fun placerStatutSiègeOccupée(id : Int )
         fun placerStatutSiègeDisponible(id : Int )
         fun afficherErreur( message : String )
+        fun redirigerVersMesRéservation()
     }
     interface IChoisirSiègePrésentateur {
         fun traiterDémarage()

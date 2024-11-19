@@ -1,14 +1,13 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
-import com.nicholson.client_reservation_vol.domaine.entité.Réservation
-import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 
 class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisirSiègePrésentateur {
     private val modèle : Modèle = Modèle.obtenirInstance()
     private val volCourrant = modèle.getVolCourrant()
-    private var siègeCourrant : Siège? = null
+    private var numSiègeCourrant : String = ""
+    private var idAndroidDernierSiègeCliqué = 0
 
     override fun traiterDémarage() {
         vue.miseEnPlace(
@@ -19,22 +18,28 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     }
 
     override fun traiterSiègeCliqué( id : Int, code : String ) {
-        if ( siègeCourrant == null ){
-            siègeCourrant = Siège(0, code, "Économique", "Occupée", 0, 0)
+        if ( numSiègeCourrant.isEmpty() ){
+            numSiègeCourrant = code
+            idAndroidDernierSiègeCliqué = id
             vue.miseÀjourSiègeCliquéVersSélectionnée( id )
         }else{
-            siègeCourrant = null
-            vue.miseÀjourSiègeCliquéVersDéSélectionné( id )
+            numSiègeCourrant = ""
+            vue.miseÀjourSiègeCliquéVersDéSélectionné( idAndroidDernierSiègeCliqué )
         }
     }
 
     override fun traiterConfirmerRéservation() {
-        TODO("Not yet implemented")
+        if ( numSiègeCourrant.isNotEmpty() ){
+            modèle.créerRéservation( numSiègeCourrant )
+            vue.redirigerVersMesRéservation()
+        }else{
+            vue.afficherErreur( "Veuillez choisir un siège" )
+        }
     }
 
     override fun vérifierStatutSiège( id: Int, code: String ) {
         val siège = volCourrant.sièges.firstOrNull { it.numéro == code }
-        if (siège != null){
+        if ( siège != null ){
             vue.placerStatutSiègeOccupée( id )
         }else{
             vue.placerStatutSiègeDisponible( id )

@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/btnRechercher"
+            android:id="@+id/btnConfirmerRéservation"
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:backgroundTint="@color/couleur_btn_jaune"
@@ -74,7 +74,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
             android:text="Disponible"
-            app:layout_constraintBottom_toTopOf="@+id/btnRechercher"
+            app:layout_constraintBottom_toTopOf="@+id/btnConfirmerRéservation"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
             app:layout_constraintVertical_bias="0.75" />
