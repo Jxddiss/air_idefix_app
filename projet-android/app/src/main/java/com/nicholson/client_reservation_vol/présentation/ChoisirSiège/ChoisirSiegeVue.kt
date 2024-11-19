@@ -18,6 +18,7 @@ import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratV
 
 class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
     lateinit var textViewNomDestination: TextView
+    lateinit var textViewClasse : TextView
     lateinit var imageViewVillechoisirInformation: ImageView
     lateinit var btnConfirmerRéservation : Button
     lateinit var navController: NavController
@@ -35,6 +36,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
     override fun onViewCreated( vue : View, savedInstanceState: Bundle? ) {
         super.onViewCreated( vue, savedInstanceState )
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
+        textViewClasse = vue.findViewById( R.id.textViewClasse )
         for ( i in 0..23 ){
             val imageViewSiège : ImageView = vue
                 .findViewById(
@@ -53,8 +55,12 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         présentateur?.traiterDémarage()
     }
 
-    override fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée : String, urlPhoto : String ) {
+    override fun miseEnPlace( nomVilleDépart : String,
+                              nomVilleArrivée : String,
+                              urlPhoto : String,
+                              classeChoisis : String ) {
         textViewNomDestination.text = "Vol de $nomVilleDépart à $nomVilleArrivée"
+        textViewClasse.text = classeChoisis
 
         Glide.with( requireContext() )
             .load( urlPhoto )

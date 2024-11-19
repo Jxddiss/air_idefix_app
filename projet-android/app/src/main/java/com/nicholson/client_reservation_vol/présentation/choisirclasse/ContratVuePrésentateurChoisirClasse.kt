@@ -16,5 +16,8 @@ interface ContratVuePrésentateurChoisirClasse {
         fun traiterContinuer()
         fun traiterDemandeVolSuivant()
         fun traiterDemandeVolPrécédant()
+        fun traterRadioÉconomiqueCliqué()
+        fun traterRadioAffaireCliqué()
+        fun traterRadioPremièreCliqué()
     }
 }

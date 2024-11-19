@@ -2,7 +2,10 @@ package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
 interface ContratVuePrésentateurChoisirSiège {
     interface IChoisirSiègeVue {
-        fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée : String, urlPhoto : String )
+        fun miseEnPlace( nomVilleDépart : String,
+                         nomVilleArrivée : String,
+                         urlPhoto : String,
+                         classeChoisis : String )
         fun miseÀjourSiègeCliquéVersSélectionnée( id : Int )
         fun miseÀjourSiègeCliquéVersDéSélectionné( id : Int )
         fun placerStatutSiègeOccupée( id : Int )

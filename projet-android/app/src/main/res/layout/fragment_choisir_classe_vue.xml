@@ -375,7 +375,7 @@
         </LinearLayout>
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/radioGroupChoixClass"
             android:layout_width="156dp"
             android:layout_height="142dp"
             android:layout_marginStart="46dp"
@@ -384,17 +384,18 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/radioButtonÉconomique"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"
+                android:checked="true"
                 android:text="Économique"
                 android:textColor="@color/couleur_principale"
                 android:textColorLink="@color/couleur_principale"
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/radioButtonAffaire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"
@@ -404,7 +405,7 @@
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/radioButtonPremière"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"

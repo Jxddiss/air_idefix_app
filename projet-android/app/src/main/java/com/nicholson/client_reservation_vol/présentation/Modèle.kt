@@ -31,6 +31,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var filtreVolCourrant = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
+    var classeChoisis = "Économique"
 
     var listeVol : List<Vol> = listOf()
         get(){
@@ -117,7 +118,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     fun créerRéservation( numéroSiege : String ) {
-        Log.d("idVolCopurrant", getVolCourrant().id.toString())
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
@@ -127,7 +127,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
                 Siège(
                     1,
                     numéro = numéroSiege,
-                    classe = "Économique",
+                    classe = classeChoisis,
                     statut = "Occupée",
                     idRéservation = 0,
                     idVol = getVolCourrant().id

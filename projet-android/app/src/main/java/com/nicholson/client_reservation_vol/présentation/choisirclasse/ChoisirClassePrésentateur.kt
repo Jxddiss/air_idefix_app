@@ -12,6 +12,7 @@ class ChoisirClassePrésentateur(
     private val modèle : Modèle = Modèle.obtenirInstance()
     private val formatterDate = DateTimeFormatter.ofPattern( "dd MMMM yyyy" )
     private val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
+    private var classeChoisis = "Économique"
 
     override fun traiterDémarage() {
         val vol = modèle.getVolCourrant()
@@ -46,6 +47,7 @@ class ChoisirClassePrésentateur(
     }
 
     override fun traiterContinuer() {
+        modèle.classeChoisis = classeChoisis
         vue.redirigerChoixInfo()
     }
 
@@ -57,5 +59,17 @@ class ChoisirClassePrésentateur(
     override fun traiterDemandeVolPrécédant() {
         modèle.reculerVolCourrant()
         traiterDémarage()
+    }
+
+    override fun traterRadioÉconomiqueCliqué() {
+        classeChoisis = "Économique"
+    }
+
+    override fun traterRadioAffaireCliqué() {
+        classeChoisis = "Affaire"
+    }
+
+    override fun traterRadioPremièreCliqué() {
+        classeChoisis = "Première"
     }
 }

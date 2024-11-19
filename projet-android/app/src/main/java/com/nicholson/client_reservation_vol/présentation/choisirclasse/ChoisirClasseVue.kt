@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -39,6 +40,7 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
     lateinit var imageButtonVolPrecedent : ImageButton
     lateinit var imageButtonVolSuivant : ImageButton
     lateinit var btnContinuerRéservation : Button
+    lateinit var radioGroupChoixClass : RadioGroup
     lateinit var navController: NavController
 
     override fun onCreateView(
@@ -83,6 +85,15 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
         btnContinuerRéservation = vue.findViewById( R.id.btnContinuerRéservation )
         btnContinuerRéservation.setOnClickListener {
             présentateur?.traiterContinuer()
+        }
+
+        radioGroupChoixClass = vue.findViewById( R.id.radioGroupChoixClass )
+        radioGroupChoixClass.setOnCheckedChangeListener{ rg, checkedId ->
+            when(checkedId){
+                R.id.radioButtonÉconomique -> présentateur?.traterRadioÉconomiqueCliqué()
+                R.id.radioButtonAffaire -> présentateur?.traterRadioAffaireCliqué()
+                R.id.radioButtonPremière -> présentateur?.traterRadioPremièreCliqué()
+            }
         }
 
         navController = Navigation.findNavController( vue )

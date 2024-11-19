@@ -13,7 +13,8 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
         vue.miseEnPlace(
             nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
             nomVilleArrivée = volCourrant.aeroportFin.ville.nom,
-            urlPhoto = volCourrant.aeroportFin.ville.url_photo
+            urlPhoto = volCourrant.aeroportFin.ville.url_photo,
+            modèle.classeChoisis
         )
     }
 
@@ -40,11 +41,17 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     }
 
     override fun vérifierStatutSiège( id: Int, code: String ) {
-        val siège = volCourrant.sièges.firstOrNull { it.numéro == code }
+        val siège = volCourrant.sièges.firstOrNull {
+            it.numéro == code
+                    && it.classe == modèle.classeChoisis
+        }
+
         if ( siège != null ){
             vue.placerStatutSiègeOccupée( id )
+
         }else{
             vue.placerStatutSiègeDisponible( id )
+
         }
     }
 }
