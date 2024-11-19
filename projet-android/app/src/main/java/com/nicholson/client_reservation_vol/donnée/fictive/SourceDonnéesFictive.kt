@@ -112,7 +112,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         )
 
-        val listSièges = List((10..20).random()){
+        val listSièges = MutableList((10..20).random()){
             Siège(
                 id = it,
                 numéro = ('A'..'H').random().toString() + ((1..3).random()).toString(),
@@ -148,7 +148,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 8.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 1
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 2,
@@ -174,7 +174,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 8.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 2
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 3,
@@ -200,7 +200,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 7.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 3
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 4,
@@ -226,7 +226,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 7.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 4
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 5,
@@ -252,7 +252,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 7.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 5
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 6,
@@ -278,7 +278,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 7.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 6
-                }
+                }.toMutableList()
             ),
             Vol(
                 id = 7,
@@ -304,7 +304,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 durée = 7.toDuration(DurationUnit.HOURS),
                 sièges = listSièges.filter {
                     it.idVol == 7
-                }
+                }.toMutableList()
             )
         )
 
@@ -345,6 +345,17 @@ class SourceDonnéesFictive : SourceDeDonnées {
         listeRéservation.single {
             it.id == id
         }
+
+    override fun ajouterRéservation(réservation: Réservation) {
+        réservation.id = listeRéservation.size + 1
+        réservation.numéroRéservation = "RES00${listeRéservation.size + 1}"
+        réservation.sièges.forEach {
+            it.idRéservation = réservation.id
+            it.idVol = réservation.idVol
+            obtenirVolParId( réservation.idVol ).sièges.add( it )
+        }
+        listeRéservation.add( réservation )
+    }
 
 
     override fun ajouterClient( client : Client) {

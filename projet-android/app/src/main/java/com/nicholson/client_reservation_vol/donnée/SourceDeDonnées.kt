@@ -13,4 +13,5 @@ interface SourceDeDonnées {
     fun obtenirListeClient():MutableList<Client>
     fun obtenirListeRéservation() : MutableList<Réservation>
     fun obtenirRéservationParId(id : Int): Réservation
+    fun ajouterRéservation( réservation : Réservation )
 }
