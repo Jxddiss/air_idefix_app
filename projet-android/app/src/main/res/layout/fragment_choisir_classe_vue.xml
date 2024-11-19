@@ -423,7 +423,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.631"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupChoixClass"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <TextView
