@@ -89,7 +89,11 @@
     <fragment
         android:id="@+id/choisirSiegeVue"
         android:name="com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ChoisirSiegeVue"
-        android:label="fragment_choisir_siege_vue" />
+        android:label="fragment_choisir_siege_vue" >
+        <action
+            android:id="@+id/action_choisirSiegeVue_vers_listeRéservationsVue"
+            app:destination="@id/listeRéservationsVue" />
+    </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"
         android:name="com.nicholson.client_reservation_vol.présentation.ChoisirInfo.ChoisirInfoVue"
