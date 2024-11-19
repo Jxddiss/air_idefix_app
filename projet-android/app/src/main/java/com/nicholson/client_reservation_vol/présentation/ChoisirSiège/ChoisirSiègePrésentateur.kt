@@ -18,13 +18,15 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     }
 
     override fun traiterSiègeCliqué( id : Int, code : String ) {
-        if ( numSiègeCourrant.isEmpty() ){
-            numSiègeCourrant = code
+        numSiègeCourrant = code
+
+        if ( idAndroidDernierSiègeCliqué == 0 ){
             idAndroidDernierSiègeCliqué = id
             vue.miseÀjourSiègeCliquéVersSélectionnée( id )
         }else{
-            numSiègeCourrant = ""
             vue.miseÀjourSiègeCliquéVersDéSélectionné( idAndroidDernierSiègeCliqué )
+            idAndroidDernierSiègeCliqué = id
+            vue.miseÀjourSiègeCliquéVersSélectionnée( id )
         }
     }
 
