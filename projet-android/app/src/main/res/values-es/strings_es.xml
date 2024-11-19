@@ -56,6 +56,7 @@
     <string name="occupe">Ocupado</string>
     <string name="disponible">Disponible</string>
     <string name="sortie_d_urgence">Salida de auxilio</string>
+    <string name="vol_de">Vuelo de %1$s a %2$s</string>
 
 
 </resources>

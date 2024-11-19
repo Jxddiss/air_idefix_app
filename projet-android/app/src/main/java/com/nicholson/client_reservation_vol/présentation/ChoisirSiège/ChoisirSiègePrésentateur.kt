@@ -31,13 +31,17 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
         }
     }
 
-    override fun traiterConfirmerRéservation() {
+    override fun traiterDialogConfirmer() {
         if ( numSiègeCourrant.isNotEmpty() ){
             modèle.créerRéservation( numSiègeCourrant )
             vue.redirigerVersMesRéservation()
         }else{
             vue.afficherErreur( "Veuillez choisir un siège" )
         }
+    }
+
+    override fun traiterConfirmerRéservation() {
+        vue.afficherDialogConfirmer()
     }
 
     override fun vérifierStatutSiège( id: Int, code: String ) {

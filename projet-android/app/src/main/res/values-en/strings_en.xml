@@ -57,6 +57,7 @@
     <string name="occupe">Occupied</string>
     <string name="disponible">Available</string>
     <string name="sortie_d_urgence">Emergency Exit</string>
+    <string name="vol_de">Flight from %1$s to %2$s</string>
 
 
 </resources>

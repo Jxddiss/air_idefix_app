@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 
@@ -22,6 +23,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
     lateinit var imageViewVillechoisirInformation: ImageView
     lateinit var btnConfirmerRéservation : Button
     lateinit var navController: NavController
+    lateinit var dialogConfirmation: MaterialAlertDialogBuilder
     var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
 
     override fun onCreateView(
@@ -51,7 +53,18 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         btnConfirmerRéservation.setOnClickListener {
             présentateur?.traiterConfirmerRéservation()
         }
+
+        dialogConfirmation = MaterialAlertDialogBuilder( requireContext() )
+        dialogConfirmation.setMessage("Voulez vous confirmer la réservation ?")
+        dialogConfirmation.setPositiveButton("Confirmer") { _, _ ->
+            présentateur?.traiterDialogConfirmer()
+        }
+        dialogConfirmation.setNegativeButton("Annuler") { dialog, _ ->
+            dialog.dismiss()
+        }
+
         navController = vue.findNavController()
+
         présentateur?.traiterDémarage()
     }
 
@@ -59,7 +72,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
                               nomVilleArrivée : String,
                               urlPhoto : String,
                               classeChoisis : String ) {
-        textViewNomDestination.text = "Vol de $nomVilleDépart à $nomVilleArrivée"
+        textViewNomDestination.text = getString(R.string.vol_de, nomVilleDépart, nomVilleArrivée)
         textViewClasse.text = classeChoisis
 
         Glide.with( requireContext() )
@@ -94,6 +107,10 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         requireActivity().runOnUiThread {
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun afficherDialogConfirmer() {
+        dialogConfirmation.show()
     }
 
     override fun redirigerVersMesRéservation() {
