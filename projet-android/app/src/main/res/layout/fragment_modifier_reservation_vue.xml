@@ -21,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Information:"
+            android:fontFamily="@font/lexend"
+            android:text="@string/information"
             android:textColor="#2F3969"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:text="Téléphone:"
+            android:fontFamily="@font/lexend"
+            android:text="@string/telephone"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:text="Prénom:"
+            android:text="@string/prenom_modif"
+            android:fontFamily="@font/lexend"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:text="Numéro Passeport:"
+            android:fontFamily="@font/lexend"
+            android:text="@string/num_ro_passeport"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:text="Email:"
+            android:text="@string/email"
+            android:fontFamily="@font/lexend"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,19 +97,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
-            android:text="Nom:"
+            android:text="@string/nom_modif"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.143"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:fontFamily="@font/lexend" />
 
         <TextView
             android:id="@+id/textViewModifierNomReservation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
+            android:fontFamily="@font/lexend"
             android:text="Xavier"
             android:textColor="#2F3969"
             app:layout_constraintBottom_toTopOf="@+id/textViewModifierPrenomReservation"
@@ -115,6 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
+            android:fontFamily="@font/lexend"
             android:text="514-238-6734"
             android:textColor="#2F3969"
             app:layout_constraintStart_toStartOf="@+id/textViewModifierEmailReservation"
@@ -127,6 +135,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="32dp"
+            android:fontFamily="@font/lexend"
             android:text="xavier@gmail.com"
             android:textColor="#2F3969"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
@@ -138,6 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
+            android:fontFamily="@font/lexend"
             android:text="1998-09-18"
             android:textColor="#2F3969"
             app:layout_constraintBottom_toTopOf="@+id/textViewModifierEmailReservation"
@@ -148,6 +158,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/lexend"
             android:text="Garneau"
             android:textColor="#2F3969"
             app:layout_constraintBottom_toTopOf="@+id/textViewModifiernuméroPasseportReservation"
@@ -155,117 +166,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutBtnchange"
-        android:layout_width="371dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fond_bord_arrondis"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBtnInfo">
-
-        <ImageButton
-            android:id="@+id/BtnModifierSiege"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/circle_button"
-            android:backgroundTint="@color/couleur_principale"
-            android:contentDescription="@string/imageButton_mes_voyages_description"
-            android:scaleType="centerInside"
-            android:src="@drawable/arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="Modifier Siège"
-            android:textColor="#2F3969"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutBtnmodifie"
-        android:layout_width="371dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fond_bord_arrondis"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBtnchange">
-
-        <ImageButton
-            android:id="@+id/BtnModifierInformation"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/circle_button"
-            android:backgroundTint="@color/couleur_principale"
-            android:contentDescription="@string/imageButton_mes_voyages_description"
-            android:scaleType="centerInside"
-            android:src="@drawable/arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="Modifier Information"
-            android:textColor="#2F3969"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutBtnPdf"
-        android:layout_width="371dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fond_bord_arrondis"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBtnmodifie">
-
-        <ImageButton
-            android:id="@+id/BtnModifierClasse"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/circle_button"
-            android:backgroundTint="@color/couleur_principale"
-            android:contentDescription="@string/imageButton_mes_voyages_description"
-            android:scaleType="centerInside"
-            android:src="@drawable/arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="Modifier Classe"
-            android:textColor="#2F3969"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

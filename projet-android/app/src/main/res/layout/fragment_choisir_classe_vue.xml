@@ -25,7 +25,7 @@
             android:drawableEnd="@drawable/avion_btn"
             android:elevation="15dp"
             android:fontFamily="@font/lexend"
-            android:text="Continuer"
+            android:text="@string/continuer"
             android:textColor="@color/couleur_principale"
             android:textSize="16sp"
             app:cornerRadius="6dp"
@@ -67,7 +67,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/lexend"
-                android:text="Vol De Montréal à Cancun"
+                android:text="@string/vol_de_montr_al_cancun"
                 android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintDimensionRatio="2:1"
@@ -375,7 +375,7 @@
         </LinearLayout>
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/radioGroupChoixClass"
             android:layout_width="156dp"
             android:layout_height="142dp"
             android:layout_marginStart="46dp"
@@ -384,31 +384,32 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/radioButtonÉconomique"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"
-                android:text="Économique"
+                android:checked="true"
+                android:text="@string/conomique"
                 android:textColor="@color/couleur_principale"
                 android:textColorLink="@color/couleur_principale"
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/radioButtonAffaire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"
-                android:text="Affaires"
+                android:text="@string/affaires"
                 android:textColor="@color/couleur_principale"
                 android:textColorLink="@color/couleur_principale"
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/radioButtonPremière"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/couleur_principale"
-                android:text="Première"
+                android:text="@string/premi_re"
                 android:textColor="@color/couleur_principale"
                 android:textColorLink="@color/couleur_principale"
                 android:textSize="18sp" />
@@ -422,7 +423,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.631"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupChoixClass"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <TextView

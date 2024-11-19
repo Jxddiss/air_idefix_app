@@ -68,7 +68,7 @@ class  MainActivity : AppCompatActivity() {
 
         buttonPréfrérencesNav.setOnClickListener {
             navController.navigate(
-                resId = R.id.listeRéservationsVue,
+                resId = R.id.historiqueRechercheVue,
                 args = null,
                 navOptions = navOptions
             )

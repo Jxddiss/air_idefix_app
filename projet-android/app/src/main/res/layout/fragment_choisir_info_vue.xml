@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/btnRechercher"
+            android:id="@+id/btnSaveInfo"
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:backgroundTint="@color/couleur_btn_jaune"
@@ -49,14 +49,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageViewVillechoisirInformation"
+            android:id="@+id/imageViewVilleChoisirInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/fond_bord_arrondis"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textViewInfoVoyage"
             android:layout_width="match_parent"
             android:layout_height="104dp"
             android:background="@drawable/fond_transparent_noir_top"
@@ -85,10 +85,9 @@
             android:id="@+id/layoutNumPasseport"
             android:layout_width="354dp"
             android:layout_height="71dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTéléphone">
+            app:layout_constraintTop_toBottomOf="@+id/layoutAdresse">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -96,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
-                android:hint="Numéro de Passeport"
+                android:hint="@string/num_ro_de_passeport"
                 android:textColorHint="@color/couleur_principale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,8 +107,39 @@
                     android:id="@+id/ChoisirNumPasseport"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:text="222222"
                     android:fontFamily="@font/lexend"
+                    android:textColor="@color/couleur_principale" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutAdresse"
+            android:layout_width="354dp"
+            android:layout_height="71dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutTéléphone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:hint="Adresse"
+                android:textColorHint="@color/couleur_principale"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.057">
+
+                <EditText
+                    android:id="@+id/ChoisirAdresse"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:fontFamily="@font/lexend"
+                    android:text=""
                     android:textColor="@color/couleur_principale" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -118,7 +148,6 @@
             android:id="@+id/layoutTéléphone"
             android:layout_width="354dp"
             android:layout_height="71dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
@@ -129,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
-                android:hint="Téléphone"
+                android:hint="@string/t_l_phone"
                 android:textColorHint="@color/couleur_principale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -141,8 +170,8 @@
                     android:id="@+id/ChoisirTéléphone"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:inputType="phone"
                     android:fontFamily="@font/lexend"
+                    android:inputType="phone"
                     android:textColor="@color/couleur_principale" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,7 +180,6 @@
             android:id="@+id/layoutEmail"
             android:layout_width="354dp"
             android:layout_height="71dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutDePrenom">
@@ -173,9 +201,9 @@
                 <EditText
                     android:id="@+id/ChoisirEmail"
                     android:layout_width="match_parent"
-                    android:inputType="textEmailAddress"
                     android:layout_height="52dp"
                     android:fontFamily="@font/lexend"
+                    android:inputType="textEmailAddress"
                     android:textColor="@color/couleur_principale" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -184,7 +212,6 @@
             android:id="@+id/layoutDePrenom"
             android:layout_width="354dp"
             android:layout_height="71dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutDeNom">
@@ -195,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
-                android:hint="Prénom"
+                android:hint="@string/pr_nom"
                 android:textColorHint="@color/couleur_principale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -217,7 +244,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Information passager"
+            android:text="@string/information_passager"
             android:textColor="@color/couleur_principale"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -239,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
-                android:hint="Nom"
+                android:hint="@string/nom"
                 android:textColorHint="@color/couleur_principale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
