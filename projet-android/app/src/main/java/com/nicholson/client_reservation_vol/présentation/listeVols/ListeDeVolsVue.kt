@@ -65,14 +65,14 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     }
 
     override fun afficherInfoDestination( nomVille : String, urlImage : String ){
-        textViewNomDestination.text = "Vols vers $nomVille"
+        textViewNomDestination.text = getString(R.string.vols_vers, nomVille)
         Glide.with( requireContext() )
             .load( urlImage )
             .into( imageViewDestination )
     }
 
-    override fun afficherMessagePasDeVol(message: String) {
-        textViewNomDestination.text = message
+    override fun afficherMessagePasDeVol() {
+        textViewNomDestination.text = getString(R.string.aucun_vol_disponible)
     }
 
     override fun redirigerVersChoixClasse() {

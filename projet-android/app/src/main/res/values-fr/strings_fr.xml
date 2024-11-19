@@ -59,6 +59,8 @@
     <string name="annuler">Annuler</string>
     <string name="confirmer">Confirmer</string>
     <string name="res_confirmer_message">Voulez vous confirmer la réservation ?</string>
+    <string name="vols_vers">Vols vers %1$s</string>
+    <string name="aucun_vol_disponible">Aucun vol disponible</string>
 
 
 </resources>

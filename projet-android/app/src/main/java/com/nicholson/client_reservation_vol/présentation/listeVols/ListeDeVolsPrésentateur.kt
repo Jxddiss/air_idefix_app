@@ -34,7 +34,7 @@ class ListeDeVolsPrésentateur (
             val villeDestination =  listeDeVols[0].aeroportFin.ville
             vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
         }else{
-            vue.afficherMessagePasDeVol( "Aucun vol disponible" )
+            vue.afficherMessagePasDeVol()
         }
         vue.afficherVols( listeVolsOTD )
     }

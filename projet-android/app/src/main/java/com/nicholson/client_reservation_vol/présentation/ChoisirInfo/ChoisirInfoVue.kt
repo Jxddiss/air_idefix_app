@@ -71,7 +71,7 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
     }
 
     override fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée: String, urlPhoto: String ) {
-        textViewInfoVoyage.text = "Vol de $nomVilleDépart à $nomVilleArrivée"
+        textViewInfoVoyage.text = getString( R.string.vol_de, nomVilleDépart, nomVilleArrivée )
         Glide.with( requireContext() )
             .load( urlPhoto )
             .into( imageViewVilleChoisirInformation )

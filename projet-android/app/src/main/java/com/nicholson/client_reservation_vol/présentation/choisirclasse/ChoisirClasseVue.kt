@@ -112,7 +112,8 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
         textViewCodeAéroportArrivée.text = volChoixClassOTD.codeAéroportArrivée
         textViewDurée.text = volChoixClassOTD.durée
         textViewNomDestination.text =
-            "Vol de ${volChoixClassOTD.nomVilleDépart} à ${volChoixClassOTD.nomVilleArrivée}"
+            getString( R.string.vol_de, volChoixClassOTD.nomVilleDépart,
+                volChoixClassOTD.nomVilleArrivée )
 
         textViewDateDépartSlider.text = volChoixClassOTD.dateDépart
         textViewPrixÉconomiqueSlider.text = volChoixClassOTD.prixÉconomique

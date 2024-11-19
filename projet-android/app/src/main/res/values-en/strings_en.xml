@@ -61,6 +61,8 @@
     <string name="annuler">Cancel</string>
     <string name="confirmer">Accept</string>
     <string name="res_confirmer_message">Do you want to confirm the reservation ?</string>
+    <string name="vols_vers">Flight To %1$s</string>
+    <string name="aucun_vol_disponible">No Flights Found</string>
 
 
 </resources>

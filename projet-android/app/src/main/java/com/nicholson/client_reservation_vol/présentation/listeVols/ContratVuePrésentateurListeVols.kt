@@ -6,7 +6,7 @@ interface ContratVuePrésentateurListeVols {
     interface IListeDeVolsVue {
         fun afficherVols( listeDeVols : List<VolListItemOTD> )
         fun afficherInfoDestination( nomVille: String, urlImage: String )
-        fun afficherMessagePasDeVol( message : String )
+        fun afficherMessagePasDeVol()
         fun redirigerVersChoixClasse()
     }
 
