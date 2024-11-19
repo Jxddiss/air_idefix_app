@@ -112,6 +112,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     fun ajouterClient(client : Client) {
+        listeClient = mutableListOf(client)
         clientService.ajouterClient(client)
     }
 
