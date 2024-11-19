@@ -55,5 +55,8 @@
     <string name="disponible">Disponible</string>
     <string name="sortie_d_urgence">Sortie d\'urgence</string>
     <string name="vol_de">Vol de %1$s à %2$s</string>
+    <string name="annuler">Annuler</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="res_confirmer_message">Voulez vous confirmer la réservation ?</string>
 
 </resources>

@@ -55,11 +55,11 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
 
         dialogConfirmation = MaterialAlertDialogBuilder( requireContext() )
-        dialogConfirmation.setMessage("Voulez vous confirmer la réservation ?")
-        dialogConfirmation.setPositiveButton("Confirmer") { _, _ ->
+        dialogConfirmation.setMessage( getString( R.string.res_confirmer_message ) )
+        dialogConfirmation.setPositiveButton( getString( R.string.confirmer ) ) { _, _ ->
             présentateur?.traiterDialogConfirmer()
         }
-        dialogConfirmation.setNegativeButton("Annuler") { dialog, _ ->
+        dialogConfirmation.setNegativeButton( getString( R.string.annuler ) ) { dialog, _ ->
             dialog.dismiss()
         }
 
@@ -72,7 +72,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
                               nomVilleArrivée : String,
                               urlPhoto : String,
                               classeChoisis : String ) {
-        textViewNomDestination.text = getString(R.string.vol_de, nomVilleDépart, nomVilleArrivée)
+        textViewNomDestination.text = getString( R.string.vol_de, nomVilleDépart, nomVilleArrivée )
         textViewClasse.text = classeChoisis
 
         Glide.with( requireContext() )

@@ -57,6 +57,9 @@
     <string name="disponible">Disponible</string>
     <string name="sortie_d_urgence">Salida de auxilio</string>
     <string name="vol_de">Vuelo de %1$s a %2$s</string>
+    <string name="annuler">Cancelar</string>
+    <string name="confirmer">confirmar</string>
+    <string name="res_confirmer_message">¿Quieres confirmar la reserva?</string>
 
 
 </resources>
