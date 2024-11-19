@@ -8,6 +8,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.domaine.interacteur.AeroportService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
@@ -19,7 +20,8 @@ import java.time.LocalDateTime
 class Modèle private constructor( private val volService : VolService = VolService(),
                                   private val clientService: ClientService = ClientService(),
                                   private val réservationService: RéservationService = RéservationService(),
-                                  private val historiqueService: HistoriqueService = HistoriqueService() ) {
+                                  private val historiqueService: HistoriqueService = HistoriqueService(),
+                                  private val aeroportService: AeroportService = AeroportService() ) {
 
     companion object {
         @Volatile
@@ -157,9 +159,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
 
 
     fun obtenirListeAéroports(): List<Aeroport> {
-        return SourceDonnéesFictive.listAeoroport
+        return aeroportService.obtenirListeAeroport()
     }
-
-
 
 }

@@ -408,5 +408,9 @@ class SourceDonnéesFictive : SourceDeDonnées {
     override fun ajouterHistorique(historique: Historique) {
         listHistorique.add(historique)
     }
+
+    override fun obtenirListAéroports(): List<Aeroport> {
+        return  listAeoroport
+    }
 }
 

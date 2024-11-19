@@ -15,7 +15,7 @@ class HistoriquePrésentateur (
     val modèle: Modèle = Modèle.obtenirInstance()
 
     override fun traiterObtenirHistorique() {
-        val listeDeHistorique = getHistoriqueList()
+        val listeDeHistorique = modèle.listeHistorique
         Log.d("HistoriquePrésentateur", "Historique list size: ${listeDeHistorique.size}")
         listeDeHistorique.forEach { Log.d("HistoriquePrésentateur", "Historique item: $it") }
 
@@ -33,22 +33,6 @@ class HistoriquePrésentateur (
 
 
         vue.afficherHistorique(listeHistoriqueOTD)
-    }
-
-    fun getHistoriqueList(): List<Historique> {
-        return listHistorique
-    }
-
-    private fun convertirEnHistoriqueOTD(historique: Historique): HistoriqueListItemOTD {
-        return HistoriqueListItemOTD(
-            villeDe = historique.villeDe,
-            villeVers = historique.villeVers,
-            aeroportDe = historique.aeroportDe,
-            aeroportVers = historique.aeroportVers,
-            dateDepart = historique.dateDepart,
-            dateRetour = historique.dateRetour,
-            nbrPassangers = historique.nbrPassangers
-        )
     }
 
 }

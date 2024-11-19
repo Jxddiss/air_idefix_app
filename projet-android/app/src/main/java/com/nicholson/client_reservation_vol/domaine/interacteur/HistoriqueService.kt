@@ -9,8 +9,4 @@ class HistoriqueService(private val sourceDeDonnées: SourceDeDonnées = SourceD
 
     fun obtenirListeHistorique() = sourceDeDonnées.obtenirListHistorique()
 
-
-    //Effacer ca
-    fun obtenirListeHistoriqueParFiltre( filtreHistorique : FiltreRechercheHistorique) : List<Historique> =
-        sourceDeDonnées.obtenirListeHistoriqueParFiltre( filtreHistorique )
 }

@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.donnée
 
+import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
@@ -17,4 +18,5 @@ interface SourceDeDonnées {
     fun ajouterRéservation( réservation : Réservation )
     fun obtenirListHistorique():List<Historique>
     fun ajouterHistorique(historique: Historique)
+    fun obtenirListAéroports() : List<Aeroport>
 }
