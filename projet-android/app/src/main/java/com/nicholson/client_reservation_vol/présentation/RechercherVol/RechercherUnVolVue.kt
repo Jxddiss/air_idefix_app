@@ -130,9 +130,11 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
 
     // method pour aficher la liste de villes avec code aerport dans les dropdowns
     override fun afficherListeVilles(aéroports: List<String>) {
-        val dropDown = ArrayAdapter(requireContext(), R.layout.liste_villes,aéroports )
-        choisirVilleVers.setAdapter(dropDown)
-        choisirVilleDe.setAdapter(dropDown)
+        val dropDownDe=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
+        val dropDownVers=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
+
+        choisirVilleVers.setAdapter(dropDownDe)
+        choisirVilleDe.setAdapter(dropDownVers)
 
         // Toast selection pour "De" dropdown
         choisirVilleDe.setOnItemClickListener { adapterView, _, i, _ ->

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
@@ -47,11 +48,10 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
     override fun afficherHistorique(listeDeHistorique: List<HistoriqueListItemOTD>) {
         rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
-        recyclerView.itemAnimator=DefaultItemAnimator()
+        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = rechercheHistoriqueAdapter
     }
+
 
 
 }

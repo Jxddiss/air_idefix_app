@@ -111,7 +111,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
                 android:hint="@string/de"
-                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,7 +146,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
                 android:hint="@string/vers"
-                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

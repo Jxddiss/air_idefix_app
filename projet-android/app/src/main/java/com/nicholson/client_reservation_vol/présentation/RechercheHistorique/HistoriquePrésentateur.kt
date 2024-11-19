@@ -1,6 +1,8 @@
 package com.nicholson.client_reservation_vol.présentation.RechercheHistorique
 
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
+import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive.Companion.listHistorique
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
@@ -13,7 +15,9 @@ class HistoriquePrésentateur (
     val modèle: Modèle = Modèle.obtenirInstance()
 
     override fun traiterObtenirHistorique() {
-        val listeDeHistorique = modèle.listeHistorique
+        val listeDeHistorique = getHistoriqueList()
+        Log.d("HistoriquePrésentateur", "Historique list size: ${listeDeHistorique.size}")
+        listeDeHistorique.forEach { Log.d("HistoriquePrésentateur", "Historique item: $it") }
 
         val listeHistoriqueOTD = listeDeHistorique.map {
             HistoriqueListItemOTD(
@@ -31,8 +35,8 @@ class HistoriquePrésentateur (
         vue.afficherHistorique(listeHistoriqueOTD)
     }
 
-    fun sauvegarderRecherche(historique: Historique) {
-        modèle.ajouterRecherche(historique)
+    fun getHistoriqueList(): List<Historique> {
+        return listHistorique
     }
 
     private fun convertirEnHistoriqueOTD(historique: Historique): HistoriqueListItemOTD {

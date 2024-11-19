@@ -111,15 +111,5 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
 
-    //Funtion pour sauvarger les info pour apres les obtenir dans lhistorique
-    fun ajouterRecherche(historique: Historique) {
-        historiqueService.ajouterHistorique(historique)
-    }
-
-
-    fun obtenirHistoriqueRecherche(): List<Historique> {
-        return historiqueService.obtenirListeHistorique()
-    }
-
 
 }

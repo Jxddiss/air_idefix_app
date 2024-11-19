@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.RechercherVol
 
 import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
@@ -14,8 +15,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
     private val modèle: Modèle = Modèle.obtenirInstance()
     private var vue: IRechercheVolVue? = null
-    private val listHistorique: MutableList<String> = mutableListOf()
-
+    private val listHistorique = mutableListOf<Historique>()
 
     override fun attacherVue(vue: ContractRechercherVol.IRechercheVolVue) {
         this.vue = vue
@@ -55,7 +55,23 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 codeAéroportFin = aeroportVers.code
             )
 
-            //historique
+            val nbrPassagersInt = nbrPassagers.toInt()
+            val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val dateRetourLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
+            //save historique ici
+            val historique = Historique(
+                villeDe = aeroportDe.ville.nom,
+                villeVers = aeroportVers.ville.nom,
+                aeroportDe = aeroportDe.code,
+                aeroportVers = aeroportVers.code,
+                dateDepart = dateDebutLocal,
+                dateRetour = dateRetourLocal,
+                nbrPassangers = nbrPassagersInt
+            )
+
+            enregistrerRecherche(historique)
+
             vue?.redirigerVersListeVols()
         }catch (ex :  Exception){
             Log.d("Erreur", ex.message.toString())
@@ -70,9 +86,11 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     }
 
 
-
-    fun enregistrerRecherche(villeDe: String, villeVers: String, aeroportDe: String, aeroportVers: String, dateDepart: LocalDate, dateRetour: LocalDate, nbrPassagers: Int) {
-        val recherche = "De $villeDe ($aeroportDe) vers $villeVers ($aeroportVers), départ: $dateDepart, retour: $dateRetour, passagers: $nbrPassagers"
-        listHistorique.add(recherche)
+    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et oui tout est bien sauvarger
+    private fun enregistrerRecherche(historique: Historique) {
+        listHistorique.add(historique)
+        Log.d("Historique", "Historique added: $historique")
+        Log.d("Historique", "Current listHistorique: $listHistorique")
     }
+
 }
