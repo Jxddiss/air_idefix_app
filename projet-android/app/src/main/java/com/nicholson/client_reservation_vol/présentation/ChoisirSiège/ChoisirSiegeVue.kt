@@ -1,4 +1,4 @@
-package com.nicholson.client_reservation_vol.présentation.vue
+package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
 import android.os.Bundle
 import android.view.LayoutInflater

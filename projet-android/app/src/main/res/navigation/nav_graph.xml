@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/choisirSiegeVue"
-        android:name="com.nicholson.client_reservation_vol.présentation.vue.ChoisirSiegeVue"
+        android:name="com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ChoisirSiegeVue"
         android:label="fragment_choisir_siege_vue" />
     <fragment
         android:id="@+id/choisirInfoVue"
