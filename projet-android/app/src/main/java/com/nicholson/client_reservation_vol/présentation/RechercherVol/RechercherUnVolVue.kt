@@ -148,4 +148,8 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             Toast.makeText(requireContext(), "Ville: $itemSelected", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun afficherToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 }

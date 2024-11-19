@@ -7,6 +7,7 @@ interface ContractRechercherVol {
         fun afficherListeVilles(villes: List<String>)
         fun redirigerVersListeVols()
         fun obtenirInfoRecherche()
+        fun afficherToast(message: String)
     }
 
     interface IRechercheVolVuePrésentateur {

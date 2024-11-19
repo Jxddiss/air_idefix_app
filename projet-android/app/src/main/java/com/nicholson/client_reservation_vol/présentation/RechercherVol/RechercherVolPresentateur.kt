@@ -37,6 +37,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                                       nbrPassagers:String) {
 
         if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() || nbrPassagers.isEmpty()){
+            vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
             return
 
         }
