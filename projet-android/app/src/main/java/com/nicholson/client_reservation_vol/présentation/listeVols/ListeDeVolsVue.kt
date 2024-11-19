@@ -71,6 +71,10 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
             .into( imageViewDestination )
     }
 
+    override fun afficherMessagePasDeVol(message: String) {
+        textViewNomDestination.text = message
+    }
+
     override fun redirigerVersChoixClasse() {
         navController.navigate( R.id.action_listeDeVolsVue_vers_choisirClasseVue )
     }

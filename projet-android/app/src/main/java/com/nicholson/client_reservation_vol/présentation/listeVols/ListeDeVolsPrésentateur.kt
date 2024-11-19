@@ -14,7 +14,6 @@ class ListeDeVolsPrésentateur (
 
     override fun traiterObtenirVols() {
         val listeDeVols = modèle.obtenirListeVolParFiltre()
-        val villeDestination =  listeDeVols[0].aeroportFin.ville
         val listeVolsOTD = listeDeVols.map {
             VolListItemOTD(
                 dateDépart = it.dateDepart.format( formatterDate ),
@@ -31,8 +30,12 @@ class ListeDeVolsPrésentateur (
                 }
             )
         }
-
-        vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
+        if ( listeDeVols.isNotEmpty() ){
+            val villeDestination =  listeDeVols[0].aeroportFin.ville
+            vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
+        }else{
+            vue.afficherMessagePasDeVol( "Aucun vol disponible" )
+        }
         vue.afficherVols( listeVolsOTD )
     }
 
