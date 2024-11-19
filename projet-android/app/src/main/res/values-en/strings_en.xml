@@ -35,7 +35,25 @@
     <string name="le_24_janvier_2025">January 24th 2025</string>
     <string name="_24_janvier_2025">January 24th 2025</string>
     <string name="description_bouton_navigation_accueil">Image of the navigation button to home</string>
-
+    <string name="vol_de_montr_al_cancun">Flight from Montreal to Cancun</string>
+    <string name="conomique">Economy</string>
+    <string name="affaires">Business</string>
+    <string name="premi_re">First Class</string>
+    <string name="continuer">Continue</string>
+    <string name="num_ro_de_passeport">Passport Number</string>
+    <string name="t_l_phone">Phone</string>
+    <string name="pr_nom">First Name</string>
+    <string name="information_passager">Passenger Information</string>
+    <string name="nom">Last Name</string>
+    <string name="information">Information:</string>
+    <string name="modifier_si_ge">Modify Seat</string>
+    <string name="modifier_information">Modify Information</string>
+    <string name="modifier_classe">Modify Class</string>
+    <string name="num_ro_passeport">Passport Number:</string>
+    <string name="email">Email:</string>
+    <string name="nom_modif">Last name:</string>
+    <string name="prenom_modif">Name:</string>
+    <string name="telephone">Telephone:</string>
 
 
 

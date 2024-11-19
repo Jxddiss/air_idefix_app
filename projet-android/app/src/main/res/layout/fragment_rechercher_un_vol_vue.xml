@@ -5,7 +5,7 @@
     android:id="@+id/VueRechercherVol"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".présentation.vue.RechercherUnVolVue">
+    tools:context=".présentation.RechercherVol.RechercherUnVolVue">
 
 
     <!-- Constraint pour afficher le titre du View Rechercher vol -->
@@ -111,7 +111,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
                 android:hint="@string/de"
-                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,7 +146,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
                 android:hint="@string/vers"
-                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -181,6 +179,7 @@
                 android:id="@+id/ChosirDate"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
@@ -220,6 +219,7 @@
                 android:id="@+id/ChosirDateRetour"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />

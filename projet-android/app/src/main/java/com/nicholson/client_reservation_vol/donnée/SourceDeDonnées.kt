@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.donnée
 
+import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
@@ -14,4 +15,6 @@ interface SourceDeDonnées {
     fun obtenirListeRéservation() : MutableList<Réservation>
     fun obtenirRéservationParId(id : Int): Réservation
     fun ajouterRéservation( réservation : Réservation )
+    fun obtenirListHistorique():List<Historique>
+    fun ajouterHistorique(historique: Historique)
 }

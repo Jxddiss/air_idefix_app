@@ -2,25 +2,31 @@ package com.nicholson.client_reservation_vol.présentation
 
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
+import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
+import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
+import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
+import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class Modèle private constructor( private val volService : VolService = VolService(),
                                   private val clientService: ClientService = ClientService(),
-                                  private val réservationService: RéservationService = RéservationService() ) {
+                                  private val réservationService: RéservationService = RéservationService(),
+                                  private val historiqueService: HistoriqueService = HistoriqueService() ) {
 
-    companion object{
+    companion object {
         @Volatile
         private var instance : Modèle? = null
 
         fun obtenirInstance() =
-            instance ?: synchronized(this){
+            instance ?: synchronized(this) {
                 instance ?: Modèle().also { instance = it }
             }
     }
@@ -33,9 +39,11 @@ class Modèle private constructor( private val volService : VolService = VolServ
     )
     var classeChoisis = "Économique"
 
-    var listeVol : List<Vol> = listOf()
-        get(){
-            if ( field.isEmpty() ){
+
+
+    var listeVol: List<Vol> = listOf()
+        get() {
+            if (field.isEmpty()) {
                 field = volService.obtenirListeVol()
             }
             return field
@@ -56,8 +64,16 @@ class Modèle private constructor( private val volService : VolService = VolServ
             return field
         }
 
-    fun getVolCourrant() : Vol =
-        volService.obtenirVolParId( listeVol[indiceVolCourrant].id )
+    var listeHistorique: List<Historique> = listOf()
+        get() {
+            if (field.isEmpty()) {
+                field = historiqueService.obtenirListeHistorique()
+            }
+            return field
+        }
+
+    fun getVolCourrant(): Vol =
+        volService.obtenirVolParId(listeVol[indiceVolCourrant].id)
 
     fun obtenirListeVolParFiltre() : List<Vol> {
         listeVol = volService.obtenirListeVolParFiltre( filtreVolCourrant )
@@ -137,4 +153,13 @@ class Modèle private constructor( private val volService : VolService = VolServ
 
         réservationService.ajouterRéservation( réservation )
     }
+
+
+
+    fun obtenirListeAéroports(): List<Aeroport> {
+        return SourceDonnéesFictive.listAeoroport
+    }
+
+
+
 }
