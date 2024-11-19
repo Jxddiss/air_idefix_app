@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -22,13 +23,14 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
     lateinit var navController: NavController
 
     lateinit var btnSaveInfo: MaterialButton
-    lateinit var imageViewVillechoisirInformation: ImageView
-    lateinit var ChoisirNom: TextView
-    lateinit var ChoisirPrenom: TextView
-    lateinit var ChoisirNumPasseport: TextView
-    lateinit var ChoisirEmail: TextView
-    lateinit var ChoisirTéléphone: TextView
-    lateinit var ChoisirAdresse: TextView
+    lateinit var imageViewVilleChoisirInformation: ImageView
+    lateinit var ChoisirNom: EditText
+    lateinit var ChoisirPrenom: EditText
+    lateinit var ChoisirNumPasseport: EditText
+    lateinit var ChoisirEmail: EditText
+    lateinit var ChoisirTéléphone: EditText
+    lateinit var ChoisirAdresse: EditText
+    lateinit var textViewInfoVoyage : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,18 +53,28 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        attacherÉcouteurRedirectionChoisirSiege(view)
-        imageViewVillechoisirInformation = view.findViewById(R.id.imageViewVillechoisirInformation)
-        imageViewVillechoisirInformation = view.findViewById(R.id.imageViewVillechoisirInformation)
+        imageViewVilleChoisirInformation = view.findViewById(R.id.imageViewVilleChoisirInformation)
         ChoisirNom = view.findViewById(R.id.ChoisirNom)
         ChoisirPrenom = view.findViewById(R.id.ChoisirPrenom)
         ChoisirNumPasseport = view.findViewById(R.id.ChoisirNumPasseport)
         ChoisirEmail = view.findViewById(R.id.ChoisirEmail)
         ChoisirAdresse = view.findViewById(R.id.ChoisirAdresse)
         ChoisirTéléphone = view.findViewById(R.id.ChoisirTéléphone)
+        textViewInfoVoyage = view.findViewById( R.id.textViewInfoVoyage )
+
         btnSaveInfo = view.findViewById(R.id.btnSaveInfo)
+        btnSaveInfo.setOnClickListener {
+            présentateur?.traiterDemandeRedirectionChoisirSiege()
+        }
 
+        présentateur?.traiterDémarage()
+    }
 
+    override fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée: String, urlPhoto: String ) {
+        textViewInfoVoyage.text = "Vol de $nomVilleDépart à $nomVilleArrivée"
+        Glide.with( requireContext() )
+            .load( urlPhoto )
+            .into( imageViewVilleChoisirInformation )
     }
 
     override fun obtenirInfoClient() {
@@ -79,12 +91,5 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
 
     override fun redirigerAChoisirSiege() {
         navController.navigate(R.id.action_choisirInfoVue_to_choisirSiegeVue)
-    }
-
-    private fun attacherÉcouteurRedirectionChoisirSiege(view: View) {
-        btnSaveInfo = view.findViewById(R.id.btnSaveInfo)
-        btnSaveInfo.setOnClickListener {
-            présentateur?.traiterDemandeRedirectionChoisirSiege()
-        }
     }
 }

@@ -7,6 +7,12 @@ import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = ChoisirInfoVue()) :
     ContratVueChoisirInfo.IChoisirInfoPrésentateur {
         private val modele = Modèle.obtenirInstance()
+    override fun traiterDémarage() {
+        val vol = modele.getVolCourrant()
+        vue.miseEnPlace( vol.aeroportDebut.ville.nom,
+            vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo)
+    }
+
     override fun traiterObtenirInfo(clientOTD: ClientOTD) {
         if( clientOTD.nom.isEmpty()
             || clientOTD.prénom.isEmpty()

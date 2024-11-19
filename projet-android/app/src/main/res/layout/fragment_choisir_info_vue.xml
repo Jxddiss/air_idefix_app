@@ -49,14 +49,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageViewVillechoisirInformation"
+            android:id="@+id/imageViewVilleChoisirInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/fond_bord_arrondis"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textViewInfoVoyage"
             android:layout_width="match_parent"
             android:layout_height="104dp"
             android:background="@drawable/fond_transparent_noir_top"
