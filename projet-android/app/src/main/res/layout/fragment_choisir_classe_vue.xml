@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtnchange"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayoutbottom"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/btnContinuerRéservation"
+            android:layout_width="218dp"
+            android:layout_height="49dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
+            android:drawableEnd="@drawable/avion_btn"
+            android:elevation="15dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/continuer"
+            android:textColor="@color/couleur_principale"
+            android:textSize="16sp"
+            app:cornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.245" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toTopOf="@id/guideline_img_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom">
+
+        <ImageView
+            android:id="@+id/imageViewVillechoisirInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fond_bord_arrondis"
+            android:scaleType="centerCrop" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutImgDestination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fond_transparent_noir_top"
+            android:foregroundTint="@color/couleur_principale">
+
+            <TextView
+                android:id="@+id/textViewNomDestination"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/vol_de_montr_al_cancun"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_text_nom_destination_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline_text_nom_destination" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_nom_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_nom_destination_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutbottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/fond_bord_arrondis"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_contenu_top">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutListVolSlider"
+            android:layout_width="360dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/fond_bord_arrondis"
+            android:backgroundTint="#D0CEC8"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButtonVolPrecedent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:rotationY="180"
+                android:src="@drawable/no_line_arrow"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_btn_precedent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/couleur_principale" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/guideline_end_btn_precedent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end_info_vol_precedent">
+
+                <TextView
+                    android:id="@+id/textViewDateVolPrécedent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textViewPrixÉconoVolPrécedent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="?android:attr/colorActivatedHighlight"
+                app:cardCornerRadius="16dp"
+                app:contentPadding="1dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_start_info_vol_suivant"
+                app:layout_constraintStart_toStartOf="@id/guideline_end_info_vol_precedent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fond_bord_arrondis"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewDateDépartSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/couleur_principale" />
+
+                    <TextView
+                        android:id="@+id/textViewPrixÉconomiqueSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/couleur_principale"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_start_btn_suivant"
+                app:layout_constraintStart_toEndOf="@id/guideline_start_info_vol_suivant">
+
+                <TextView
+                    android:id="@+id/textViewDateVolSuivant"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textViewPrixÉconoVolSuivant"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonVolSuivant"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:src="@drawable/no_line_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_start_btn_suivant"
+                app:tint="@color/couleur_principale" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_btn_precedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_btn_suivant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.92" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end_info_vol_precedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_info_vol_suivant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="361dp"
+            android:layout_height="73dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_info_vol_courrant_top">
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="12:20"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Montréal"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportDépart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="YUL"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="137dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDurée"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="6h18"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/long_arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHeureArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="18:38"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewNomVilleArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="Cancun"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textViewCodeAéroportArrivée"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend"
+                    android:gravity="center_horizontal"
+                    android:text="BEN"
+                    android:textColor="@color/couleur_principale"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroupChoixClass"
+            android:layout_width="156dp"
+            android:layout_height="142dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <RadioButton
+                android:id="@+id/radioButtonÉconomique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:checked="true"
+                android:text="@string/conomique"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonAffaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="@string/affaires"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPremière"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/couleur_principale"
+                android:text="@string/premi_re"
+                android:textColor="@color/couleur_principale"
+                android:textColorLink="@color/couleur_principale"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="97dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="78dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.631"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupChoixClass"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/textViewPrixÉconomique"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="960,56$" />
+
+            <TextView
+                android:id="@+id/textViewPrixAffaire"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="1796,56$" />
+
+            <TextView
+                android:id="@+id/textViewPrixPremiere"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="20sp"
+                android:text="3796,56$" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_info_vol_courrant_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_contenu_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.27"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

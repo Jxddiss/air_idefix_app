@@ -15,5 +15,6 @@ data class Vol(
     val prixParClasse: Map<String, Double>,
     val poidsMaxBag: Int,
     val statutVol: List<VolStatut>,
-    val durée: Duration
+    val durée: Duration,
+    val sièges : MutableList<Siège> = mutableListOf()
 )

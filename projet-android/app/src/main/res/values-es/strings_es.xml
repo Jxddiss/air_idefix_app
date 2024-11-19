@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Reserva_de_Vuelos_Cliente</string>
+    <string name="hello_blank_fragment">Fragmento en blanco</string>
+    <string name="bienvenue">¡Bienvenido!</string>
+    <string name="message_bienvenue">¿Listo para tu próxima aventura?</string>
+    <string name="fond_ecran_bienvenue_description">Imagen del cielo</string>
+    <string name="imageButton_mes_voyages_description">Botón que lleva a la página Mis Viajes</string>
+    <string name="imgButton_recherche_description">Botón que lleva a la página de búsqueda de vuelos</string>
+    <string name="label_mes_voyages_card">Mis Viajes</string>
+    <string name="label_rechercher_un_vol_card">Buscar un vuelo</string>
+    <string name="mes_voyages">Mis Viajes</string>
+    <string name="rechercher">Buscar</string>
+    <string name="espagnol">Español</string>
+    <string name="anglais">Inglés</string>
+    <string name="fran_ais">Francés</string>
+    <string name="langue_pr_f_r_e">Idioma Preferido</string>
+    <string name="rechercher_un_vol">Buscar un Vuelo  </string>
+    <string name="aller_simple">Solo Ida</string>
+    <string name="aller_retour">Ida y Vuelta</string>
+    <string name="de">Desde</string>
+    <string name="vers">Hacia</string>
+    <string name="d_part">Salida</string>
+    <string name="retour">Regreso</string>
+    <string name="nombre_de_passangers">Número de Pasajeros</string>
+    <string name="accepter">Aceptar</string>
+    <string name="d_part_le">Salida el</string>
+    <string name="arriv_e_le">Llegada el</string>
+    <string name="classe">Clase:</string>
+    <string name="si_ge">Asiento:</string>
+    <string name="jours">días</string>
+    <string name="consulter_mon_voyage">Ver mi viaje</string>
+    <string name="le_24_janvier_2025">Enero 24 2025</string>
+    <string name="_24_janvier_2025">Enero 24 2025</string>
+    <string name="description_bouton_navigation_accueil">Imagen del botón de navegación a inicio</string>
+    <string name="vol_de_montr_al_cancun">Vuelo de Montreal a Cancún</string>
+    <string name="conomique">Económica</string>
+    <string name="affaires">Negocios</string>
+    <string name="premi_re">Primera Clase</string>
+    <string name="continuer">Continuar</string>
+    <string name="num_ro_de_passeport">Número de Pasaporte</string>
+    <string name="t_l_phone">Teléfono</string>
+    <string name="pr_nom">Nombre</string>
+    <string name="information_passager">Información del Pasajero</string>
+    <string name="nom">Apellido</string>
+    <string name="information">Información:</string>
+    <string name="modifier_si_ge">Modificar Asiento</string>
+    <string name="modifier_information">Modificar Información</string>
+    <string name="modifier_classe">Modificar Clase</string>
+    <string name="num_ro_passeport">Numero de pasaporte:</string>
+    <string name="email">Email:</string>
+    <string name="nom_modif">Apellido:</string>
+    <string name="prenom_modif">Nombre:</string>
+    <string name="telephone">Telefono:</string>
+    <string name="occupe">Ocupado</string>
+    <string name="disponible">Disponible</string>
+    <string name="sortie_d_urgence">Salida de auxilio</string>
+
+
+</resources>

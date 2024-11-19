@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".présentation.vue.RéservationSpécifiqueVue">
+    tools:context=".présentation.RéservationSpécifique.RéservationSpécifiqueVue">
 
 
     <androidx.cardview.widget.CardView
@@ -45,7 +45,7 @@
                 android:layout_below="@id/textViewVilleRéservationSpécifique"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:text="le 24 janvier 2025"
+                android:text="@string/le_24_janvier_2025"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
@@ -70,10 +70,23 @@
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.829">
+        app:layout_constraintVertical_bias="0.946">
+
+        <ImageButton
+            android:id="@+id/BtnModifierReservation"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/couleur_principale"
+            android:contentDescription="@string/imageButton_mes_voyages_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutBtnInfoArrivée"
@@ -105,7 +118,7 @@
                 android:id="@+id/textViewDateDépart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24 janvier 2025"
+                android:text="@string/_24_janvier_2025"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.407"
@@ -145,7 +158,7 @@
                 android:id="@+id/textViewDateArrivée"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24 janvier 2025"
+                android:text="@string/_24_janvier_2025"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.481"
@@ -169,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            android:text="Départ le"
+            android:text="@string/d_part_le"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            android:text="Arrivée le"
+            android:text="@string/arriv_e_le"
             android:textColor="#2F3969"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +242,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="76dp"
-            android:text="Classe:"
+            android:text="@string/classe"
             android:textColor="#2F3969"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -243,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Siège:"
+            android:text="@string/si_ge"
             android:textColor="#2F3969"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -313,11 +326,11 @@
             app:layout_constraintVertical_bias="0.394" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/textViewUniteTemps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="jours"
+            android:text="@string/jours"
             android:textColor="#2F3969"
             android:textSize="20sp"
             android:textStyle="bold"

@@ -5,7 +5,7 @@ data class Siège(
     val numéro: String,
     val classe: String,
     val statut: String,
-    val idAvion: Int,
-    val idRéservation: Int
+    var idRéservation: Int,
+    var idVol : Int
 )
 

@@ -1,54 +1,61 @@
 package com.nicholson.client_reservation_vol.donnée.fictive
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.nicholson.client_reservation_vol.domaine.entité.*
+import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
+import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.Date
+import kotlin.random.Random
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
 
-class SourceDonnéesFictive {
-    companion object{
-        val client = Client(
-            1,
-            "Doe",
-            "John",
-            "123 Main St",
-            "A12345678",
-            "john.doe@example.com",
-            "123-456-7890"
+class SourceDonnéesFictive : SourceDeDonnées {
+    companion object {
+
+        val listClients = mutableListOf(
+            Client(
+                1,
+                "Doe",
+                "John",
+                "123 Main St",
+                "A12345678",
+                "john.doe@example.com",
+                "123-456-7890"
+            )
         )
 
-       val listVille = mutableListOf(
-           Ville(
-               id = 1,
-               nom = "Paris",
-               pays = "FR",
-               url_photo = "https://plus.unsplash.com/premium_photo-1661919210043-fd847a58522d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           ),
+        val listVille = mutableListOf(
+            Ville(
+                id = 1,
+                nom = "Paris",
+                pays = "FR",
+                url_photo = "https://plus.unsplash.com/premium_photo-1661919210043-fd847a58522d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ),
 
-           Ville(
-               id = 2,
-               nom = "New York",
-               pays = "US",
-               url_photo = "https://images.unsplash.com/photo-1516893842880-5d8aada7ac05?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           ),
+            Ville(
+                id = 2,
+                nom = "New York",
+                pays = "US",
+                url_photo = "https://images.unsplash.com/photo-1516893842880-5d8aada7ac05?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ),
 
-           Ville(
-               id = 3,
-               nom = "Tokyo",
-               pays = "JP",
-               url_photo = "https://images.unsplash.com/photo-1554797589-7241bb691973?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           ),
+            Ville(
+                id = 3,
+                nom = "Tokyo",
+                pays = "JP",
+                url_photo = "https://images.unsplash.com/photo-1554797589-7241bb691973?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ),
 
-           Ville(
-               id = 4,
-               nom = "Montréal",
-               pays = "CN",
-               url_photo = "https://images.unsplash.com/photo-1715191307694-ee4e57b473d6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           )
-       )
+            Ville(
+                id = 4,
+                nom = "Montréal",
+                pays = "CN",
+                url_photo = "https://images.unsplash.com/photo-1715191307694-ee4e57b473d6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            )
+        )
 
         val listAeoroport = mutableListOf(
             Aeroport(
@@ -92,65 +99,32 @@ class SourceDonnéesFictive {
         val listAvion = mutableListOf(
             Avion(
                 1,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 1,
-                        idRéservation = 1
-                    )
-                },
-                1,
+                "Boeing 737"
             ),
             Avion(
                 2,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 2,
-                        idRéservation = 2
-                    )
-                },
-                2,
+                "Boeing 737"
             ),
             Avion(
                 3,
-                "Boeing 737",
-                List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 3,
-                        idRéservation = 3
-                    )
-                },
-                3,
+                "Boeing 737"
             ),
             Avion(
                 id = 4,
-                type = "Boeing 737",
-                sièges = List(36){
-                    Siège(
-                        id = it,
-                        numéro = "S00$it",
-                        classe = Classe.ÉCONOMIQUE.toString(),
-                        statut = "occupée",
-                        idAvion = 4,
-                        idRéservation = 4
-                    )
-                },
-                idVol = 4,
+                type = "Boeing 737"
             )
         )
+
+        val listSièges = MutableList((10..20).random()){
+            Siège(
+                id = it,
+                numéro = ('A'..'H').random().toString() + ((1..3).random()).toString(),
+                classe = Classe.ÉCONOMIQUE.toString(),
+                statut = "occupée",
+                idRéservation = (1..7).random(),
+                idVol = (1..7).random()
+            )
+        }
 
         val listVol = mutableListOf(
             Vol(
@@ -161,16 +135,23 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(5).plusHours(2),
                 dateArrivee = LocalDateTime.now().plusDays(5).plusHours(10),
                 avion = listAvion[0],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 1,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 8.toDuration(DurationUnit.HOURS)
+                durée = 8.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 1
+                }.toMutableList()
             ),
             Vol(
                 id = 2,
@@ -180,16 +161,23 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(17).plusHours(2),
                 dateArrivee = LocalDateTime.now().plusDays(17).plusHours(10),
                 avion = listAvion[1],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 2,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 8.toDuration(DurationUnit.HOURS)
+                durée = 8.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 2
+                }.toMutableList()
             ),
             Vol(
                 id = 3,
@@ -199,7 +187,11 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(10),
                 dateArrivee = LocalDateTime.now().plusDays(10).plusHours(7),
                 avion = listAvion[2],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
@@ -208,7 +200,10 @@ class SourceDonnéesFictive {
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 3
+                }.toMutableList()
             ),
             Vol(
                 id = 4,
@@ -218,30 +213,204 @@ class SourceDonnéesFictive {
                 dateDepart = LocalDateTime.now().plusDays(20),
                 dateArrivee = LocalDateTime.now().plusDays(20).plusHours(7),
                 avion = listAvion[3],
-                prixParClasse = mapOf("Économique" to 150.0, "Business" to 300.0),
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
                 poidsMaxBag = 20,
                 statutVol = listOf(
                     VolStatut(
-                        idVol = 3,
+                        idVol = 4,
                         statut = "en attente",
                         heure = LocalDateTime.now().toLocalTime()
                     )
                 ),
-                durée = 7.toDuration(DurationUnit.HOURS)
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 4
+                }.toMutableList()
+            ),
+            Vol(
+                id = 5,
+                numeroVol = "AD005",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusHours(3),
+                dateArrivee = LocalDateTime.now().plusHours(10),
+                avion = listAvion[2],
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 5,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 5
+                }.toMutableList()
+            ),
+            Vol(
+                id = 6,
+                numeroVol = "AD006",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusDays(15),
+                dateArrivee = LocalDateTime.now().plusDays(15).plusHours(7),
+                avion = listAvion[3],
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 6,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 6
+                }.toMutableList()
+            ),
+            Vol(
+                id = 7,
+                numeroVol = "AD007",
+                aeroportDebut = listAeoroport[3],
+                aeroportFin = listAeoroport[1],
+                dateDepart = LocalDateTime.now().plusDays(25),
+                dateArrivee = LocalDateTime.now().plusDays(25).plusHours(7),
+                avion = listAvion[3],
+                prixParClasse = mapOf(
+                    "Économique" to Random.nextDouble(150.10, 467.89),
+                    "Affaire" to Random.nextDouble(550.56, 897.89),
+                    "Première" to Random.nextDouble(1550.56, 2897.89)
+                ),
+                poidsMaxBag = 20,
+                statutVol = listOf(
+                    VolStatut(
+                        idVol = 7,
+                        statut = "en attente",
+                        heure = LocalDateTime.now().toLocalTime()
+                    )
+                ),
+                durée = 7.toDuration(DurationUnit.HOURS),
+                sièges = listSièges.filter {
+                    it.idVol == 7
+                }.toMutableList()
             )
         )
 
-        val listeRéservation = MutableList(4) {index ->
+        val listeRéservation = MutableList(listVol.size) { index ->
             Réservation(
-                id = listVol[index].id,
+                id = index + 1,
                 numéroRéservation = "RES00${listVol[index].id}",
                 idVol = listVol[index].id,
-                clients = listOf(client),
-                sièges = listVol[index].avion.sièges.filter {
-                    it.idRéservation == listVol[index].id
+                clients = listClients,
+                sièges = listSièges.filter{
+                    it.idRéservation == index + 1
                 }
             )
         }
+
+        val listHistorique = mutableListOf(
+            Historique(
+                villeDe="Montreal",
+                villeVers="Cancun",
+                aeroportDe = "YUL",
+                aeroportVers = "BEN",
+                dateDepart = LocalDate.of(2024, 11, 15),
+                dateRetour = LocalDate.of(2024, 11, 22),
+                nbrPassangers = 1
+
+            ),
+            Historique(
+                villeDe = "Toronto",
+                villeVers = "Paris",
+                aeroportDe = "YYZ",
+                aeroportVers = "CDG",
+                dateDepart = LocalDate.of(2024, 11, 10),
+                dateRetour = LocalDate.of(2024, 11, 17),
+                nbrPassangers = 1
+            ),
+            Historique(
+                villeDe = "Toronto",
+                villeVers = "Paris",
+                aeroportDe = "YYZ",
+                aeroportVers = "CDG",
+                dateDepart = LocalDate.of(2025, 1, 10),
+                dateRetour = LocalDate.of(2025, 1, 17),
+                nbrPassangers = 2
+            ),
+        )
+
+
+
     }
 
+    override fun obtenirListeVol(): List<Vol> = listVol.sortedBy { it.dateDepart }
+
+    override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> =
+        listVol.filter {
+            it.dateDepart >= filtre.dateDébut && it.dateDepart < filtre.dateDébut.plusDays(30)
+                    && it.aeroportDebut.code == filtre.codeAéroportDébut
+                    && it.aeroportFin.code == filtre.codeAéroportFin
+        }.sortedBy { it.dateDepart }
+
+
+    override fun obtenirVolParId(id: Int): Vol =
+        listVol.single {
+            it.id == id
+        }
+
+
+    override fun obtenirListeRéservation(): MutableList<Réservation> {
+        return listeRéservation
+    }
+
+    override fun obtenirRéservationParId(id : Int): Réservation =
+        listeRéservation.single {
+            it.id == id
+        }
+
+    override fun ajouterRéservation(réservation: Réservation) {
+        réservation.id = listeRéservation.size + 1
+        réservation.numéroRéservation = "RES00${listeRéservation.size + 1}"
+        réservation.sièges.forEach {
+            it.idRéservation = réservation.id
+            it.idVol = réservation.idVol
+            obtenirVolParId( réservation.idVol ).sièges.add( it )
+        }
+        listeRéservation.add( réservation )
+    }
+
+
+    override fun ajouterClient( client : Client) {
+        listClients.add(client)
+    }
+
+    override fun obtenirListeClient(): MutableList<Client> {
+        return listClients
+    }
+
+    override fun obtenirListHistorique():List<Historique> = listHistorique
+
+    override fun ajouterHistorique(historique: Historique) {
+        listHistorique.add(historique)
+    }
+
+    override fun obtenirListAéroports(): List<Aeroport> {
+        return  listAeoroport
+    }
 }
+

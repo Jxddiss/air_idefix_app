@@ -5,7 +5,7 @@
     android:id="@+id/VueRechercherVol"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".présentation.vue.RechercherUnVolVue">
+    tools:context=".présentation.RechercherVol.RechercherUnVolVue">
 
 
     <!-- Constraint pour afficher le titre du View Rechercher vol -->
@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="52dp"
-            android:fontFamily="@font/lexend"
-            android:text="Rechercher un vol  "
             android:drawableRight="@drawable/avion"
+            android:fontFamily="@font/lexend"
+            android:text="@string/rechercher_un_vol"
             android:textColor="@color/couleur_principale"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/couleur_btn_typeVol"
             android:fontFamily="@font/lexend"
-            android:text="Aller Simple"
+            android:text="@string/aller_simple"
             android:textColor="@color/couleur_principale"
             android:textSize="14sp"
             app:cornerRadius="0dp"
@@ -70,7 +70,7 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/couleur_btn_typeVol"
             android:fontFamily="@font/lexend"
-            android:text="Aller retour"
+            android:text="@string/aller_retour"
             android:textColor="@color/couleur_principale"
             android:textSize="14sp"
             app:cornerRadius="0dp"
@@ -110,9 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
-                android:textColor="@color/couleur_principale"
-                android:hint="De"
-                android:inputType="none" />
+                android:hint="@string/de"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,9 +145,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend"
-                android:hint="Vers"
-                android:textColor="@color/couleur_principale"
-                android:inputType="none" />
+                android:hint="@string/vers"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
-            android:hint="Départ"
+            android:hint="@string/d_part"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,9 +179,10 @@
                 android:id="@+id/ChosirDate"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
-                android:textColor="@color/couleur_principale"
-                android:fontFamily="@font/lexend" />
+                android:fontFamily="@font/lexend"
+                android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,7 +205,7 @@
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
             android:enabled="false"
-            android:hint="Retour"
+            android:hint="@string/retour"
             android:textColor="@color/couleur_principale"
 
             android:textColorHint="@android:color/darker_gray"
@@ -220,6 +219,7 @@
                 android:id="@+id/ChosirDateRetour"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:inputType="none"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
@@ -244,7 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
-            android:hint="Nombre de passangers"
+            android:hint="@string/nombre_de_passangers"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -255,6 +255,7 @@
             <EditText
                 android:id="@+id/ChoisirNombrePassangers"
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="52dp"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/couleur_principale" />
@@ -278,11 +279,11 @@
             android:layout_width="218dp"
             android:layout_height="49dp"
             android:layout_marginBottom="3dp"
+            android:backgroundTint="@color/couleur_btn_jaune"
             android:drawableRight="@drawable/avion_btn"
             android:fontFamily="@font/lexend"
-            android:text="Rechercher"
+            android:text="@string/rechercher"
             android:textColor="@color/couleur_principale"
-            android:backgroundTint="@color/couleur_btn_jaune"
             android:textSize="16sp"
             app:cornerRadius="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
