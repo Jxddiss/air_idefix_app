@@ -62,6 +62,7 @@
     <string name="res_confirmer_message">¿Quieres confirmar la reserva?</string>
     <string name="vols_vers">Vuelos a %1$s</string>
     <string name="aucun_vol_disponible">No hay vuelos disponibles</string>
+    <string name="logo">Logo</string>
 
 
 </resources>
