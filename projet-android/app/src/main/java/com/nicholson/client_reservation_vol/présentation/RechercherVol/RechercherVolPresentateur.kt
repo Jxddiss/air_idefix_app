@@ -2,7 +2,6 @@ package com.nicholson.client_reservation_vol.présentation.RechercherVol
 
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
-import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol.*
@@ -48,8 +47,11 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
             villeAeroportVers.contains(it.code)
         }
 
+
         try{
             val dateDebut = LocalDateTime.parse(dateDebutString+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+            //val dateRetour = LocalDateTime.parse(dateRetour+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+
             modèle.filtreVolCourrant = FiltreRechercheVol(
                 dateDébut = dateDebut,
                 codeAéroportDébut = aeroportDe.code,
@@ -58,8 +60,8 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
             val nbrPassagersInt = nbrPassagers.toInt()
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            val dateRetourLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
+            /*
             //save historique ici
             val historique = Historique(
                 villeDe = aeroportDe.ville.nom,
@@ -72,6 +74,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
             )
 
             enregistrerRecherche(historique)
+            */
 
             vue?.redirigerVersListeVols()
         }catch (ex :  Exception){
