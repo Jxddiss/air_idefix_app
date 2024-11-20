@@ -115,14 +115,16 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         )
 
-        val listSièges = MutableList((10..20).random()){
+
+        val listSièges = MutableList((6..12).random()){
+            val  idVolRes = (1..4).random()
             Siège(
                 id = it,
                 numéro = ('A'..'H').random().toString() + ((1..3).random()).toString(),
-                classe = Classe.ÉCONOMIQUE.toString(),
+                classe = "Économique",
                 statut = "occupée",
-                idRéservation = (1..7).random(),
-                idVol = (1..7).random()
+                idRéservation = idVolRes,
+                idVol = idVolRes
             )
         }
 
