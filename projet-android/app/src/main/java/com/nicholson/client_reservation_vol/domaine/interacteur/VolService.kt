@@ -16,4 +16,7 @@ class VolService( private val sourceDeDonnées: SourceDeDonnées = SourceDonnée
     fun obtenirVolParId( id : Int ) =
         sourceDeDonnées.obtenirVolParId( id )
 
+    fun obtenirSiegeParNumeroSiege(id : Int) =
+        sourceDeDonnées.obtenirSiegeParId(id)
+
 }

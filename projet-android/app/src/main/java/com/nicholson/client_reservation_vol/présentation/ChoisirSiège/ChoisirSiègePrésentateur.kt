@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 
@@ -11,24 +12,28 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     private var idAndroidDernierSiègeCliqué = 0
 
     override fun traiterDémarage() {
-
-        if(modèle.aller){
+        var classe : String
+        if(modèle.siegeVolAller){
             volCourrant = modèle.getVolCourrant(modèle.indiceVolAller)
+            modèle.siegeVolAller = false
+            classe = modèle.réservationAller.sièges[0].classe
         }
         else{
             volCourrant = modèle.getVolCourrant(modèle.indiceVolRetour)
+            classe = modèle.réservationRetour.sièges[0].classe
         }
 
         vue.miseEnPlace(
             nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
             nomVilleArrivée = volCourrant.aeroportFin.ville.nom,
             urlPhoto = volCourrant.aeroportFin.ville.url_photo,
-            modèle.classeChoisis
+            classe
         )
     }
 
     override fun traiterSiègeCliqué( id : Int, code : String ) {
         numSiègeCourrant = code
+
 
         if ( idAndroidDernierSiègeCliqué == 0 ){
             idAndroidDernierSiègeCliqué = id
@@ -42,14 +47,19 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
 
     override fun traiterDialogConfirmer() {
         if ( numSiègeCourrant.isNotEmpty() ){
-            if(modèle.aller){
+            if(modèle.siegeVolAller){
                 modèle.indiceVolCourrant = modèle.indiceVolAller
+                modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
+                vue.redirigerVersChoisirSiegeRetour()
             }
             else{
                 modèle.indiceVolCourrant = modèle.indiceVolRetour
+                modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
+                modèle.ajouterReservation(modèle.réservationAller)
+                modèle.ajouterReservation(modèle.réservationRetour)
+                vue.redirigerVersMesRéservation()
             }
-            modèle.créerRéservation( numSiègeCourrant )
-            vue.redirigerVersMesRéservation()
+
         }else{
             vue.afficherErreur( "Veuillez choisir un siège" )
         }
@@ -62,7 +72,7 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     override fun vérifierStatutSiège( id: Int, code: String ) {
         val siège = volCourrant.sièges.firstOrNull {
             it.numéro == code
-                    && it.classe == modèle.classeChoisis
+                    && it.classe == modèle.réservationAller.sièges[0].classe
         }
 
         if ( siège != null ){

@@ -116,4 +116,8 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         navController.navigate( R.id.action_choisirSiegeVue_vers_listeRéservationsVue )
     }
 
+    override fun redirigerVersChoisirSiegeRetour() {
+        navController.navigate( R.id.action_choisirSiegeVue_self )
+    }
+
 }

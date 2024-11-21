@@ -13,6 +13,7 @@ interface ContratVuePrésentateurChoisirSiège {
         fun afficherErreur( message : String )
         fun afficherDialogConfirmer()
         fun redirigerVersMesRéservation()
+        fun redirigerVersChoisirSiegeRetour()
     }
     interface IChoisirSiègePrésentateur {
         fun traiterDémarage()

@@ -1,4 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
@@ -14,12 +15,15 @@ class ListeDeVolsPrésentateur (
     val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
 
     override fun traiterObtenirVols() {
-        val listeDeVols : List<Vol>
+        var listeDeVols : List<Vol> = listOf()
         if(modèle.aller) {
-            listeDeVols = modèle.obtenirListeVolParFiltre(modèle.filtreVolCourrant)
+            modèle.listeVolAller = modèle.obtenirListeVolAllerParFiltre()
+            Log.d("list de vol retour", modèle.listeVolRetour.toString())
+            listeDeVols = modèle.listeVolAller
         }
         else{
-            listeDeVols = modèle.obtenirListeVolParFiltre(modèle.filtreVolRetour)
+            modèle.listeVolRetour = modèle.obtenirListeVolRetourParFiltre()
+            listeDeVols = modèle.listeVolRetour
         }
         val listeVolsOTD = listeDeVols.map {
             VolListItemOTD(
@@ -51,6 +55,7 @@ class ListeDeVolsPrésentateur (
             modèle.indiceVolAller = index
         }
         else{
+            //Log.d("indice aller selectionner", modèle.indiceVolAller.toString())
             modèle.indiceVolRetour = index
         }
         modèle.indiceVolCourrant = index

@@ -13,6 +13,7 @@ class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : ILi
     override fun traiterObtenirRéservation(){
         val listeDeRéservation = modèle.listeRéservation
         val listeDeVols = modèle.listeVolAller
+
         val listeRéservationOTD = listeDeRéservation.map {
 
         val tempMtn : LocalDateTime = LocalDateTime.now()

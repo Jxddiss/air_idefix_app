@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation
 
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
@@ -22,7 +23,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
 
     companion object {
         @Volatile
-        private var instance : Modèle? = null
+        private var instance: Modèle? = null
 
         fun obtenirInstance() =
             instance ?: synchronized(this) {
@@ -30,38 +31,73 @@ class Modèle private constructor( private val volService : VolService = VolServ
             }
     }
 
-    var indiceVolCourrant : Int = 0
+    var indiceVolCourrant: Int = 0
     var indiceVolRetour: Int = 0
     var indiceVolAller: Int = 0
-    var indiceRéservationCourrante : Int = 0
-    var indiceClientCourrant : Int = 0
+    var indiceRéservationCourrante: Int = 0
+    var indiceClientCourrant: Int = 0
+
+
     var filtreVolAller = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
-
-    var filtreVolRetour : FiltreRechercheVol = FiltreRechercheVol(
+    var filtreVolRetour: FiltreRechercheVol = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
+    var réservationAller = Réservation(
+        id = 0,
+        numéroRéservation = "",
+        idVol = 1,
+        clients = listOf(),
+        sièges = mutableListOf(
+            Siège(
+                1,
+                numéro = "",
+                classe = "",
+                statut = "",
+                idRéservation = 0,
+                idVol = 1
+            )
+        )
+    )
+    var réservationRetour = Réservation(
+        id = 0,
+        numéroRéservation = "",
+        idVol = 1,
+        clients = listOf(),
+        sièges = mutableListOf(
+            Siège(
+                1,
+                numéro = "",
+                classe = "",
+                statut = "",
+                idRéservation = 0,
+                idVol = 1
+            )
+        )
+    )
 
-    var classeChoisis = "Économique"
-    var classeChoisisRetour = "Économique"
 
-    var volRetourExiste : Boolean = false
-    var aller : Boolean = true
+    //var classeChoisis = "Économique"
+    //var classeChoisisRetour = "Économique"
+
+    var volRetourExiste: Boolean = false
+    var aller: Boolean = true
+    var siegeVolAller : Boolean = true
 
     var listeVolAller: List<Vol> = listOf()
     var listeVolRetour: List<Vol> = listOf()
-    var listeRéservation : MutableList<Réservation> = mutableListOf()
-        get(){
-            if (field.isEmpty() ){
+    var listeRéservation: MutableList<Réservation> = mutableListOf()
+        get() {
+            if (field.isEmpty()) {
                 field = réservationService.obtenirListeRéservation()
             }
             return field
         }
 
-    var listeClient : MutableList<Client> = mutableListOf()
-        get(){
-            if(field.isEmpty()){
+    var listeClient: MutableList<Client> = mutableListOf()
+        get() {
+            if (field.isEmpty()) {
                 field = clientService.obtenirListeClient()
             }
             return field
@@ -75,89 +111,87 @@ class Modèle private constructor( private val volService : VolService = VolServ
             return field
         }
 
-    fun getVolCourrant( indice : Int ): Vol {
-        return if(aller){
-            volService.obtenirVolParId(listeVolAller[indice].id)
-        }
-        else{
-            volService.obtenirVolParId(listeVolRetour[indice].id)
+    fun getVolCourrant(indice: Int): Vol {
+        if (aller) {
+            return volService.obtenirVolParId(listeVolAller[indice].id)
+        } else {
+            return volService.obtenirVolParId(listeVolRetour[indice].id)
         }
 
     }
-    fun obtenirListeVolAllerParFiltre() : List<Vol> {
-        listeVolAller = volService.obtenirListeVolParFiltre( filtreVolAller )
+
+    fun obtenirListeVolAllerParFiltre(): List<Vol> {
+        listeVolAller = volService.obtenirListeVolParFiltre(filtreVolAller)
         return listeVolAller
     }
 
-    fun obtenirListeVolRetourParFiltre() : List<Vol> {
-        listeVolRetour = volService.obtenirListeVolParFiltre( filtreVolRetour )
+    fun obtenirListeVolRetourParFiltre(): List<Vol> {
+        listeVolRetour = volService.obtenirListeVolParFiltre(filtreVolRetour)
         return listeVolRetour
     }
 
-    fun obtenirVolParId( id : Int ) : Vol {
-        return volService.obtenirVolParId( id )
+    fun obtenirVolParId(id: Int): Vol {
+        return volService.obtenirVolParId(id)
     }
 
     fun avancerVolCourrant() {
-        val listeVol = if(aller) listeVolAller else listeVolRetour
+        val listeVol = if (aller) listeVolAller else listeVolRetour
 
-        if ( indiceVolCourrant < listeVol.size - 1 ){
-            indiceVolCourrant ++
+        if (indiceVolCourrant < listeVol.size - 1) {
+            indiceVolCourrant++
         } else {
             indiceVolCourrant = 0
         }
     }
 
     fun reculerVolCourrant() {
-        val listeVol = if(aller) listeVolAller else listeVolRetour
+        val listeVol = if (aller) listeVolAller else listeVolRetour
 
-        if( indiceVolCourrant > 0 ){
-            indiceVolCourrant --
-        }else{
+        if (indiceVolCourrant > 0) {
+            indiceVolCourrant--
+        } else {
             indiceVolCourrant = listeVol.size - 1
         }
     }
 
-    fun getVolPrécédent() : Vol {
-        val listeVol = if(aller) listeVolAller else listeVolRetour
+    fun getVolPrécédent(): Vol {
+        val listeVol = if (aller) listeVolAller else listeVolRetour
 
-        if ( indiceVolCourrant > 0 ){
+        if (indiceVolCourrant > 0) {
             return listeVol[indiceVolCourrant - 1]
         } else {
             return listeVol[listeVol.size - 1]
         }
     }
 
-    fun getVolSuivant() : Vol {
-        val listeVol = if(aller) listeVolAller else listeVolRetour
+    fun getVolSuivant(): Vol {
+        val listeVol = if (aller) listeVolAller else listeVolRetour
 
-        if ( indiceVolCourrant < listeVol.size - 1 ){
+        if (indiceVolCourrant < listeVol.size - 1) {
             return listeVol[indiceVolCourrant + 1]
         } else {
             return listeVol[0]
         }
     }
 
-    fun obtenirReservationParId( id : Int ): Réservation {
-        return réservationService.obtenirRéservationParid( id )
+    fun obtenirReservationParId(id: Int): Réservation {
+        return réservationService.obtenirRéservationParid(id)
     }
 
     fun obtenirReservationCourrante(): Réservation {
         return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
     }
 
-    fun obtenirClientCourrant(): Client{
+    fun obtenirClientCourrant(): Client {
         return listeClient[indiceClientCourrant]
     }
 
-    fun ajouterClient(client : Client) {
+    fun ajouterClient(client: Client) {
         listeClient = mutableListOf(client)
         clientService.ajouterClient(client)
     }
 
-    fun créerRéservation( numéroSiege : String ) {
-
-
+    fun créerRéservation(classeChoisis : String, indiceVol : Int) : Réservation {
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
@@ -166,25 +200,30 @@ class Modèle private constructor( private val volService : VolService = VolServ
             sièges = mutableListOf(
                 Siège(
                     1,
-                    numéro = numéroSiege,
+                    numéro = "",
                     classe = classeChoisis,
                     statut = "Occupée",
                     idRéservation = 0,
-                    idVol = getVolCourrant(indiceVolCourrant).id
+                    idVol = getVolCourrant(indiceVol).id
                 )
             )
         )
-
-        réservationService.ajouterRéservation( réservation )
+        return réservation
     }
 
 
+
+
+    fun ajouterReservation(réservation : Réservation) {
+        réservationService.ajouterRéservation(réservation)
+    }
 
     fun obtenirListeAéroports(): List<Aeroport> {
         return aeroportService.obtenirListeAeroport()
     }
 
-    fun créerHistorique( historique: Historique ){
-        historiqueService.ajouterHistorique( historique )
+    fun créerHistorique(historique: Historique) {
+        historiqueService.ajouterHistorique(historique)
     }
+
 }

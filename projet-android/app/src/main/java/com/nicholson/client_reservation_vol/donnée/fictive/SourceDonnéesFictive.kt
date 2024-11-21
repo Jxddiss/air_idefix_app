@@ -856,5 +856,12 @@ class SourceDonnéesFictive : SourceDeDonnées {
     override fun obtenirListAéroports(): List<Aeroport> {
         return  listAeoroport
     }
+
+    override fun obtenirSiegeParId(id: Int): Siège =
+        listSièges.single {
+            it.id == id
+        }
+
+
 }
 

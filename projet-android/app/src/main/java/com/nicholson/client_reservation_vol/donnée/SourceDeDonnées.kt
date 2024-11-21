@@ -4,6 +4,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
+import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 
@@ -19,4 +20,5 @@ interface SourceDeDonnées {
     fun obtenirListHistorique():List<Historique>
     fun ajouterHistorique(historique: Historique)
     fun obtenirListAéroports() : List<Aeroport>
+    fun obtenirSiegeParId(id : Int): Siège
 }

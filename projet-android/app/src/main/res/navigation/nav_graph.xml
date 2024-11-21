@@ -110,6 +110,9 @@
         <action
             android:id="@+id/action_choisirSiegeVue_vers_listeDeVolsVue"
             app:destination="@id/listeDeVolsVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_self"
+            app:destination="@id/choisirSiegeVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"

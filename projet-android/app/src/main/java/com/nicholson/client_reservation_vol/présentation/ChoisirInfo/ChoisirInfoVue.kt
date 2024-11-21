@@ -70,13 +70,10 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         présentateur?.traiterDémarage()
     }
 
-    override fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée: String, urlPhoto: String, volRetour : Boolean ) {
-        if (volRetour) {
-            textViewInfoVoyage.text = getString( R.string.vol_aller_retour, nomVilleDépart, nomVilleArrivée )
-        }
-        else {
-            textViewInfoVoyage.text = getString( R.string.vol_de, nomVilleDépart, nomVilleArrivée )
-        }
+    override fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée: String, urlPhoto: String ) {
+
+        textViewInfoVoyage.text = getString( R.string.vol_de, nomVilleDépart, nomVilleArrivée )
+
         Glide.with( requireContext() )
             .load( urlPhoto )
             .into( imageViewVilleChoisirInformation )

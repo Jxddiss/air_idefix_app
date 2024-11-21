@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
@@ -11,9 +12,10 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
     override fun traiterDémarage() {
 
         val vol = modele.getVolCourrant(modele.indiceVolAller)
+        Log.d("vol aller",modele.indiceVolAller.toString())
 
         vue.miseEnPlace( vol.aeroportDebut.ville.nom,
-            vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo, !modele.aller)
+            vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo)
     }
 
     override fun traiterObtenirInfo(clientOTD: ClientOTD) {
@@ -25,6 +27,8 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
             return
         }
         modele.ajouterClient(convertirClientOTDAClient(clientOTD))
+        modele.réservationAller.clients = modele.listeClient
+        modele.réservationRetour.clients = modele.listeClient
         vue.redirigerAChoisirSiege()
     }
 
