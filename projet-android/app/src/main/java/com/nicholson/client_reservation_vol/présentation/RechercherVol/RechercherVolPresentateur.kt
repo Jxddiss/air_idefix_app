@@ -32,7 +32,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     override fun traiterInfoRecherche(villeAeroportDe: String,
                                       villeAeroportVers: String,
                                       dateDebutString:String,
-                                      dateRetour:String,
+                                      dateRetourString:String,
                                       nbrPassagers:String) {
 
         if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() || nbrPassagers.isEmpty()){
@@ -50,13 +50,25 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
         try{
             val dateDebut = LocalDateTime.parse(dateDebutString+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-            //val dateRetour = LocalDateTime.parse(dateRetour+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-
+            if(dateRetourString.isNotEmpty()) {
+                val dateRetour = LocalDateTime.parse(
+                    dateRetourString + " 00:00",
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                )
+                modèle.filtreVolRetour = FiltreRechercheVol(
+                    dateDébut = dateRetour,
+                    codeAéroportDébut = aeroportVers.code,
+                    codeAéroportFin = aeroportDe.code
+                )
+                modèle.volretourExiste = true
+            }
             modèle.filtreVolCourrant = FiltreRechercheVol(
                 dateDébut = dateDebut,
                 codeAéroportDébut = aeroportDe.code,
                 codeAéroportFin = aeroportVers.code
             )
+
+
 
             val nbrPassagersInt = nbrPassagers.toInt()
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))

@@ -48,7 +48,14 @@ class ChoisirClassePrésentateur(
 
     override fun traiterContinuer() {
         modèle.classeChoisis = classeChoisis
-        vue.redirigerChoixInfo()
+        if(modèle.volretourExiste){
+            modèle.aller = false
+            vue.choisirVolRetour()
+        }
+        else{
+            vue.redirigerChoixInfo()
+        }
+
     }
 
     override fun traiterDemandeVolSuivant() {

@@ -1,12 +1,10 @@
 package com.nicholson.client_reservation_vol.présentation
 
-import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
-import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.AeroportService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
@@ -14,7 +12,6 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationServ
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class Modèle private constructor( private val volService : VolService = VolService(),
@@ -39,9 +36,15 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var filtreVolCourrant = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
+
+    var filtreVolRetour : FiltreRechercheVol = FiltreRechercheVol(
+        LocalDateTime.now(), "YUL", "JFK"
+    )
+
     var classeChoisis = "Économique"
 
-
+    var volretourExiste : Boolean = false
+    var aller : Boolean = true
 
     var listeVol: List<Vol> = listOf()
     var listeRéservation : MutableList<Réservation> = mutableListOf()
@@ -71,10 +74,15 @@ class Modèle private constructor( private val volService : VolService = VolServ
     fun getVolCourrant(): Vol =
         volService.obtenirVolParId(listeVol[indiceVolCourrant].id)
 
-    fun obtenirListeVolParFiltre() : List<Vol> {
-        listeVol = volService.obtenirListeVolParFiltre( filtreVolCourrant )
+    fun obtenirListeVolParFiltre(filtreVol : FiltreRechercheVol) : List<Vol> {
+        listeVol = volService.obtenirListeVolParFiltre( filtreVol )
         return listeVol
     }
+
+    /*fun obtenirListeVolRetourFiltre() : List<Vol>{
+        listeVol = volService.obtenirListeVolParFiltre( filtreVolRetour )
+        return listeVol
+    }*/
 
     fun obtenirVolParId( id : Int ) : Vol {
         return volService.obtenirVolParId( id )

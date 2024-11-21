@@ -1,4 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
+import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
@@ -13,7 +14,13 @@ class ListeDeVolsPrésentateur (
     val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
 
     override fun traiterObtenirVols() {
-        val listeDeVols = modèle.obtenirListeVolParFiltre()
+        val listeDeVols : List<Vol>
+        if(modèle.aller) {
+            listeDeVols = modèle.obtenirListeVolParFiltre(modèle.filtreVolCourrant)
+        }
+        else{
+            listeDeVols = modèle.obtenirListeVolParFiltre(modèle.filtreVolRetour)
+        }
         val listeVolsOTD = listeDeVols.map {
             VolListItemOTD(
                 dateDépart = it.dateDepart.format( formatterDate ),

@@ -14,7 +14,7 @@ interface ContractRechercherVol {
         fun attacherVue(vue: IRechercheVolVue)
         fun détacherVue()
         fun obtenirListeVilles()
-        fun traiterInfoRecherche(villeAeroportDe:String, villeAeroportVers:String, dateDebutString:String, dateRetour:String, nbrPassagers:String)
+        fun traiterInfoRecherche(villeAeroportDe:String, villeAeroportVers:String, dateDebutString:String, dateRetourString:String, nbrPassagers:String)
         fun traiterActionRecherche()
     }
 }

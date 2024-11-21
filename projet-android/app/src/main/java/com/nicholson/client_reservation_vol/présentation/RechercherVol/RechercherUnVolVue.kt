@@ -96,6 +96,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     }
     override fun redirigerVersListeVols() {
         navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
+
     }
 
     //New funtion

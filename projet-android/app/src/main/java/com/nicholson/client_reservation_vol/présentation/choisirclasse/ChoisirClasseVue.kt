@@ -140,4 +140,8 @@ class ChoisirClasseVue: Fragment(), IChoisirClasseVue {
         textViewDateVolSuivant.text = date
         textViewPrixÉconoVolSuivant.text = prixÉconomique
     }
+
+    override fun choisirVolRetour() {
+        navController.navigate( R.id.action_choisirClasseVue_vers_listeDeVolsVue)
+    }
 }

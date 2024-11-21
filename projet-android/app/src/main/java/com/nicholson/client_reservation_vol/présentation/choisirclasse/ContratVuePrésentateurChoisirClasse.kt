@@ -9,6 +9,7 @@ interface ContratVuePrésentateurChoisirClasse {
         fun redirigerChoixInfo()
         fun placerVolPrécédent( date : String, prixÉconomique : String )
         fun placerVolSuivant( date : String, prixÉconomique : String )
+        fun choisirVolRetour()
     }
 
     interface IChoisirClassePrésentateur{

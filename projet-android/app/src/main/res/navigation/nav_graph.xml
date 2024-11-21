@@ -127,5 +127,8 @@
             app:destination="@id/choisirInfoVue"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_choisirClasseVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue" />
     </fragment>
 </navigation>
