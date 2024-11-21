@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="600dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="382dp"
+        android:layout_height="438dp"
+        android:layout_margin="20dp"
+        app:cardBackgroundColor="#6D6D6D"
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/imgDestination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fond_transparent_blue_bas">
+
+            <TextView
+                android:id="@+id/textDestination"
+                android:layout_width="315dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="88dp"
+                android:fontFamily="@font/lexend"
+                android:gravity="bottom|center"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="48sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTempsRestant" />
+
+            <TextView
+                android:id="@+id/textTempsRestant"
+                android:layout_width="165dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/lexend"
+                android:gravity="center_horizontal|top"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textTempsUnite"
+                android:layout_width="146dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="128dp"
+                android:fontFamily="@font/lexend"
+                android:gravity="center_horizontal|top"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="245dp"
+                android:layout_height="28dp"
+                android:layout_marginBottom="156dp"
+                android:fontFamily="@font/lexend"
+                android:gravity="center|center_horizontal"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBarTime"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="155dp"
+                android:layout_height="139dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/circle_shape"
+                android:indeterminate="false"
+                android:max="30"
+                android:progress="0"
+                android:progressDrawable="@drawable/circle_progress_bar"
+                app:layout_constraintBottom_toTopOf="@+id/textDestination"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnConsulteVoyage"
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#6E171C33"
+            android:drawableEnd="@drawable/no_line_arrow"
+            android:fontFamily="@font/lexend"
+            android:gravity="left|center_vertical"
+            android:text="@string/consulter_mon_voyage"
+            android:textSize="16sp"
+            app:cornerRadius="7dp"
+            app:strokeColor="#CECECE"
+            app:strokeWidth="1dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
