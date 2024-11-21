@@ -56,6 +56,14 @@
     <string name="occupe">Ocupado</string>
     <string name="disponible">Disponible</string>
     <string name="sortie_d_urgence">Salida de auxilio</string>
+    <string name="vol_de">Vuelo de %1$s a %2$s</string>
+    <string name="annuler">Cancelar</string>
+    <string name="confirmer">confirmar</string>
+    <string name="res_confirmer_message">¿Quieres confirmar la reserva?</string>
+    <string name="vols_vers">Vuelos a %1$s</string>
+    <string name="aucun_vol_disponible">No hay vuelos disponibles</string>
+    <string name="logo">Logo</string>
+    <string name="r_server">Reserva</string>
 
 
 </resources>

@@ -44,12 +44,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
 
 
     var listeVol: List<Vol> = listOf()
-        get() {
-            if (field.isEmpty()) {
-                field = volService.obtenirListeVol()
-            }
-            return field
-        }
     var listeRéservation : MutableList<Réservation> = mutableListOf()
         get(){
             if (field.isEmpty() ){
@@ -162,4 +156,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
         return aeroportService.obtenirListeAeroport()
     }
 
+    fun créerHistorique( historique: Historique ){
+        historiqueService.ajouterHistorique( historique )
+    }
 }

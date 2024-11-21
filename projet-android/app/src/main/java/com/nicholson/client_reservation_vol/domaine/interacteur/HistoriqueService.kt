@@ -9,4 +9,5 @@ class HistoriqueService(private val sourceDeDonnées: SourceDeDonnées = SourceD
 
     fun obtenirListeHistorique() = sourceDeDonnées.obtenirListHistorique()
 
+    fun ajouterHistorique( historique: Historique ) = sourceDeDonnées.ajouterHistorique( historique )
 }

@@ -11,11 +11,13 @@ interface ContratVuePrésentateurChoisirSiège {
         fun placerStatutSiègeOccupée( id : Int )
         fun placerStatutSiègeDisponible( id : Int )
         fun afficherErreur( message : String )
+        fun afficherDialogConfirmer()
         fun redirigerVersMesRéservation()
     }
     interface IChoisirSiègePrésentateur {
         fun traiterDémarage()
         fun traiterSiègeCliqué( id : Int, code : String )
+        fun traiterDialogConfirmer()
         fun traiterConfirmerRéservation()
         fun vérifierStatutSiège( id : Int, code: String )
     }

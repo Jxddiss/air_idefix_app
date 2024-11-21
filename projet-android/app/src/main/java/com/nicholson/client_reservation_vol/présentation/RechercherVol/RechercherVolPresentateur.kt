@@ -89,7 +89,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
     // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et oui tout est bien sauvarger
     private fun enregistrerRecherche(historique: Historique) {
-        listHistorique.add(historique)
+       modèle.créerHistorique(historique)
         Log.d("Historique", "Historique added: $historique")
         Log.d("Historique", "Current listHistorique: $listHistorique")
     }

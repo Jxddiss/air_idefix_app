@@ -73,7 +73,7 @@ class ListeRéservationsVue : Fragment(),
             présentateur?.traiterRéservationCliqué( it )
         }
 
-        recycler.layoutManager = LinearLayoutManager(requireContext())
+        //recycler.layoutManager = LinearLayoutManager(requireContext())
         recycler.itemAnimator = DefaultItemAnimator()
         recycler.adapter = adaptateur
 

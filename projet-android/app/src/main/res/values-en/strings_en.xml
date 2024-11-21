@@ -57,6 +57,14 @@
     <string name="occupe">Occupied</string>
     <string name="disponible">Available</string>
     <string name="sortie_d_urgence">Emergency Exit</string>
+    <string name="vol_de">Flight from %1$s to %2$s</string>
+    <string name="annuler">Cancel</string>
+    <string name="confirmer">Accept</string>
+    <string name="res_confirmer_message">Do you want to confirm the reservation ?</string>
+    <string name="vols_vers">Flight To %1$s</string>
+    <string name="aucun_vol_disponible">No Flights Found</string>
+    <string name="logo">Logo</string>
+    <string name="r_server">Book</string>
 
 
 </resources>
