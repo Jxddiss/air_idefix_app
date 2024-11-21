@@ -1,20 +1,18 @@
 package com.nicholson.client_reservation_vol.présentation.ListeReservation
 
-import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.ListeReservation.ContratVuePrésentateurListeRéservation.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.RéservationListItemOTD
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.util.Locale
 
 class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : IListeDeRéservationsPrésentateur{
     val modèle : Modèle = Modèle.obtenirInstance()
 
     override fun traiterObtenirRéservation(){
         val listeDeRéservation = modèle.listeRéservation
-        val listeDeVols = modèle.listeVol
+        val listeDeVols = modèle.listeVolAller
         val listeRéservationOTD = listeDeRéservation.map {
 
         val tempMtn : LocalDateTime = LocalDateTime.now()

@@ -63,6 +63,7 @@
     <string name="res_confirmer_message">Do you want to confirm the reservation ?</string>
     <string name="vols_vers">Flight To %1$s</string>
     <string name="aucun_vol_disponible">No Flights Found</string>
+    <string name="vol_aller_retour">Round trip from %1$s à %2$s</string>
 
 
 </resources>

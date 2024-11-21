@@ -42,6 +42,12 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
 
     override fun traiterDialogConfirmer() {
         if ( numSiègeCourrant.isNotEmpty() ){
+            if(modèle.aller){
+                modèle.indiceVolCourrant = modèle.indiceVolAller
+            }
+            else{
+                modèle.indiceVolCourrant = modèle.indiceVolRetour
+            }
             modèle.créerRéservation( numSiègeCourrant )
             vue.redirigerVersMesRéservation()
         }else{
