@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 
 import com.nicholson.client_reservation_vol.domaine.entité.Client
+import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 
@@ -8,7 +9,15 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
     ContratVueChoisirInfo.IChoisirInfoPrésentateur {
         private val modele = Modèle.obtenirInstance()
     override fun traiterDémarage() {
-        val vol = modele.getVolCourrant()
+        val vol : Vol
+
+        if(modele.aller){
+            vol = modele.getVolCourrant(modele.indiceVolAller)
+        }
+        else{
+            vol = modele.getVolCourrant(modele.indiceVolRetour)
+        }
+
         vue.miseEnPlace( vol.aeroportDebut.ville.nom,
             vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo)
     }

@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.choisirclasse
 
-import com.nicholson.client_reservation_vol.domaine.entité.Classe
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolChoixClassOTD
 import com.nicholson.client_reservation_vol.présentation.choisirclasse.ContratVuePrésentateurChoisirClasse.*
@@ -15,7 +14,7 @@ class ChoisirClassePrésentateur(
     private var classeChoisis = "Économique"
 
     override fun traiterDémarage() {
-        val vol = modèle.getVolCourrant()
+        val vol = modèle.getVolCourrant(modèle.indiceVolCourrant)
         val volPrécédent = modèle.getVolPrécédent()
         val volSuivant = modèle.getVolSuivant()
         val volChoixClassOTD = VolChoixClassOTD(
@@ -48,8 +47,9 @@ class ChoisirClassePrésentateur(
 
     override fun traiterContinuer() {
         modèle.classeChoisis = classeChoisis
-        if(modèle.volretourExiste){
+        if(modèle.volRetourExiste){
             modèle.aller = false
+            modèle.volRetourExiste = false
             vue.choisirVolRetour()
         }
         else{

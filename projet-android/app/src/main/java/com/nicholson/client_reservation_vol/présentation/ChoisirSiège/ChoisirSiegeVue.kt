@@ -39,6 +39,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         super.onViewCreated( vue, savedInstanceState )
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         textViewClasse = vue.findViewById( R.id.textViewClasse )
+        présentateur?.traiterDémarage()
         for ( i in 0..23 ){
             val imageViewSiège : ImageView = vue
                 .findViewById(
@@ -64,8 +65,6 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
 
         navController = vue.findNavController()
-
-        présentateur?.traiterDémarage()
     }
 
     override fun miseEnPlace( nomVilleDépart : String,

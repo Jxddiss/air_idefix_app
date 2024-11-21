@@ -1,15 +1,24 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
+import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 
 class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisirSiègePrésentateur {
     private val modèle : Modèle = Modèle.obtenirInstance()
-    private val volCourrant = modèle.getVolCourrant()
+    private lateinit var volCourrant : Vol
     private var numSiègeCourrant : String = ""
     private var idAndroidDernierSiègeCliqué = 0
 
     override fun traiterDémarage() {
+
+        if(modèle.aller){
+            volCourrant = modèle.getVolCourrant(modèle.indiceVolAller)
+        }
+        else{
+            volCourrant = modèle.getVolCourrant(modèle.indiceVolRetour)
+        }
+
         vue.miseEnPlace(
             nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
             nomVilleArrivée = volCourrant.aeroportFin.ville.nom,

@@ -47,6 +47,12 @@ class ListeDeVolsPrésentateur (
     }
 
     override fun traiterVolCliqué( index: Int ) {
+        if(modèle.aller){
+            modèle.indiceVolAller = index
+        }
+        else{
+            modèle.indiceVolRetour = index
+        }
         modèle.indiceVolCourrant = index
         vue.redirigerVersChoixClasse()
     }

@@ -107,6 +107,9 @@
         <action
             android:id="@+id/action_choisirSiegeVue_vers_listeRéservationsVue"
             app:destination="@id/listeRéservationsVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"

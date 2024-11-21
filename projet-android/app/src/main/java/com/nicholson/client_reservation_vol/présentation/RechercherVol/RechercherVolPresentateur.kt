@@ -60,7 +60,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                     codeAéroportDébut = aeroportVers.code,
                     codeAéroportFin = aeroportDe.code
                 )
-                modèle.volretourExiste = true
+                modèle.volRetourExiste = true
             }
             modèle.filtreVolCourrant = FiltreRechercheVol(
                 dateDébut = dateDebut,

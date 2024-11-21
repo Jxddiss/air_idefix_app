@@ -31,6 +31,8 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     var indiceVolCourrant : Int = 0
+    var indiceVolRetour: Int = 0
+    var indiceVolAller: Int = 0
     var indiceRéservationCourrante : Int = 0
     var indiceClientCourrant : Int = 0
     var filtreVolCourrant = FiltreRechercheVol(
@@ -42,8 +44,9 @@ class Modèle private constructor( private val volService : VolService = VolServ
     )
 
     var classeChoisis = "Économique"
+    var classeChoisisRetour = "Économique"
 
-    var volretourExiste : Boolean = false
+    var volRetourExiste : Boolean = false
     var aller : Boolean = true
 
     var listeVol: List<Vol> = listOf()
@@ -71,8 +74,8 @@ class Modèle private constructor( private val volService : VolService = VolServ
             return field
         }
 
-    fun getVolCourrant(): Vol =
-        volService.obtenirVolParId(listeVol[indiceVolCourrant].id)
+    fun getVolCourrant( indice : Int ): Vol =
+        volService.obtenirVolParId(listeVol[indice].id)
 
     fun obtenirListeVolParFiltre(filtreVol : FiltreRechercheVol) : List<Vol> {
         listeVol = volService.obtenirListeVolParFiltre( filtreVol )
@@ -141,7 +144,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
-            idVol = getVolCourrant().id,
+            idVol = getVolCourrant(indiceVolCourrant).id,
             clients = listeClient,
             sièges = mutableListOf(
                 Siège(
@@ -150,7 +153,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
                     classe = classeChoisis,
                     statut = "Occupée",
                     idRéservation = 0,
-                    idVol = getVolCourrant().id
+                    idVol = getVolCourrant(indiceVolCourrant).id
                 )
             )
         )
