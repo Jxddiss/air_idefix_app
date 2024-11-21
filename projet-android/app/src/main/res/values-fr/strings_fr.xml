@@ -62,6 +62,7 @@
     <string name="vols_vers">Vols vers %1$s</string>
     <string name="aucun_vol_disponible">Aucun vol disponible</string>
     <string name="logo">Logo</string>
+    <string name="r_server">Réserver</string>
 
 
 </resources>

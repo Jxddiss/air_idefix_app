@@ -64,6 +64,7 @@
     <string name="vols_vers">Flight To %1$s</string>
     <string name="aucun_vol_disponible">No Flights Found</string>
     <string name="logo">Logo</string>
+    <string name="r_server">Book</string>
 
 
 </resources>
