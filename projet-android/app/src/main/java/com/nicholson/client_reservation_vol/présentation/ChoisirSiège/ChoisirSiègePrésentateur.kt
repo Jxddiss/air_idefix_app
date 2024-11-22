@@ -14,12 +14,12 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     override fun traiterDémarage() {
         var classe : String
         if(modèle.siegeVolAller){
-            volCourrant = modèle.getVolCourrant(modèle.indiceVolAller)
+            volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
             modèle.siegeVolAller = false
             classe = modèle.réservationAller.sièges[0].classe
         }
         else{
-            volCourrant = modèle.getVolCourrant(modèle.indiceVolRetour)
+            volCourrant = modèle.getVolCourrantRetour(modèle.indiceVolRetour)
             classe = modèle.réservationRetour.sièges[0].classe
         }
 

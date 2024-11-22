@@ -55,7 +55,6 @@ class ListeDeVolsPrésentateur (
             modèle.indiceVolAller = index
         }
         else{
-            //Log.d("indice aller selectionner", modèle.indiceVolAller.toString())
             modèle.indiceVolRetour = index
         }
         modèle.indiceVolCourrant = index

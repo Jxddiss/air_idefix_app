@@ -11,8 +11,7 @@ class ChoisirInfoPresentateur(var vue: ContratVueChoisirInfo.IChoisirInfoVue = C
         private val modele = Modèle.obtenirInstance()
     override fun traiterDémarage() {
 
-        val vol = modele.getVolCourrant(modele.indiceVolAller)
-        Log.d("vol aller",modele.indiceVolAller.toString())
+        val vol = modele.getVolCourrantAller(modele.indiceVolAller)
 
         vue.miseEnPlace( vol.aeroportDebut.ville.nom,
             vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo)

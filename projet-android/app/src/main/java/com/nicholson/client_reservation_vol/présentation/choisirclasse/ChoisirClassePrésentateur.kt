@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.choisirclasse
 
 import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolChoixClassOTD
 import com.nicholson.client_reservation_vol.présentation.choisirclasse.ContratVuePrésentateurChoisirClasse.*
@@ -15,7 +16,13 @@ class ChoisirClassePrésentateur(
     private var classeChoisis = "Économique"
 
     override fun traiterDémarage() {
-        val vol = modèle.getVolCourrant(modèle.indiceVolAller)
+        var vol : Vol
+        if(modèle.aller){
+            vol = modèle.getVolCourrantAller(modèle.indiceVolAller)
+        }
+        else{
+            vol = modèle.getVolCourrantRetour(modèle.indiceVolRetour)
+        }
         val volPrécédent = modèle.getVolPrécédent()
         val volSuivant = modèle.getVolSuivant()
         val volChoixClassOTD = VolChoixClassOTD(
@@ -51,13 +58,17 @@ class ChoisirClassePrésentateur(
         if(modèle.volRetourExiste){
             modèle.aller = false
             modèle.volRetourExiste = false
-            modèle.réservationAller = modèle.créerRéservation(classeChoisis, modèle.indiceVolAller)
+            modèle.réservationAller = modèle.créerRéservationAller(classeChoisis)
+            Log.d("test volcourrant aller",modèle.getVolCourrantAller(modèle.indiceVolAller).toString())
+            Log.d("what is reservation aller ", modèle.réservationAller.toString())
             vue.choisirVolRetour()
             //modèle.classeChoisis = classeChoisis
         }
         else{
             //modèle.classeChoisisRetour = classeChoisis
-            modèle.réservationRetour = modèle.créerRéservation(classeChoisis, modèle.indiceVolRetour)
+            modèle.réservationRetour = modèle.créerRéservationRetour(classeChoisis)
+            Log.d("test volcourrant retour",modèle.getVolCourrantRetour(modèle.indiceVolRetour).toString())
+            Log.d("what is reservation retour ", modèle.réservationRetour.toString())
             vue.redirigerChoixInfo()
         }
 

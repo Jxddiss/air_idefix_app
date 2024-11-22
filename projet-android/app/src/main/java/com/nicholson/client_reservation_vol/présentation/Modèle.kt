@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation
 
-import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
@@ -111,13 +110,21 @@ class Modèle private constructor( private val volService : VolService = VolServ
             return field
         }
 
-    fun getVolCourrant(indice: Int): Vol {
+    /*fun getVolCourrant(indice: Int): Vol {
         if (aller) {
             return volService.obtenirVolParId(listeVolAller[indice].id)
         } else {
             return volService.obtenirVolParId(listeVolRetour[indice].id)
         }
 
+    }*/
+
+    fun getVolCourrantAller(indice: Int): Vol {
+        return volService.obtenirVolParId(listeVolAller[indice].id)
+    }
+
+    fun getVolCourrantRetour(indice: Int): Vol {
+        return volService.obtenirVolParId(listeVolRetour[indice].id)
     }
 
     fun obtenirListeVolAllerParFiltre(): List<Vol> {
@@ -191,11 +198,11 @@ class Modèle private constructor( private val volService : VolService = VolServ
         clientService.ajouterClient(client)
     }
 
-    fun créerRéservation(classeChoisis : String, indiceVol : Int) : Réservation {
+    fun créerRéservationAller(classeChoisis : String) : Réservation {
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
-            idVol = getVolCourrant(indiceVolCourrant).id,
+            idVol = getVolCourrantAller(indiceVolAller).id,
             clients = listeClient,
             sièges = mutableListOf(
                 Siège(
@@ -204,7 +211,26 @@ class Modèle private constructor( private val volService : VolService = VolServ
                     classe = classeChoisis,
                     statut = "Occupée",
                     idRéservation = 0,
-                    idVol = getVolCourrant(indiceVol).id
+                    idVol = getVolCourrantAller(indiceVolAller).id
+                )
+            )
+        )
+        return réservation
+    }
+    fun créerRéservationRetour(classeChoisis : String) : Réservation {
+        val réservation = Réservation(
+            id = 0,
+            numéroRéservation = "",
+            idVol = getVolCourrantRetour(indiceVolRetour).id,
+            clients = listeClient,
+            sièges = mutableListOf(
+                Siège(
+                    1,
+                    numéro = "",
+                    classe = classeChoisis,
+                    statut = "Occupée",
+                    idRéservation = 0,
+                    idVol = getVolCourrantRetour(indiceVolRetour).id
                 )
             )
         )
