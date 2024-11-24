@@ -1,6 +1,9 @@
 package com.nicholson.client_reservation_vol.présentation.RéservationSpécifique
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +23,8 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 import com.nicholson.client_reservation_vol.présentation.RéservationSpécifique.ContratVuePrésentateurRéservationSpécifique.*
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
     lateinit var textViewSiege : TextView
@@ -35,6 +40,7 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
     lateinit var textViewHeureDépartRéservationSpécifique: TextView
     lateinit var imageViewVilleRéservationSpecifique: ImageView
     lateinit var navController: NavController
+    lateinit var calendarImageView: ImageView
     var présentateur : IRéservationSpécifiquePrésentateur? = RéservationSpécifiquePrésentateur( this )
 
 
@@ -57,6 +63,7 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
         textViewHeureArrivéeRéservationSpécifique= view.findViewById(R.id.textViewHeureArrivéeRéservationSpécifique)
         textViewHeureDépartRéservationSpécifique= view.findViewById(R.id.textViewHeureDépartRéservationSpécifique)
         imageViewVilleRéservationSpecifique= view.findViewById(R.id.imageViewVilleRéservationSpecifique)
+        calendarImageView= view.findViewById(R.id.calendarImageView)
 
 
         return view
@@ -66,12 +73,15 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         val BtnModifierReservation: ImageButton = view.findViewById(R.id.BtnModifierReservation)
+
         BtnModifierReservation.setOnClickListener {
             présentateur?.traiterModifier()
         }
 
+
         présentateur?.traiterDémarage()
     }
+
 
     override fun miseEnPlace(réservationSpécifiqueOTD: RéservationSpécifiqueOTD){
         textViewSiege.text = réservationSpécifiqueOTD.siège
@@ -85,6 +95,12 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
         progressBarRéservationSpecifique.progress = réservationSpécifiqueOTD.barProgres.toInt()
         textViewHeureArrivéeRéservationSpécifique.text = réservationSpécifiqueOTD.heureArrivée
         textViewHeureDépartRéservationSpécifique.text = réservationSpécifiqueOTD.heureDepart
+
+
+
+        calendarImageView.setOnClickListener(){
+            (présentateur as RéservationSpécifiquePrésentateur).openCalendarApp(réservationSpécifiqueOTD, requireContext())
+        }
 
         Glide.with(requireContext())
             .load( réservationSpécifiqueOTD.url_photo )
