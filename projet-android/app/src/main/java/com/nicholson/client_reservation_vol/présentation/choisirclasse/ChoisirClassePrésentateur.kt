@@ -59,9 +59,6 @@ class ChoisirClassePrésentateur(
             modèle.aller = false
             modèle.volRetourExiste = false
             modèle.réservationAller = modèle.créerRéservationAller(classeChoisis)
-            Log.d("test volcourrant aller",modèle.getVolCourrantAller(modèle.indiceVolAller).toString())
-            Log.d("what is reservation aller ", modèle.réservationAller.toString())
-            Log.d("what is volRetourExiste ", modèle.volRetourExiste.toString())
             vue.choisirVolRetour()
         }
         else{
@@ -70,9 +67,6 @@ class ChoisirClassePrésentateur(
             }
             else{
                 modèle.réservationRetour = modèle.créerRéservationRetour(classeChoisis)
-                Log.d("test volcourrant retour",modèle.getVolCourrantRetour(modèle.indiceVolRetour).toString())
-                Log.d("what is reservation retour ", modèle.réservationRetour.toString())
-                Log.d("what is volRetourExiste ", modèle.volRetourExiste.toString())
             }
             vue.redirigerChoixInfo()
         }

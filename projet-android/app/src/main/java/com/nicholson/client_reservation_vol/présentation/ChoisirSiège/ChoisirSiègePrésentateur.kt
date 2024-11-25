@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
-import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
@@ -51,7 +50,6 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
                 modèle.indiceVolCourrant = modèle.indiceVolAller
                 modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
                 modèle.siegeVolAller = false
-                Log.d("what is volRetourExiste", modèle.volRetourExiste.toString())
                 if(modèle.listeVolRetour.isEmpty()){
                     modèle.ajouterReservation(modèle.réservationAller)
                     vue.redirigerVersMesRéservation()

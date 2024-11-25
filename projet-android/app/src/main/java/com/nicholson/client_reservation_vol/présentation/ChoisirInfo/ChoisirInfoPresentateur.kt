@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 
-import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle

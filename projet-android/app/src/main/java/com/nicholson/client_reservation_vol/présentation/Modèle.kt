@@ -77,9 +77,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
     )
 
 
-    //var classeChoisis = "Économique"
-    //var classeChoisisRetour = "Économique"
-
     var volRetourExiste: Boolean = false
     var aller: Boolean = true
     var siegeVolAller : Boolean = true
@@ -109,15 +106,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
             }
             return field
         }
-
-    /*fun getVolCourrant(indice: Int): Vol {
-        if (aller) {
-            return volService.obtenirVolParId(listeVolAller[indice].id)
-        } else {
-            return volService.obtenirVolParId(listeVolRetour[indice].id)
-        }
-
-    }*/
 
     fun getVolCourrantAller(indice: Int): Vol {
         return volService.obtenirVolParId(listeVolAller[indice].id)
@@ -287,8 +275,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
         )
         return réservation
     }
-
-
 
 
     fun ajouterReservation(réservation : Réservation) {

@@ -1,5 +1,4 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
-import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
@@ -18,7 +17,6 @@ class ListeDeVolsPrésentateur (
         var listeDeVols : List<Vol> = listOf()
         if(modèle.aller) {
             modèle.listeVolAller = modèle.obtenirListeVolAllerParFiltre()
-            Log.d("list de vol retour", modèle.listeVolRetour.toString())
             listeDeVols = modèle.listeVolAller
         }
         else{

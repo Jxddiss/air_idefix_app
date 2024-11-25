@@ -76,8 +76,6 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 codeAéroportFin = aeroportVers.code
             )
 
-
-
             val nbrPassagersInt = nbrPassagers.toInt()
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
