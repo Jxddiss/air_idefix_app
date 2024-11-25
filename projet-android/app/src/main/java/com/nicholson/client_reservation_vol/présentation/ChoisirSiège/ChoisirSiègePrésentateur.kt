@@ -48,15 +48,19 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     override fun traiterDialogConfirmer() {
         if ( numSiègeCourrant.isNotEmpty() ){
             if(modèle.siegeVolAller){
-
-                Log.d("test siegeVolAller",modèle.siegeVolAller.toString())
                 modèle.indiceVolCourrant = modèle.indiceVolAller
                 modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
                 modèle.siegeVolAller = false
-                vue.redirigerVersChoisirSiegeRetour()
+                Log.d("what is volRetourExiste", modèle.volRetourExiste.toString())
+                if(modèle.listeVolRetour.isEmpty()){
+                    modèle.ajouterReservation(modèle.réservationAller)
+                    vue.redirigerVersMesRéservation()
+                }
+                else {
+                    vue.redirigerVersChoisirSiegeRetour()
+                }
             }
             else{
-                Log.d("test siegeVolAller",modèle.siegeVolAller.toString())
                 modèle.indiceVolCourrant = modèle.indiceVolRetour
                 modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
                 modèle.ajouterReservation(modèle.réservationAller)
