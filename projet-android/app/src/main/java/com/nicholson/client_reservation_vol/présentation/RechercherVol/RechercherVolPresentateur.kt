@@ -35,6 +35,14 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                                       dateRetourString:String,
                                       nbrPassagers:String) {
 
+        //réinitialisation des bool
+        modèle.volRetourExiste = false
+        modèle.aller = true
+        modèle.siegeVolAller = true
+        modèle.listeVolAller = listOf()
+        modèle.listeVolRetour = listOf()
+
+
         if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() || nbrPassagers.isEmpty()){
             vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
             return
@@ -95,7 +103,6 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
         }
 
     }
-
 
     override fun traiterActionRecherche() {
        vue?.obtenirInfoRecherche()
