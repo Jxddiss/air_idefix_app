@@ -774,8 +774,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 aeroportDe = "YUL",
                 aeroportVers = "BEN",
                 dateDepart = LocalDate.of(2024, 11, 15),
-                dateRetour = LocalDate.of(2024, 11, 22),
-                nbrPassangers = 1
+                dateRetour = LocalDate.of(2024, 11, 22)
 
             ),
             Historique(
@@ -784,8 +783,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 aeroportDe = "YYZ",
                 aeroportVers = "CDG",
                 dateDepart = LocalDate.of(2024, 11, 10),
-                dateRetour = LocalDate.of(2024, 11, 17),
-                nbrPassangers = 1
+                dateRetour = LocalDate.of(2024, 11, 17)
             ),
             Historique(
                 villeDe = "Toronto",
@@ -793,8 +791,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 aeroportDe = "YYZ",
                 aeroportVers = "CDG",
                 dateDepart = LocalDate.of(2025, 1, 10),
-                dateRetour = LocalDate.of(2025, 1, 17),
-                nbrPassangers = 2
+                dateRetour = LocalDate.of(2025, 1, 17)
             ),
         )
 
