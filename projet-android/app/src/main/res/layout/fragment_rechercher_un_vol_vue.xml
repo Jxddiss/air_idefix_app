@@ -226,41 +226,8 @@
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Choisir nombre de passangers -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutDeNombrePassangers"
-        android:layout_width="406dp"
-        android:layout_height="67dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.716">
+    <!--Choisir nombre de passangers est EFFACE-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:hint="@string/nombre_de_passangers"
-            android:textColorHint="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.057">
-
-            <EditText
-                android:id="@+id/ChoisirNombrePassangers"
-                android:layout_width="match_parent"
-                android:inputType="number"
-                android:layout_height="52dp"
-                android:fontFamily="@font/lexend"
-                android:textColor="@color/couleur_principale" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Layout pour btn Rechercher -->
     <androidx.constraintlayout.widget.ConstraintLayout
