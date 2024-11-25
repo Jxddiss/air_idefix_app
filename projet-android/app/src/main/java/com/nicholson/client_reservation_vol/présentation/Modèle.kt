@@ -35,6 +35,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var indiceVolAller: Int = 0
     var indiceRéservationCourrante: Int = 0
     var indiceClientCourrant: Int = 0
+    var pageCourrante : String? = null
 
 
     var filtreVolAller = FiltreRechercheVol(
