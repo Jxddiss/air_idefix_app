@@ -1,5 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.OTD
 
+
+import java.io.Serializable
 import java.time.LocalDate
 
 data class HistoriqueListItemOTD(
@@ -10,5 +12,4 @@ data class HistoriqueListItemOTD(
     val aeroportVers:String,
     val dateDepart: LocalDate,
     val dateRetour: LocalDate,
-    val nbrPassangers:Int
-)
+): Serializable

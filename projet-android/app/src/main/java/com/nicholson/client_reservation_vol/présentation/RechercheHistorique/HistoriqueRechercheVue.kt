@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.ContratVuePrésentateurHistorique.IListeDeHistoriqueVue
+import com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherUnVolVue
 import java.time.LocalDate
 
 
@@ -23,11 +26,11 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
     private lateinit var recyclerView: RecyclerView
     private lateinit var rechercheHistoriqueAdapter: HistoriqueRechercheAdapter
     private lateinit var historiquePrésentateur: HistoriquePrésentateur
+    private lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // modèle = Modèle.obtenirInstance()
         historiquePrésentateur = HistoriquePrésentateur(this)
 
     }
@@ -40,18 +43,28 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
         // Initialize le RecyclerView
         recyclerView = view.findViewById(R.id.recycler_historique_list)
 
-
+        navController = findNavController()
         historiquePrésentateur.traiterObtenirHistorique()
         return view
     }
 
     override fun afficherHistorique(listeDeHistorique: List<HistoriqueListItemOTD>) {
-        rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique)
+        rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) { historique ->
+            val bundle = Bundle().apply {
+                putSerializable("historique", historique)
+            }
+            redirigerVersRechercherUnVolVue(bundle)
+        }
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = rechercheHistoriqueAdapter
     }
 
 
+    private fun redirigerVersRechercherUnVolVue(bundle: Bundle) {
+        navController.navigate(R.id.action_historiqueRechercheVue_to_rechercherUnVolVue,bundle)
+    }
 
 }
+
+

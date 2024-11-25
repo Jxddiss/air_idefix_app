@@ -5,6 +5,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -33,10 +34,9 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     override fun traiterInfoRecherche(villeAeroportDe: String,
                                       villeAeroportVers: String,
                                       dateDebutString:String,
-                                      dateRetour:String,
-                                      nbrPassagers:String) {
+                                      dateRetour:String) {
 
-        if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() || nbrPassagers.isEmpty()){
+        if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty()){
             vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
             return
 
@@ -56,7 +56,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 codeAéroportFin = aeroportVers.code
             )
 
-            val nbrPassagersInt = nbrPassagers.toInt()
+
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             val dateRetourLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
@@ -67,8 +67,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 aeroportDe = aeroportDe.code,
                 aeroportVers = aeroportVers.code,
                 dateDepart = dateDebutLocal,
-                dateRetour = dateRetourLocal,
-                nbrPassangers = nbrPassagersInt
+                dateRetour = dateRetourLocal
             )
 
             enregistrerRecherche(historique)
@@ -92,6 +91,24 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
        modèle.créerHistorique(historique)
         Log.d("Historique", "Historique added: $historique")
         Log.d("Historique", "Current listHistorique: $listHistorique")
+    }
+
+    override fun traiterObtenirHistorique() {
+        val listeDeHistorique = modèle.listeHistorique
+        Log.d("HistoriquePrésentateur", "Historique liste size: ${listeDeHistorique.size}")
+
+        if (listeDeHistorique.isNotEmpty()) {
+            val firstHistorique = listeDeHistorique.first()
+            val historiqueOTD = HistoriqueListItemOTD(
+                villeDe = firstHistorique.villeDe,
+                villeVers = firstHistorique.villeVers,
+                aeroportDe = firstHistorique.aeroportDe,
+                aeroportVers = firstHistorique.aeroportVers,
+                dateDepart = firstHistorique.dateDepart,
+                dateRetour = firstHistorique.dateRetour,
+            )
+            vue?.afficherHistorique(historiqueOTD)
+        }
     }
 
 }

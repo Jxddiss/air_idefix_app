@@ -26,8 +26,7 @@ class HistoriquePrésentateur (
                 aeroportDe = it.aeroportDe,
                 aeroportVers = it.aeroportVers,
                 dateDepart = it.dateDepart,
-                dateRetour = it.dateRetour,
-                nbrPassangers = it.nbrPassangers
+                dateRetour = it.dateRetour
             )
         }
 

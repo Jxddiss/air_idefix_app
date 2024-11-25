@@ -12,10 +12,11 @@ import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<HistoriqueListItemOTD>) :
+class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<HistoriqueListItemOTD>,
+                                 private val onItemClick: (HistoriqueListItemOTD) -> Unit) :
     RecyclerView.Adapter<HistoriqueRechercheAdapter.HistoriqueRechercheViewHolder>() {
 
-    // ViewHolder for binding the data
+
     class HistoriqueRechercheViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewAeroportDe: TextView = itemView.findViewById(R.id.AeroportDe)
         val textViewVilleDe: TextView = itemView.findViewById(R.id.VilleDE)
@@ -48,6 +49,11 @@ class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<Hist
 
         holder.textViewDateDepart.text = historiqueItem.dateDepart.format(dateFormat)
         holder.textViewDateReturn.text = historiqueItem.dateRetour.format(dateFormat)
+
+        // click listener
+        holder.itemView.setOnClickListener {
+            onItemClick(historiqueItem)
+        }
     }
 
 }
