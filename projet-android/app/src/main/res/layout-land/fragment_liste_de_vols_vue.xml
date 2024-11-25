@@ -11,10 +11,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="9dp"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintEnd_toEndOf="@id/guideline_start_end"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toTopOf="@id/guideline_img_top"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom">
+        app:layout_constraintTop_toTopOf="@id/guideline_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom">
 
         <ImageView
             android:id="@+id/imgDestinationListeVols"
@@ -68,9 +68,9 @@
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_recycler_top"
-        tools:listitem="@layout/liste_vol_item"/>
+        app:layout_constraintStart_toStartOf="@id/guideline_start_end"
+        app:layout_constraintTop_toTopOf="@id/guideline_top"
+        tools:listitem="@layout/liste_vol_item" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
@@ -80,31 +80,24 @@
         app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_end"
+        android:id="@+id/guideline_start_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.97" />
+        app:layout_constraintGuide_percent="0.49" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_img_top"
+        android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_img_bottom"
+        android:id="@+id/guideline_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_recycler_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27"/>
+        app:layout_constraintGuide_percent="0.97"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

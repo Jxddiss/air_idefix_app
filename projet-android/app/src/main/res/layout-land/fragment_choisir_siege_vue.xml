@@ -8,39 +8,39 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutBtnchange"
-        android:layout_width="match_parent"
-        android:layout_height="167dp"
-        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/fond_bord_arrondis"
         android:elevation="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end_img"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="@+id/constraintLayoutbottom"
         app:layout_constraintVertical_bias="1.0">
 
         <Button
             android:id="@+id/btnConfirmerRéservation"
-            android:layout_width="218dp"
-            android:layout_height="49dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/couleur_btn_jaune"
             android:drawableEnd="@drawable/avion_btn"
             android:elevation="15dp"
             android:fontFamily="@font/lexend"
             android:text="@string/r_server"
             android:textColor="@color/couleur_principale"
-            android:textSize="16sp"
             app:cornerRadius="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.741" />
+            app:layout_constraintVertical_bias="0.9" />
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="15dp"
             app:layout_constraintBottom_toTopOf="@+id/btnConfirmerRéservation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
@@ -51,7 +51,7 @@
             android:id="@+id/imageView3"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +83,7 @@
             android:id="@+id/imageView6"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="88dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent"
@@ -105,7 +105,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="9dp"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end_img"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="@id/guideline_img_top"
         app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom">
@@ -163,14 +163,14 @@
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintBottom_toTopOf="@id/guideline_contenu_bottom"
+        app:layout_constraintStart_toStartOf="@id/guideline_start_contenue"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom"
         app:layout_constraintTop_toTopOf="@id/guideline_contenu_top">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout30"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +185,6 @@
                 android:text="Économique"
                 android:textColor="@color/couleur_principale"
                 android:textSize="24sp"
-                android:layout_marginTop="45dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -195,21 +194,21 @@
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="34dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewClasse"
+                app:layout_constraintTop_toBottomOf="@id/textViewClasse"
                 app:srcCompat="@drawable/sortie_urgente_gauche" />
 
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="30dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="34dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.989"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/textViewClasse"
+                app:layout_constraintStart_toEndOf="@id/imageView7"
+                app:layout_constraintTop_toBottomOf="@id/textViewClasse"
                 app:srcCompat="@drawable/sortie_urgence_droite" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -671,20 +670,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.33"/>
+                app:layout_constraintGuide_percent="0.3"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_top_CDE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.25"/>
+                app:layout_constraintGuide_percent="0.16"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
@@ -692,6 +689,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start_contenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.49" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
@@ -705,28 +716,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_img_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.97"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_contenu_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_contenu_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.04"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
