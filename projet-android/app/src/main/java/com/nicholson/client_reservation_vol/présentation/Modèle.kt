@@ -142,42 +142,93 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     fun avancerVolCourrant() {
-        val listeVol = if (aller) listeVolAller else listeVolRetour
+        val listeVol : List<Vol>
 
-        if (indiceVolCourrant < listeVol.size - 1) {
-            indiceVolCourrant++
-        } else {
-            indiceVolCourrant = 0
+        if(aller){
+
+            listeVol = listeVolAller
+
+            if (indiceVolAller < listeVol.size - 1) {
+                indiceVolAller++
+            } else {
+                indiceVolAller = 0
+            }
         }
+        else{
+
+            listeVol = listeVolRetour
+
+            if (indiceVolRetour < listeVol.size - 1) {
+                indiceVolRetour++
+            } else {
+                indiceVolRetour = 0
+            }
+        }
+
     }
 
     fun reculerVolCourrant() {
-        val listeVol = if (aller) listeVolAller else listeVolRetour
+        val listeVol : List<Vol>
 
-        if (indiceVolCourrant > 0) {
-            indiceVolCourrant--
-        } else {
-            indiceVolCourrant = listeVol.size - 1
+        if(aller){
+
+            listeVol = listeVolAller
+
+            if (indiceVolAller > 0) {
+                indiceVolAller--
+            } else {
+                indiceVolAller = listeVol.size - 1
+            }
+        }
+        else{
+
+            listeVol = listeVolRetour
+
+            if (indiceVolRetour > 0) {
+                indiceVolRetour--
+            } else {
+                indiceVolRetour = listeVol.size - 1
+            }
         }
     }
 
     fun getVolPrécédent(): Vol {
         val listeVol = if (aller) listeVolAller else listeVolRetour
 
-        if (indiceVolCourrant > 0) {
-            return listeVol[indiceVolCourrant - 1]
-        } else {
-            return listeVol[listeVol.size - 1]
+        if(aller){
+            if (indiceVolAller > 0) {
+                return listeVol[indiceVolAller - 1]
+            } else {
+                return listeVol[listeVol.size - 1]
+            }
+        }
+        else{
+            if (indiceVolRetour > 0) {
+                return listeVol[indiceVolRetour - 1]
+            } else {
+                return listeVol[listeVol.size - 1]
+            }
         }
     }
 
     fun getVolSuivant(): Vol {
-        val listeVol = if (aller) listeVolAller else listeVolRetour
+        val listeVol : List<Vol>
 
-        if (indiceVolCourrant < listeVol.size - 1) {
-            return listeVol[indiceVolCourrant + 1]
-        } else {
-            return listeVol[0]
+        if(aller){
+            listeVol = listeVolAller
+            if (indiceVolAller < listeVol.size - 1){
+                return listeVol[indiceVolAller + 1]
+            } else{
+                return listeVol[0]
+            }
+        }
+        else {
+            listeVol = listeVolRetour
+            if (indiceVolRetour < listeVol.size - 1){
+                return listeVol[indiceVolRetour + 1]
+            } else{
+                return listeVol[0]
+            }
         }
     }
 
