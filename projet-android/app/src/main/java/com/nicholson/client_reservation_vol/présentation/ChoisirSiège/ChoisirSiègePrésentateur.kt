@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
@@ -15,7 +16,6 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
         var classe : String
         if(modèle.siegeVolAller){
             volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
-            modèle.siegeVolAller = false
             classe = modèle.réservationAller.sièges[0].classe
         }
         else{
@@ -48,11 +48,15 @@ class ChoisirSiègePrésentateur( private val vue : IChoisirSiègeVue) : IChoisi
     override fun traiterDialogConfirmer() {
         if ( numSiègeCourrant.isNotEmpty() ){
             if(modèle.siegeVolAller){
+
+                Log.d("test siegeVolAller",modèle.siegeVolAller.toString())
                 modèle.indiceVolCourrant = modèle.indiceVolAller
                 modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
+                modèle.siegeVolAller = false
                 vue.redirigerVersChoisirSiegeRetour()
             }
             else{
+                Log.d("test siegeVolAller",modèle.siegeVolAller.toString())
                 modèle.indiceVolCourrant = modèle.indiceVolRetour
                 modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
                 modèle.ajouterReservation(modèle.réservationAller)
