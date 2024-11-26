@@ -34,7 +34,8 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     override fun traiterInfoRecherche(villeAeroportDe: String,
                                       villeAeroportVers: String,
                                       dateDebutString:String,
-                                      dateRetour:String) {
+                                      dateRetour:String
+                                      ) {
 
         if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty()){
             vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
@@ -58,7 +59,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
 
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            val dateRetourLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val dateRetourLocal = LocalDate.parse(dateRetour, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
             //save historique ici
             val historique = Historique(
@@ -105,7 +106,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 aeroportDe = firstHistorique.aeroportDe,
                 aeroportVers = firstHistorique.aeroportVers,
                 dateDepart = firstHistorique.dateDepart,
-                dateRetour = firstHistorique.dateRetour,
+                dateRetour = firstHistorique.dateRetour
             )
             vue?.afficherHistorique(historiqueOTD)
         }
