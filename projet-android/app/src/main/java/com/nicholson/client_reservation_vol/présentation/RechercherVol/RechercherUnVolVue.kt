@@ -33,6 +33,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var choisirVilleDe: AutoCompleteTextView
     private lateinit var choisirVilleVers: AutoCompleteTextView
     private val présentateur = RechercherVolPresentateur()
+    private var estAllerSimple: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +79,9 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleur_btn_typeVol, null))
             // Disable le EditText pour date selection
             choisirDateRetour.isEnabled = false
-            choisirDateRetour.requestFocus()
+            choisirDateRetour.setText("")
+            choisirDateRetour.clearFocus()
+            estAllerSimple = true
         }
 
         // Set OnClickListener pour "Aller-et-Retourn" button
@@ -89,6 +92,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             // Enable le EditText pour date selection
             choisirDateRetour.isEnabled = true
             choisirDateRetour.requestFocus()
+            estAllerSimple = false
         }
         choisirDateRetour.setOnClickListener {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
@@ -110,7 +114,8 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             choisirVilleDe.text.toString(),
             choisirVilleVers.text.toString(),
             choisirDate.text.toString(),
-            choisirDateRetour.text.toString()
+            choisirDateRetour.text.toString(),
+            estAllerSimple
         )
     }
 
@@ -173,7 +178,8 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             choisirVilleDe.setText(listeDeHistorique.villeDe)
             choisirVilleVers.setText(listeDeHistorique.villeVers)
             choisirDate.setText(listeDeHistorique.dateDepart.format(formatter))
-            choisirDateRetour.setText(listeDeHistorique.dateRetour.format(formatter))
+            choisirDateRetour.setText(listeDeHistorique.dateRetour?.format(formatter) ?: ""
+        )
     }
 
 }

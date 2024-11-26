@@ -34,7 +34,8 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     override fun traiterInfoRecherche(villeAeroportDe: String,
                                       villeAeroportVers: String,
                                       dateDebutString:String,
-                                      dateRetour:String
+                                      dateRetour:String?,
+                                      estAllerSimple: Boolean
                                       ) {
 
         if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty()){
@@ -51,6 +52,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
         try{
             val dateDebut = LocalDateTime.parse(dateDebutString+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+
             modèle.filtreVolCourrant = FiltreRechercheVol(
                 dateDébut = dateDebut,
                 codeAéroportDébut = aeroportDe.code,
@@ -59,24 +61,39 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
 
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            val dateRetourLocal = LocalDate.parse(dateRetour, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val historique: Historique = if (estAllerSimple) {
 
-            //save historique ici
-            val historique = Historique(
-                villeDe = aeroportDe.ville.nom,
-                villeVers = aeroportVers.ville.nom,
-                aeroportDe = aeroportDe.code,
-                aeroportVers = aeroportVers.code,
-                dateDepart = dateDebutLocal,
-                dateRetour = dateRetourLocal
-            )
+                Historique(
+                    villeDe = aeroportDe.ville.nom,
+                    villeVers = aeroportVers.ville.nom,
+                    aeroportDe = aeroportDe.code,
+                    aeroportVers = aeroportVers.code,
+                    dateDepart = dateDebutLocal,
+                    dateRetour = null
+                )
+            } else {
+
+                if (dateRetour.isNullOrEmpty()) {
+                    vue?.afficherToast("Erreur, veuillez sélectionner une date de retour.")
+                    return
+                }
+
+                val dateRetourLocal = LocalDate.parse(dateRetour, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                Historique(
+                    villeDe = aeroportDe.ville.nom,
+                    villeVers = aeroportVers.ville.nom,
+                    aeroportDe = aeroportDe.code,
+                    aeroportVers = aeroportVers.code,
+                    dateDepart = dateDebutLocal,
+                    dateRetour = dateRetourLocal
+                )
+            }
 
             enregistrerRecherche(historique)
-
             vue?.redirigerVersListeVols()
+
         }catch (ex :  Exception){
             Log.d("Erreur", ex.message.toString())
-            return
         }
 
     }
