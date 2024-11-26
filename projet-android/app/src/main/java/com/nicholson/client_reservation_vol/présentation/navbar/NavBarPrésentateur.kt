@@ -28,6 +28,11 @@ class NavBarPrésentateur(private val vue : INavbarVue = NavBarVue()) : INavBarP
 
     override fun traiterRetour() {
         modèle.pageCourrante = vue.obtenirPageCourrante()
+        if(modèle.pageCourrante == "fragment_liste_de_vols_vue" && !modèle.aller){
+            modèle.aller = true
+            modèle.volRetourExiste = true
+        }
+        
         Log.d("page courrante dans le model", modèle.pageCourrante.toString())
         vue.afficherPagePrecedente()
     }
