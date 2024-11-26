@@ -175,8 +175,8 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     //Pour afficher mon Historique
     override fun afficherHistorique(listeDeHistorique: HistoriqueListItemOTD) {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            choisirVilleDe.setText(listeDeHistorique.villeDe)
-            choisirVilleVers.setText(listeDeHistorique.villeVers)
+            choisirVilleDe.setText("${listeDeHistorique.villeDe} (${listeDeHistorique.aeroportDe})")
+            choisirVilleVers.setText("${listeDeHistorique.villeVers} (${listeDeHistorique.aeroportVers})")
             choisirDate.setText(listeDeHistorique.dateDepart.format(formatter))
             choisirDateRetour.setText(listeDeHistorique.dateRetour?.format(formatter) ?: ""
         )
