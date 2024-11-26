@@ -32,7 +32,10 @@ class NavBarPrésentateur(private val vue : INavbarVue = NavBarVue()) : INavBarP
             modèle.aller = true
             modèle.volRetourExiste = true
         }
-        
+        else if(modèle.pageCourrante == "fragment_choisir_siege_vue" && !modèle.siegeVolAller){
+            modèle.siegeVolAller = true
+        }
+
         Log.d("page courrante dans le model", modèle.pageCourrante.toString())
         vue.afficherPagePrecedente()
     }
