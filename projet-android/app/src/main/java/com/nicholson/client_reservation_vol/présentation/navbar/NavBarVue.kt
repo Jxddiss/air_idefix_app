@@ -109,7 +109,7 @@ class NavBarVue : Fragment(), INavbarVue {
     }
 
     override fun afficherPagePrecedente() {
-        findNavController().navigateUp()
+        navController?.navigateUp()
     }
 
 

@@ -31,14 +31,17 @@ class NavBarPrésentateur(private val vue : INavbarVue = NavBarVue()) : INavBarP
         if(modèle.pageCourrante == "fragment_liste_de_vols_vue" && !modèle.aller){
             modèle.aller = true
             modèle.volRetourExiste = true
+            vue.afficherPagePrecedente()
         }
         else if(modèle.pageCourrante == "fragment_choisir_siege_vue" && !modèle.siegeVolAller){
             modèle.siegeVolAller = true
+            vue.afficherPagePrecedente()
         }
-
-        Log.d("page courrante dans le model", modèle.pageCourrante.toString())
-        vue.afficherPagePrecedente()
+        else if(modèle.pageCourrante == "fragment_liste_reservations_vue"){
+            vue.redirigerÀBienvenue()
+        }
+        else{
+            vue.afficherPagePrecedente()
+        }
     }
-
-
 }
