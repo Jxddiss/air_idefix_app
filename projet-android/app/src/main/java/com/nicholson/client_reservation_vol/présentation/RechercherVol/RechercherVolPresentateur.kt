@@ -58,6 +58,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
         try{
             val dateDebut = LocalDateTime.parse(dateDebutString+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+            var dateRetourLocal :  LocalDate? = null
             if(dateRetourString.isNotEmpty()) {
                 val dateRetour = LocalDateTime.parse(
                     dateRetourString + " 00:00",
@@ -69,6 +70,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                     codeAéroportFin = aeroportDe.code
                 )
                 modèle.volRetourExiste = true
+                dateRetourLocal = LocalDate.parse(dateRetourString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             }
             modèle.filtreVolAller = FiltreRechercheVol(
                 dateDébut = dateDebut,
@@ -79,7 +81,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
             val nbrPassagersInt = nbrPassagers.toInt()
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
-            /*
+
             //save historique ici
             val historique = Historique(
                 villeDe = aeroportDe.ville.nom,
@@ -92,7 +94,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
             )
 
             enregistrerRecherche(historique)
-            */
+
 
             vue?.redirigerVersListeVols()
         }catch (ex :  Exception){

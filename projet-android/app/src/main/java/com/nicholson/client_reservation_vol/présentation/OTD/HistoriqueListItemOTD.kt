@@ -9,6 +9,6 @@ data class HistoriqueListItemOTD(
     val aeroportDe:String,
     val aeroportVers:String,
     val dateDepart: LocalDate,
-    val dateRetour: LocalDate,
+    val dateRetour: LocalDate?,
     val nbrPassangers:Int
 )

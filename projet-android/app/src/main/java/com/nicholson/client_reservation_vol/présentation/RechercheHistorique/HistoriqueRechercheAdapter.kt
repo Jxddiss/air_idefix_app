@@ -47,7 +47,7 @@ class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<Hist
         val dateFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
         holder.textViewDateDepart.text = historiqueItem.dateDepart.format(dateFormat)
-        holder.textViewDateReturn.text = historiqueItem.dateRetour.format(dateFormat)
+        holder.textViewDateReturn.text = historiqueItem.dateRetour?.format(dateFormat)
     }
 
 }
