@@ -18,6 +18,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import java.time.format.DateTimeFormatter
 
@@ -124,6 +125,10 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
 
+        //Initialize mon sourceDeDonnées et mon historiqueService
+        val modèle = Modèle.obtenirInstance()
+        modèle.initialiserSourceDeDonnées(requireContext())
+
         val historique = arguments?.getSerializable("historique") as? HistoriqueListItemOTD
         if (historique != null) {
             Log.d("RechercherUnVolVue", "Historique reçu: $historique")
@@ -172,7 +177,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    //Pour afficher mon Historique
+    //---------------Pour afficher mon Historique------------------
     override fun afficherHistorique(listeDeHistorique: HistoriqueListItemOTD) {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             choisirVilleDe.setText("${listeDeHistorique.villeDe} (${listeDeHistorique.aeroportDe})")

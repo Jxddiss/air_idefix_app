@@ -12,11 +12,10 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésentateur {
+class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésentateur{
 
     private val modèle: Modèle = Modèle.obtenirInstance()
     private var vue: IRechercheVolVue? = null
-    private val listHistorique = mutableListOf<Historique>()
 
     override fun attacherVue(vue: ContractRechercherVol.IRechercheVolVue) {
         this.vue = vue
@@ -104,11 +103,12 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     }
 
 
-    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et oui tout est bien sauvarger
+    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et si tout est bien sauvarger
     private fun enregistrerRecherche(historique: Historique) {
-       modèle.créerHistorique(historique)
-        Log.d("Historique", "Historique added: $historique")
-        Log.d("Historique", "Current listHistorique: $listHistorique")
+        //Log.d("RechercherVolPresent", "Essaye d'ajouter a la bd: $historique")
+        modèle.créerHistorique(historique)
+        Log.d("RechercherVolPresent ", "Historique ajouter: $historique")
+        //Log.d("RechercherVolPresent", "ma listHistorique maintenant: $listHistorique")
     }
 
     override fun traiterObtenirHistorique() {

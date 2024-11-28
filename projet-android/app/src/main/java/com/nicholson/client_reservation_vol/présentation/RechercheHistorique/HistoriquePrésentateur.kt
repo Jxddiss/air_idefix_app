@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.RechercheHistorique
 
+import android.content.Context
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive.Companion.listHistorique
@@ -14,9 +15,12 @@ class HistoriquePrésentateur (
 
     val modèle: Modèle = Modèle.obtenirInstance()
 
+    // pass le context ici!
+    fun initialiserContexte(context: Context) {
+        modèle.initialiserSourceDeDonnées(context)
+    }
     override fun traiterObtenirHistorique() {
-        val listeDeHistorique = modèle.listeHistorique
-        Log.d("HistoriquePrésentateur", "Historique list size: ${listeDeHistorique.size}")
+        val listeDeHistorique = modèle.getSourceDeDonnées().obtenirListHistorique()
         listeDeHistorique.forEach { Log.d("HistoriquePrésentateur", "Historique item: $it") }
 
         val listeHistoriqueOTD = listeDeHistorique.map {

@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 interface ContratVuePrésentateurHistorique {
     interface IListeDeHistoriqueVue  {
-        fun afficherHistorique( listeDeHistorique : List<HistoriqueListItemOTD> )
+        fun afficherHistorique( listeDeHistorique: List<HistoriqueListItemOTD> )
     }
 
     interface IListeDeHistoriquePrésentateur {

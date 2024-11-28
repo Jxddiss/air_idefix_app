@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation
 
+import android.content.Context
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
@@ -13,15 +14,20 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
+import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+
 class Modèle private constructor( private val volService : VolService = VolService(),
                                   private val clientService: ClientService = ClientService(),
                                   private val réservationService: RéservationService = RéservationService(),
-                                  private val historiqueService: HistoriqueService = HistoriqueService(),
-                                  private val aeroportService: AeroportService = AeroportService() ) {
+                                  private var historiqueService: HistoriqueService? = null,
+                                  private val aeroportService: AeroportService = AeroportService()) {
+
+    private var sourceDeDonnées: SourceDeDonnées? = null
 
     companion object {
         @Volatile
@@ -31,6 +37,20 @@ class Modèle private constructor( private val volService : VolService = VolServ
             instance ?: synchronized(this) {
                 instance ?: Modèle().also { instance = it }
             }
+    }
+
+    // Setter pour sourceDeDonnées
+    fun initialiserSourceDeDonnées(context: Context) {
+        Log.d("Modèle", "Initializing SourceDeDonnées")
+        if (sourceDeDonnées == null) {
+            sourceDeDonnées = SourceDeDonnéesLocalImpl(context)
+            historiqueService = HistoriqueService(sourceDeDonnées!!)
+        }
+    }
+    //Getter pour sourceDeDonnées
+    fun getSourceDeDonnées(): SourceDeDonnées {
+        return sourceDeDonnées
+            ?: throw IllegalStateException("SourceDeDonnées not initialized!")
     }
 
     var indiceVolCourrant : Int = 0
@@ -63,7 +83,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeHistorique: List<Historique> = listOf()
         get() {
             if (field.isEmpty()) {
-                field = historiqueService.obtenirListeHistorique()
+                field = historiqueService?.obtenirListeHistorique() ?: listOf()
             }
             return field
         }
@@ -157,6 +177,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     }
 
     fun créerHistorique( historique: Historique ){
-        historiqueService.ajouterHistorique( historique )
+        historiqueService?.ajouterHistorique( historique )
     }
+
 }

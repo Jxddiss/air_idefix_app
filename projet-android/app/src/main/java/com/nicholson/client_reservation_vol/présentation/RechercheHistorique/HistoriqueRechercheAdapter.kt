@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<HistoriqueListItemOTD>,
+class HistoriqueRechercheAdapter(private var rechercheHistoriqueList:  List<HistoriqueListItemOTD>,
                                  private val onItemClick: (HistoriqueListItemOTD) -> Unit) :
     RecyclerView.Adapter<HistoriqueRechercheAdapter.HistoriqueRechercheViewHolder>() {
 
@@ -55,6 +55,11 @@ class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<Hist
         holder.itemView.setOnClickListener {
             onItemClick(historiqueItem)
         }
+    }
+
+    fun updateData(newList: List<HistoriqueListItemOTD>) {
+        rechercheHistoriqueList = newList
+        notifyDataSetChanged()
     }
 
 }

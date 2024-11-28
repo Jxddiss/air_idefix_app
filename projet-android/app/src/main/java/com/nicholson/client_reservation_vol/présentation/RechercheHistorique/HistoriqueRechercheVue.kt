@@ -32,32 +32,45 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         historiquePrésentateur = HistoriquePrésentateur(this)
+    }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Initialize the RecyclerView
+        recyclerView = view.findViewById(R.id.recycler_historique_list)
+        navController = findNavController()
+
+        // Initialize la data source avec le context
+        historiquePrésentateur.initialiserContexte(requireContext())
+
+        // get historique data apres l'initialization
+        historiquePrésentateur.traiterObtenirHistorique()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_historique_recherche_vue, container, false)
-        // Initialize le RecyclerView
-        recyclerView = view.findViewById(R.id.recycler_historique_list)
-
-        navController = findNavController()
-        historiquePrésentateur.traiterObtenirHistorique()
-        return view
+        return inflater.inflate(R.layout.fragment_historique_recherche_vue, container, false)
     }
 
+
     override fun afficherHistorique(listeDeHistorique: List<HistoriqueListItemOTD>) {
-        rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) { historique ->
-            val bundle = Bundle().apply {
-                putSerializable("historique", historique)
+
+        if (::rechercheHistoriqueAdapter.isInitialized) {
+            rechercheHistoriqueAdapter.updateData(listeDeHistorique)
+        } else {
+            rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) { historique ->
+                val bundle = Bundle().apply {
+                    putSerializable("historique", historique)
+                }
+                redirigerVersRechercherUnVolVue(bundle)
             }
-            redirigerVersRechercherUnVolVue(bundle)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.itemAnimator = DefaultItemAnimator()
+            recyclerView.adapter = rechercheHistoriqueAdapter
         }
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = rechercheHistoriqueAdapter
     }
 
 
