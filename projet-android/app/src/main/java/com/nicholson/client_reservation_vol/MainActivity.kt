@@ -11,6 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import java.util.Locale
 
 class  MainActivity : AppCompatActivity() {
@@ -36,6 +38,19 @@ class  MainActivity : AppCompatActivity() {
         buttonMesRéservationNav = findViewById( R.id.buttonMesVoyagesNav )
         floatingButtonHomeNav  = findViewById( R.id.floatingButtonHomeNav )
         buttonPréfrérencesNav = findViewById( R.id.buttonPréférencesNav )
+
+        // Initialize la sourceDeDonnées
+        val modèle = Modèle.obtenirInstance()
+        modèle.initialiserSourceDeDonnées(applicationContext)
+
+        // Pour passer historique data a mon fragment
+        val historique = intent?.getSerializableExtra("historique") as? HistoriqueListItemOTD
+        if (historique != null) {
+            val bundle = Bundle().apply {
+                putSerializable("historique", historique)
+            }
+            navController.setGraph(R.navigation.nav_graph, bundle)
+        }
 
         miseEnPlaceDeLaBarreDeNavigation()
     }

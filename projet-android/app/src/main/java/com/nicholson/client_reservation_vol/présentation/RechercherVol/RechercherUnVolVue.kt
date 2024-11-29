@@ -125,9 +125,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
 
-        //Initialize mon sourceDeDonnées et mon historiqueService
-        val modèle = Modèle.obtenirInstance()
-        modèle.initialiserSourceDeDonnées(requireContext())
+        //---=== Initialize mon sourceDeDonnées et mon historiqueService ,mais dans mon MainActivity===----
 
         val historique = arguments?.getSerializable("historique") as? HistoriqueListItemOTD
         if (historique != null) {
