@@ -14,6 +14,7 @@ interface ContratVuePrésentateurChoisirSiège {
         fun afficherDialogConfirmer()
         fun redirigerVersMesRéservation()
         fun redirigerVersChoisirSiegeRetour()
+        fun miseEnPlaceSièges()
     }
     interface IChoisirSiègePrésentateur {
         fun traiterDémarage()

@@ -40,16 +40,6 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         textViewClasse = vue.findViewById( R.id.textViewClasse )
         présentateur?.traiterDémarage()
-        for ( i in 0..23 ){
-            val imageViewSiège : ImageView = vue
-                .findViewById(
-                    resources
-                        .getIdentifier("imageViewSiège"+(i+1),
-                            "id",requireContext().packageName)
-                )
-            présentateur?.vérifierStatutSiège( imageViewSiège.id,
-                imageViewSiège.contentDescription.toString() )
-        }
         btnConfirmerRéservation = vue.findViewById( R.id.btnConfirmerRéservation )
         btnConfirmerRéservation.setOnClickListener {
             présentateur?.traiterConfirmerRéservation()
@@ -77,6 +67,21 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         Glide.with( requireContext() )
             .load( urlPhoto )
             .into( imageViewVillechoisirInformation )
+    }
+
+    override fun miseEnPlaceSièges() {
+        for ( i in 0..23 ){
+            val imageViewSiège : ImageView? = view
+                ?.findViewById(
+                    resources
+                        .getIdentifier("imageViewSiège"+(i+1),
+                            "id",requireContext().packageName)
+                )
+            if ( imageViewSiège != null ){
+                présentateur?.vérifierStatutSiège( imageViewSiège.id,
+                    imageViewSiège.contentDescription.toString() )
+            }
+        }
     }
 
     override fun miseÀjourSiègeCliquéVersSélectionnée(id : Int ) {

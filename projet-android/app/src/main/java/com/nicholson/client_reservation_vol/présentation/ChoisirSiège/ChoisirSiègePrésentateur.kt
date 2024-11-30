@@ -40,6 +40,7 @@ class ChoisirSiègePrésentateur(
                     urlPhoto = volCourrant.aeroportFin.ville.url_photo,
                     classe
                 )
+                vue.miseEnPlaceSièges()
             }
         }
     }
