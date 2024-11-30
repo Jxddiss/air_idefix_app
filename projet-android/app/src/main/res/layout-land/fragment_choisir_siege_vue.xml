@@ -299,7 +299,7 @@
                     android:id="@+id/textViewG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="F"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -310,7 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:text="H"
+                    android:text="G"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewG"
@@ -337,7 +337,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewSiège2"
-                    android:layout_width="36dp"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     android:contentDescription="D3"
@@ -372,7 +372,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège5"
                     android:contentDescription="D2"
-                    android:layout_width="36dp"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -406,7 +406,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège8"
                     android:contentDescription="D1"
-                    android:layout_width="36dp"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -440,7 +440,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège11"
                     android:contentDescription="D0"
-                    android:layout_width="36dp"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -464,15 +464,15 @@
 
                 <ImageView
                     android:id="@+id/imageViewSiège13"
-                    android:contentDescription="G3"
+                    android:contentDescription="F3"
                     android:layout_width="37dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/siege_libre" />
 
                 <ImageView
                     android:id="@+id/imageViewSiège14"
-                    android:contentDescription="H3"
-                    android:layout_width="wrap_content"
+                    android:contentDescription="G3"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -489,15 +489,15 @@
 
                 <ImageView
                     android:id="@+id/imageViewSiège15"
-                    android:contentDescription="G1"
+                    android:contentDescription="F2"
                     android:layout_width="37dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/siege_libre" />
 
                 <ImageView
                     android:id="@+id/imageViewSiège16"
-                    android:contentDescription="H1"
-                    android:layout_width="wrap_content"
+                    android:contentDescription="G2"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -514,15 +514,15 @@
 
                 <ImageView
                     android:id="@+id/imageViewSiège17"
-                    android:contentDescription="G2"
+                    android:contentDescription="F1"
                     android:layout_width="37dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/siege_libre" />
 
                 <ImageView
                     android:id="@+id/imageViewSiège18"
-                    android:contentDescription="H2"
-                    android:layout_width="wrap_content"
+                    android:contentDescription="G1"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -547,7 +547,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège20"
                     android:contentDescription="B3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -572,7 +572,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège22"
                     android:contentDescription="B2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
@@ -597,7 +597,7 @@
                 <ImageView
                     android:id="@+id/imageViewSiège24"
                     android:contentDescription="B1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="37dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/siege_libre" />
