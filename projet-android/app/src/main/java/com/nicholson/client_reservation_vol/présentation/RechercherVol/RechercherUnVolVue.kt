@@ -131,7 +131,9 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
 
         datePickerDialog =
             DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-                val dateSelectione = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                val dateSelectione = String.format("%02d", selectedDay) +
+                        "/${String.format("%02d", selectedMonth + 1)}" +
+                        "/$selectedYear"
                 editText.setText(dateSelectione)
             }, year, month, day)
         datePickerDialog.show()
