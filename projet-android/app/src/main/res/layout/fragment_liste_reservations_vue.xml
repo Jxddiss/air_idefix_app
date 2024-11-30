@@ -39,14 +39,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerVoyages"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
-            app:layout_constraintTop_toBottomOf="@id/guideline_top"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerVoyages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_reservations" />
 
         <Button
             android:id="@+id/btnRechercherFromVoyages"

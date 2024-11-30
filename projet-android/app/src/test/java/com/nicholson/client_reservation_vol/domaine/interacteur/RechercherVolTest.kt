@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.domaine.interacteur
 
+import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesVols
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
@@ -8,38 +9,27 @@ import org.mockito.Mockito
 import java.time.LocalDateTime
 
 
-class VolServiceTest{
-    lateinit var mockSource : SourceDeDonnées
+class RechercherVolTest{
+    lateinit var mockSource : ISourceDeDonnéesVols
 
     @BeforeTest
     fun init_mock(){
-        mockSource = Mockito.mock(SourceDeDonnées::class.java)
+        mockSource = Mockito.mock(ISourceDeDonnéesVols::class.java)
     }
 
     @Test
-    fun `Étant donnée un service de vol nouvellement instancié, lorsqu'on appel la méthode obtenirListeVol, on obtient la même liste de vols que la source de données`(){
-        Mockito.`when`( mockSource.obtenirListeVol() ).thenReturn( SourceDonnéesFictive.listVol )
-        val résultat_attendue = SourceDonnéesFictive.listVol
-
-        val cobaye = VolService( mockSource )
-        val résultat_obtenue = cobaye.obtenirListeVol()
-
-        assertEquals( résultat_attendue, résultat_obtenue )
-    }
-
-    @Test
-    fun `Étant donnée un service de vol nouvellement instancié, lorsqu'on appel la méthode obtenirVolParId avec l'id 1, on obtient le vol avec l'id 1 `(){
+    fun `Étant donnée une source de vols, lorsqu'on appel la méthode obtenirDétailVol de l'intéracteur RechercherVol avec l'id 1, on obtient le vol avec l'id 1 `(){
         Mockito.`when`( mockSource.obtenirVolParId( 1 ) ).thenReturn( SourceDonnéesFictive.listVol.first { it.id == 1 } )
         val résultat_attendue = SourceDonnéesFictive.listVol.first { it.id == 1 }
 
-        val cobaye = VolService( mockSource )
-        val résultat_obtenue = cobaye.obtenirVolParId( 1 )
+        RechercherVol.sourceDeDonnéesVol = mockSource
+        val résultat_obtenue = RechercherVol.obtenirDétailVol( 1 )
 
         assertEquals( résultat_attendue, résultat_obtenue )
     }
 
     @Test
-    fun `Étant donnée un service de vol nouvellement instancié, lorsqu'on appel la méthode obtenirListeVolParFiltre avec un filtre ayant la date d'aujourd'hui, le code d'aeroport de départ YUL et le code de l'aéroport d'arrivée CDG, on obtient les vols en départ de YUL vers CDG `(){
+    fun `Étant donnée un une source de vols, lorsqu'on appel la méthode rechercherVolParFiltre de l'intéracteur RechercherVol avec un filtre ayant la date d'aujourd'hui, le code d'aeroport de départ YUL et le code de l'aéroport d'arrivée CDG, on obtient les vols en départ de YUL vers CDG `(){
         val filtre = FiltreRechercheVol(
             LocalDateTime.now(), "YUL", "CDG"
         )
@@ -54,8 +44,8 @@ class VolServiceTest{
                     && it.aeroportFin.code == filtre.codeAéroportFin
         }
 
-        val cobaye = VolService( mockSource )
-        val résultat_obtenue = cobaye.obtenirListeVolParFiltre( filtre )
+        RechercherVol.sourceDeDonnéesVol = mockSource
+        val résultat_obtenue = RechercherVol.rechercherVolParFiltre( filtre )
 
         assertEquals( résultat_attendue, résultat_obtenue )
     }
