@@ -70,61 +70,45 @@ class RéservationSpécifiquePrésentateur(
         )
         vue.miseEnPlace(réservationOTD)
     }
-    fun openCalendarApp(réservationSpécifiqueOTD: RéservationSpécifiqueOTD,context: Context) {
-        val userLocale = Locale.getDefault()
-        val dateFormat = SimpleDateFormat("dd MMMM yyyy", userLocale)
-
+     override fun traiterCalendrier(réservationSpécifiqueOTD: RéservationSpécifiqueOTD) {
         try {
+            val userLocale = Locale.getDefault()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", userLocale)
 
             val dateDépart = dateFormat.parse(réservationSpécifiqueOTD.dateDepart)
             val dateArrivée = dateFormat.parse(réservationSpécifiqueOTD.dateArrivée)
 
+            val heureDepartSplit = réservationSpécifiqueOTD.heureDepart.split(":")
+            val heureArrivéeSplit = réservationSpécifiqueOTD.heureArrivée.split(":")
 
-            val heureDepart = réservationSpécifiqueOTD.heureDepart
-            val heureArrivée = réservationSpécifiqueOTD.heureArrivée
+            val startCalendar = Calendar.getInstance().apply {
+                time = dateDépart
+                set(Calendar.HOUR_OF_DAY, heureDepartSplit[0].toInt())
+                set(Calendar.MINUTE, heureDepartSplit[1].toInt())
+            }
+
+            val endCalendar = Calendar.getInstance().apply {
+                time = dateArrivée
+                set(Calendar.HOUR_OF_DAY, heureArrivéeSplit[0].toInt())
+                set(Calendar.MINUTE, heureArrivéeSplit[1].toInt())
+            }
+
+            val eventDetails = mapOf(
+                "title" to "Air Idéfix",
+                "description" to "🛬",
+                "location" to réservationSpécifiqueOTD.nomVille,
+                "startTime" to startCalendar.timeInMillis,
+                "endTime" to endCalendar.timeInMillis
+            )
 
 
-            val heureDepartSplit = heureDepart.split(":")
-            val heureArrivéeSplit = heureArrivée.split(":")
-
-            val hourDepart = heureDepartSplit[0].toInt()
-            val minuteDepart = heureDepartSplit[1].toInt()
-
-            val hourArrivée = heureArrivéeSplit[0].toInt()
-            val minuteArrivée = heureArrivéeSplit[1].toInt()
-
-
-            val startCalendar = Calendar.getInstance()
-            startCalendar.time = dateDépart
-            startCalendar.set(Calendar.HOUR_OF_DAY, hourDepart)
-            startCalendar.set(Calendar.MINUTE, minuteDepart)
-
-
-            val endCalendar = Calendar.getInstance()
-            endCalendar.time = dateArrivée
-            endCalendar.set(Calendar.HOUR_OF_DAY, hourArrivée)
-            endCalendar.set(Calendar.MINUTE, minuteArrivée)
-
-            val eventLocation = réservationSpécifiqueOTD.nomVille
-            val emojieAvion ="🛬"
-            val startTime = startCalendar.timeInMillis
-            val endTime = endCalendar.timeInMillis
-
-            val intent = Intent(Intent.ACTION_INSERT)
-                .setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime)
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime)
-                .putExtra(CalendarContract.Events.TITLE, "Air Idéfix")
-                .putExtra(CalendarContract.Events.DESCRIPTION, emojieAvion)
-                .putExtra(CalendarContract.Events.EVENT_LOCATION, eventLocation)
-
-            context.startActivity(intent)
+            vue.ouvrirCalendrier(eventDetails)
 
         } catch (e: Exception) {
-            Toast.makeText(context, "Erreur lors de l'ouverture du calendrier : ${e.message}", Toast.LENGTH_LONG).show()
+            vue.afficherErreur("Erreur lors de l'ouverture du calendrier : ${e.message}")
         }
-
     }
+
 
 
     override fun traiterModifier() {

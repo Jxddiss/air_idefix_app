@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -99,7 +100,7 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
 
 
         calendarImageView.setOnClickListener(){
-            (présentateur as RéservationSpécifiquePrésentateur).openCalendarApp(réservationSpécifiqueOTD, requireContext())
+            présentateur?.traiterCalendrier(réservationSpécifiqueOTD)
         }
 
         Glide.with(requireContext())
@@ -109,6 +110,21 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
 
     override fun redirigerModifier() {
         navController.navigate(R.id.action_réservationSpécifiqueVue_to_modifierReservationVue)
+    }
+    override fun ouvrirCalendrier(eventDetails: Map<String, Any>) {
+        val intent = Intent(Intent.ACTION_INSERT).apply {
+            data = CalendarContract.Events.CONTENT_URI
+            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, eventDetails["startTime"] as Long)
+            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, eventDetails["endTime"] as Long)
+            putExtra(CalendarContract.Events.TITLE, eventDetails["title"] as String)
+            putExtra(CalendarContract.Events.DESCRIPTION, eventDetails["description"] as String)
+            putExtra(CalendarContract.Events.EVENT_LOCATION, eventDetails["location"] as String)
+        }
+        startActivity(intent)
+    }
+
+    override fun afficherErreur(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
 }
