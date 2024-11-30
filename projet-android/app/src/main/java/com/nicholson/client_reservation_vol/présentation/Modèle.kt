@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation
 
-import android.content.Context
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
@@ -12,16 +11,14 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.AeroportService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
-import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
+import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
-import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
 
 class Modèle private constructor() {
 
-    private val volService : VolService = VolService()
     private val clientService: ClientService = ClientService()
     private val réservationService: RéservationService = RéservationService()
     private var historiqueService: HistoriqueService? = null
@@ -123,25 +120,25 @@ class Modèle private constructor() {
         }
 
     fun getVolCourrantAller(indice: Int): Vol {
-        return volService.obtenirVolParId(listeVolAller[indice].id)
+        return RechercherVol.obtenirDétailVol(listeVolAller[indice].id)
     }
 
     fun getVolCourrantRetour(indice: Int): Vol {
-        return volService.obtenirVolParId(listeVolRetour[indice].id)
+        return RechercherVol.obtenirDétailVol(listeVolRetour[indice].id)
     }
 
     fun obtenirListeVolAllerParFiltre(): List<Vol> {
-        listeVolAller = volService.obtenirListeVolParFiltre(filtreVolAller)
+        listeVolAller = RechercherVol.rechercherVolParFiltre(filtreVolAller)
         return listeVolAller
     }
 
     fun obtenirListeVolRetourParFiltre(): List<Vol> {
-        listeVolRetour = volService.obtenirListeVolParFiltre(filtreVolRetour)
+        listeVolRetour = RechercherVol.rechercherVolParFiltre(filtreVolRetour)
         return listeVolRetour
     }
 
     fun obtenirVolParId(id: Int): Vol {
-        return volService.obtenirVolParId(id)
+        return RechercherVol.obtenirDétailVol(id)
     }
 
     fun avancerVolCourrant() {

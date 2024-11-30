@@ -1,7 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
-import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 

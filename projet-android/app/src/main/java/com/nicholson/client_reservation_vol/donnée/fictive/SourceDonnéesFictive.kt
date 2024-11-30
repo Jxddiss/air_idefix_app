@@ -769,21 +769,10 @@ class SourceDonnéesFictive : SourceDeDonnées {
 
     }
 
-    override fun obtenirListeVol(): List<Vol> = listVol.sortedBy { it.dateDepart }
-
-    override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> =
-        listVol.filter {
-            it.dateDepart >= filtre.dateDébut && it.dateDepart < filtre.dateDébut.plusDays(30)
-                    && it.aeroportDebut.code == filtre.codeAéroportDébut
-                    && it.aeroportFin.code == filtre.codeAéroportFin
-        }.sortedBy { it.dateDepart }
-
-
-    override fun obtenirVolParId(id: Int): Vol =
+    fun obtenirVolParId(id: Int): Vol =
         listVol.single {
             it.id == id
         }
-
 
     override fun obtenirListeRéservation(): MutableList<Réservation> {
         return listeRéservation
