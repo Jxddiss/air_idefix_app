@@ -3,7 +3,6 @@ package com.nicholson.client_reservation_vol.présentation.RechercherVol
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +14,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
 import com.nicholson.client_reservation_vol.R
-import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
+import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol.*
 import java.time.format.DateTimeFormatter
 
-class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
+class RechercherUnVolVue : Fragment(), IRechercheVolVue {
     private lateinit var choisirDate: EditText
     private lateinit var calendrier: Calendar
     private lateinit var datePickerDialog: DatePickerDialog
@@ -33,13 +30,11 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var navController: NavController
     private lateinit var choisirVilleDe: AutoCompleteTextView
     private lateinit var choisirVilleVers: AutoCompleteTextView
-    private val présentateur = RechercherVolPresentateur()
+    private lateinit var présentateur : IRechercheVolVuePrésentateur
     private var estAllerSimple: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
 
@@ -63,6 +58,8 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         choisirDate.isFocusableInTouchMode = false
         choisirDateRetour.isFocusable = false
         choisirDateRetour.isFocusableInTouchMode = false
+
+        présentateur = RechercherVolPresentateur()
 
         présentateur.attacherVue(this)
         présentateur.obtenirListeVilles()
@@ -116,25 +113,14 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             choisirVilleDe.text.toString(),
             choisirVilleVers.text.toString(),
             choisirDate.text.toString(),
-            choisirDateRetour.text.toString(),
-            estAllerSimple
+            choisirDateRetour.text.toString()
         )
     }
-
 
     override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
-
-        //---=== Initialize mon sourceDeDonnées et mon historiqueService ,mais dans mon MainActivity===----
-
-        val historique = arguments?.getSerializable("historique") as? HistoriqueListItemOTD
-        if (historique != null) {
-            Log.d("RechercherUnVolVue", "Historique reçu: $historique")
-            afficherHistorique(historique)
-        } else {
-            Log.d("RechercherUnVolVue", "No historique")
-        }
+        présentateur.traiterObtenirHistorique()
     }
 
     // Fonction pour afficher le calendrier
@@ -176,7 +162,6 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    //---------------Pour afficher mon Historique------------------
     override fun afficherHistorique(listeDeHistorique: HistoriqueListItemOTD) {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             choisirVilleDe.setText("${listeDeHistorique.villeDe} (${listeDeHistorique.aeroportDe})")

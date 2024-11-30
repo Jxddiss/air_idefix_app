@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class HistoriqueRechercheAdapter(private var rechercheHistoriqueList:  List<HistoriqueListItemOTD>,
-                                 private val onItemClick: (HistoriqueListItemOTD) -> Unit) :
+                                private val onItemClick: ((Int) ->Unit)) :
     RecyclerView.Adapter<HistoriqueRechercheAdapter.HistoriqueRechercheViewHolder>() {
 
 
@@ -48,12 +48,12 @@ class HistoriqueRechercheAdapter(private var rechercheHistoriqueList:  List<Hist
         val dateFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
         holder.textViewDateDepart.text = historiqueItem.dateDepart.format(dateFormat)
-        holder.textViewDateReturn.text = historiqueItem.dateRetour?.format(dateFormat) ?: "Date non disponible"
+        holder.textViewDateReturn.text = historiqueItem.dateRetour?.format(dateFormat) ?: ""
 
 
         // click listener
         holder.itemView.setOnClickListener {
-            onItemClick(historiqueItem)
+            onItemClick.invoke(position)
         }
     }
 

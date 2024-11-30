@@ -1,26 +1,18 @@
 package com.nicholson.client_reservation_vol.présentation.RechercheHistorique
 
-import android.content.Context
 import android.util.Log
-import com.nicholson.client_reservation_vol.domaine.entité.Historique
-import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive.Companion.listHistorique
 import com.nicholson.client_reservation_vol.présentation.Modèle
-import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
-
+import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.ContratVuePrésentateurHistorique.*
 
 class HistoriquePrésentateur (
-    val vue: ContratVuePrésentateurHistorique.IListeDeHistoriqueVue = HistoriqueRechercheVue()
-) : ContratVuePrésentateurHistorique.IListeDeHistoriquePrésentateur {
+    val vue: IListeDeHistoriqueVue = HistoriqueRechercheVue()
+) : IListeDeHistoriquePrésentateur {
 
     val modèle: Modèle = Modèle.obtenirInstance()
 
-    // pass le context ici!
-    fun initialiserContexte(context: Context) {
-        modèle.initialiserSourceDeDonnées(context)
-    }
     override fun traiterObtenirHistorique() {
-        val listeDeHistorique = modèle.getSourceDeDonnées().obtenirListHistorique()
+        val listeDeHistorique = modèle.listeHistorique
         listeDeHistorique.forEach { Log.d("HistoriquePrésentateur", "Historique item: $it") }
 
         val listeHistoriqueOTD = listeDeHistorique.map {
@@ -36,6 +28,12 @@ class HistoriquePrésentateur (
 
 
         vue.afficherHistorique(listeHistoriqueOTD)
+    }
+
+    override fun traiterHistoriqueCliqué(indice: Int) {
+        modèle.historiqueCliqué = true
+        modèle.indiceHistoriqueCourrant = indice
+        vue.redirigerVersRechercherUnVolVue()
     }
 
 }

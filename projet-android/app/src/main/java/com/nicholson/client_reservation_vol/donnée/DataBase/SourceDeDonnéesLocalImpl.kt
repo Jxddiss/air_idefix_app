@@ -1,20 +1,11 @@
 package com.nicholson.client_reservation_vol.donnée.DataBase
 
-import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
-import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
-import com.nicholson.client_reservation_vol.domaine.entité.Réservation
-import com.nicholson.client_reservation_vol.domaine.entité.Vol
-import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
-import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
-import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
+import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import java.time.LocalDate
-import kotlin.math.log
-
-class SourceDeDonnéesLocalImpl(private val context: Context) : SourceDeDonnées {
+class SourceDeDonnéesLocalImpl( context: Context ) : ISourceDeDonnéesHistorique {
 
     private val dbHelper = DataBaseClass(context)
 
@@ -22,7 +13,6 @@ class SourceDeDonnéesLocalImpl(private val context: Context) : SourceDeDonnées
         Log.d("SourceDeDonnéesLocalImpl", "Inserting into database")
         dbHelper.insertHistorique(historique)
     }
-
 
     override fun obtenirListHistorique(): List<Historique> {
         val db = dbHelper.readableDatabase
@@ -61,7 +51,6 @@ class SourceDeDonnéesLocalImpl(private val context: Context) : SourceDeDonnées
                         null
                     }
 
-                    // mon Historique object
                     val historique = Historique(
                         villeDe = villeDe,
                         villeVers = villeVers,
@@ -84,47 +73,5 @@ class SourceDeDonnéesLocalImpl(private val context: Context) : SourceDeDonnées
 
         return listHistorique
     }
-
-
-
-
-    override fun obtenirListAéroports(): List<Aeroport> {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun obtenirListeVol(): List<Vol> {
-        TODO("Not yet implemented")
-    }
-
-    override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> {
-        TODO("Not yet implemented")
-    }
-
-    override fun obtenirVolParId(id: Int): Vol {
-        TODO("Not yet implemented")
-    }
-
-    override fun ajouterClient(client: Client) {
-        TODO("Not yet implemented")
-    }
-
-    override fun obtenirListeClient(): MutableList<Client> {
-        TODO("Not yet implemented")
-    }
-
-    override fun obtenirListeRéservation(): MutableList<Réservation> {
-        TODO("Not yet implemented")
-    }
-
-    override fun obtenirRéservationParId(id: Int): Réservation {
-        TODO("Not yet implemented")
-    }
-
-    override fun ajouterRéservation(réservation: Réservation) {
-        TODO("Not yet implemented")
-    }
-
-
 
 }

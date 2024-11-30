@@ -767,36 +767,6 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         }
 
-        val listHistorique = mutableListOf(
-            Historique(
-                villeDe="Montreal",
-                villeVers="Cancun",
-                aeroportDe = "YUL",
-                aeroportVers = "BEN",
-                dateDepart = LocalDate.of(2024, 11, 15),
-                dateRetour = LocalDate.of(2024, 11, 22)
-
-            ),
-            Historique(
-                villeDe = "Toronto",
-                villeVers = "Paris",
-                aeroportDe = "YYZ",
-                aeroportVers = "CDG",
-                dateDepart = LocalDate.of(2024, 11, 10),
-                dateRetour = LocalDate.of(2024, 11, 17)
-            ),
-            Historique(
-                villeDe = "Toronto",
-                villeVers = "Paris",
-                aeroportDe = "YYZ",
-                aeroportVers = "CDG",
-                dateDepart = LocalDate.of(2025, 1, 10),
-                dateRetour = LocalDate.of(2025, 1, 17)
-            ),
-        )
-
-
-
     }
 
     override fun obtenirListeVol(): List<Vol> = listVol.sortedBy { it.dateDepart }
@@ -842,12 +812,6 @@ class SourceDonnéesFictive : SourceDeDonnées {
 
     override fun obtenirListeClient(): MutableList<Client> {
         return listClients
-    }
-
-    override fun obtenirListHistorique():List<Historique> = listHistorique
-
-    override fun ajouterHistorique(historique: Historique) {
-        listHistorique.add(historique)
     }
 
     override fun obtenirListAéroports(): List<Aeroport> {

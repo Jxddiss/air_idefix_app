@@ -13,19 +13,19 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
-import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
 
-class Modèle private constructor( private val volService : VolService = VolService(),
-                                  private val clientService: ClientService = ClientService(),
-                                  private val réservationService: RéservationService = RéservationService(),
-                                  private var historiqueService: HistoriqueService? = null,
-                                  private val aeroportService: AeroportService = AeroportService()) {
+class Modèle private constructor() {
 
-    private var sourceDeDonnées: SourceDeDonnées? = null
+    private val volService : VolService = VolService()
+    private val clientService: ClientService = ClientService()
+    private val réservationService: RéservationService = RéservationService()
+    private var historiqueService: HistoriqueService? = null
+    private val aeroportService: AeroportService = AeroportService()
 
     companion object {
         @Volatile
@@ -40,28 +40,24 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var indiceVolCourrant: Int = 0
     var indiceVolRetour: Int = 0
     var indiceVolAller: Int = 0
+    var indiceHistoriqueCourrant : Int = 0
+    var historiqueCliqué = false
     var indiceRéservationCourrante: Int = 0
     var indiceClientCourrant: Int = 0
     var pageCourrante : String? = null
 
+    // Setter pour sourceDeDonnées
+    fun initialiserSourceDeDonnées( sourceHistorique : ISourceDeDonnéesHistorique) {
+        Log.d("Modèle", "Initializing SourceDeDonnées")
+        historiqueService = HistoriqueService( sourceHistorique )
+    }
 
     var filtreVolAller = FiltreRechercheVol(
         LocalDateTime.now(), "YUL", "JFK"
     )
     var filtreVolRetour: FiltreRechercheVol = FiltreRechercheVol(
-    // Setter pour sourceDeDonnées
-    fun initialiserSourceDeDonnées(context: Context) {
-        Log.d("Modèle", "Initializing SourceDeDonnées")
-        if (sourceDeDonnées == null) {
-            sourceDeDonnées = SourceDeDonnéesLocalImpl(context)
-            historiqueService = HistoriqueService(sourceDeDonnées!!)
-        }
-    }
-    //Getter pour sourceDeDonnées
-    fun getSourceDeDonnées(): SourceDeDonnées {
-        return sourceDeDonnées
-            ?: throw IllegalStateException("SourceDeDonnées not initialized!")
-    }
+        LocalDateTime.now(), "YUL", "JFK"
+    )
 
     var réservationAller = Réservation(
         id = 0,
@@ -95,7 +91,6 @@ class Modèle private constructor( private val volService : VolService = VolServ
             )
         )
     )
-
 
     var volRetourExiste: Boolean = false
     var aller: Boolean = true
@@ -307,6 +302,10 @@ class Modèle private constructor( private val volService : VolService = VolServ
 
     fun créerHistorique( historique: Historique ) {
         historiqueService?.ajouterHistorique( historique )
+    }
+
+    fun obtenirHistoriqueCourrant() : Historique{
+        return listeHistorique[indiceHistoriqueCourrant]
     }
 
 }

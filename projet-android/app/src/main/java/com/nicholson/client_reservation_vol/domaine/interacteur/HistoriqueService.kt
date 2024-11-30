@@ -4,11 +4,12 @@ import android.content.Context
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 
-class HistoriqueService(private val sourceDeDonnées: SourceDeDonnées) {
+class HistoriqueService(private val sourceDeDonnées: ISourceDeDonnéesHistorique) {
 
 
     fun obtenirListeHistorique(): List<Historique> {

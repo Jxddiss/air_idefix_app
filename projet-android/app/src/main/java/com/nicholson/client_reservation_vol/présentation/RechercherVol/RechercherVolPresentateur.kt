@@ -11,12 +11,12 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésentateur {
+class RechercherVolPresentateur:  IRechercheVolVuePrésentateur {
 
     private val modèle: Modèle = Modèle.obtenirInstance()
     private var vue: IRechercheVolVue? = null
 
-    override fun attacherVue(vue: ContractRechercherVol.IRechercheVolVue) {
+    override fun attacherVue(vue: IRechercheVolVue) {
         this.vue = vue
     }
 
@@ -32,8 +32,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     override fun traiterInfoRecherche(villeAeroportDe: String,
                                       villeAeroportVers: String,
                                       dateDebutString:String,
-                                      dateRetourString:String,
-                                      nbrPassagers:String) {
+                                      dateRetourString:String) {
 
         //réinitialisation des bool
         modèle.volRetourExiste = false
@@ -43,7 +42,7 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
         modèle.listeVolRetour = listOf()
 
 
-        if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() || nbrPassagers.isEmpty()){
+        if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() ){
             vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
             return
 
@@ -81,7 +80,6 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
-            val historique: Historique = if (estAllerSimple) {
 
             //save historique ici
             val historique = Historique(
@@ -90,12 +88,10 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 aeroportDe = aeroportDe.code,
                 aeroportVers = aeroportVers.code,
                 dateDepart = dateDebutLocal,
-                dateRetour = dateRetourLocal,
-                nbrPassangers = nbrPassagersInt
+                dateRetour = dateRetourLocal
             )
 
             enregistrerRecherche(historique)
-
 
             vue?.redirigerVersListeVols()
         }catch (ex :  Exception){
@@ -110,7 +106,6 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
        vue?.obtenirInfoRecherche()
     }
 
-
     // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et si tout est bien sauvarger
     private fun enregistrerRecherche(historique: Historique) {
         //Log.d("RechercherVolPresent", "Essaye d'ajouter a la bd: $historique")
@@ -120,18 +115,17 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
     }
 
     override fun traiterObtenirHistorique() {
-        val listeDeHistorique = modèle.listeHistorique
-        Log.d("HistoriquePrésentateur", "Historique liste size: ${listeDeHistorique.size}")
+        if(modèle.historiqueCliqué){
+            modèle.historiqueCliqué = false
 
-        if (listeDeHistorique.isNotEmpty()) {
-            val firstHistorique = listeDeHistorique.first()
+            val historique = modèle.obtenirHistoriqueCourrant()
             val historiqueOTD = HistoriqueListItemOTD(
-                villeDe = firstHistorique.villeDe,
-                villeVers = firstHistorique.villeVers,
-                aeroportDe = firstHistorique.aeroportDe,
-                aeroportVers = firstHistorique.aeroportVers,
-                dateDepart = firstHistorique.dateDepart,
-                dateRetour = firstHistorique.dateRetour
+                villeDe = historique.villeDe,
+                villeVers = historique.villeVers,
+                aeroportDe = historique.aeroportDe,
+                aeroportVers = historique.aeroportVers,
+                dateDepart = historique.dateDepart,
+                dateRetour = historique.dateRetour
             )
             vue?.afficherHistorique(historiqueOTD)
         }

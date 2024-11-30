@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.RechercheHistorique
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,20 +11,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nicholson.client_reservation_vol.R
-import com.nicholson.client_reservation_vol.domaine.entité.Historique
-import com.nicholson.client_reservation_vol.présentation.Modèle
-import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
-import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.ContratVuePrésentateurHistorique.IListeDeHistoriqueVue
-import com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherUnVolVue
-import java.time.LocalDate
+import com.nicholson.client_reservation_vol.présentation.RechercheHistorique.ContratVuePrésentateurHistorique.*
 
 
-class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.IListeDeHistoriqueVue {
+class HistoriqueRechercheVue : Fragment(), IListeDeHistoriqueVue {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var rechercheHistoriqueAdapter: HistoriqueRechercheAdapter
-    private lateinit var historiquePrésentateur: HistoriquePrésentateur
+    private lateinit var historiquePrésentateur: IListeDeHistoriquePrésentateur
     private lateinit var navController: NavController
 
 
@@ -40,9 +34,6 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
         // Initialize the RecyclerView
         recyclerView = view.findViewById(R.id.recycler_historique_list)
         navController = findNavController()
-
-        // Initialize la data source avec le context
-        historiquePrésentateur.initialiserContexte(requireContext())
 
         // get historique data apres l'initialization
         historiquePrésentateur.traiterObtenirHistorique()
@@ -61,11 +52,8 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
         if (::rechercheHistoriqueAdapter.isInitialized) {
             rechercheHistoriqueAdapter.updateData(listeDeHistorique)
         } else {
-            rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) { historique ->
-                val bundle = Bundle().apply {
-                    putSerializable("historique", historique)
-                }
-                redirigerVersRechercherUnVolVue(bundle)
+            rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) {
+                historiquePrésentateur.traiterHistoriqueCliqué(it)
             }
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.itemAnimator = DefaultItemAnimator()
@@ -73,9 +61,8 @@ class HistoriqueRechercheVue : Fragment(), ContratVuePrésentateurHistorique.ILi
         }
     }
 
-
-    private fun redirigerVersRechercherUnVolVue(bundle: Bundle) {
-        navController.navigate(R.id.action_historiqueRechercheVue_to_rechercherUnVolVue,bundle)
+    override fun redirigerVersRechercherUnVolVue() {
+        navController.navigate(R.id.action_historiqueRechercheVue_to_rechercherUnVolVue)
     }
 
 }

@@ -17,8 +17,6 @@ interface SourceDeDonnées {
     fun obtenirListeRéservation() : MutableList<Réservation>
     fun obtenirRéservationParId(id : Int): Réservation
     fun ajouterRéservation( réservation : Réservation )
-    fun obtenirListHistorique():List<Historique>
-    fun ajouterHistorique(historique: Historique)
     fun obtenirListAéroports() : List<Aeroport>
     fun obtenirSiegeParId(id : Int): Siège
 }
