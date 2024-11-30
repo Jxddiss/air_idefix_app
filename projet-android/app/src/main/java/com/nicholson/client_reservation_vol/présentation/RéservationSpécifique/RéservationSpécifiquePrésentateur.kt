@@ -1,10 +1,5 @@
 package com.nicholson.client_reservation_vol.présentation.RéservationSpécifique
 
-import android.content.Context
-import android.content.Intent
-import android.provider.CalendarContract
-import android.util.Log
-import android.widget.Toast
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.RéservationSpécifiqueOTD
 import com.nicholson.client_reservation_vol.présentation.RéservationSpécifique.ContratVuePrésentateurRéservationSpécifique.*
