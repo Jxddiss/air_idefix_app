@@ -9,11 +9,11 @@ class RechercherVol {
     companion object{
         var sourceDeDonnéesVol : ISourceDeDonnéesVols = SourceDonnéeVolsFictive()
 
-        fun rechercherVolParFiltre( filtre : FiltreRechercheVol) : List<Vol> {
+        suspend fun rechercherVolParFiltre( filtre : FiltreRechercheVol) : List<Vol> {
             return sourceDeDonnéesVol.obtenirListeVolParFiltre( filtre )
         }
 
-        fun obtenirDétailVol( id : Int ) : Vol {
+        suspend fun obtenirDétailVol( id : Int ) : Vol {
             return sourceDeDonnéesVol.obtenirVolParId( id )
         }
     }

@@ -119,25 +119,25 @@ class Modèle private constructor() {
             return field
         }
 
-    fun getVolCourrantAller(indice: Int): Vol {
+    suspend fun getVolCourrantAller(indice: Int): Vol {
         return RechercherVol.obtenirDétailVol(listeVolAller[indice].id)
     }
 
-    fun getVolCourrantRetour(indice: Int): Vol {
+    suspend fun getVolCourrantRetour(indice: Int): Vol {
         return RechercherVol.obtenirDétailVol(listeVolRetour[indice].id)
     }
 
-    fun obtenirListeVolAllerParFiltre(): List<Vol> {
+    suspend fun obtenirListeVolAllerParFiltre(): List<Vol> {
         listeVolAller = RechercherVol.rechercherVolParFiltre(filtreVolAller)
         return listeVolAller
     }
 
-    fun obtenirListeVolRetourParFiltre(): List<Vol> {
+    suspend fun obtenirListeVolRetourParFiltre(): List<Vol> {
         listeVolRetour = RechercherVol.rechercherVolParFiltre(filtreVolRetour)
         return listeVolRetour
     }
 
-    fun obtenirVolParId(id: Int): Vol {
+    suspend fun obtenirVolParId(id: Int): Vol {
         return RechercherVol.obtenirDétailVol(id)
     }
 
@@ -249,7 +249,7 @@ class Modèle private constructor() {
         clientService.ajouterClient(client)
     }
 
-    fun créerRéservationAller(classeChoisis : String) : Réservation {
+    suspend fun créerRéservationAller(classeChoisis : String) : Réservation {
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
@@ -268,7 +268,7 @@ class Modèle private constructor() {
         )
         return réservation
     }
-    fun créerRéservationRetour(classeChoisis : String) : Réservation {
+    suspend fun créerRéservationRetour(classeChoisis : String) : Réservation {
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
