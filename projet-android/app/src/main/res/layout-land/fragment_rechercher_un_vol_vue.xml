@@ -8,88 +8,26 @@
     tools:context=".présentation.RechercherVol.RechercherUnVolVue">
 
 
-    <!-- Constraint pour afficher le titre du View Rechercher vol -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutRechercherTexte"
-        android:layout_width="410dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textViewMessageRechercher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="52dp"
-            android:drawableRight="@drawable/avion"
-            android:fontFamily="@font/lexend"
-            android:text="@string/rechercher_un_vol"
-            android:textColor="@color/couleur_principale"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Constraint pour les butons aller simple et aller-retourne-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutBtnTypeVols"
-        android:layout_width="408dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145">
-
-        <Button
-            android:id="@+id/btnAllerSimple"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/couleur_btn_typeVol"
-            android:fontFamily="@font/lexend"
-            android:text="@string/aller_simple"
-            android:textColor="@color/couleur_principale"
-            android:textSize="14sp"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnAllerEtRetourn"
-            android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:layout_marginStart="176dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/couleur_btn_typeVol"
-            android:fontFamily="@font/lexend"
-            android:text="@string/aller_retour"
-            android:textColor="@color/couleur_principale"
-            android:textSize="14sp"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Constraint pour les spinners-->
 
 
     <!-- Constraint pour les spinners-->
+
+
+    <!-- Constraint pour le butonn recherche-->
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutDeSpinners"
-        android:layout_width="406dp"
-        android:layout_height="67dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutVersSpinners"
+        app:layout_constraintEnd_toStartOf="@+id/layoutCalendrierDepart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268">
+        app:layout_constraintTop_toBottomOf="@+id/layoutRechercherTexte">
 
         <!-- Spinner (De) -->
         <com.google.android.material.textfield.TextInputLayout
@@ -115,18 +53,19 @@
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Spinner (Vers) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutVersSpinners"
-        android:layout_width="406dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRechercher"
+        app:layout_constraintEnd_toStartOf="@+id/layoutCalendrierRetour"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388">
+        app:layout_constraintTop_toBottomOf="@+id/layoutDeSpinners">
 
+        <!-- Spinner (Vers) -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputVers"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -150,24 +89,23 @@
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Caledrier choisir date Depart -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutCalendrierDepart"
-        android:layout_width="408dp"
-        android:layout_height="69dp"
+        android:layout_width="0dp"
+        android:layout_height="82dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layoutDeSpinners"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:hint="@string/d_part"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -178,36 +116,37 @@
             <EditText
                 android:id="@+id/ChosirDate"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:inputType="none"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
+                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Caledrier choisir date  Retour -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutCalendrierRetour"
-        android:layout_width="410dp"
-        android:layout_height="72dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRechercher"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614">
+        app:layout_constraintStart_toEndOf="@+id/layoutVersSpinners"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCalendrierDepart">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:enabled="false"
             android:hint="@string/retour"
-            android:textColor="@color/couleur_principale"
 
+            android:textColor="@color/couleur_principale"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -218,45 +157,106 @@
             <EditText
                 android:id="@+id/ChosirDateRetour"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:inputType="none"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/calendrier"
                 android:fontFamily="@font/lexend"
+                android:inputType="none"
                 android:textColor="@color/couleur_principale" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Choisir nombre de passangers est EFFACE-->
-
-
-    <!--Layout pour btn Rechercher -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutBtnRechercher"
-        android:layout_width="406dp"
-        android:layout_height="67dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:id="@+id/layoutRechercherTexte"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutDeSpinners"
+        app:layout_constraintEnd_toEndOf="@+id/layoutBtnTypeVols"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896">
+        app:layout_constraintTop_toBottomOf="@+id/layoutBtnTypeVols">
 
         <Button
-            android:id="@+id/btnRechercher"
-            android:layout_width="218dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="3dp"
-            android:backgroundTint="@color/couleur_btn_jaune"
-            android:drawableRight="@drawable/avion_btn"
+            android:id="@+id/btnAllerSimple"
+            android:layout_width="140dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:backgroundTint="@color/couleur_btn_typeVol"
             android:fontFamily="@font/lexend"
-            android:text="@string/rechercher"
+            android:text="@string/aller_simple"
             android:textColor="@color/couleur_principale"
-            android:textSize="16sp"
-            app:cornerRadius="6dp"
+            android:textSize="14sp"
+            app:cornerRadius="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <Button
+            android:id="@+id/btnAllerEtRetourn"
+            android:layout_width="140dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="128dp"
+            android:layout_marginBottom="7dp"
+            android:backgroundTint="@color/couleur_btn_typeVol"
+            android:fontFamily="@font/lexend"
+            android:text="@string/aller_retour"
+            android:textColor="@color/couleur_principale"
+            android:textSize="14sp"
+            app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Constraint pour afficher le titre du View Rechercher vol -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBtnTypeVols"
+        android:layout_width="296dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutRechercherTexte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewMessageRechercher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"
+            android:drawableRight="@drawable/avion"
+            android:fontFamily="@font/lexend"
+            android:text="@string/rechercher_un_vol"
+            android:textColor="@color/couleur_principale"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnRechercher"
+        android:layout_width="239dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/couleur_btn_jaune"
+        android:drawableRight="@drawable/avion_btn"
+        android:fontFamily="@font/lexend"
+        android:text="@string/rechercher"
+        android:textColor="@color/couleur_principale"
+        android:textSize="16sp"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/layoutCalendrierRetour"
+        app:layout_constraintStart_toEndOf="@+id/layoutVersSpinners"
+        app:layout_constraintTop_toBottomOf="@+id/layoutVersSpinners" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

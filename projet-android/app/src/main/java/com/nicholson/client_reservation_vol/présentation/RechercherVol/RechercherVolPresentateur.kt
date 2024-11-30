@@ -4,6 +4,7 @@ import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -14,7 +15,6 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
     private val modèle: Modèle = Modèle.obtenirInstance()
     private var vue: IRechercheVolVue? = null
-    private val listHistorique = mutableListOf<Historique>()
 
     override fun attacherVue(vue: ContractRechercherVol.IRechercheVolVue) {
         this.vue = vue
@@ -78,9 +78,10 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
                 codeAéroportFin = aeroportVers.code
             )
 
-            val nbrPassagersInt = nbrPassagers.toInt()
+
             val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
+            val historique: Historique = if (estAllerSimple) {
 
             //save historique ici
             val historique = Historique(
@@ -104,16 +105,36 @@ class RechercherVolPresentateur:  ContractRechercherVol.IRechercheVolVuePrésent
 
     }
 
+
     override fun traiterActionRecherche() {
        vue?.obtenirInfoRecherche()
     }
 
 
-    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et oui tout est bien sauvarger
+    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et si tout est bien sauvarger
     private fun enregistrerRecherche(historique: Historique) {
-       modèle.créerHistorique(historique)
-        Log.d("Historique", "Historique added: $historique")
-        Log.d("Historique", "Current listHistorique: $listHistorique")
+        //Log.d("RechercherVolPresent", "Essaye d'ajouter a la bd: $historique")
+        modèle.créerHistorique(historique)
+        Log.d("RechercherVolPresent ", "Historique ajouter: $historique")
+        //Log.d("RechercherVolPresent", "ma listHistorique maintenant: $listHistorique")
+    }
+
+    override fun traiterObtenirHistorique() {
+        val listeDeHistorique = modèle.listeHistorique
+        Log.d("HistoriquePrésentateur", "Historique liste size: ${listeDeHistorique.size}")
+
+        if (listeDeHistorique.isNotEmpty()) {
+            val firstHistorique = listeDeHistorique.first()
+            val historiqueOTD = HistoriqueListItemOTD(
+                villeDe = firstHistorique.villeDe,
+                villeVers = firstHistorique.villeVers,
+                aeroportDe = firstHistorique.aeroportDe,
+                aeroportVers = firstHistorique.aeroportVers,
+                dateDepart = firstHistorique.dateDepart,
+                dateRetour = firstHistorique.dateRetour
+            )
+            vue?.afficherHistorique(historiqueOTD)
+        }
     }
 
 }

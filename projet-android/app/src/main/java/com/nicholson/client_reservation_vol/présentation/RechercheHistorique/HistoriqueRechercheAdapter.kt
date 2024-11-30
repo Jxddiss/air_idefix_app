@@ -12,10 +12,11 @@ import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<HistoriqueListItemOTD>) :
+class HistoriqueRechercheAdapter(private var rechercheHistoriqueList:  List<HistoriqueListItemOTD>,
+                                 private val onItemClick: (HistoriqueListItemOTD) -> Unit) :
     RecyclerView.Adapter<HistoriqueRechercheAdapter.HistoriqueRechercheViewHolder>() {
 
-    // ViewHolder for binding the data
+
     class HistoriqueRechercheViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewAeroportDe: TextView = itemView.findViewById(R.id.AeroportDe)
         val textViewVilleDe: TextView = itemView.findViewById(R.id.VilleDE)
@@ -47,7 +48,18 @@ class HistoriqueRechercheAdapter(private val rechercheHistoriqueList:  List<Hist
         val dateFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
         holder.textViewDateDepart.text = historiqueItem.dateDepart.format(dateFormat)
-        holder.textViewDateReturn.text = historiqueItem.dateRetour?.format(dateFormat)
+        holder.textViewDateReturn.text = historiqueItem.dateRetour?.format(dateFormat) ?: "Date non disponible"
+
+
+        // click listener
+        holder.itemView.setOnClickListener {
+            onItemClick(historiqueItem)
+        }
+    }
+
+    fun updateData(newList: List<HistoriqueListItemOTD>) {
+        rechercheHistoriqueList = newList
+        notifyDataSetChanged()
     }
 
 }

@@ -9,5 +9,5 @@ data class Historique(
     val aeroportVers:String,
     val dateDepart:LocalDate,
     val dateRetour:LocalDate?,
-    val nbrPassangers:Int
+    //val nbrPassangers:Int
 )

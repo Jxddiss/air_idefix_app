@@ -3,6 +3,7 @@ package com.nicholson.client_reservation_vol.présentation.RechercherVol
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
+import java.time.format.DateTimeFormatter
 
 class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var choisirDate: EditText
@@ -25,14 +30,16 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var btnAllerSimple: Button
     private lateinit var choisirDateRetour: EditText
     private lateinit var btnRechercher : Button
-    private lateinit var nbrPassangers:EditText
     private lateinit var navController: NavController
-    private val présentateur = RechercherVolPresentateur()
     private lateinit var choisirVilleDe: AutoCompleteTextView
     private lateinit var choisirVilleVers: AutoCompleteTextView
+    private val présentateur = RechercherVolPresentateur()
+    private var estAllerSimple: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
 
@@ -73,7 +80,9 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleur_btn_typeVol, null))
             // Disable le EditText pour date selection
             choisirDateRetour.isEnabled = false
-            choisirDateRetour.requestFocus()
+            choisirDateRetour.setText("")
+            choisirDateRetour.clearFocus()
+            estAllerSimple = true
         }
 
         // Set OnClickListener pour "Aller-et-Retourn" button
@@ -84,6 +93,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             // Enable le EditText pour date selection
             choisirDateRetour.isEnabled = true
             choisirDateRetour.requestFocus()
+            estAllerSimple = false
         }
         choisirDateRetour.setOnClickListener {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
@@ -92,6 +102,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         btnRechercher.setOnClickListener {
            présentateur.traiterActionRecherche()
         }
+
         return view
     }
     override fun redirigerVersListeVols() {
@@ -99,20 +110,31 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
 
     }
 
-    //New funtion
+
     override fun obtenirInfoRecherche(){
         présentateur.traiterInfoRecherche(
             choisirVilleDe.text.toString(),
             choisirVilleVers.text.toString(),
             choisirDate.text.toString(),
             choisirDateRetour.text.toString(),
-            1.toString())
+            estAllerSimple
+        )
     }
 
 
     override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
+
+        //---=== Initialize mon sourceDeDonnées et mon historiqueService ,mais dans mon MainActivity===----
+
+        val historique = arguments?.getSerializable("historique") as? HistoriqueListItemOTD
+        if (historique != null) {
+            Log.d("RechercherUnVolVue", "Historique reçu: $historique")
+            afficherHistorique(historique)
+        } else {
+            Log.d("RechercherUnVolVue", "No historique")
+        }
     }
 
     // Fonction pour afficher le calendrier
@@ -153,4 +175,15 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     override fun afficherToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
+    //---------------Pour afficher mon Historique------------------
+    override fun afficherHistorique(listeDeHistorique: HistoriqueListItemOTD) {
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            choisirVilleDe.setText("${listeDeHistorique.villeDe} (${listeDeHistorique.aeroportDe})")
+            choisirVilleVers.setText("${listeDeHistorique.villeVers} (${listeDeHistorique.aeroportVers})")
+            choisirDate.setText(listeDeHistorique.dateDepart.format(formatter))
+            choisirDateRetour.setText(listeDeHistorique.dateRetour?.format(formatter) ?: ""
+        )
+    }
+
 }

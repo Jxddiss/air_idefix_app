@@ -1,5 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation
 
+import android.content.Context
+import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
@@ -11,18 +13,23 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.VolService
+import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
+
 
 class Modèle private constructor( private val volService : VolService = VolService(),
                                   private val clientService: ClientService = ClientService(),
                                   private val réservationService: RéservationService = RéservationService(),
-                                  private val historiqueService: HistoriqueService = HistoriqueService(),
-                                  private val aeroportService: AeroportService = AeroportService() ) {
+                                  private var historiqueService: HistoriqueService? = null,
+                                  private val aeroportService: AeroportService = AeroportService()) {
+
+    private var sourceDeDonnées: SourceDeDonnées? = null
 
     companion object {
         @Volatile
-        private var instance: Modèle? = null
+        private var instance : Modèle? = null
 
         fun obtenirInstance() =
             instance ?: synchronized(this) {
@@ -42,8 +49,20 @@ class Modèle private constructor( private val volService : VolService = VolServ
         LocalDateTime.now(), "YUL", "JFK"
     )
     var filtreVolRetour: FiltreRechercheVol = FiltreRechercheVol(
-        LocalDateTime.now(), "YUL", "JFK"
-    )
+    // Setter pour sourceDeDonnées
+    fun initialiserSourceDeDonnées(context: Context) {
+        Log.d("Modèle", "Initializing SourceDeDonnées")
+        if (sourceDeDonnées == null) {
+            sourceDeDonnées = SourceDeDonnéesLocalImpl(context)
+            historiqueService = HistoriqueService(sourceDeDonnées!!)
+        }
+    }
+    //Getter pour sourceDeDonnées
+    fun getSourceDeDonnées(): SourceDeDonnées {
+        return sourceDeDonnées
+            ?: throw IllegalStateException("SourceDeDonnées not initialized!")
+    }
+
     var réservationAller = Réservation(
         id = 0,
         numéroRéservation = "",
@@ -103,7 +122,7 @@ class Modèle private constructor( private val volService : VolService = VolServ
     var listeHistorique: List<Historique> = listOf()
         get() {
             if (field.isEmpty()) {
-                field = historiqueService.obtenirListeHistorique()
+                field = historiqueService?.obtenirListeHistorique() ?: listOf()
             }
             return field
         }
@@ -286,8 +305,8 @@ class Modèle private constructor( private val volService : VolService = VolServ
         return aeroportService.obtenirListeAeroport()
     }
 
-    fun créerHistorique(historique: Historique) {
-        historiqueService.ajouterHistorique(historique)
+    fun créerHistorique( historique: Historique ) {
+        historiqueService?.ajouterHistorique( historique )
     }
 
 }
