@@ -3,15 +3,17 @@ package com.nicholson.client_reservation_vol.présentation.listeVols
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 
-class RecyclerAdapterVol( val volListItemOTDS : List<VolListItemOTD> ) :
+class RecyclerAdapterVol( private val volListItemOTDS : List<VolListItemOTD> ) :
     RecyclerView.Adapter<RecyclerAdapterVol.MyViewHolder>() {
 
     var itemCliquéÉvènement: ((Int) ->Unit)? = null
+    private var lastPosition = -1
 
     class MyViewHolder( itemView : View ) : RecyclerView.ViewHolder( itemView ) {
 
@@ -68,6 +70,13 @@ class RecyclerAdapterVol( val volListItemOTDS : List<VolListItemOTD> ) :
 
         holder.itemView.setOnClickListener{
             itemCliquéÉvènement?.invoke(position)
+        }
+
+        if (position > lastPosition) {
+            val animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.glisser_de_la_gauche)
+            animation.startOffset = (position * 100).toLong()
+            holder.itemView.startAnimation(animation)
+            lastPosition = holder.adapterPosition
         }
     }
 
