@@ -62,6 +62,9 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         recyclerVol.layoutManager = LinearLayoutManager( requireContext() )
         recyclerVol.itemAnimator = DefaultItemAnimator()
         recyclerVol.adapter = adaptateur
+        recyclerVol.post {
+            adaptateur.listeInitialisé = true
+        }
     }
 
     override fun afficherInfoDestination( nomVille : String, urlImage : String ){
