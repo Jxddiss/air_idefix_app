@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Reserva_de_Vuelos_Cliente</string>
+    <string name="app_name">Air Idéfix</string>
     <string name="hello_blank_fragment">Fragmento en blanco</string>
     <string name="bienvenue">¡Bienvenido!</string>
     <string name="message_bienvenue">¿Listo para tu próxima aventura?</string>
