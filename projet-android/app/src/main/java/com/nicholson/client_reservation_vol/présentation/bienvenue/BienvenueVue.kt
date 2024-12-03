@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -15,8 +16,8 @@ import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePr
 class BienvenueVue : Fragment(), IBienvenueVue {
 
     var présentateur : IBienvenuePrésentateur? = BienvenuePrésentateur( this )
-    lateinit var btnGoMesVoyages : ImageButton
-    lateinit var btnGoRechercherUnVol : ImageButton
+    lateinit var btnGoMesVoyages : ConstraintLayout
+    lateinit var btnGoRechercherUnVol : ConstraintLayout
     lateinit var navController : NavController
 
     override fun onCreate( savedInstanceState: Bundle? ) {
@@ -57,14 +58,14 @@ class BienvenueVue : Fragment(), IBienvenueVue {
     }
 
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){
-        btnGoMesVoyages = vue.findViewById( R.id.imageButtonMesVoyages )
+        btnGoMesVoyages = vue.findViewById( R.id.constraintLayoutBtnMesVoyages )
         btnGoMesVoyages.setOnClickListener {
             présentateur?.traiterDemandeRedirectionListeReservations()
         }
     }
 
     private fun attacherÉcouteurRedirectionRechercherUnVol( vue : View ){
-        btnGoRechercherUnVol = vue.findViewById( R.id.imageButtonRechercheVols )
+        btnGoRechercherUnVol = vue.findViewById( R.id.constraintLayoutBtnRechercheVols )
         btnGoRechercherUnVol.setOnClickListener {
             présentateur?.traiterDemandeRedirectionRechercherUnVol()
         }
