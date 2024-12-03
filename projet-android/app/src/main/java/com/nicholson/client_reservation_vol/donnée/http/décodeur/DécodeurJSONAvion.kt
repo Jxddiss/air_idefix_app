@@ -26,9 +26,9 @@ class DécodeurJSONAvion {
                 return Avion(id, type)
 
             } catch ( ex : EOFException) {
-                throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")
+                throw SourceDeDonnéesException("Format JSON invalide")
             } catch(ex : MalformedJsonException){
-                throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")
+                throw SourceDeDonnéesException("Format JSON invalide")
             }
         }
     }

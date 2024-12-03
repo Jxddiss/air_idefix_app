@@ -37,7 +37,6 @@ class DécodeurJSONAéroport {
             lateinit var code : String
             lateinit var nom : String
             lateinit var ville : Ville
-            lateinit var pays : String
 
             try {
                 reader.beginObject()
