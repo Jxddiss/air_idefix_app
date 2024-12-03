@@ -8,10 +8,13 @@ interface ContratVuePrésentateurListeVols {
         fun afficherInfoDestination( nomVille: String, urlImage: String )
         fun afficherMessagePasDeVol()
         fun redirigerVersChoixClasse()
+        fun montrerChargement()
+        fun montrerErreurRéseau()
     }
 
     interface IListeDeVolsPrésentateur {
         fun traiterObtenirVols()
         fun traiterVolCliqué( index : Int )
+        fun traiterDémarage()
     }
 }

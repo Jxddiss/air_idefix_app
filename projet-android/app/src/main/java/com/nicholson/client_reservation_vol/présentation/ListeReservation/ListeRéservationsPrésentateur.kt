@@ -1,60 +1,71 @@
 package com.nicholson.client_reservation_vol.présentation.ListeReservation
 
-import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.ListeReservation.ContratVuePrésentateurListeRéservation.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.RéservationListItemOTD
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.util.Locale
+import kotlin.coroutines.CoroutineContext
 
-class ListeRéservationsPrésentateur (val vue : IListeDeRéservationsVue) : IListeDeRéservationsPrésentateur{
-    val modèle : Modèle = Modèle.obtenirInstance()
+class ListeRéservationsPrésentateur (
+    val vue : IListeDeRéservationsVue,
+    private val iocontext : CoroutineContext = Dispatchers.IO ) : IListeDeRéservationsPrésentateur{
+
+    private val modèle : Modèle = Modèle.obtenirInstance()
+    private var job : Job? = null
 
     override fun traiterObtenirRéservation(){
-        val listeDeRéservation = modèle.listeRéservation
-        val listeDeVols = modèle.listeVol
-        val listeRéservationOTD = listeDeRéservation.map {
+        job = CoroutineScope( iocontext ).launch {
+            val listeDeRéservation = modèle.listeRéservation
 
-        val tempMtn : LocalDateTime = LocalDateTime.now()
-        val volDateDepart = modèle.obtenirVolParId( it.idVol ).dateDepart
+            val listeRéservationOTD = listeDeRéservation.map {
 
-        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-        val dateFormater = volDateDepart.format(formatter)
+                val tempMtn : LocalDateTime = LocalDateTime.now()
+                val volDateDepart = modèle.obtenirVolParId( it.idVol ).dateDepart
 
-        val dateDepart = dateFormater.toString()
-        val destination = modèle.obtenirVolParId( it.idVol ).aeroportFin.pays
-        var tempsRestant = ChronoUnit.HOURS.between(tempMtn, volDateDepart).toString()
-        val url_photo = modèle.obtenirVolParId( it.idVol ).aeroportFin.ville.url_photo
+                val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+                val dateFormater = volDateDepart.format(formatter)
 
-        var tempsUnite = "Heures"
+                val dateDepart = dateFormater.toString()
+                val destination = modèle.obtenirVolParId( it.idVol ).aeroportFin.pays
+                var tempsRestant = ChronoUnit.HOURS.between(tempMtn, volDateDepart).toString()
+                val url_photo = modèle.obtenirVolParId( it.idVol ).aeroportFin.ville.url_photo
 
-        var barProgres : Int
+                var tempsUnite = "Heures"
 
-        if(tempsRestant.toLong() > 24){
-            tempsRestant = ChronoUnit.DAYS.between(tempMtn, volDateDepart).toString()
-            tempsUnite = "Jours"
+                var barProgres : Int
+
+                if(tempsRestant.toLong() > 24){
+                    tempsRestant = ChronoUnit.DAYS.between(tempMtn, volDateDepart).toString()
+                    tempsUnite = "Jours"
+                }
+
+                if(tempsUnite == "Jours") {
+                    barProgres = 30 - tempsRestant.toInt()
+                }
+                else{
+                    barProgres = 29
+                }
+
+                RéservationListItemOTD(
+                    dateDepart = dateDepart,
+                    destination = destination,
+                    tempsRestant = tempsRestant,
+                    tempsUnite = tempsUnite,
+                    url_photo = url_photo,
+                    barProgres = barProgres.toString()
+                )
+            }.toMutableList()
+
+            CoroutineScope( Dispatchers.Main ).launch {
+                vue.afficherRéservations(listeRéservationOTD)
+            }
         }
-
-        if(tempsUnite == "Jours") {
-            barProgres = 30 - tempsRestant.toInt()
-        }
-        else{
-            barProgres = 29
-        }
-
-            RéservationListItemOTD(
-                dateDepart = dateDepart,
-                destination = destination,
-                tempsRestant = tempsRestant,
-                tempsUnite = tempsUnite,
-                url_photo = url_photo,
-                barProgres = barProgres.toString()
-            )
-        }.toMutableList()
-
-        vue.afficherRéservations(listeRéservationOTD)
     }
 
     override fun traiterRéservationCliqué( index : Int ) {

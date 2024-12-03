@@ -4,10 +4,12 @@ interface ContratVuePrésentateurBienvenue {
     interface IBienvenueVue {
         fun redirigerAListeReservation()
         fun redirigerARechercherUnVol()
+        fun afficherMessageErreur()
     }
 
     interface IBienvenuePrésentateur {
         fun traiterDemandeRedirectionListeReservations()
         fun traiterDemandeRedirectionRechercherUnVol()
+        fun traiterDémarage()
     }
 }

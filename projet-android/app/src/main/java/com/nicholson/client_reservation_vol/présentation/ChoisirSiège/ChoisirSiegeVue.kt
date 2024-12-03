@@ -39,16 +39,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         super.onViewCreated( vue, savedInstanceState )
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         textViewClasse = vue.findViewById( R.id.textViewClasse )
-        for ( i in 0..23 ){
-            val imageViewSiège : ImageView = vue
-                .findViewById(
-                    resources
-                        .getIdentifier("imageViewSiège"+(i+1),
-                            "id",requireContext().packageName)
-                )
-            présentateur?.vérifierStatutSiège( imageViewSiège.id,
-                imageViewSiège.contentDescription.toString() )
-        }
+        présentateur?.traiterDémarage()
         btnConfirmerRéservation = vue.findViewById( R.id.btnConfirmerRéservation )
         btnConfirmerRéservation.setOnClickListener {
             présentateur?.traiterConfirmerRéservation()
@@ -64,8 +55,6 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
 
         navController = vue.findNavController()
-
-        présentateur?.traiterDémarage()
     }
 
     override fun miseEnPlace( nomVilleDépart : String,
@@ -78,6 +67,21 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         Glide.with( requireContext() )
             .load( urlPhoto )
             .into( imageViewVillechoisirInformation )
+    }
+
+    override fun miseEnPlaceSièges() {
+        for ( i in 0..23 ){
+            val imageViewSiège : ImageView? = view
+                ?.findViewById(
+                    resources
+                        .getIdentifier("imageViewSiège"+(i+1),
+                            "id",requireContext().packageName)
+                )
+            if ( imageViewSiège != null ){
+                présentateur?.vérifierStatutSiège( imageViewSiège.id,
+                    imageViewSiège.contentDescription.toString() )
+            }
+        }
     }
 
     override fun miseÀjourSiègeCliquéVersSélectionnée(id : Int ) {
@@ -115,6 +119,10 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
 
     override fun redirigerVersMesRéservation() {
         navController.navigate( R.id.action_choisirSiegeVue_vers_listeRéservationsVue )
+    }
+
+    override fun redirigerVersChoisirSiegeRetour() {
+        navController.navigate( R.id.action_choisirSiegeVue_self )
     }
 
 }

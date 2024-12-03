@@ -1,8 +1,6 @@
 package com.nicholson.client_reservation_vol
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,14 +9,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
+import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
+import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesAeroportHttp
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
+import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import java.util.Locale
 
 class  MainActivity : AppCompatActivity() {
-
-    lateinit var navController: NavController
-    lateinit var buttonMesRéservationNav : Button
-    lateinit var floatingButtonHomeNav : FloatingActionButton
-    lateinit var buttonPréfrérencesNav : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,48 +30,12 @@ class  MainActivity : AppCompatActivity() {
             insets
         }
 
-        val navHostFragment = supportFragmentManager
-            .findFragmentById( R.id.fragmentContainerView ) as NavHostFragment
-        navController = navHostFragment.navController
-        buttonMesRéservationNav = findViewById( R.id.buttonMesVoyagesNav )
-        floatingButtonHomeNav  = findViewById( R.id.floatingButtonHomeNav )
-        buttonPréfrérencesNav = findViewById( R.id.buttonPréférencesNav )
+        // Initialize la sourceDeDonnées
+        val modèle = Modèle.obtenirInstance()
+        val sourceDeDonnéesHistorique = SourceDeDonnéesLocalImpl( applicationContext )
+        modèle.initialiserSourceDeDonnées( sourceDeDonnéesHistorique )
 
-        miseEnPlaceDeLaBarreDeNavigation()
-    }
-
-
-
-
-    private fun miseEnPlaceDeLaBarreDeNavigation(){
-        val navOptions = NavOptions.Builder()
-            .setLaunchSingleTop( true )
-            .setEnterAnim( com.google.android.material.R.anim.abc_fade_in )
-            .setExitAnim( com.google.android.material.R.anim.abc_fade_out )
-            .build()
-
-        buttonMesRéservationNav.setOnClickListener {
-            navController.navigate(
-                resId = R.id.listeRéservationsVue,
-                args = null,
-                navOptions = navOptions
-            )
-        }
-
-        floatingButtonHomeNav.setOnClickListener {
-            navController.navigate(
-                resId = R.id.bienvenueVue,
-                args = null,
-                navOptions = navOptions
-            )
-        }
-
-        buttonPréfrérencesNav.setOnClickListener {
-            navController.navigate(
-                resId = R.id.historiqueRechercheVue,
-                args = null,
-                navOptions = navOptions
-            )
-        }
+        RechercherVol.sourceDeDonnéesVol = SourceDeDonnéesVolsHttp( getString( R.string.api_url ) )
+        ObtenirAéroport.sourceDeDonnées = SourceDeDonnéesAeroportHttp( getString( R.string.api_url ) )
     }
 }

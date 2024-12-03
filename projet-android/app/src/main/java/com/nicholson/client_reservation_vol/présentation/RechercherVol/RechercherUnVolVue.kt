@@ -11,13 +11,16 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.google.android.material.textfield.TextInputEditText
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
+import com.nicholson.client_reservation_vol.présentation.RechercherVol.ContractRechercherVol.*
+import java.time.format.DateTimeFormatter
 
-class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
+class RechercherUnVolVue : Fragment(), IRechercheVolVue {
     private lateinit var choisirDate: EditText
     private lateinit var calendrier: Calendar
     private lateinit var datePickerDialog: DatePickerDialog
@@ -25,11 +28,12 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     private lateinit var btnAllerSimple: Button
     private lateinit var choisirDateRetour: EditText
     private lateinit var btnRechercher : Button
-    private lateinit var nbrPassangers:EditText
     private lateinit var navController: NavController
-    private val présentateur = RechercherVolPresentateur()
     private lateinit var choisirVilleDe: AutoCompleteTextView
     private lateinit var choisirVilleVers: AutoCompleteTextView
+    private lateinit var layoutBarChargement : ConstraintLayout
+    private lateinit var présentateur : IRechercheVolVuePrésentateur
+    private var estAllerSimple: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +54,15 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         choisirVilleDe = view.findViewById(R.id.ChosirVilleDe)
         choisirVilleVers = view.findViewById(R.id.ChosirVilleVers)
         btnRechercher = view.findViewById(R.id.btnRechercher)
+        layoutBarChargement = view.findViewById(R.id.barDeChargement)
 
         // Disable pour l'input pour date
         choisirDate.isFocusable = false
         choisirDate.isFocusableInTouchMode = false
         choisirDateRetour.isFocusable = false
         choisirDateRetour.isFocusableInTouchMode = false
+
+        présentateur = RechercherVolPresentateur()
 
         présentateur.attacherVue(this)
         présentateur.obtenirListeVilles()
@@ -73,7 +80,9 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             btnAllerEtRetourn.setBackgroundColor(resources.getColor(R.color.couleur_btn_typeVol, null))
             // Disable le EditText pour date selection
             choisirDateRetour.isEnabled = false
-            choisirDateRetour.requestFocus()
+            choisirDateRetour.setText("")
+            choisirDateRetour.clearFocus()
+            estAllerSimple = true
         }
 
         // Set OnClickListener pour "Aller-et-Retourn" button
@@ -84,6 +93,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
             // Enable le EditText pour date selection
             choisirDateRetour.isEnabled = true
             choisirDateRetour.requestFocus()
+            estAllerSimple = false
         }
         choisirDateRetour.setOnClickListener {
             afficherDatePicker(choisirDateRetour) //afficher le calendrier
@@ -92,26 +102,28 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
         btnRechercher.setOnClickListener {
            présentateur.traiterActionRecherche()
         }
+
         return view
     }
     override fun redirigerVersListeVols() {
         navController.navigate(R.id.action_rechercherUnVolVue_vers_listeDeVolsVue)
+
     }
 
-    //New funtion
+
     override fun obtenirInfoRecherche(){
         présentateur.traiterInfoRecherche(
             choisirVilleDe.text.toString(),
             choisirVilleVers.text.toString(),
             choisirDate.text.toString(),
-            choisirDateRetour.text.toString(),
-            1.toString())
+            choisirDateRetour.text.toString()
+        )
     }
-
 
     override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vue, savedInstanceState)
         navController = Navigation.findNavController(vue)
+        présentateur.traiterObtenirHistorique()
     }
 
     // Fonction pour afficher le calendrier
@@ -122,7 +134,9 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
 
         datePickerDialog =
             DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-                val dateSelectione = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                val dateSelectione = String.format("%02d", selectedDay) +
+                        "/${String.format("%02d", selectedMonth + 1)}" +
+                        "/$selectedYear"
                 editText.setText(dateSelectione)
             }, year, month, day)
         datePickerDialog.show()
@@ -130,6 +144,7 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
 
     // method pour aficher la liste de villes avec code aerport dans les dropdowns
     override fun afficherListeVilles(aéroports: List<String>) {
+        layoutBarChargement.visibility = View.GONE
         val dropDownDe=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
         val dropDownVers=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
 
@@ -152,4 +167,22 @@ class RechercherUnVolVue : Fragment(), ContractRechercherVol.IRechercheVolVue {
     override fun afficherToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
+    override fun afficherHistorique(listeDeHistorique: HistoriqueListItemOTD) {
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            choisirVilleDe.setText("${listeDeHistorique.villeDe} (${listeDeHistorique.aeroportDe})")
+            choisirVilleVers.setText("${listeDeHistorique.villeVers} (${listeDeHistorique.aeroportVers})")
+            choisirDate.setText(listeDeHistorique.dateDepart.format(formatter))
+            choisirDateRetour.setText(listeDeHistorique.dateRetour?.format(formatter) ?: ""
+        )
+    }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate( R.id.action_rechercherUnVolVue_vers_bienvenueVue )
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
+    }
+
 }

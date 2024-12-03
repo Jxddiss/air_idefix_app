@@ -30,8 +30,13 @@
         android:id="@+id/historiqueRechercheVue"
         android:name="com.nicholson.client_reservation_vol.présentation.RechercheHistorique.HistoriqueRechercheVue"
         android:label="fragment_historique_recherche_vue"
-        tools:layout="@layout/fragment_historique_recherche_vue" />
-
+        tools:layout="@layout/fragment_historique_recherche_vue" >
+        <action
+            android:id="@+id/action_historiqueRechercheVue_to_rechercherUnVolVue"
+            app:destination="@id/rechercherUnVolVue"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/rechercherUnVolVue"
         android:name="com.nicholson.client_reservation_vol.présentation.RechercherVol.RechercherUnVolVue"
@@ -45,6 +50,10 @@
         <action
             android:id="@+id/action_rechercherUnVolVue_to_historiqueRechercheVue"
             app:destination="@id/historiqueRechercheVue" />
+        <action
+            android:id="@+id/action_rechercherUnVolVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
+
     </fragment>
     <fragment
         android:id="@+id/listeDeVolsVue"
@@ -107,6 +116,12 @@
         <action
             android:id="@+id/action_choisirSiegeVue_vers_listeRéservationsVue"
             app:destination="@id/listeRéservationsVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_self"
+            app:destination="@id/choisirSiegeVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"
@@ -127,5 +142,8 @@
             app:destination="@id/choisirInfoVue"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_choisirClasseVue_vers_listeDeVolsVue"
+            app:destination="@id/listeDeVolsVue" />
     </fragment>
 </navigation>

@@ -767,56 +767,12 @@ class SourceDonnéesFictive : SourceDeDonnées {
             )
         }
 
-        val listHistorique = mutableListOf(
-            Historique(
-                villeDe="Montreal",
-                villeVers="Cancun",
-                aeroportDe = "YUL",
-                aeroportVers = "BEN",
-                dateDepart = LocalDate.of(2024, 11, 15),
-                dateRetour = LocalDate.of(2024, 11, 22),
-                nbrPassangers = 1
-
-            ),
-            Historique(
-                villeDe = "Toronto",
-                villeVers = "Paris",
-                aeroportDe = "YYZ",
-                aeroportVers = "CDG",
-                dateDepart = LocalDate.of(2024, 11, 10),
-                dateRetour = LocalDate.of(2024, 11, 17),
-                nbrPassangers = 1
-            ),
-            Historique(
-                villeDe = "Toronto",
-                villeVers = "Paris",
-                aeroportDe = "YYZ",
-                aeroportVers = "CDG",
-                dateDepart = LocalDate.of(2025, 1, 10),
-                dateRetour = LocalDate.of(2025, 1, 17),
-                nbrPassangers = 2
-            ),
-        )
-
-
-
     }
 
-    override fun obtenirListeVol(): List<Vol> = listVol.sortedBy { it.dateDepart }
-
-    override fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> =
-        listVol.filter {
-            it.dateDepart >= filtre.dateDébut && it.dateDepart < filtre.dateDébut.plusDays(30)
-                    && it.aeroportDebut.code == filtre.codeAéroportDébut
-                    && it.aeroportFin.code == filtre.codeAéroportFin
-        }.sortedBy { it.dateDepart }
-
-
-    override fun obtenirVolParId(id: Int): Vol =
-        listVol.single {
+    fun obtenirVolParId(id: Int): Vol? =
+        listVol.singleOrNull {
             it.id == id
         }
-
 
     override fun obtenirListeRéservation(): MutableList<Réservation> {
         return listeRéservation
@@ -833,7 +789,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
         réservation.sièges.forEach {
             it.idRéservation = réservation.id
             it.idVol = réservation.idVol
-            obtenirVolParId( réservation.idVol ).sièges.add( it )
+            obtenirVolParId( réservation.idVol )?.sièges?.add( it )
         }
         listeRéservation.add( réservation )
     }
@@ -847,14 +803,11 @@ class SourceDonnéesFictive : SourceDeDonnées {
         return listClients
     }
 
-    override fun obtenirListHistorique():List<Historique> = listHistorique
+    override fun obtenirSiegeParId(id: Int): Siège =
+        listSièges.single {
+            it.id == id
+        }
 
-    override fun ajouterHistorique(historique: Historique) {
-        listHistorique.add(historique)
-    }
 
-    override fun obtenirListAéroports(): List<Aeroport> {
-        return  listAeoroport
-    }
 }
 

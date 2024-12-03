@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:scrollbars="horizontal"
+    tools:context=".présentation.ListeReservation.ListeRéservationsVue">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="257dp"
+            android:layout_height="79dp"
+            android:fontFamily="@font/lexend"
+            android:gravity="center"
+            android:text="@string/mes_voyages"
+            android:textColor="@color/couleur_principale"
+            android:textSize="34sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/mes_voyages" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8F8F8F"
+        app:layout_constraintBottom_toTopOf="@id/guideline_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerVoyages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:longClickable="false"
+        android:nestedScrollingEnabled="false"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        tools:listitem="@layout/list_reservations" />
+
+    <Button
+        android:id="@+id/btnRechercherFromVoyages"
+        android:layout_width="236dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/couleur_btn_jaune"
+        android:drawableRight="@drawable/avion_btn"
+        android:fontFamily="@font/lexend"
+        android:text="@string/rechercher"
+        android:textColor="@color/couleur_principale"
+        android:textSize="16sp"
+        app:cornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_bottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

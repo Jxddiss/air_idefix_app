@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutBtnchange"
-        android:layout_width="438dp"
+        android:layout_width="match_parent"
         android:layout_height="104dp"
         android:background="@color/white"
         android:elevation="15dp"
@@ -39,14 +39,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="370dp"
-        android:layout_height="354dp"
-        android:layout_marginTop="48dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toTopOf="@id/guideline_img_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_img_bottom">
 
         <ImageView
             android:id="@+id/imageViewVilleChoisirInformation"
@@ -55,189 +54,54 @@
             android:background="@drawable/fond_bord_arrondis"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/textViewInfoVoyage"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutImgDestination"
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="match_parent"
             android:background="@drawable/fond_transparent_noir_top"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:text="Vol De Montréal à Cancun"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:foregroundTint="@color/couleur_principale">
 
+            <TextView
+                android:id="@+id/textViewInfoVoyage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/lexend"
+                android:text="@string/vol_de_montr_al_cancun"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_text_nom_destination_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline_text_nom_destination" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_nom_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_text_nom_destination_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutbottom"
-        android:layout_width="370dp"
-        android:layout_height="686dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutNumPasseport"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutAdresse">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/num_ro_de_passeport"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
-
-                <EditText
-                    android:id="@+id/ChoisirNumPasseport"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutAdresse"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTéléphone">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="Adresse"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
-
-                <EditText
-                    android:id="@+id/ChoisirAdresse"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:text=""
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutTéléphone"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/t_l_phone"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
-
-                <EditText
-                    android:id="@+id/ChoisirTéléphone"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:inputType="phone"
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutEmail"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDePrenom">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="Email"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
-
-                <EditText
-                    android:id="@+id/ChoisirEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutDePrenom"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDeNom">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/pr_nom"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
-
-                <EditText
-                    android:id="@+id/ChoisirPrenom"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintBottom_toTopOf="@id/guideline_contenu_bottom"
+        app:layout_constraintTop_toTopOf="@id/guideline_contenu_top">
 
         <TextView
             android:id="@+id/textView11"
@@ -246,45 +110,216 @@
             android:layout_marginTop="30dp"
             android:text="@string/information_passager"
             android:textColor="@color/couleur_principale"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutDeNom"
-            android:layout_width="354dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end_inputs"
+            app:layout_constraintStart_toEndOf="@id/guideline_start_inputs"
+            app:layout_constraintTop_toBottomOf="@id/guideline_top_inputs"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/nom"
-                android:textColorHint="@color/couleur_principale"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.057">
+                android:orientation="vertical"
+                android:overScrollMode="always">
 
-                <EditText
-                    android:id="@+id/ChoisirNom"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:fontFamily="@font/lexend"
-                    android:textColor="@color/couleur_principale" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pr_nom"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirPrenom"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nom"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirNom"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/num_ro_de_passeport"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirNumPasseport"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/t_l_phone"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirTéléphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:inputType="phone"
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Adresse"
+                    android:textColorHint="@color/couleur_principale">
+
+                    <EditText
+                        android:id="@+id/ChoisirAdresse"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:fontFamily="@font/lexend"
+                        android:text=""
+                        android:textColor="@color/couleur_principale" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start_inputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end_inputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top_inputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_contenu_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_contenu_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

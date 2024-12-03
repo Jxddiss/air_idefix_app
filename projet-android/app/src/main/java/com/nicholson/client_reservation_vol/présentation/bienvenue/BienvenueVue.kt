@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
 
 class BienvenueVue : Fragment(), IBienvenueVue {
 
     var présentateur : IBienvenuePrésentateur? = BienvenuePrésentateur( this )
-    lateinit var btnGoMesVoyages : ImageButton
-    lateinit var btnGoRechercherUnVol : ImageButton
+    lateinit var btnGoMesVoyages : ConstraintLayout
+    lateinit var btnGoRechercherUnVol : ConstraintLayout
     lateinit var navController : NavController
 
     override fun onCreate( savedInstanceState: Bundle? ) {
@@ -35,6 +37,7 @@ class BienvenueVue : Fragment(), IBienvenueVue {
         navController = Navigation.findNavController( vue )
         attacherÉcouteurRedirectionListeReservations( vue )
         attacherÉcouteurRedirectionRechercherUnVol( vue )
+        présentateur?.traiterDémarage()
     }
 
     override fun redirigerAListeReservation() {
@@ -45,15 +48,24 @@ class BienvenueVue : Fragment(), IBienvenueVue {
         navController.navigate( R.id.action_bienvenueVue_vers_rechercherUnVolVue )
     }
 
+    override fun afficherMessageErreur() {
+        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
+        dialogErreur.setMessage( getString( R.string.une_erreur_r_seau_c_est_produite ) )
+        dialogErreur.setPositiveButton( "OK" ) { dialog, _ ->
+            dialog.dismiss()
+        }
+        dialogErreur.show()
+    }
+
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){
-        btnGoMesVoyages = vue.findViewById( R.id.imageButtonMesVoyages )
+        btnGoMesVoyages = vue.findViewById( R.id.constraintLayoutBtnMesVoyages )
         btnGoMesVoyages.setOnClickListener {
             présentateur?.traiterDemandeRedirectionListeReservations()
         }
     }
 
     private fun attacherÉcouteurRedirectionRechercherUnVol( vue : View ){
-        btnGoRechercherUnVol = vue.findViewById( R.id.imageButtonRechercheVols )
+        btnGoRechercherUnVol = vue.findViewById( R.id.constraintLayoutBtnRechercheVols )
         btnGoRechercherUnVol.setOnClickListener {
             présentateur?.traiterDemandeRedirectionRechercherUnVol()
         }

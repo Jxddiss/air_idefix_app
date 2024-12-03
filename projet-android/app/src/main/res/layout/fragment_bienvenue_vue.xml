@@ -60,6 +60,7 @@
                 android:layout_height="0dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/app_logo"
+                android:contentDescription="@string/logo"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="@id/guideline_logo_bienvenue_start"
@@ -104,10 +105,10 @@
         android:layout_height="0dp"
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="@id/guideline_start_start"
         app:layout_constraintEnd_toEndOf="@id/guideline_start_end"
-        app:layout_constraintTop_toTopOf="@id/guideline_button_top">
+        app:layout_constraintTop_toTopOf="@id/guideline_button_top"
+        app:layout_constraintBottom_toTopOf="@id/guideline_button_bottom">
 
         <TextView
             android:id="@+id/textViewMesVoyages"
@@ -144,10 +145,10 @@
         android:layout_height="0dp"
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="@id/guideline_end_start"
         app:layout_constraintEnd_toEndOf="@id/guideline_end_end"
-        app:layout_constraintTop_toTopOf="@id/guideline_button_top">
+        app:layout_constraintTop_toTopOf="@id/guideline_button_top"
+        app:layout_constraintBottom_toTopOf="@id/guideline_button_bottom">
 
         <TextView
             android:id="@+id/textViewRechercheVols"
@@ -226,6 +227,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.71"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_button_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

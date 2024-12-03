@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -14,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
-import com.nicholson.client_reservation_vol.domaine.entité.Ville
-import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
 
@@ -26,6 +25,7 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     lateinit var imageViewDestination : ImageView
     lateinit var textViewNomDestination : TextView
     lateinit var navController: NavController
+    lateinit var barDeChargement : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +45,15 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         imageViewDestination = vue.findViewById( R.id.imgDestinationListeVols )
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         recyclerVol = vue.findViewById( R.id.RecyclerVols )
-        présentateur?.traiterObtenirVols()
+        barDeChargement = vue.findViewById( R.id.barDeChargement )
+        présentateur?.traiterDémarage()
         navController = Navigation.findNavController( vue )
     }
 
 
     override fun afficherVols( listeDeVols : List<VolListItemOTD> ) {
+        barDeChargement.visibility = View.GONE
+        recyclerVol.visibility = View.VISIBLE
         ajouterAdaptateurVolAuRecycler( listeDeVols )
     }
 
@@ -62,6 +65,9 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         recyclerVol.layoutManager = LinearLayoutManager( requireContext() )
         recyclerVol.itemAnimator = DefaultItemAnimator()
         recyclerVol.adapter = adaptateur
+        recyclerVol.post {
+            adaptateur.listeInitialisé = true
+        }
     }
 
     override fun afficherInfoDestination( nomVille : String, urlImage : String ){
@@ -77,5 +83,16 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
 
     override fun redirigerVersChoixClasse() {
         navController.navigate( R.id.action_listeDeVolsVue_vers_choisirClasseVue )
+    }
+
+    override fun montrerChargement() {
+        recyclerVol.visibility = View.GONE
+        barDeChargement.visibility = View.VISIBLE
+        présentateur?.traiterObtenirVols()
+    }
+
+    override fun montrerErreurRéseau() {
+        barDeChargement.visibility = View.GONE
+        textViewNomDestination.text = getString(R.string.une_erreur_r_seau_c_est_produite)
     }
 }
