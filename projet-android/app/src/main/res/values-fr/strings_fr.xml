@@ -64,6 +64,8 @@
     <string name="vol_aller_retour">Vol aller-retour de %1$s à %2$s</string>
     <string name="logo">Logo</string>
     <string name="r_server">Réserver</string>
+    <string name="une_erreur_r_seau_c_est_produite">Une erreur réseau c\'est produite</string>
+    <string name="mon_historique">Mon historique</string>
 
 
 </resources>

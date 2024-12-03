@@ -48,7 +48,7 @@
             android:layout_height="0dp"
             android:backgroundTint="@color/couleur_principale"
             android:drawableTop="@drawable/history_24px"
-            android:text="Mon hisotrique"
+            android:text="@string/mon_historique"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

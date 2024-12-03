@@ -1,5 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
@@ -23,43 +24,49 @@ class ListeDeVolsPrésentateur (
 
     override fun traiterObtenirVols() {
         job = CoroutineScope( iocontext ).launch {
-            var listeDeVols : List<Vol> = listOf()
-            if(modèle.aller) {
-                modèle.listeVolAller = modèle.obtenirListeVolAllerParFiltre()
-                listeDeVols = modèle.listeVolAller
-            }
-            else{
-                modèle.listeVolRetour = modèle.obtenirListeVolRetourParFiltre()
-                listeDeVols = modèle.listeVolRetour
-            }
-            val listeVolsOTD = listeDeVols.map {
-                VolListItemOTD(
-                    dateDépart = it.dateDepart.format( formatterDate ),
-                    heureDépart = it.dateDepart.format( formatterHeure ),
-                    heureArrivée = it.dateArrivee.format( formatterHeure ),
-                    prixÉconomique = String.format( "%.2f$", it.prixParClasse["Économique"] ),
-                    nomVilleDépart = it.aeroportDebut.ville.nom,
-                    nomVilleArrivée = it.aeroportFin.ville.nom,
-                    codeAéroportDépart = it.aeroportDebut.code,
-                    codeAéroportArrivée = it.aeroportFin.code,
-                    durée = it.durée.toComponents {
-                            hrs, min, _, _ ->
-                        "${hrs}h${min}"
+            try {
+                var listeDeVols : List<Vol> = listOf()
+                if(modèle.aller) {
+                    modèle.listeVolAller = modèle.obtenirListeVolAllerParFiltre()
+                    listeDeVols = modèle.listeVolAller
+                }
+                else{
+                    modèle.listeVolRetour = modèle.obtenirListeVolRetourParFiltre()
+                    listeDeVols = modèle.listeVolRetour
+                }
+                val listeVolsOTD = listeDeVols.map {
+                    VolListItemOTD(
+                        dateDépart = it.dateDepart.format( formatterDate ),
+                        heureDépart = it.dateDepart.format( formatterHeure ),
+                        heureArrivée = it.dateArrivee.format( formatterHeure ),
+                        prixÉconomique = String.format( "%.2f$", it.prixParClasse["Économique"] ),
+                        nomVilleDépart = it.aeroportDebut.ville.nom,
+                        nomVilleArrivée = it.aeroportFin.ville.nom,
+                        codeAéroportDépart = it.aeroportDebut.code,
+                        codeAéroportArrivée = it.aeroportFin.code,
+                        durée = it.durée.toComponents {
+                                hrs, min, _, _ ->
+                            "${hrs}h${min}"
+                        }
+                    )
+                }
+                if ( listeDeVols.isNotEmpty() ){
+                    val villeDestination =  listeDeVols[0].aeroportFin.ville
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
                     }
-                )
-            }
-            if ( listeDeVols.isNotEmpty() ){
-                val villeDestination =  listeDeVols[0].aeroportFin.ville
-                CoroutineScope( Dispatchers.Main ).launch {
-                    vue.afficherInfoDestination( villeDestination.nom, villeDestination.url_photo )
+                }else{
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.afficherMessagePasDeVol()
+                    }
                 }
-            }else{
                 CoroutineScope( Dispatchers.Main ).launch {
-                    vue.afficherMessagePasDeVol()
+                    vue.afficherVols( listeVolsOTD )
                 }
-            }
-            CoroutineScope( Dispatchers.Main ).launch {
-                vue.afficherVols( listeVolsOTD )
+            } catch ( ex : SourceDeDonnéesException ){
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.montrerErreurRéseau()
+                }
             }
         }
     }

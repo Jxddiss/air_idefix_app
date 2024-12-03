@@ -65,6 +65,8 @@
     <string name="vol_aller_retour">Vuelo de regreso de %1$s a %2$s</string>
     <string name="logo">Logo</string>
     <string name="r_server">Reserva</string>
+    <string name="une_erreur_r_seau_c_est_produite">Se ha producido un error de red</string>
+    <string name="mon_historique">Mi historia</string>
 
 
 </resources>

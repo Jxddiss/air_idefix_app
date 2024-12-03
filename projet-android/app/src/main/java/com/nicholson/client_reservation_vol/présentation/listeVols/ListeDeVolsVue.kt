@@ -46,7 +46,7 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         textViewNomDestination = vue.findViewById( R.id.textViewNomDestination )
         recyclerVol = vue.findViewById( R.id.RecyclerVols )
         barDeChargement = vue.findViewById( R.id.barDeChargement )
-        présentateur?.traiterObtenirVols()
+        présentateur?.traiterDémarage()
         navController = Navigation.findNavController( vue )
     }
 
@@ -88,5 +88,11 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     override fun montrerChargement() {
         recyclerVol.visibility = View.GONE
         barDeChargement.visibility = View.VISIBLE
+        présentateur?.traiterObtenirVols()
+    }
+
+    override fun montrerErreurRéseau() {
+        barDeChargement.visibility = View.GONE
+        textViewNomDestination.text = getString(R.string.une_erreur_r_seau_c_est_produite)
     }
 }

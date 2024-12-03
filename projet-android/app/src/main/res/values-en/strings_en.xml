@@ -66,6 +66,8 @@
     <string name="vol_aller_retour">Round trip from %1$s à %2$s</string>
     <string name="logo">Logo</string>
     <string name="r_server">Book</string>
+    <string name="une_erreur_r_seau_c_est_produite">A network error occured</string>
+    <string name="mon_historique">My History</string>
 
 
 </resources>
