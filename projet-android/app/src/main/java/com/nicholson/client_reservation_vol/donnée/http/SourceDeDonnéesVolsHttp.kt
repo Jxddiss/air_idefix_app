@@ -12,11 +12,9 @@ import okio.IOException
 class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
     override suspend fun obtenirListeVolParFiltre(filtre: FiltreRechercheVol): List<Vol> {
-        var urlRequête = "$urlApi/vols?dateDebut=${filtre.dateDébut}" +
+        val urlRequête = "$urlApi/vols?dateDebut=${filtre.dateDébut}" +
                 "&&aeroportDebut=${filtre.codeAéroportDébut}" +
                 "&&aeroportFin=${filtre.codeAéroportFin}"
-
-        urlRequête = "$urlApi/vols"
 
         try {
             val client = OkHttpClient()
