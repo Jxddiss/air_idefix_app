@@ -9,7 +9,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
+import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesAeroportHttp
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
 import java.util.Locale
@@ -30,5 +34,8 @@ class  MainActivity : AppCompatActivity() {
         val modèle = Modèle.obtenirInstance()
         val sourceDeDonnéesHistorique = SourceDeDonnéesLocalImpl( applicationContext )
         modèle.initialiserSourceDeDonnées( sourceDeDonnéesHistorique )
+
+        RechercherVol.sourceDeDonnéesVol = SourceDeDonnéesVolsHttp( getString( R.string.api_url ) )
+        ObtenirAéroport.sourceDeDonnées = SourceDeDonnéesAeroportHttp( getString( R.string.api_url ) )
     }
 }
