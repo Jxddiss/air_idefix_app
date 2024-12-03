@@ -63,6 +63,6 @@
     <string name="logo">Logo</string>
     <string name="r_server">Réserver</string>
     <string name="vol_aller_retour">Vol aller-retour de %1$s à %2$s</string>
-    <string name="api_url" translatable="false">http://idefix.dti.crosemont.quebec:9039/</string>
+    <string name="api_url" translatable="false">http://10.0.2.2:8080</string>
 
 </resources>
