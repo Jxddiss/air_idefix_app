@@ -35,7 +35,6 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/lexend"
-                android:text="@string/bienvenue"
                 android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintDimensionRatio="2:1"
@@ -56,6 +55,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.7" />
+
+            <ProgressBar
+                android:id="@+id/barDeChargement"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

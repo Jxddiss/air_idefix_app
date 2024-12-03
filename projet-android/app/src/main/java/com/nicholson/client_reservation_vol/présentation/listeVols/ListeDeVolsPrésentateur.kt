@@ -74,4 +74,8 @@ class ListeDeVolsPrésentateur (
         modèle.indiceVolCourrant = index
         vue.redirigerVersChoixClasse()
     }
+
+    override fun traiterDémarage() {
+        vue.montrerChargement()
+    }
 }
