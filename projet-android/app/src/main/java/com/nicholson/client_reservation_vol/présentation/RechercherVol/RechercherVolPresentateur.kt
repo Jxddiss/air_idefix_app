@@ -2,6 +2,7 @@ package com.nicholson.client_reservation_vol.présentation.RechercherVol
 
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
@@ -32,10 +33,19 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
     }
 
     override fun obtenirListeVilles() {
+        vue?.montrerChargement()
+
         job = CoroutineScope( iocontext ).launch {
-            val aéroportsAvecCodes = modèle.obtenirListeAéroports().map { "${it.ville.nom} (${it.code})" }
-            CoroutineScope( Dispatchers.Main ).launch {
-                vue?.afficherListeVilles( aéroportsAvecCodes )
+            try {
+                val aéroportsAvecCodes = modèle.obtenirListeAéroports().map { "${it.ville.nom} (${it.code})" }
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue?.afficherListeVilles( aéroportsAvecCodes )
+                }
+            }catch ( ex : SourceDeDonnéesException ) {
+                modèle.messageErreurRéseauExistant = true
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue?.redirigerBienvenueErreur()
+                }
             }
         }
     }

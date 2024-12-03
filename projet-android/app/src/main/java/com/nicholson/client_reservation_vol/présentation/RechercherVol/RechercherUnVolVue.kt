@@ -11,6 +11,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -30,6 +31,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
     private lateinit var navController: NavController
     private lateinit var choisirVilleDe: AutoCompleteTextView
     private lateinit var choisirVilleVers: AutoCompleteTextView
+    private lateinit var layoutBarChargement : ConstraintLayout
     private lateinit var présentateur : IRechercheVolVuePrésentateur
     private var estAllerSimple: Boolean = true
 
@@ -52,6 +54,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
         choisirVilleDe = view.findViewById(R.id.ChosirVilleDe)
         choisirVilleVers = view.findViewById(R.id.ChosirVilleVers)
         btnRechercher = view.findViewById(R.id.btnRechercher)
+        layoutBarChargement = view.findViewById(R.id.barDeChargement)
 
         // Disable pour l'input pour date
         choisirDate.isFocusable = false
@@ -141,6 +144,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
 
     // method pour aficher la liste de villes avec code aerport dans les dropdowns
     override fun afficherListeVilles(aéroports: List<String>) {
+        layoutBarChargement.visibility = View.GONE
         val dropDownDe=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
         val dropDownVers=ArrayAdapter(requireContext(),R.layout.liste_villes,aéroports)
 
@@ -171,6 +175,14 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
             choisirDate.setText(listeDeHistorique.dateDepart.format(formatter))
             choisirDateRetour.setText(listeDeHistorique.dateRetour?.format(formatter) ?: ""
         )
+    }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate( R.id.action_rechercherUnVolVue_vers_bienvenueVue )
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
     }
 
 }

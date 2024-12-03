@@ -13,4 +13,10 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBien
         modèle.volRetourExiste = false
         vue.redirigerARechercherUnVol()
     }
+
+    override fun traiterDémarage() {
+        if ( modèle.messageErreurRéseauExistant ) {
+            vue.afficherMessageErreur()
+        }
+    }
 }

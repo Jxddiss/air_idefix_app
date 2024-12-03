@@ -9,6 +9,8 @@ interface ContractRechercherVol {
         fun obtenirInfoRecherche()
         fun afficherToast(message: String)
         fun afficherHistorique(listeDeHistorique : HistoriqueListItemOTD )
+        fun redirigerBienvenueErreur()
+        fun montrerChargement()
     }
 
     interface IRechercheVolVuePrésentateur {

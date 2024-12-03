@@ -41,6 +41,7 @@ class Modèle private constructor() {
     var indiceRéservationCourrante: Int = 0
     var indiceClientCourrant: Int = 0
     var pageCourrante : String? = null
+    var messageErreurRéseauExistant = false
 
     // Setter pour sourceDeDonnées
     fun initialiserSourceDeDonnées( sourceHistorique : ISourceDeDonnéesHistorique) {
@@ -112,9 +113,7 @@ class Modèle private constructor() {
 
     var listeHistorique: List<Historique> = listOf()
         get() {
-            if (field.isEmpty()) {
-                field = historiqueService?.obtenirListeHistorique() ?: listOf()
-            }
+            field = historiqueService?.obtenirListeHistorique() ?: listOf()
             return field
         }
 

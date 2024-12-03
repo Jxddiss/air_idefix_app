@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_rechercherUnVolVue_to_historiqueRechercheVue"
             app:destination="@id/historiqueRechercheVue" />
+        <action
+            android:id="@+id/action_rechercherUnVolVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
 
     </fragment>
     <fragment

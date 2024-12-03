@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
 
@@ -35,6 +36,7 @@ class BienvenueVue : Fragment(), IBienvenueVue {
         navController = Navigation.findNavController( vue )
         attacherÉcouteurRedirectionListeReservations( vue )
         attacherÉcouteurRedirectionRechercherUnVol( vue )
+        présentateur?.traiterDémarage()
     }
 
     override fun redirigerAListeReservation() {
@@ -43,6 +45,15 @@ class BienvenueVue : Fragment(), IBienvenueVue {
 
     override fun redirigerARechercherUnVol() {
         navController.navigate( R.id.action_bienvenueVue_vers_rechercherUnVolVue )
+    }
+
+    override fun afficherMessageErreur() {
+        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
+        dialogErreur.setMessage( getString( R.string.une_erreur_r_seau_c_est_produite ) )
+        dialogErreur.setPositiveButton( "OK" ) { dialog, _ ->
+            dialog.dismiss()
+        }
+        dialogErreur.show()
     }
 
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){
