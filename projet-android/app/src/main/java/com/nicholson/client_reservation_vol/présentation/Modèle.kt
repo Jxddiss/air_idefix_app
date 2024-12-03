@@ -7,10 +7,10 @@ import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
-import com.nicholson.client_reservation_vol.domaine.interacteur.AeroportService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
@@ -22,7 +22,6 @@ class Modèle private constructor() {
     private val clientService: ClientService = ClientService()
     private val réservationService: RéservationService = RéservationService()
     private var historiqueService: HistoriqueService? = null
-    private val aeroportService: AeroportService = AeroportService()
 
     companion object {
         @Volatile
@@ -293,8 +292,8 @@ class Modèle private constructor() {
         réservationService.ajouterRéservation(réservation)
     }
 
-    fun obtenirListeAéroports(): List<Aeroport> {
-        return aeroportService.obtenirListeAeroport()
+    suspend fun obtenirListeAéroports(): List<Aeroport> {
+        return ObtenirAéroport.obtenirListeAeroport()
     }
 
     fun créerHistorique( historique: Historique ) {
