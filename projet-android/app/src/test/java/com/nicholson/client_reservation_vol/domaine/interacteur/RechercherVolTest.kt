@@ -4,6 +4,7 @@ import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesVols
 import com.nicholson.client_reservation_vol.donnée.SourceDeDonnées
 import com.nicholson.client_reservation_vol.donnée.fictive.SourceDonnéesFictive
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
+import kotlinx.coroutines.test.runTest
 import kotlin.test.*
 import org.mockito.Mockito
 import java.time.LocalDateTime
@@ -18,7 +19,7 @@ class RechercherVolTest{
     }
 
     @Test
-    fun `Étant donnée une source de vols, lorsqu'on appel la méthode obtenirDétailVol de l'intéracteur RechercherVol avec l'id 1, on obtient le vol avec l'id 1 `(){
+    fun `Etant donnee une source de vols, lorsqu'on appel la méthode obtenirDétailVol de l'interacteur RechercherVol avec l'id 1, on obtient le vol avec l'id 1 `() = runTest {
         Mockito.`when`( mockSource.obtenirVolParId( 1 ) ).thenReturn( SourceDonnéesFictive.listVol.first { it.id == 1 } )
         val résultat_attendue = SourceDonnéesFictive.listVol.first { it.id == 1 }
 
@@ -29,7 +30,7 @@ class RechercherVolTest{
     }
 
     @Test
-    fun `Étant donnée un une source de vols, lorsqu'on appel la méthode rechercherVolParFiltre de l'intéracteur RechercherVol avec un filtre ayant la date d'aujourd'hui, le code d'aeroport de départ YUL et le code de l'aéroport d'arrivée CDG, on obtient les vols en départ de YUL vers CDG `(){
+    fun `Étant donnée un une source de vols, lorsqu'on rechercherVolParFiltre avec un filtre ayant la date d'aujourd'hui, le code d'aeroport YUL et le code CDG, on obtient les vols en départ de YUL vers CDG `()  = runTest {
         val filtre = FiltreRechercheVol(
             LocalDateTime.now(), "YUL", "CDG"
         )
