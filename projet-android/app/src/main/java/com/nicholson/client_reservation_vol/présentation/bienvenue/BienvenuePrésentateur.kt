@@ -16,6 +16,7 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBien
 
     override fun traiterDémarage() {
         if ( modèle.messageErreurRéseauExistant ) {
+            modèle.messageErreurRéseauExistant = false
             vue.afficherMessageErreur()
         }
     }
