@@ -1,6 +1,5 @@
 package com.nicholson.client_reservation_vol.donnée.http.décodeur
 
-import android.util.Log
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.MalformedJsonException
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport

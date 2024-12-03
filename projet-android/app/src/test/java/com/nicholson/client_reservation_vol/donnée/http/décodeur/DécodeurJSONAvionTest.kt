@@ -61,7 +61,7 @@ class DécodeurJSONAvionTest {
             {
                 "id": 42,
                 "type": "Commercial",
-                "extra": "ignored"
+                "extra": "ignoré"
             }
         """
         val résultat_attendu = Avion( 42, "Commercial" )
