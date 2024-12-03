@@ -57,8 +57,8 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
             if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() ){
                 CoroutineScope( Dispatchers.Main ).launch {
                     vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
-                    return@launch
                 }
+                return@launch
             }
 
 
