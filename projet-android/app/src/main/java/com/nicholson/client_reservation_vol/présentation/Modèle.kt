@@ -11,6 +11,7 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
@@ -238,8 +239,8 @@ class Modèle private constructor() {
         return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
     }
 
-    fun obtenirClientCourrant(): Client {
-        return listeClient[indiceClientCourrant]
+    suspend fun obtenirClientCourrant(): Client {
+        return ObtenirClient.obtenirClientCourrant()
     }
 
     fun ajouterClient(client: Client) {

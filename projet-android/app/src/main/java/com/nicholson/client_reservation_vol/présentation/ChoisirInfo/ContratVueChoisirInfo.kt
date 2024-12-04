@@ -5,7 +5,10 @@ import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 
 interface ContratVueChoisirInfo {
     interface IChoisirInfoVue {
-        fun miseEnPlace( nomVilleDépart : String, nomVilleArrivée: String, urlPhoto : String)
+        fun miseEnPlace( nomVilleDépart : String,
+                         nomVilleArrivée: String,
+                         urlPhoto : String,
+                         clientOTD: ClientOTD )
         fun obtenirInfoClient()
         fun redirigerAChoisirSiege()
         fun afficherMessageErreur(message: String)

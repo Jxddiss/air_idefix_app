@@ -22,10 +22,22 @@ class ChoisirInfoPresentateur(
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
             val vol = modele.getVolCourrantAller(modele.indiceVolAller)
+            val clientCourrant = modele.obtenirClientCourrant()
+            val clientOTD = ClientOTD(
+                nom = clientCourrant.nom,
+                prénom = clientCourrant.prénom,
+                adresse = clientCourrant.adresse,
+                numéroPasseport = clientCourrant.numéroPasseport,
+                email = clientCourrant.email ?: "",
+                téléphone = clientCourrant.numéroTéléphone ?: ""
+            )
 
             CoroutineScope( Dispatchers.Main ).launch {
                 vue.miseEnPlace( vol.aeroportDebut.ville.nom,
-                    vol.aeroportFin.ville.nom, vol.aeroportFin.ville.url_photo)
+                    vol.aeroportFin.ville.nom,
+                    vol.aeroportFin.ville.url_photo,
+                    clientOTD
+                )
             }
         }
     }
