@@ -119,6 +119,8 @@ class Modèle private constructor() {
             return field
         }
 
+    var listeAéroports : List<Aeroport> = listOf()
+
     suspend fun getVolCourrantAller(indice: Int): Vol {
         return RechercherVol.obtenirDétailVol(listeVolAller[indice].id)
     }
@@ -299,7 +301,10 @@ class Modèle private constructor() {
     }
 
     suspend fun obtenirListeAéroports(): List<Aeroport> {
-        return ObtenirAéroport.obtenirListeAeroport()
+        if ( listeAéroports.isEmpty() ){
+            listeAéroports = ObtenirAéroport.obtenirListeAeroport()
+        }
+        return listeAéroports
     }
 
     fun créerHistorique( historique: Historique ) {
