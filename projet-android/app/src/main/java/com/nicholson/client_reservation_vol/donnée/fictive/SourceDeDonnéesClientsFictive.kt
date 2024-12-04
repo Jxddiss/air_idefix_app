@@ -8,10 +8,6 @@ class SourceDeDonnéesClientsFictive : ISourceDeDonéesClient {
         SourceDonnéesFictive.listClients.add(client)
     }
 
-    override suspend fun obtenirListeClient(): MutableList<Client> {
-        return SourceDonnéesFictive.listClients
-    }
-
     override suspend fun obtenirClient( id : Int ): Client? {
         return SourceDonnéesFictive.listClients.firstOrNull {
             it.id == id
