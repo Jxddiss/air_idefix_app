@@ -8,7 +8,7 @@ import java.io.EOFException
 
 class DécodeurJSONAvion {
     companion object {
-        fun décodéAvion(reader: JsonReader) : Avion {
+        fun décoderAvion(reader: JsonReader) : Avion {
             var id = 0
             var type = ""
 

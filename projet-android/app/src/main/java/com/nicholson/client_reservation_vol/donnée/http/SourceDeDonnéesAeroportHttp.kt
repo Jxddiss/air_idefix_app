@@ -21,7 +21,7 @@ class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAer
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONAéroport.décodéListeAéroports( réponse.body!!.string() )
+                return DécodeurJSONAéroport.décoderListeAéroports( réponse.body!!.string() )
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }

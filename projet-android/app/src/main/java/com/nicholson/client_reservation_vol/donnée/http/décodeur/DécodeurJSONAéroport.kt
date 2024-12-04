@@ -5,21 +5,19 @@ import com.google.gson.stream.MalformedJsonException
 import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import java.io.EOFException
 import java.io.StringReader
 
 class DécodeurJSONAéroport {
     companion object {
-        fun décodéListeAéroports(json : String ) : List<Aeroport> {
+        fun décoderListeAéroports(json : String ) : List<Aeroport> {
             val reader = JsonReader( StringReader( json ) )
             val listAeroport = mutableListOf<Aeroport>()
-            CoroutineScope( Dispatchers.Main )
+
             try {
                 reader.beginArray()
                 while ( reader.hasNext() ) {
-                    listAeroport.add( décodéAeroport( reader ) )
+                    listAeroport.add( décoderAeroport( reader ) )
                 }
                 reader.endArray()
             } catch ( ex : EOFException) {
@@ -31,7 +29,7 @@ class DécodeurJSONAéroport {
             return listAeroport
         }
 
-        fun décodéAeroport(reader: JsonReader ) : Aeroport {
+        fun décoderAeroport(reader: JsonReader ) : Aeroport {
             var id = 0
             lateinit var code : String
             lateinit var nom : String
@@ -44,7 +42,7 @@ class DécodeurJSONAéroport {
                         "id" -> id = reader.nextInt()
                         "code" -> code = reader.nextString()
                         "nom" -> nom = reader.nextString()
-                        "ville" -> ville = DécodeurJSONVille.décodéVille( reader )
+                        "ville" -> ville = DécodeurJSONVille.décoderVille( reader )
                         else -> reader.skipValue()
                     }
                 }

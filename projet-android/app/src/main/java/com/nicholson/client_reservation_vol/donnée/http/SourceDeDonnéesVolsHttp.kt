@@ -25,7 +25,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décodéListeVols( réponse.body!!.string() )
+                return DécodeurJSONVol.décoderListeVols( réponse.body!!.string() )
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
@@ -46,7 +46,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décodéVol( réponse.body!!.string() )
+                return DécodeurJSONVol.décoderVol( réponse.body!!.string() )
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }

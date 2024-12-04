@@ -8,7 +8,7 @@ import java.io.EOFException
 
 class DécodeurJSONVille {
     companion object {
-        fun décodéVille(reader: JsonReader ) : Ville {
+        fun décoderVille(reader: JsonReader ) : Ville {
             var id = 0
             var nom = ""
             var pays = ""
