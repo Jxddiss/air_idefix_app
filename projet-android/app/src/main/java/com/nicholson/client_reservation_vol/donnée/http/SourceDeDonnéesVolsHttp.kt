@@ -5,7 +5,6 @@ import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesVols
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONVol
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
 
@@ -17,7 +16,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
                 "&&aeroportFin=${filtre.codeAéroportFin}"
 
         try {
-            val client = OkHttpClient()
+            val client = ClientHttp.obtenirInstance()
             val requête = Request.Builder()
                 .url( urlRequête )
                 .get()
@@ -38,7 +37,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
         val urlRequête = "$urlApi/vols/$id"
 
         try {
-            val client = OkHttpClient()
+            val client = ClientHttp.obtenirInstance()
             val requête = Request.Builder()
                 .url( urlRequête )
                 .get()

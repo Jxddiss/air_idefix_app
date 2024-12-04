@@ -4,7 +4,6 @@ import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesAeroport
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONAéroport
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
 
@@ -13,7 +12,7 @@ class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAer
         val urlRequête = "$urlApi/aeroports"
 
         try {
-            val client = OkHttpClient()
+            val client = ClientHttp.obtenirInstance()
             val requête = Request.Builder()
                 .url( urlRequête )
                 .get()
