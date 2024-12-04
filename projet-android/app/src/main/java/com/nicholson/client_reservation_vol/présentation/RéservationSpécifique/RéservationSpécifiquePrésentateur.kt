@@ -7,10 +7,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import kotlin.coroutines.CoroutineContext
+import java.util.Calendar
+import java.util.Locale
 
 class RéservationSpécifiquePrésentateur(
     private val vue : IRéservationSpécifiqueVue = RéservationSpécifiqueVue(),
@@ -74,6 +77,46 @@ class RéservationSpécifiquePrésentateur(
             }
         }
     }
+     override fun traiterCalendrier(réservationSpécifiqueOTD: RéservationSpécifiqueOTD) {
+        try {
+            val userLocale = Locale.getDefault()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", userLocale)
+
+            val dateDépart = dateFormat.parse(réservationSpécifiqueOTD.dateDepart)
+            val dateArrivée = dateFormat.parse(réservationSpécifiqueOTD.dateArrivée)
+
+            val heureDepartSplit = réservationSpécifiqueOTD.heureDepart.split(":")
+            val heureArrivéeSplit = réservationSpécifiqueOTD.heureArrivée.split(":")
+
+            val startCalendar = Calendar.getInstance().apply {
+                time = dateDépart
+                set(Calendar.HOUR_OF_DAY, heureDepartSplit[0].toInt())
+                set(Calendar.MINUTE, heureDepartSplit[1].toInt())
+            }
+
+            val endCalendar = Calendar.getInstance().apply {
+                time = dateArrivée
+                set(Calendar.HOUR_OF_DAY, heureArrivéeSplit[0].toInt())
+                set(Calendar.MINUTE, heureArrivéeSplit[1].toInt())
+            }
+
+            val eventDetails = mapOf(
+                "title" to "Air Idéfix",
+                "description" to "🛬",
+                "location" to réservationSpécifiqueOTD.nomVille,
+                "startTime" to startCalendar.timeInMillis,
+                "endTime" to endCalendar.timeInMillis
+            )
+
+
+            vue.ouvrirCalendrier(eventDetails)
+
+        } catch (e: Exception) {
+            vue.afficherErreur("Erreur lors de l'ouverture du calendrier : ${e.message}")
+        }
+    }
+
+
 
     override fun traiterModifier() {
         vue.redirigerModifier()

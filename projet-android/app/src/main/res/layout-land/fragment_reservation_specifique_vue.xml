@@ -6,11 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".présentation.RéservationSpécifique.RéservationSpécifiqueVue">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="680dp" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="368dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +47,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutBienvenueText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,47 +58,50 @@
                 android:id="@+id/textViewVilleRéservationSpécifique"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="12dp"
                 android:text="Cancun"
                 android:textColor="#FFFFFF"
-                android:textSize="34sp" />
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textViewDateDépartPreview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewVilleRéservationSpécifique"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
+                android:layout_marginStart="76dp"
                 android:text="@string/le_24_janvier_2025"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewVilleRéservationSpécifique" />
 
             <TextView
                 android:id="@+id/textViewNumeroRéservation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewDateDépartPreview"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginTop="12dp"
                 android:text="HEEF-568"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateDépartPreview" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutBtnDepart"
         android:layout_width="387dp"
         android:layout_height="297dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946">
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayoutBtnPdf"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom">
 
         <ImageButton
             android:id="@+id/BtnModifierReservation"
@@ -291,15 +320,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutBtnPdf"
-        android:layout_width="279dp"
-        android:layout_height="238dp"
+        android:layout_width="239dp"
+        android:layout_height="239dp"
+        android:layout_marginTop="132dp"
         android:background="@drawable/fond_bord_arrondis"
         android:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutBtnDepart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926">
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom">
 
         <ProgressBar
             android:id="@+id/progressBarRéservationSpecifique"

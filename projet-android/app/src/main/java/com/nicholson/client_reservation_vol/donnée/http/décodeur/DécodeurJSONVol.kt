@@ -105,7 +105,7 @@ class DécodeurJSONVol {
                         }
                         "poidsMaxBag" -> poidsMaxBag = reader.nextInt()
                         "vol_statut" -> statutVol = décodéStatutVol( reader )
-                        "durée" -> durée = Duration.parse( reader.nextString() )
+                        "duree" -> durée = Duration.parseIsoString( reader.nextString() )
                         else -> reader.skipValue()
                     }
                 }

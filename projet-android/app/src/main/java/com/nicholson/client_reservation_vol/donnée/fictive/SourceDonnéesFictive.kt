@@ -769,8 +769,8 @@ class SourceDonnéesFictive : SourceDeDonnées {
 
     }
 
-    fun obtenirVolParId(id: Int): Vol =
-        listVol.single {
+    fun obtenirVolParId(id: Int): Vol? =
+        listVol.singleOrNull {
             it.id == id
         }
 
@@ -789,7 +789,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
         réservation.sièges.forEach {
             it.idRéservation = réservation.id
             it.idVol = réservation.idVol
-            obtenirVolParId( réservation.idVol ).sièges.add( it )
+            obtenirVolParId( réservation.idVol )?.sièges?.add( it )
         }
         listeRéservation.add( réservation )
     }
