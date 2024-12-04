@@ -40,9 +40,9 @@ class Modèle private constructor() {
     var indiceHistoriqueCourrant : Int = 0
     var historiqueCliqué = false
     var indiceRéservationCourrante: Int = 0
-    var indiceClientCourrant: Int = 0
     var pageCourrante : String? = null
     var messageErreurRéseauExistant = false
+    var client : Client? = null
 
     // Setter pour sourceDeDonnées
     fun initialiserSourceDeDonnées( sourceHistorique : ISourceDeDonnéesHistorique) {
@@ -240,7 +240,10 @@ class Modèle private constructor() {
     }
 
     suspend fun obtenirClientCourrant(): Client {
-        return ObtenirClient.obtenirClientCourrant()
+        if ( client == null ){
+            client = ObtenirClient.obtenirClientCourrant()
+        }
+        return client as Client
     }
 
     fun ajouterClient(client: Client) {

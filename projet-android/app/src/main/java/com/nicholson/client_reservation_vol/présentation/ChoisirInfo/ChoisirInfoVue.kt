@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -31,16 +32,13 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
     lateinit var ChoisirTéléphone: EditText
     lateinit var ChoisirAdresse: EditText
     lateinit var textViewInfoVoyage : TextView
+    private lateinit var layoutBarChargement : ConstraintLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun afficherMessageErreur(message: String) {
         requireActivity().runOnUiThread {
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +59,7 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirAdresse = view.findViewById(R.id.ChoisirAdresse)
         ChoisirTéléphone = view.findViewById(R.id.ChoisirTéléphone)
         textViewInfoVoyage = view.findViewById( R.id.textViewInfoVoyage )
+        layoutBarChargement = view.findViewById(R.id.barDeChargement)
 
         btnSaveInfo = view.findViewById(R.id.btnSaveInfo)
         btnSaveInfo.setOnClickListener {
@@ -88,6 +87,7 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirNumPasseport.setText( clientOTD.numéroPasseport )
         ChoisirEmail.setText( clientOTD.email )
         ChoisirTéléphone.setText( clientOTD.téléphone )
+        layoutBarChargement.visibility = View.GONE
     }
 
     override fun obtenirInfoClient() {
@@ -104,5 +104,13 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
 
     override fun redirigerAChoisirSiege() {
         navController.navigate(R.id.action_choisirInfoVue_to_choisirSiegeVue)
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
+    }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate( R.id.action_choisirInfoVue_vers_bienvenueVue )
     }
 }

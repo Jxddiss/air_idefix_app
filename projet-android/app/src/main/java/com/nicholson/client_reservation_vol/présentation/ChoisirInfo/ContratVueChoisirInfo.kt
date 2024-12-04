@@ -12,6 +12,8 @@ interface ContratVueChoisirInfo {
         fun obtenirInfoClient()
         fun redirigerAChoisirSiege()
         fun afficherMessageErreur(message: String)
+        fun montrerChargement()
+        fun redirigerBienvenueErreur()
     }
 
     interface IChoisirInfoPrésentateur {

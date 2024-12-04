@@ -1,7 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 
 import com.nicholson.client_reservation_vol.domaine.entité.Client
-import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 import kotlinx.coroutines.CoroutineScope
@@ -21,23 +21,30 @@ class ChoisirInfoPresentateur(
 
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
-            val vol = modele.getVolCourrantAller(modele.indiceVolAller)
-            val clientCourrant = modele.obtenirClientCourrant()
-            val clientOTD = ClientOTD(
-                nom = clientCourrant.nom,
-                prénom = clientCourrant.prénom,
-                adresse = clientCourrant.adresse,
-                numéroPasseport = clientCourrant.numéroPasseport,
-                email = clientCourrant.email ?: "",
-                téléphone = clientCourrant.numéroTéléphone ?: ""
-            )
-
-            CoroutineScope( Dispatchers.Main ).launch {
-                vue.miseEnPlace( vol.aeroportDebut.ville.nom,
-                    vol.aeroportFin.ville.nom,
-                    vol.aeroportFin.ville.url_photo,
-                    clientOTD
+            try {
+                val vol = modele.getVolCourrantAller(modele.indiceVolAller)
+                val clientCourrant = modele.obtenirClientCourrant()
+                val clientOTD = ClientOTD(
+                    nom = clientCourrant.nom,
+                    prénom = clientCourrant.prénom,
+                    adresse = clientCourrant.adresse,
+                    numéroPasseport = clientCourrant.numéroPasseport,
+                    email = clientCourrant.email ?: "",
+                    téléphone = clientCourrant.numéroTéléphone ?: ""
                 )
+
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.miseEnPlace( vol.aeroportDebut.ville.nom,
+                        vol.aeroportFin.ville.nom,
+                        vol.aeroportFin.ville.url_photo,
+                        clientOTD
+                    )
+                }
+            } catch ( ex : SourceDeDonnéesException ) {
+                modele.messageErreurRéseauExistant = true
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.redirigerBienvenueErreur()
+                }
             }
         }
     }
