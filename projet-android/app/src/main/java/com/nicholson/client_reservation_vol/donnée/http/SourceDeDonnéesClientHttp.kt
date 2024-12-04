@@ -1,15 +1,52 @@
 package com.nicholson.client_reservation_vol.donnée.http
 
+import com.google.gson.stream.JsonWriter
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonéesClient
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONClient
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.IOException
+import java.io.ByteArrayOutputStream
+import java.io.OutputStreamWriter
 
 class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient {
-    override suspend fun ajouterClient( client: Client ) {
-        TODO("Not yet implemented")
+    override suspend fun modifierClient( client: Client ) {
+        val urlRequête = "$urlApi/clients/${client.id}"
+
+        try {
+            val clientHttp = ClientHttp.obtenirInstance()
+
+            val output = ByteArrayOutputStream()
+            val writer = JsonWriter( OutputStreamWriter( output ) )
+
+            writer.beginObject()
+            writer.name( "nom" ).value( client.nom )
+            writer.name( "prénom" ).value( client.prénom )
+            writer.name( "adresse" ).value( client.adresse )
+            writer.name( "numéroPasseport" ).value( client.numéroPasseport )
+            writer.name( "email" ).value( client.email )
+            writer.endObject()
+            writer.close()
+
+            val corpsDeRequête = output.toString()
+                .toRequestBody( "application/json".toMediaTypeOrNull() )
+
+            val requête = Request.Builder()
+                .url( urlRequête )
+                .post( corpsDeRequête )
+                .build()
+
+            val réponse = clientHttp.newCall( requête ).execute()
+            if ( réponse.code !in 200..299 ) {
+                throw SourceDeDonnéesException( "Code : ${réponse.code}" )
+            }
+        } catch ( ex : IOException ) {
+            throw SourceDeDonnéesException( "Erreur inconnue : ${ex.message}" )
+        }
     }
 
     override suspend fun obtenirClient( id: Int ): Client {

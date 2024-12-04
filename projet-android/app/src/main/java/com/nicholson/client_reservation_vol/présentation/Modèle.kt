@@ -10,6 +10,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
+import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
@@ -246,9 +247,11 @@ class Modèle private constructor() {
         return client as Client
     }
 
-    fun ajouterClient(client: Client) {
-        listeClient = mutableListOf(client)
-        clientService.ajouterClient(client)
+    suspend fun modifierClient( clientModifié : Client ) {
+        if( client != clientModifié ){
+            ModifierClient.modifierClient( clientModifié )
+            client = clientModifié
+        }
     }
 
     suspend fun créerRéservationAller(classeChoisis : String) : Réservation {

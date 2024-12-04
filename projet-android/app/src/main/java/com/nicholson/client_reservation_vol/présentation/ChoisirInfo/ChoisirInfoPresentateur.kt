@@ -57,19 +57,33 @@ class ChoisirInfoPresentateur(
             vue.afficherMessageErreur("Veuillez remplir tous les champs.")
             return
         }
-        modele.ajouterClient(convertirClientOTDAClient(clientOTD))
+
         modele.réservationAller.clients = modele.listeClient
         modele.réservationRetour.clients = modele.listeClient
-        vue.redirigerAChoisirSiege()
+
+        job = CoroutineScope( iocontext ).launch {
+            try {
+                modele.modifierClient( convertirClientOTDAClient( clientOTD ) )
+
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.redirigerAChoisirSiege()
+                }
+            } catch ( ex : SourceDeDonnéesException ) {
+                modele.messageErreurRéseauExistant = true
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.redirigerBienvenueErreur()
+                }
+            }
+        }
     }
 
     override fun traiterDemandeRedirectionChoisirSiege() {
             vue.obtenirInfoClient()
     }
 
-    private fun convertirClientOTDAClient(clientOTD: ClientOTD) : Client{
+    private fun convertirClientOTDAClient(clientOTD: ClientOTD) : Client {
         return Client(
-            modele.listeClient.size + 1,
+            modele.client?.id ?: 0,
             clientOTD.nom,
             clientOTD.prénom,
             clientOTD.adresse,
