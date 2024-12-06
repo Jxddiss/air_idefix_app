@@ -95,6 +95,21 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.10"/>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/bouttonDéconnexion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toTopOf="@id/guideline_logo_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline_logo_bienvenue_end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/Widget.Material3.FloatingActionButton.Large.Secondary"
+                app:srcCompat="@drawable/logout"
+                app:tint="@android:color/white"
+                app:rippleColor="#19FFFFFF"
+                app:backgroundTint="@color/couleur_principale"
+                android:visibility="gone"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

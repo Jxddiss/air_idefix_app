@@ -23,22 +23,39 @@ class SourceDeDonnéesAuthHttp( val context: Context, clientId : String,
 
     override suspend fun obtenirToken(): String {
         return suspendCancellableCoroutine { continuation ->
-            WebAuthProvider.login(account)
-                .withScheme(scheme)
-                .withScope("openid profile")
-                .withAudience(audience)
-                .start(context, object : Callback<Credentials, AuthenticationException> {
-                    override fun onFailure(error: AuthenticationException) {
+            WebAuthProvider.login( account )
+                .withScheme( scheme )
+                .withScope( "openid profile" )
+                .withAudience( audience )
+                .start( context, object : Callback<Credentials, AuthenticationException> {
+                    override fun onFailure( error: AuthenticationException ) {
                         continuation.resumeWithException(
                             AuthentificationException("Erreur de connexion ${error.message}")
                         )
                     }
 
-                    override fun onSuccess(result: Credentials) {
-                        continuation.resume(result.accessToken)
+                    override fun onSuccess( result: Credentials ) {
+                        continuation.resume( result.accessToken )
                     }
                 })
         }
+    }
 
+    override suspend fun seDeconnecter() : Boolean {
+        return suspendCancellableCoroutine { continuation ->
+            WebAuthProvider.logout( account )
+                .withScheme( scheme )
+                .start( context, object : Callback<Void?, AuthenticationException> {
+                    override fun onFailure( error: AuthenticationException ) {
+                        continuation.resumeWithException(
+                            AuthentificationException("Erreur de connexion ${error.message}")
+                        )
+                    }
+
+                    override fun onSuccess( result : Void? ) {
+                        continuation.resume( true )
+                    }
+                })
+        }
     }
 }

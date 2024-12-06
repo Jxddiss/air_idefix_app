@@ -30,5 +30,9 @@ class ClientHttp private constructor() {
                     ?: ajouterIntercepteur( token, OkHttpClient.Builder().build() )
             }
         }
+
+        fun retirerIntercepteurs() {
+            instance?.newBuilder()?.interceptors()?.clear()
+        }
     }
 }

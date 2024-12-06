@@ -8,7 +8,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
-import com.nicholson.client_reservation_vol.domaine.interacteur.EffectuerLogin
+import com.nicholson.client_reservation_vol.domaine.interacteur.Authentification
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
@@ -318,7 +318,12 @@ class Modèle private constructor() {
     }
 
     suspend fun effectuerLogin() {
-        EffectuerLogin.effectuerLogin()
+        Authentification.effectuerLogin()
         estConnecté = true
+    }
+
+    suspend fun seDeconecté() {
+        Authentification.seDéconnecter()
+        estConnecté = false
     }
 }
