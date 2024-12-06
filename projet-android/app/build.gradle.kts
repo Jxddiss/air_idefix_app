@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.json)
     implementation (libs.gson)
     implementation (libs.auth0)
+    implementation(libs.androidx.security.crypto)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

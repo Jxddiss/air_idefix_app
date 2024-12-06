@@ -70,6 +70,10 @@ class BienvenueVue : VueAuthentifié(), IBienvenueVue {
         bouttonDéconnexion.visibility = View.GONE
     }
 
+    override fun obtenirToken(): String? {
+        return préférences.getString("token", null)
+    }
+
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){
         btnGoMesVoyages = vue.findViewById( R.id.constraintLayoutBtnMesVoyages )
         btnGoMesVoyages.setOnClickListener {

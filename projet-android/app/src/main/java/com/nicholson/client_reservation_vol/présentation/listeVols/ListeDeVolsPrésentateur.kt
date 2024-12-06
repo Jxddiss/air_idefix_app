@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
+import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
@@ -25,7 +26,7 @@ class ListeDeVolsPrésentateur (
     override fun traiterObtenirVols() {
         job = CoroutineScope( iocontext ).launch {
             try {
-                var listeDeVols : List<Vol> = listOf()
+                val listeDeVols : List<Vol>
                 if(modèle.aller) {
                     modèle.listeVolAller = modèle.obtenirListeVolAllerParFiltre()
                     listeDeVols = modèle.listeVolAller
@@ -64,10 +65,24 @@ class ListeDeVolsPrésentateur (
                     vue.masquerChargement()
                     vue.afficherVols( listeVolsOTD )
                 }
-            } catch ( ex : SourceDeDonnéesException ){
+            } catch ( ex : SourceDeDonnéesException ) {
                 modèle.messageErreurRéseauExistant = true
                 CoroutineScope( Dispatchers.Main ).launch {
                     vue.redirigerBienvenueErreur()
+                }
+            } catch ( ex : AuthentificationException ) {
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.seConnecter(
+                        réussite = {
+                            modèle.effectuerLogin( it )
+                            vue.montrerChargement()
+                            traiterObtenirVols()
+                        },
+                        échec = {
+                            modèle.messageErreurRéseauExistant = true
+                            vue.redirigerBienvenueErreur()
+                        }
+                    )
                 }
             }
         }

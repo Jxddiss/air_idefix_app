@@ -26,7 +26,11 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBien
             vue.afficherMessageErreur()
         }
 
-        if( modèle.estConnecté ) {
+        val token = vue.obtenirToken()
+        if ( token != null && !modèle.estConnecté ){
+            modèle.effectuerLogin( token )
+            vue.montrerDéconnexion()
+        } else if( modèle.estConnecté ) {
             vue.montrerDéconnexion()
         }
     }

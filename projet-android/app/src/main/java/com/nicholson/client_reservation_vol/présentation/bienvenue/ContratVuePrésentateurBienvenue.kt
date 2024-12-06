@@ -8,6 +8,7 @@ interface ContratVuePrésentateurBienvenue {
         fun montrerDéconnexion()
         fun cacherDéconnexion()
         fun seDéconnecter( réussite: () -> Unit, échec : ( String ) -> Unit )
+        fun obtenirToken() : String?
     }
 
     interface IBienvenuePrésentateur {
