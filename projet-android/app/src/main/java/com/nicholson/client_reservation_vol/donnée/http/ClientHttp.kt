@@ -13,13 +13,6 @@ class ClientHttp private constructor() {
                 instance ?: OkHttpClient.Builder().build().also { instance = it }
             }
 
-        fun ajouterToken( token : String ) {
-            synchronized( this ){
-                instance = ajouterIntercepteur( token, instance )
-                    ?: ajouterIntercepteur( token, OkHttpClient.Builder().build() )
-            }
-        }
-
         private fun ajouterIntercepteur( token : String, client : OkHttpClient? ) : OkHttpClient? {
             return client?.newBuilder()?.addInterceptor {
                     chain ->
@@ -29,6 +22,13 @@ class ClientHttp private constructor() {
                     .build()
                 chain.proceed( requête )
             }?.build()
+        }
+
+        fun ajouterToken( token : String ) {
+            synchronized( this ){
+                instance = ajouterIntercepteur( token, instance )
+                    ?: ajouterIntercepteur( token, OkHttpClient.Builder().build() )
+            }
         }
     }
 }

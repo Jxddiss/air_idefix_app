@@ -72,14 +72,23 @@ class ListeDeVolsPrésentateur (
     }
 
     override fun traiterVolCliqué( index: Int ) {
-        if(modèle.aller){
-            modèle.indiceVolAller = index
+        if ( modèle.estConnecté ) {
+            if(modèle.aller){
+                modèle.indiceVolAller = index
+            }
+            else{
+                modèle.indiceVolRetour = index
+            }
+            modèle.indiceVolCourrant = index
+            vue.redirigerVersChoixClasse()
+        } else {
+            job = CoroutineScope( iocontext ).launch {
+                modèle.effectuerLogin()
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.afficherMessageNonCeonnectée()
+                }
+            }
         }
-        else{
-            modèle.indiceVolRetour = index
-        }
-        modèle.indiceVolCourrant = index
-        vue.redirigerVersChoixClasse()
     }
 
     override fun traiterDémarage() {

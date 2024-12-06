@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -94,5 +95,9 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
     override fun montrerErreurRéseau() {
         barDeChargement.visibility = View.GONE
         textViewNomDestination.text = getString(R.string.une_erreur_r_seau_c_est_produite)
+    }
+
+    override fun afficherMessageNonCeonnectée() {
+        Toast.makeText(requireContext(), "Connexion en cours...", Toast.LENGTH_SHORT).show()
     }
 }

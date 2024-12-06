@@ -8,6 +8,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
+import com.nicholson.client_reservation_vol.domaine.interacteur.EffectuerLogin
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
@@ -44,6 +45,7 @@ class Modèle private constructor() {
     var pageCourrante : String? = null
     var messageErreurRéseauExistant = false
     var client : Client? = null
+    var estConnecté = false
 
     // Setter pour sourceDeDonnées
     fun initialiserSourceDeDonnées( sourceHistorique : ISourceDeDonnéesHistorique) {
@@ -275,6 +277,7 @@ class Modèle private constructor() {
         )
         return réservation
     }
+
     suspend fun créerRéservationRetour(classeChoisis : String) : Réservation {
         val réservation = Réservation(
             id = 0,
@@ -295,7 +298,6 @@ class Modèle private constructor() {
         return réservation
     }
 
-
     fun ajouterReservation(réservation : Réservation) {
         réservationService.ajouterRéservation(réservation)
     }
@@ -315,4 +317,8 @@ class Modèle private constructor() {
         return listeHistorique[indiceHistoriqueCourrant]
     }
 
+    suspend fun effectuerLogin() {
+        EffectuerLogin.effectuerLogin()
+        estConnecté = true
+    }
 }

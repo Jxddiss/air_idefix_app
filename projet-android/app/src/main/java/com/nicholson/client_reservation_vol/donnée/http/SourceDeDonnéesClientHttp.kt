@@ -5,6 +5,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonéesClient
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONClient
+import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
 import okhttp3.RequestBody
@@ -41,7 +42,10 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
                 .build()
 
             val réponse = clientHttp.newCall( requête ).execute()
-            if ( réponse.code !in 200..299 ) {
+
+            if ( réponse.code == 401 ){
+                throw AuthentificationException("Vous n'ète pas connecté")
+            } else if ( réponse.code !in 200..299 ) {
                 throw SourceDeDonnéesException( "Code : ${réponse.code}" )
             }
         } catch ( ex : IOException ) {
@@ -68,7 +72,9 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
                 } else {
                     throw SourceDeDonnéesException( "Corps de réponse vide" )
                 }
-            } else {
+            } else if ( réponse.code == 401 ){
+                throw AuthentificationException("Vous n'ète pas connecté")
+            }  else {
                 throw SourceDeDonnéesException( "Code : ${réponse.code}" )
             }
         } catch( ex : IOException ) {
@@ -95,6 +101,8 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
                 } else {
                     throw SourceDeDonnéesException( "Corps de réponse vide" )
                 }
+            } else if ( réponse.code == 401 ){
+                throw AuthentificationException("Vous n'ète pas connecté")
             } else {
                 throw SourceDeDonnéesException( "Code : ${réponse.code}" )
             }

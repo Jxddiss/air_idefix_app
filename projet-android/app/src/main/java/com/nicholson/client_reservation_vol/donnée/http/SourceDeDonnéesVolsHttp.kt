@@ -26,7 +26,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
             if ( réponse.code == 200 ) {
                 return DécodeurJSONVol.décoderListeVols( réponse.body!!.string() )
             } else {
-                throw SourceDeDonnéesException("Code : ${réponse.code}")
+                throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         } catch( ex : IOException ) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
@@ -47,7 +47,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
             if ( réponse.code == 200 ) {
                 return DécodeurJSONVol.décoderVol( réponse.body!!.string() )
             } else {
-                throw SourceDeDonnéesException("Code : ${réponse.code}")
+                throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         } catch( ex : IOException ) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
