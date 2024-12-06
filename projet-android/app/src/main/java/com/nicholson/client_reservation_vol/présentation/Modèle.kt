@@ -8,7 +8,6 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
-import com.nicholson.client_reservation_vol.domaine.interacteur.Authentification
 import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
 import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
@@ -16,6 +15,7 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
+import com.nicholson.client_reservation_vol.donnée.http.ClientHttp
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
@@ -317,13 +317,13 @@ class Modèle private constructor() {
         return listeHistorique[indiceHistoriqueCourrant]
     }
 
-    suspend fun effectuerLogin() {
-        Authentification.effectuerLogin()
+    fun effectuerLogin( token : String ) {
+        ClientHttp.ajouterToken( token )
         estConnecté = true
     }
 
-    suspend fun seDeconecté() {
-        Authentification.seDéconnecter()
+     fun seDeconecté() {
+        ClientHttp.retirerIntercepteurs()
         estConnecté = false
     }
 }

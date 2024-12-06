@@ -5,16 +5,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.nicholson.client_reservation_vol.domaine.interacteur.Authentification
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesAeroportHttp
-import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesAuthHttp
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesClientHttp
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
+import com.nicholson.client_reservation_vol.présentation.CréateurDeFragment
 import com.nicholson.client_reservation_vol.présentation.Modèle
 
 class  MainActivity : AppCompatActivity() {
@@ -39,11 +40,7 @@ class  MainActivity : AppCompatActivity() {
         val sourceClient = SourceDeDonnéesClientHttp( getString( R.string.api_url ) )
         ObtenirClient.sourceDeDonnées = sourceClient
         ModifierClient.sourceDeDonnées = sourceClient
-        Authentification.clientHttpPrésent = true
-        Authentification.sourceDeDonnées = SourceDeDonnéesAuthHttp( context = this,
-            getString(R.string.com_auth0_client_id),
-            getString(R.string.com_auth0_domain),
-            getString(R.string.com_auth0_audience),
-            getString(R.string.com_auth0_scheme) )
+
+        supportFragmentManager.fragmentFactory = CréateurDeFragment()
     }
 }

@@ -7,10 +7,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue(),
-                             val iocontext : CoroutineContext = Dispatchers.IO  ) : IBienvenuePrésentateur {
+class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBienvenuePrésentateur {
     private val modèle: Modèle = Modèle.obtenirInstance()
-    private var job : Job? = null
 
     override fun traiterDemandeRedirectionListeReservations() {
         vue.redirigerAListeReservation()
@@ -34,12 +32,14 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue(),
     }
 
     override fun traiterDéconnexion() {
-        job = CoroutineScope( iocontext ).launch {
-            modèle.seDeconecté()
-            modèle.estConnecté = false
-            CoroutineScope( Dispatchers.Main ).launch {
+        vue.seDéconnecter(
+            réussite = {
                 vue.cacherDéconnexion()
+                modèle.seDeconecté()
+            },
+            échec = {
+                vue.afficherMessageErreur()
             }
-        }
+        )
     }
 }

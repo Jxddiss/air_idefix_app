@@ -62,6 +62,7 @@ class ListeDeVolsPrésentateur (
                     }
                 }
                 CoroutineScope( Dispatchers.Main ).launch {
+                    vue.masquerChargement()
                     vue.afficherVols( listeVolsOTD )
                 }
             } catch ( ex : SourceDeDonnéesException ){
@@ -84,19 +85,18 @@ class ListeDeVolsPrésentateur (
             modèle.indiceVolCourrant = index
             vue.redirigerVersChoixClasse()
         } else {
-            job = CoroutineScope( iocontext ).launch {
-                try {
-                    modèle.effectuerLogin()
-                    CoroutineScope( Dispatchers.Main ).launch {
-                        vue.afficherMessageNonCeonnectée()
-                    }
-                } catch ( ex : AuthentificationException ) {
+            vue.montrerChargement()
+            vue.afficherMessageNonConnectée()
+            vue.seConnecter(
+                réussite = {
+                    modèle.effectuerLogin( it )
+                    vue.redirigerVersChoixClasse()
+                },
+                échec = {
                     modèle.messageErreurRéseauExistant = true
-                    CoroutineScope( Dispatchers.Main ).launch {
-                        vue.redirigerBienvenueErreur()
-                    }
+                    vue.redirigerBienvenueErreur()
                 }
-            }
+            )
         }
     }
 

@@ -1,21 +1,19 @@
 package com.nicholson.client_reservation_vol.présentation.bienvenue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
 
-class BienvenueVue : Fragment(), IBienvenueVue {
-
+class BienvenueVue : VueAuthentifié(), IBienvenueVue {
     var présentateur : IBienvenuePrésentateur? = BienvenuePrésentateur( this )
     lateinit var btnGoMesVoyages : ConstraintLayout
     lateinit var btnGoRechercherUnVol : ConstraintLayout

@@ -1,7 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +17,9 @@ import com.bumptech.glide.Glide
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 
-class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
+class ListeDeVolsVue : VueAuthentifié(), IListeDeVolsVue {
     var présentateur : IListeDeVolsPrésentateur? = ListeDeVolsPrésentateur( this )
     lateinit var adaptateur : RecyclerAdapterVol
     lateinit var recyclerVol : RecyclerView
@@ -53,8 +53,6 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
 
 
     override fun afficherVols( listeDeVols : List<VolListItemOTD> ) {
-        barDeChargement.visibility = View.GONE
-        recyclerVol.visibility = View.VISIBLE
         ajouterAdaptateurVolAuRecycler( listeDeVols )
     }
 
@@ -92,11 +90,16 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         présentateur?.traiterObtenirVols()
     }
 
+    override fun masquerChargement() {
+        barDeChargement.visibility = View.GONE
+        recyclerVol.visibility = View.VISIBLE
+    }
+
     override fun redirigerBienvenueErreur() {
         navController.navigate( R.id.action_listeDeVolsVue_vers_bienvenueVue )
     }
 
-    override fun afficherMessageNonCeonnectée() {
+    override fun afficherMessageNonConnectée() {
         Toast.makeText(requireContext(), getString(R.string.connexion_en_cours), Toast.LENGTH_SHORT).show()
     }
 }
