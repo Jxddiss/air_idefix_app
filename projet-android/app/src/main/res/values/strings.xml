@@ -70,4 +70,5 @@
     <string name="com_auth0_scheme" translatable="false">air</string>
     <string name="com_auth0_client_id" translatable="false">x0WbvDakzuBRRjjDR7zDHZP0ammpZCZ7</string>
     <string name="com_auth0_audience" translatable="false">https://air.idéfix.com/</string>
+    <string name="connexion_en_cours">Connexion en cours...</string>
 </resources>

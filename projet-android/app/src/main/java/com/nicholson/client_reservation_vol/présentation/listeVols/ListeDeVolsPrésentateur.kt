@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
+import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
@@ -64,8 +65,9 @@ class ListeDeVolsPrésentateur (
                     vue.afficherVols( listeVolsOTD )
                 }
             } catch ( ex : SourceDeDonnéesException ){
+                modèle.messageErreurRéseauExistant = true
                 CoroutineScope( Dispatchers.Main ).launch {
-                    vue.montrerErreurRéseau()
+                    vue.redirigerBienvenueErreur()
                 }
             }
         }
@@ -83,9 +85,16 @@ class ListeDeVolsPrésentateur (
             vue.redirigerVersChoixClasse()
         } else {
             job = CoroutineScope( iocontext ).launch {
-                modèle.effectuerLogin()
-                CoroutineScope( Dispatchers.Main ).launch {
-                    vue.afficherMessageNonCeonnectée()
+                try {
+                    modèle.effectuerLogin()
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.afficherMessageNonCeonnectée()
+                    }
+                } catch ( ex : AuthentificationException ) {
+                    modèle.messageErreurRéseauExistant = true
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerBienvenueErreur()
+                    }
                 }
             }
         }

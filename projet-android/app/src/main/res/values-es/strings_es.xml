@@ -67,6 +67,7 @@
     <string name="r_server">Reserva</string>
     <string name="une_erreur_r_seau_c_est_produite">Se ha producido un error de red</string>
     <string name="mon_historique">Mi historia</string>
+    <string name="connexion_en_cours">Iniciando sesión...</string>
 
 
 </resources>

@@ -92,12 +92,11 @@ class ListeDeVolsVue : Fragment(), IListeDeVolsVue {
         présentateur?.traiterObtenirVols()
     }
 
-    override fun montrerErreurRéseau() {
-        barDeChargement.visibility = View.GONE
-        textViewNomDestination.text = getString(R.string.une_erreur_r_seau_c_est_produite)
+    override fun redirigerBienvenueErreur() {
+        navController.navigate( R.id.action_listeDeVolsVue_vers_bienvenueVue )
     }
 
     override fun afficherMessageNonCeonnectée() {
-        Toast.makeText(requireContext(), "Connexion en cours...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.connexion_en_cours), Toast.LENGTH_SHORT).show()
     }
 }
