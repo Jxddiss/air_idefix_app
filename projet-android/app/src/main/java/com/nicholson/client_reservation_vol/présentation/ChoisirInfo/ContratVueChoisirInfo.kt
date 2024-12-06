@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 
 import com.nicholson.client_reservation_vol.domaine.entité.Client
+import com.nicholson.client_reservation_vol.présentation.OTD.ClientModifiableOTD
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 
 interface ContratVueChoisirInfo {
@@ -18,7 +19,7 @@ interface ContratVueChoisirInfo {
 
     interface IChoisirInfoPrésentateur {
         fun traiterDémarage()
-        fun traiterObtenirInfo( clientOTD: ClientOTD )
+        fun traiterObtenirInfo( clientOTD: ClientModifiableOTD)
         fun traiterDemandeRedirectionChoisirSiege()
     }
 }

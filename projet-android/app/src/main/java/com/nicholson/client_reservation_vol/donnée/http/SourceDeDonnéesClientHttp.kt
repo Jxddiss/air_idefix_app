@@ -37,7 +37,7 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
 
             val requête = Request.Builder()
                 .url( urlRequête )
-                .post( corpsDeRequête )
+                .put( corpsDeRequête )
                 .build()
 
             val réponse = clientHttp.newCall( requête ).execute()

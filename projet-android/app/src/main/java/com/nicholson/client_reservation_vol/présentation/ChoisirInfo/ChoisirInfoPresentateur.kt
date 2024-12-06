@@ -3,6 +3,7 @@ package com.nicholson.client_reservation_vol.présentation.ChoisirInfo
 import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.Modèle
+import com.nicholson.client_reservation_vol.présentation.OTD.ClientModifiableOTD
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +50,7 @@ class ChoisirInfoPresentateur(
         }
     }
 
-    override fun traiterObtenirInfo(clientOTD: ClientOTD) {
+    override fun traiterObtenirInfo(clientOTD: ClientModifiableOTD) {
         if( clientOTD.nom.isEmpty()
             || clientOTD.prénom.isEmpty()
             || clientOTD.numéroPasseport.isEmpty() ){
@@ -81,14 +82,14 @@ class ChoisirInfoPresentateur(
             vue.obtenirInfoClient()
     }
 
-    private fun convertirClientOTDAClient(clientOTD: ClientOTD) : Client {
+    private fun convertirClientOTDAClient(clientOTD: ClientModifiableOTD) : Client {
         return Client(
             modele.client?.id ?: 0,
             clientOTD.nom,
             clientOTD.prénom,
             clientOTD.adresse,
             clientOTD.numéroPasseport,
-            clientOTD.email,
+            modele.client?.email ?: "",
             clientOTD.téléphone
         )
     }

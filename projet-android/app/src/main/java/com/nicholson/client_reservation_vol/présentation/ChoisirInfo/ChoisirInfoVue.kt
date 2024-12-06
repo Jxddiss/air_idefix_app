@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.OTD.ClientModifiableOTD
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
 
 
@@ -28,7 +29,6 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
     lateinit var ChoisirNom: EditText
     lateinit var ChoisirPrenom: EditText
     lateinit var ChoisirNumPasseport: EditText
-    lateinit var ChoisirEmail: EditText
     lateinit var ChoisirTéléphone: EditText
     lateinit var ChoisirAdresse: EditText
     lateinit var textViewInfoVoyage : TextView
@@ -55,7 +55,6 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirNom = view.findViewById(R.id.ChoisirNom)
         ChoisirPrenom = view.findViewById(R.id.ChoisirPrenom)
         ChoisirNumPasseport = view.findViewById(R.id.ChoisirNumPasseport)
-        ChoisirEmail = view.findViewById(R.id.ChoisirEmail)
         ChoisirAdresse = view.findViewById(R.id.ChoisirAdresse)
         ChoisirTéléphone = view.findViewById(R.id.ChoisirTéléphone)
         textViewInfoVoyage = view.findViewById( R.id.textViewInfoVoyage )
@@ -85,18 +84,16 @@ class ChoisirInfoVue : Fragment(), ContratVueChoisirInfo.IChoisirInfoVue {
         ChoisirPrenom.setText( clientOTD.prénom )
         ChoisirAdresse.setText( clientOTD.adresse )
         ChoisirNumPasseport.setText( clientOTD.numéroPasseport )
-        ChoisirEmail.setText( clientOTD.email )
         ChoisirTéléphone.setText( clientOTD.téléphone )
         layoutBarChargement.visibility = View.GONE
     }
 
     override fun obtenirInfoClient() {
-        val clientOTD = ClientOTD(
+        val clientOTD = ClientModifiableOTD(
             ChoisirNom.text.toString(),
             ChoisirPrenom.text.toString(),
             ChoisirAdresse.text.toString(),
             ChoisirNumPasseport.text.toString(),
-            ChoisirEmail.text.toString(),
             ChoisirTéléphone.text.toString()
         )
         présentateur?.traiterObtenirInfo(clientOTD)

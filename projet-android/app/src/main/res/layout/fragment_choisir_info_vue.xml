@@ -215,27 +215,6 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:textColorHint="@color/couleur_principale">
-
-                    <EditText
-                        android:id="@+id/ChoisirEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:fontFamily="@font/lexend"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/couleur_principale" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="15dp"
-                    android:layout_weight="1" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:hint="Adresse"
                     android:textColorHint="@color/couleur_principale">
 
