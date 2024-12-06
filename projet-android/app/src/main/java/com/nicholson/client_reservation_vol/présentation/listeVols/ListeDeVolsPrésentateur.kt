@@ -1,7 +1,6 @@
 package com.nicholson.client_reservation_vol.présentation.listeVols
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
-import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
