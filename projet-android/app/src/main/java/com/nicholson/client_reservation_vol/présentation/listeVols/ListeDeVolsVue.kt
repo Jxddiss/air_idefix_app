@@ -48,6 +48,7 @@ class ListeDeVolsVue : VueAuthentifié(), IListeDeVolsVue {
         recyclerVol = vue.findViewById( R.id.RecyclerVols )
         barDeChargement = vue.findViewById( R.id.barDeChargement )
         présentateur?.traiterDémarage()
+        présentateur?.traiterObtenirVols()
         navController = Navigation.findNavController( vue )
     }
 
@@ -87,7 +88,6 @@ class ListeDeVolsVue : VueAuthentifié(), IListeDeVolsVue {
     override fun montrerChargement() {
         recyclerVol.visibility = View.GONE
         barDeChargement.visibility = View.VISIBLE
-        présentateur?.traiterObtenirVols()
     }
 
     override fun masquerChargement() {
