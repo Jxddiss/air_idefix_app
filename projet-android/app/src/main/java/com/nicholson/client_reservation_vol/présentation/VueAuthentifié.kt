@@ -13,9 +13,9 @@ import com.auth0.android.result.Credentials
 import com.nicholson.client_reservation_vol.R
 
 open class VueAuthentifié : Fragment()  {
-    private var audience : String?  = null
-    private var scheme : String? = null
-    lateinit var account : Auth0
+    private lateinit var audience : String
+    private lateinit var scheme : String
+    private lateinit var account : Auth0
     lateinit var préférences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,40 +39,34 @@ open class VueAuthentifié : Fragment()  {
     }
 
     fun seConnecter( réussite: ( String ) -> Unit, échec : ( String ) -> Unit ) {
-        scheme?.let {
-            audience?.let { aud ->
-                WebAuthProvider.login( account )
-                    .withScheme(it)
-                    .withScope( "openid profile" )
-                    .withAudience( aud )
-                    .start( requireContext(), object : Callback<Credentials, AuthenticationException> {
-                        override fun onFailure( error: AuthenticationException ) {
-                            échec( "Erreur de connexion ${error.message}" )
-                        }
+        WebAuthProvider.login( account )
+            .withScheme(scheme)
+            .withScope( "openid profile" )
+            .withAudience( audience )
+            .start( requireContext(), object : Callback<Credentials, AuthenticationException> {
+                override fun onFailure( error: AuthenticationException ) {
+                    échec( "Erreur de connexion ${error.message}" )
+                }
 
-                        override fun onSuccess( result: Credentials) {
-                            préférences.edit().putString( "token", result.accessToken ).apply()
-                            réussite( result.accessToken )
-                        }
-                    })
-            }
-        }
+                override fun onSuccess( result: Credentials) {
+                    préférences.edit().putString( "token", result.accessToken ).apply()
+                    réussite( result.accessToken )
+                }
+            })
     }
 
     fun seDéconnecter( réussite: () -> Unit, échec : ( String ) -> Unit ) {
-        scheme?.let {
-            WebAuthProvider.logout( account )
-                .withScheme(it)
-                .start( requireContext(), object : Callback<Void?, AuthenticationException> {
-                    override fun onFailure( error: AuthenticationException ) {
-                        échec( "Erreur de connexion ${error.message}" )
-                    }
+        WebAuthProvider.logout( account )
+            .withScheme( scheme )
+            .start( requireContext(), object : Callback<Void?, AuthenticationException> {
+                override fun onFailure( error: AuthenticationException ) {
+                    échec( "Erreur de connexion ${error.message}" )
+                }
 
-                    override fun onSuccess( result : Void? ) {
-                        préférences.edit().remove( "token" ).apply()
-                        réussite()
-                    }
-                })
-        }
+                override fun onSuccess( result : Void? ) {
+                    préférences.edit().remove( "token" ).apply()
+                    réussite()
+                }
+            })
     }
 }

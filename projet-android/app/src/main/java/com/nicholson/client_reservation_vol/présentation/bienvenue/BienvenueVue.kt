@@ -71,7 +71,7 @@ class BienvenueVue : VueAuthentifié(), IBienvenueVue {
     }
 
     override fun obtenirToken(): String? {
-        return préférences.getString("token", null)
+        return préférences.getString( "token", null )
     }
 
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){
