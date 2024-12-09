@@ -6,5 +6,5 @@ data class Réservation (
     val idVol: Int,
     var client: Client?,
     val siège: Siège?,
-    val classe: String = "Économique"
+    val classe: String = "économique"
 )

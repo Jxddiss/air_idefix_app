@@ -5,6 +5,7 @@ import com.nicholson.client_reservation_vol.domaine.entité.Client
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonéesClient
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONClient
+import com.nicholson.client_reservation_vol.donnée.http.encodeur.EncodeurJSONClient
 import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
@@ -24,13 +25,7 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
             val output = ByteArrayOutputStream()
             val writer = JsonWriter( OutputStreamWriter( output ) )
 
-            writer.beginObject()
-            writer.name( "nom" ).value( client.nom )
-            writer.name( "prénom" ).value( client.prénom )
-            writer.name( "adresse" ).value( client.adresse )
-            writer.name( "numéroPasseport" ).value( client.numéroPasseport )
-            writer.name( "email" ).value( client.email )
-            writer.endObject()
+            EncodeurJSONClient.encoderClient( writer, client )
             writer.close()
 
             val corpsDeRequête = output.toString()
