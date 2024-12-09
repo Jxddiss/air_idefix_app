@@ -46,7 +46,7 @@ class ListeDeVolsPrésentateur (
                         codeAéroportArrivée = it.aeroportFin.code,
                         durée = it.durée.toComponents {
                                 hrs, min, _, _ ->
-                            "${hrs}h${min}"
+                            "${String.format("%02d",hrs)}h${String.format("%02d",min)}"
                         }
                     )
                 }
