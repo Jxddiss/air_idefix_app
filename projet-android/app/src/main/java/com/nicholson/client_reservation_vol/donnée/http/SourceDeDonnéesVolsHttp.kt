@@ -8,6 +8,7 @@ import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
+import java.io.IOException
 
 class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
@@ -29,7 +30,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
-        } catch( ex : IOException ) {
+        } catch( ex : IOException) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
         }
     }

@@ -1,14 +1,14 @@
 package com.nicholson.client_reservation_vol.donnée.http.décodeur
 
-import com.google.gson.stream.JsonReader
-import com.google.gson.stream.MalformedJsonException
+import android.util.JsonReader
+import android.util.MalformedJsonException
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import java.io.EOFException
 
 class DécodeurJSONVille {
     companion object {
-        fun décodéVille(reader: JsonReader ) : Ville {
+        fun décodéVille(reader: JsonReader) : Ville {
             var id = 0
             var nom = ""
             var pays = ""

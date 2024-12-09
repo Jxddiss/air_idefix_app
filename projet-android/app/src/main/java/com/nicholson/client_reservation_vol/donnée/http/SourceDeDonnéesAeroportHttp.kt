@@ -7,6 +7,7 @@ import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSON
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
+import java.io.IOException
 
 class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAeroport {
     override suspend fun obtenirListAéroports(): List<Aeroport> {
@@ -25,7 +26,7 @@ class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAer
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
-        } catch( ex : IOException ) {
+        } catch( ex : IOException) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
         }
     }
