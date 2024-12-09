@@ -13,8 +13,33 @@ import java.io.StringReader
 class DécodeurJSONRéservation {
 
     companion object{
+
+        fun décoderListeRéservation( json: String ): List<Réservation>{
+            val listRéservation = mutableListOf<Réservation>()
+
+            val reader = JsonReader(StringReader(json))
+            try{
+                reader.beginArray()
+                while ( reader.hasNext() ){
+                    listRéservation.add( décoderRéservation( reader ) )
+                }
+                reader.endArray()
+            }
+            catch ( ex : EOFException) {
+                throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")
+            } catch(ex : MalformedJsonException){
+                throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")
+            }
+            return listRéservation
+        }
+
         fun décoderRéservation( json : String ) : Réservation {
             val reader = JsonReader(StringReader(json))
+
+            return décoderRéservation(reader)
+        }
+
+        fun décoderRéservation( reader : JsonReader) : Réservation{
             var id : Int = 0
             lateinit var numéroRéservation: String
             var idVol : Int = 0
@@ -48,7 +73,6 @@ class DécodeurJSONRéservation {
             } catch( ex : NumberFormatException){
                 throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")
             }
-
         }
     }
 }
