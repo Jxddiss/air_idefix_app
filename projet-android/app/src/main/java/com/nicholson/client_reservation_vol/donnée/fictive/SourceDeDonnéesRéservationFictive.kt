@@ -19,10 +19,12 @@ class SourceDeDonnéesRéservationFictive: ISourceDeDonnéesRéservation {
     override suspend fun ajouterRéservation(réservation: Réservation) {
         réservation.id = listeRéservation.size + 1
         réservation.numéroRéservation = "RES00${listeRéservation.size + 1}"
-        réservation.sièges.forEach {
-            it.idRéservation = réservation.id
-            it.idVol = réservation.idVol
-            sourceFictive.obtenirVolParId( réservation.idVol )?.sièges?.add( it )
+        réservation.siège.let {
+            it?.idRéservation = réservation.id
+            it?.idVol = réservation.idVol
+            if (it != null) {
+                sourceFictive.obtenirVolParId( réservation.idVol )?.sièges?.add( it )
+            }
         }
         listeRéservation.add( réservation )
     }

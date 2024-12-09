@@ -29,11 +29,6 @@ class RéservationSpécifiquePrésentateur(
         job = CoroutineScope( iocontext ).launch {
             val réservation = modèle.obtenirReservationCourrante()
             val vol = modèle.obtenirVolParId(réservation.idVol)
-            val siègeString = StringBuilder()
-            réservation.sièges.forEach {
-                siègeString.append("${it.numéro} ")
-
-            }
             val tempMtn = LocalDateTime.now()
             var tempsRestant = ChronoUnit.HOURS.between(tempMtn, vol.dateDepart).toString()
 
@@ -55,7 +50,7 @@ class RéservationSpécifiquePrésentateur(
 
 
             val réservationOTD = RéservationSpécifiqueOTD(
-                classe = réservation.sièges[0].classe,
+                classe = réservation.siège?.classe ?: "Économique",
                 dateArrivée = vol.dateArrivee.format(formatterDate),
                 dateDepart = vol.dateDepart.format(formatterDate),
                 durée = vol.durée.toComponents {
@@ -66,7 +61,7 @@ class RéservationSpécifiquePrésentateur(
                 heureDepart = vol.dateDepart.format(formatterHeure),
                 nomVille = vol.aeroportFin.ville.nom,
                 numéroRéservation = réservation.numéroRéservation,
-                siège = siègeString.toString(),
+                siège = réservation.siège?.numéro ?: "",
                 tempsRestant = tempsRestant,
                 tempsUnite = tempsUnite,
                 barProgres = barProgres.toString(),

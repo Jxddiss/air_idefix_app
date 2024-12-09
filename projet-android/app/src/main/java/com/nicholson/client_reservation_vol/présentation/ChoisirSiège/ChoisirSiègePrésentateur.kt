@@ -23,14 +23,21 @@ class ChoisirSiègePrésentateur(
 
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
-            var classe : String
+            var classe : String = ""
             if(modèle.siegeVolAller){
                 volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
-                classe = modèle.réservationAller.sièges[0].classe
+                val réservationAller = modèle.réservationAller
+                if(réservationAller.siège != null){
+                    classe = réservationAller.siège.classe
+                }
+
             }
             else{
                 volCourrant = modèle.getVolCourrantRetour(modèle.indiceVolRetour)
-                classe = modèle.réservationRetour.sièges[0].classe
+                val réservationRetour = modèle.réservationRetour
+                if(réservationRetour.siège != null) {
+                    classe = réservationRetour.siège.classe
+                }
             }
 
             CoroutineScope(Dispatchers.Main).launch {
@@ -38,7 +45,7 @@ class ChoisirSiègePrésentateur(
                     nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
                     nomVilleArrivée = volCourrant.aeroportFin.ville.nom,
                     urlPhoto = volCourrant.aeroportFin.ville.url_photo,
-                    classe
+                    classeChoisis = classe
                 )
                 vue.miseEnPlaceSièges()
             }
@@ -64,7 +71,7 @@ class ChoisirSiègePrésentateur(
             if ( numSiègeCourrant.isNotEmpty() ){
                 if(modèle.siegeVolAller){
                     modèle.indiceVolCourrant = modèle.indiceVolAller
-                    modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
+                    modèle.réservationAller.siège?.numéro = numSiègeCourrant
                     modèle.siegeVolAller = false
                     if(modèle.listeVolRetour.isEmpty()){
                         modèle.ajouterReservation(modèle.réservationAller)
@@ -80,7 +87,7 @@ class ChoisirSiègePrésentateur(
                 }
                 else{
                     modèle.indiceVolCourrant = modèle.indiceVolRetour
-                    modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
+                    modèle.réservationRetour.siège?.numéro = numSiègeCourrant
                     modèle.ajouterReservation(modèle.réservationAller)
                     modèle.ajouterReservation(modèle.réservationRetour)
                     CoroutineScope( Dispatchers.Main ).launch {
@@ -104,7 +111,7 @@ class ChoisirSiègePrésentateur(
         job = CoroutineScope( iocontext ).launch {
             val siège = volCourrant.sièges.firstOrNull {
                 it.numéro == code
-                        && it.classe == modèle.réservationAller.sièges[0].classe
+                        && it.classe == modèle.réservationAller.siège?.classe
             }
 
             if ( siège != null ){

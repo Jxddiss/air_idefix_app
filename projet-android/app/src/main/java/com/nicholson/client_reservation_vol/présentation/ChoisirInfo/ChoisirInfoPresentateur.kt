@@ -59,13 +59,13 @@ class ChoisirInfoPresentateur(
             return
         }
 
-        modele.réservationAller.clients = modele.listeClient
-        modele.réservationRetour.clients = modele.listeClient
+
 
         job = CoroutineScope( iocontext ).launch {
             try {
                 modele.modifierClient( convertirClientOTDAClient( clientOTD ) )
-
+                modele.réservationAller.client = modele.obtenirClientCourrant()
+                modele.réservationRetour.client = modele.obtenirClientCourrant()
                 CoroutineScope( Dispatchers.Main ).launch {
                     vue.redirigerAChoisirSiege()
                 }

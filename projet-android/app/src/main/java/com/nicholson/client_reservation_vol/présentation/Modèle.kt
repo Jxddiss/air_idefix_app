@@ -65,33 +65,15 @@ class Modèle private constructor() {
         id = 0,
         numéroRéservation = "",
         idVol = 1,
-        clients = listOf(),
-        sièges = mutableListOf(
-            Siège(
-                1,
-                numéro = "",
-                classe = "",
-                statut = "",
-                idRéservation = 0,
-                idVol = 1
-            )
-        )
+        client = null,
+        siège = null
     )
     var réservationRetour = Réservation(
         id = 0,
         numéroRéservation = "",
         idVol = 1,
-        clients = listOf(),
-        sièges = mutableListOf(
-            Siège(
-                1,
-                numéro = "",
-                classe = "",
-                statut = "",
-                idRéservation = 0,
-                idVol = 1
-            )
-        )
+        client = null,
+        siège = null
     )
 
     var volRetourExiste: Boolean = false
@@ -261,8 +243,8 @@ class Modèle private constructor() {
             id = 0,
             numéroRéservation = "",
             idVol = getVolCourrantAller(indiceVolAller).id,
-            clients = listeClient,
-            sièges = mutableListOf(
+            client = client,
+            siège =
                 Siège(
                     1,
                     numéro = "",
@@ -270,8 +252,8 @@ class Modèle private constructor() {
                     statut = "Occupée",
                     idRéservation = 0,
                     idVol = getVolCourrantAller(indiceVolAller).id
-                )
-            )
+                ),
+            classe = classeChoisis
         )
         return réservation
     }
@@ -281,17 +263,17 @@ class Modèle private constructor() {
             id = 0,
             numéroRéservation = "",
             idVol = getVolCourrantRetour(indiceVolRetour).id,
-            clients = listeClient,
-            sièges = mutableListOf(
-                Siège(
-                    1,
-                    numéro = "",
-                    classe = classeChoisis,
-                    statut = "Occupée",
-                    idRéservation = 0,
-                    idVol = getVolCourrantRetour(indiceVolRetour).id
-                )
-            )
+            client = client,
+            siège =
+            Siège(
+                1,
+                numéro = "",
+                classe = classeChoisis,
+                statut = "Occupée",
+                idRéservation = 0,
+                idVol = getVolCourrantAller(indiceVolAller).id
+            ),
+            classe = classeChoisis
         )
         return réservation
     }

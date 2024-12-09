@@ -17,14 +17,14 @@ class ModifierReservationPresentateur(
 
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
-            val client = model.obtenirReservationCourrante().clients[0]
+            val client = model.obtenirReservationCourrante().client
             val clientOTD = ClientOTD(
-                nom = client.nom,
-                prénom = client.prénom,
-                adresse = client.adresse,
-                numéroPasseport = client.numéroPasseport,
-                email = client.email ?: "",
-                téléphone = client.numéroTéléphone ?: ""
+                nom = client?.nom ?: "",
+                prénom = client?.prénom ?: "",
+                adresse = client?.adresse ?: "",
+                numéroPasseport = client?.numéroPasseport ?: "",
+                email = client?.email ?: "",
+                téléphone = client?.numéroTéléphone ?: ""
             )
             CoroutineScope( Dispatchers.Main ).launch{
                 vue.miseEnPlace(clientOTD)
