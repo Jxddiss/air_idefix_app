@@ -12,6 +12,10 @@ class DécodeurJSONClient {
     companion object {
         fun décoderClient( json : String ) : Client{
             val reader = JsonReader(StringReader(json))
+            return décoderClient(reader)
+        }
+
+        fun décoderClient(reader: JsonReader): Client{
             var id : Int = 0
             lateinit var nom : String
             lateinit var prénom : String
