@@ -60,29 +60,39 @@ class ChoisirSiègePrésentateur(
     }
 
     override fun traiterDialogConfirmer() {
-        if ( numSiègeCourrant.isNotEmpty() ){
-            if(modèle.siegeVolAller){
-                modèle.indiceVolCourrant = modèle.indiceVolAller
-                modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
-                modèle.siegeVolAller = false
-                if(modèle.listeVolRetour.isEmpty()){
-                    modèle.ajouterReservation(modèle.réservationAller)
-                    vue.redirigerVersMesRéservation()
+        job = CoroutineScope( iocontext ).launch {
+            if ( numSiègeCourrant.isNotEmpty() ){
+                if(modèle.siegeVolAller){
+                    modèle.indiceVolCourrant = modèle.indiceVolAller
+                    modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
+                    modèle.siegeVolAller = false
+                    if(modèle.listeVolRetour.isEmpty()){
+                        modèle.ajouterReservation(modèle.réservationAller)
+                        CoroutineScope( Dispatchers.Main ).launch {
+                            vue.redirigerVersMesRéservation()
+                        }
+                    }
+                    else {
+                        CoroutineScope( Dispatchers.Main ).launch {
+                            vue.redirigerVersChoisirSiegeRetour()
+                        }
+                    }
                 }
-                else {
-                    vue.redirigerVersChoisirSiegeRetour()
+                else{
+                    modèle.indiceVolCourrant = modèle.indiceVolRetour
+                    modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
+                    modèle.ajouterReservation(modèle.réservationAller)
+                    modèle.ajouterReservation(modèle.réservationRetour)
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerVersMesRéservation()
+                    }
                 }
             }
             else{
-                modèle.indiceVolCourrant = modèle.indiceVolRetour
-                modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
-                modèle.ajouterReservation(modèle.réservationAller)
-                modèle.ajouterReservation(modèle.réservationRetour)
-                vue.redirigerVersMesRéservation()
+                CoroutineScope( Dispatchers.Main ).launch{
+                    vue.afficherErreur( "Veuillez choisir un siège" )
+                }
             }
-
-        }else{
-            vue.afficherErreur( "Veuillez choisir un siège" )
         }
     }
 

@@ -21,7 +21,7 @@ class ListeRéservationsPrésentateur (
 
     override fun traiterObtenirRéservation(){
         job = CoroutineScope( iocontext ).launch {
-            val listeDeRéservation = modèle.listeRéservation
+            val listeDeRéservation = modèle.obtenirListReservation()
 
             val listeRéservationOTD = listeDeRéservation.map {
 

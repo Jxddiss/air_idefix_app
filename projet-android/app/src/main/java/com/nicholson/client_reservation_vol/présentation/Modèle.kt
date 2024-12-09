@@ -8,11 +8,12 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
-import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
+import com.nicholson.client_reservation_vol.domaine.interacteur.ManipulerReservation
 import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirReservation
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.donnée.http.ClientHttp
@@ -23,7 +24,7 @@ import java.time.LocalDateTime
 class Modèle private constructor() {
 
     private val clientService: ClientService = ClientService()
-    private val réservationService: RéservationService = RéservationService()
+
     private var historiqueService: HistoriqueService? = null
 
     companion object {
@@ -99,13 +100,9 @@ class Modèle private constructor() {
 
     var listeVolAller: List<Vol> = listOf()
     var listeVolRetour: List<Vol> = listOf()
-    var listeRéservation: MutableList<Réservation> = mutableListOf()
-        get() {
-            if (field.isEmpty()) {
-                field = réservationService.obtenirListeRéservation()
-            }
-            return field
-        }
+    var listeRéservation: List<Réservation> = listOf()
+
+
 
     var listeClient: MutableList<Client> = mutableListOf()
         get() {
@@ -236,12 +233,13 @@ class Modèle private constructor() {
         }
     }
 
-    fun obtenirReservationParId(id: Int): Réservation {
-        return réservationService.obtenirRéservationParid(id)
+    suspend fun obtenirReservationCourrante(): Réservation {
+        return ObtenirReservation.obtenirDétailsRéservation(listeRéservation[indiceRéservationCourrante].id)
     }
 
-    fun obtenirReservationCourrante(): Réservation {
-        return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
+    suspend fun obtenirListReservation():List<Réservation>{
+        listeRéservation = ObtenirReservation.obtenirListeRéservation()
+        return listeRéservation
     }
 
     suspend fun obtenirClientCourrant(): Client {
@@ -298,8 +296,8 @@ class Modèle private constructor() {
         return réservation
     }
 
-    fun ajouterReservation(réservation : Réservation) {
-        réservationService.ajouterRéservation(réservation)
+    suspend fun ajouterReservation(réservation : Réservation) {
+        ManipulerReservation.ajouterRéservation(réservation)
     }
 
     suspend fun obtenirListeAéroports(): List<Aeroport> {
