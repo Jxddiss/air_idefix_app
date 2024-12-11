@@ -66,5 +66,6 @@
     <string name="api_url" translatable="false">http://10.0.2.2:8080</string>
     <string name="une_erreur_r_seau_c_est_produite">Une erreur réseau c\'est produite</string>
     <string name="mon_historique">Mon historique</string>
+    <string name="supprimer">Supprimer</string>
 
 </resources>

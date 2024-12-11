@@ -68,6 +68,8 @@
     <string name="r_server">Book</string>
     <string name="une_erreur_r_seau_c_est_produite">A network error occured</string>
     <string name="mon_historique">My History</string>
+    <string name="supprimer">Delete</string>
+
 
 
 </resources>
