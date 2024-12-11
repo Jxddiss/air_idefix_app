@@ -19,4 +19,8 @@ class HistoriqueService(private val sourceDeDonnées: ISourceDeDonnéesHistoriqu
     fun ajouterHistorique(historique: Historique) {
         sourceDeDonnées.ajouterHistorique(historique)
     }
+
+    fun supprimerHistorique(historique: Historique) {
+        sourceDeDonnées.supprimerHistorique(historique)
+    }
 }

@@ -36,4 +36,10 @@ class HistoriquePrésentateur (
         vue.redirigerVersRechercherUnVolVue()
     }
 
+    override fun traiterSupprimerHistorique(indice: Int) {
+        val historique = modèle.listeHistorique[indice]
+        modèle.supprimerHistorique(historique)
+        vue.supprimerHistorique(indice)
+    }
+
 }

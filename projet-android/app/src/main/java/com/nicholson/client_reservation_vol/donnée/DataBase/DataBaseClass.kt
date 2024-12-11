@@ -49,4 +49,33 @@ class DataBaseClass(context: Context) : SQLiteOpenHelper(context, "HistoriqueDB"
         db.close()
     }
 
+
+    fun supprimerHistorique(historique: Historique) {
+        val db = writableDatabase
+        try {
+            val rowsDeleted = db.delete(
+                "Historique",
+                "villeDe = ? AND villeVers = ? AND aeroportDe = ? AND aeroportVers = ? AND dateDepart = ?",
+                arrayOf(
+                    historique.villeDe,
+                    historique.villeVers,
+                    historique.aeroportDe,
+                    historique.aeroportVers,
+                    historique.dateDepart.toString()
+                )
+            )
+            if (rowsDeleted > 0) {
+                Log.d("Database", "Historique effacé avec succès")
+            } else {
+                Log.d("Database", "Aucun historique correspondant trouvé à supprimer")
+            }
+        } catch (e: Exception) {
+            Log.e("Database", "Erreur lors de la suppression de l'historique", e)
+        } finally {
+            db.close()
+        }
+    }
+
+
+
 }

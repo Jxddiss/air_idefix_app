@@ -303,4 +303,10 @@ class Modèle private constructor() {
         return listeHistorique[indiceHistoriqueCourrant]
     }
 
+    fun supprimerHistorique(historique: Historique) {
+        historiqueService?.supprimerHistorique(historique)
+        listeHistorique = listeHistorique.filter { it != historique }
+    }
+
+
 }
