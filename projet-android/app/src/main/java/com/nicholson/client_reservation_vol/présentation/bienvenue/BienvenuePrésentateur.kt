@@ -43,6 +43,7 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBien
             },
             échec = {
                 vue.afficherMessageErreur()
+                modèle.seDeconecté()
             }
         )
     }
