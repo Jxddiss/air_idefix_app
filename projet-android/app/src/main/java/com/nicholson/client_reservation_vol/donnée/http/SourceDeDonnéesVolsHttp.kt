@@ -24,7 +24,13 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décoderListeVols( réponse.body!!.string() )
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ){
+                    return DécodeurJSONVol.décoderListeVols( corpsDeRéponse )
+                }else{
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
@@ -45,7 +51,13 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décoderVol( réponse.body!!.string() )
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ){
+                    return DécodeurJSONVol.décoderVol( corpsDeRéponse )
+                }else{
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }

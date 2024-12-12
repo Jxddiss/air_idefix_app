@@ -20,6 +20,9 @@ import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesRéserv
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
 import com.nicholson.client_reservation_vol.présentation.CréateurDeFragment
 import com.nicholson.client_reservation_vol.présentation.Modèle
+import okhttp3.OkHttpClient
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class  MainActivity : AppCompatActivity() {
 
@@ -48,6 +51,7 @@ class  MainActivity : AppCompatActivity() {
         //ManipulerReservation.sourceDeDonnées = sourceRéservation
 
 
+        Logger.getLogger(OkHttpClient::class.java.name).level = Level.FINE
         supportFragmentManager.fragmentFactory = CréateurDeFragment()
     }
 }

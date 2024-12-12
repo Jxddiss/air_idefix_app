@@ -43,6 +43,7 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
             } else if ( réponse.code !in 200..299 ) {
                 throw SourceDeDonnéesException( "Code : ${réponse.code}" )
             }
+            réponse.body?.close()
         } catch ( ex : IOException ) {
             throw SourceDeDonnéesException( "Erreur inconnue : ${ex.message}" )
         }
@@ -61,7 +62,7 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
                 val corpsDeRéponse = réponse.body?.string()
-
+                réponse.body?.close()
                 if ( corpsDeRéponse != null ) {
                     return DécodeurJSONClient.décoderClient( corpsDeRéponse )
                 } else {
@@ -90,7 +91,7 @@ class SourceDeDonnéesClientHttp( val urlApi : String ) : ISourceDeDonéesClient
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
                 val corpsDeRéponse = réponse.body?.string()
-
+                réponse.body?.close()
                 if ( corpsDeRéponse != null ) {
                     return DécodeurJSONClient.décoderClient( corpsDeRéponse )
                 } else {

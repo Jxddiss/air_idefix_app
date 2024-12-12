@@ -20,7 +20,13 @@ class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAer
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONAéroport.décoderListeAéroports( réponse.body!!.string() )
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if( corpsDeRéponse != null ){
+                    return DécodeurJSONAéroport.décoderListeAéroports( corpsDeRéponse )
+                } else {
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
