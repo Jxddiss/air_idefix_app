@@ -17,6 +17,9 @@ import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesClientH
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
 import com.nicholson.client_reservation_vol.présentation.CréateurDeFragment
 import com.nicholson.client_reservation_vol.présentation.Modèle
+import okhttp3.OkHttpClient
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class  MainActivity : AppCompatActivity() {
 
@@ -40,7 +43,7 @@ class  MainActivity : AppCompatActivity() {
         val sourceClient = SourceDeDonnéesClientHttp( getString( R.string.api_url ) )
         ObtenirClient.sourceDeDonnées = sourceClient
         ModifierClient.sourceDeDonnées = sourceClient
-
+        Logger.getLogger(OkHttpClient::class.java.name).level = Level.FINE
         supportFragmentManager.fragmentFactory = CréateurDeFragment()
     }
 }
