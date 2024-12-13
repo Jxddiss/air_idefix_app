@@ -32,7 +32,7 @@ class ClientHttp private constructor() {
         }
 
         fun retirerIntercepteurs() {
-            instance?.newBuilder()?.interceptors()?.clear()
+            obtenirInstance()
         }
     }
 }
