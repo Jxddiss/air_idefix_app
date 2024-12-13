@@ -84,6 +84,9 @@
             android:id="@+id/action_listeRéservationsVue_vers_réservationSpécifiqueVue"
             app:destination="@id/réservationSpécifiqueVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/réservationSpécifiqueVue"
