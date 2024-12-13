@@ -60,6 +60,7 @@ open class VueAuthentifié : Fragment()  {
             .withScheme( scheme )
             .start( requireContext(), object : Callback<Void?, AuthenticationException> {
                 override fun onFailure( error: AuthenticationException ) {
+                    préférences.edit().remove( "token" ).apply()
                     échec( "Erreur de connexion ${error.message}" )
                 }
 
