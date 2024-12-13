@@ -6,8 +6,6 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesRéservation
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONRéservation
-import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONVol
-import com.nicholson.client_reservation_vol.donnée.http.encodeur.EncodeurJSONClient
 import com.nicholson.client_reservation_vol.donnée.http.encodeur.EncodeurJSONRéservation
 import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -29,9 +27,22 @@ class SourceDeDonnéesRéservationHttp( val urlApi : String ) : ISourceDeDonnée
                 .build()
 
             val réponse = client.newCall( requête ).execute()
+
             if ( réponse.code == 200 ) {
-                return DécodeurJSONRéservation.décoderListeRéservation( réponse.body!!.string() )
-            } else {
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ) {
+                    return DécodeurJSONRéservation.décoderListeRéservation( corpsDeRéponse )
+                } else {
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
+            }
+            else if( réponse.code == 401 ){
+                réponse.body?.close()
+                throw AuthentificationException("Vous n'ète pas connecté")
+            }
+            else {
+                réponse.body?.close()
                 throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         }
@@ -52,8 +63,22 @@ class SourceDeDonnéesRéservationHttp( val urlApi : String ) : ISourceDeDonnée
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONRéservation.décoderRéservation( réponse.body!!.string() )
-            } else {
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ){
+                    return DécodeurJSONRéservation.décoderRéservation( corpsDeRéponse )
+                }
+                else{
+
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
+            }
+            else if( réponse.code == 401 ){
+                réponse.body?.close()
+                throw AuthentificationException("Vous n'ète pas connecté")
+            }
+            else {
+                réponse.body?.close()
                 throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         }
@@ -87,9 +112,11 @@ class SourceDeDonnéesRéservationHttp( val urlApi : String ) : ISourceDeDonnée
             val réponse = clientHttp.newCall( requête ).execute()
 
             if ( réponse.code == 401 ){
+                réponse.body?.close()
                 throw AuthentificationException("Vous n'ète pas connecté")
             } else if ( réponse.code !in 200..299 ) {
-                throw SourceDeDonnéesException( "Code : ${réponse.code}" )
+                réponse.body?.close()
+                throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
         } catch ( ex : IOException ) {
             throw SourceDeDonnéesException( "Erreur inconnue : ${ex.message}" )
