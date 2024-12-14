@@ -1,6 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.RechercherVol
 
 import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Aeroport
 import com.nicholson.client_reservation_vol.domaine.entité.Historique
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.Modèle
@@ -79,64 +80,72 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
                 villeAeroportVers.contains(it.code)
             }
 
-            try{
-                val dateDebut = LocalDateTime.parse(dateDebutString+" 00:00",DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-                var dateRetourLocal :  LocalDate? = null
-                if(dateRetourString.isNotEmpty()) {
-                    val dateRetour = LocalDateTime.parse(
-                        dateRetourString + " 00:00",
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-                    )
-                    modèle.filtreVolRetour = FiltreRechercheVol(
-                        dateDébut = dateRetour,
-                        codeAéroportDébut = aeroportVers.code,
-                        codeAéroportFin = aeroportDe.code
-                    )
+            try {
+                val dateDebut = parseDate(dateDebutString)
+                var dateRetourLocal: LocalDate? = null
+
+                if (dateRetourString.isNotEmpty()) {
+                    dateRetourLocal = parseDate(dateRetourString)
+
+                    modèle.filtreVolRetour = creerFiltreVol(dateRetourLocal, aeroportVers, aeroportDe)
                     modèle.volRetourExiste = true
-                    dateRetourLocal = LocalDate.parse(dateRetourString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 }
-                modèle.filtreVolAller = FiltreRechercheVol(
-                    dateDébut = dateDebut,
-                    codeAéroportDébut = aeroportDe.code,
-                    codeAéroportFin = aeroportVers.code
-                )
 
-                val dateDebutLocal = LocalDate.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                modèle.filtreVolAller = creerFiltreVol(dateDebut, aeroportDe, aeroportVers)
 
-                //save historique ici
-                val historique = Historique(
-                    villeDe = aeroportDe.ville.nom,
-                    villeVers = aeroportVers.ville.nom,
-                    aeroportDe = aeroportDe.code,
-                    aeroportVers = aeroportVers.code,
-                    dateDepart = dateDebutLocal,
-                    dateRetour = dateRetourLocal
-                )
-
+                val historique = creerHistorique(aeroportDe, aeroportVers, dateDebut, dateRetourLocal)
                 enregistrerRecherche(historique)
 
-                CoroutineScope( Dispatchers.Main ).launch {
+                CoroutineScope(Dispatchers.Main).launch {
                     vue?.redirigerVersListeVols()
                 }
-            }catch (ex :  Exception){
+            } catch (ex: Exception) {
                 Log.d("Erreur", ex.message.toString())
                 return@launch
             }
         }
-
     }
+
 
 
     override fun traiterActionRecherche() {
        vue?.obtenirInfoRecherche()
     }
 
-    // pour l'instant j'ai ajoute cet log pour verifier que tout est sur ma listeHistorique et si tout est bien sauvarger
+    //convertion  d'entrée en un objet LocalDate sans avoir besoin d'ajouter manuellement " 00:00"
+    private fun parseDate(dateString: String): LocalDate {
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+    }
+
+    //Fun pour la creation de Object Historique
+    private fun creerHistorique(
+        aeroportDe: Aeroport,
+        aeroportVers: Aeroport,
+        dateDebutLocal: LocalDate,
+        dateRetourLocal: LocalDate?
+    ): Historique {
+        return Historique(
+            villeDe = aeroportDe.ville.nom,
+            villeVers = aeroportVers.ville.nom,
+            aeroportDe = aeroportDe.code,
+            aeroportVers = aeroportVers.code,
+            dateDepart = dateDebutLocal,
+            dateRetour = dateRetourLocal
+        )
+    }
+
+    private fun creerFiltreVol(dateDebut: LocalDate, aeroportDe: Aeroport, aeroportVers: Aeroport): FiltreRechercheVol {
+        return FiltreRechercheVol(
+            dateDébut = dateDebut.atStartOfDay(),
+            codeAéroportDébut = aeroportDe.code,
+            codeAéroportFin = aeroportVers.code
+        )
+    }
+
+
     private fun enregistrerRecherche(historique: Historique) {
-        //Log.d("RechercherVolPresent", "Essaye d'ajouter a la bd: $historique")
         modèle.créerHistorique(historique)
         Log.d("RechercherVolPresent ", "Historique ajouter: $historique")
-        //Log.d("RechercherVolPresent", "ma listHistorique maintenant: $listHistorique")
     }
 
     override fun traiterObtenirHistorique() {
