@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.coroutines.CoroutineContext
 
@@ -65,27 +64,29 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
             modèle.listeVolRetour = listOf()
 
 
-            if(villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty() ){
-                CoroutineScope( Dispatchers.Main ).launch {
+            if (villeAeroportDe.isEmpty() || villeAeroportVers.isEmpty() || dateDebutString.isEmpty()) {
+                CoroutineScope(Dispatchers.Main).launch {
                     vue?.afficherToast("Erreur, veuillez sélectionner tous les champs.")
                 }
                 return@launch
             }
 
 
-            val aeroportDe=modèle.obtenirListeAéroports().first{
+            val aeroportDe = modèle.obtenirListeAéroports().first {
                 villeAeroportDe.contains(it.code)
             }
-            val aeroportVers=modèle.obtenirListeAéroports().first {
+            val aeroportVers = modèle.obtenirListeAéroports().first {
                 villeAeroportVers.contains(it.code)
             }
 
             try {
-                val dateDebut = parseDate(dateDebutString)
-                var dateRetourLocal: LocalDate? = null
+                val dateDebut = validerDate(dateDebutString, "La date de départ ne peut pas être avant aujourd'hui.")
+                if (dateDebut == null) return@launch
 
+                var dateRetourLocal: LocalDate? = null
                 if (dateRetourString.isNotEmpty()) {
-                    dateRetourLocal = parseDate(dateRetourString)
+                    dateRetourLocal = validerDate(dateRetourString, "La date de retour ne peut pas être avant aujourd'hui.")
+                    if (dateRetourLocal == null) return@launch
 
                     modèle.filtreVolRetour = creerFiltreVol(dateRetourLocal, aeroportVers, aeroportDe)
                     modèle.volRetourExiste = true
@@ -99,7 +100,7 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
                 CoroutineScope(Dispatchers.Main).launch {
                     vue?.redirigerVersListeVols()
                 }
-            } catch (ex: Exception) {
+            } catch (ex: IllegalArgumentException) {
                 Log.d("Erreur", ex.message.toString())
                 return@launch
             }
@@ -165,4 +166,14 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
         }
     }
 
+    fun validerDate(dateString: String, errorMessage: String): LocalDate? {
+        val parsedDate = parseDate(dateString)
+        if (parsedDate.isBefore(LocalDate.now())) {
+            CoroutineScope(Dispatchers.Main).launch {
+                vue?.afficherToast(errorMessage)
+            }
+            return null
+        }
+        return parsedDate
+    }
 }
