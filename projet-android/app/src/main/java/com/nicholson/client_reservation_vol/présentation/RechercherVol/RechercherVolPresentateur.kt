@@ -43,6 +43,8 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
                 }
             }catch ( ex : SourceDeDonnéesException ) {
                 modèle.messageErreurRéseauExistant = true
+                Log.d("est connecté",modèle.estConnecté.toString())
+                Log.d("networkError: ",ex.message.toString())
                 CoroutineScope( Dispatchers.Main ).launch {
                     vue?.redirigerBienvenueErreur()
                 }

@@ -69,6 +69,7 @@
     <string name="mon_historique">Mi historia</string>
     <string name="supprimer">Borrar</string>
 
+    <string name="connexion_en_cours">Iniciando sesión...</string>
 
 
 </resources>

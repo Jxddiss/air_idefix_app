@@ -5,7 +5,6 @@ import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesVols
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONVol
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
 import java.io.IOException
@@ -18,7 +17,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
                 "&&aeroportFin=${filtre.codeAéroportFin}"
 
         try {
-            val client = OkHttpClient()
+            val client = ClientHttp.obtenirInstance()
             val requête = Request.Builder()
                 .url( urlRequête )
                 .get()
@@ -26,9 +25,15 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décodéListeVols( réponse.body!!.string() )
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ){
+                    return DécodeurJSONVol.décoderListeVols( corpsDeRéponse )
+                }else{
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
             } else {
-                throw SourceDeDonnéesException("Code : ${réponse.code}")
+                throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         } catch( ex : IOException) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
@@ -39,7 +44,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
         val urlRequête = "$urlApi/vols/$id"
 
         try {
-            val client = OkHttpClient()
+            val client = ClientHttp.obtenirInstance()
             val requête = Request.Builder()
                 .url( urlRequête )
                 .get()
@@ -47,9 +52,15 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 
             val réponse = client.newCall( requête ).execute()
             if ( réponse.code == 200 ) {
-                return DécodeurJSONVol.décodéVol( réponse.body!!.string() )
+                val corpsDeRéponse = réponse.body?.string()
+                réponse.body?.close()
+                if ( corpsDeRéponse != null ){
+                    return DécodeurJSONVol.décoderVol( corpsDeRéponse )
+                }else{
+                    throw SourceDeDonnéesException( "Corps de réponse vide" )
+                }
             } else {
-                throw SourceDeDonnéesException("Code : ${réponse.code}")
+                throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
         } catch( ex : IOException ) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")

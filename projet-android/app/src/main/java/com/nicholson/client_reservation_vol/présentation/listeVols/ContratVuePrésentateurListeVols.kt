@@ -9,7 +9,10 @@ interface ContratVuePrésentateurListeVols {
         fun afficherMessagePasDeVol()
         fun redirigerVersChoixClasse()
         fun montrerChargement()
-        fun montrerErreurRéseau()
+        fun redirigerBienvenueErreur()
+        fun afficherMessageNonConnectée()
+        fun seConnecter( réussite : ( String ) -> Unit, échec : ( String ) -> Unit )
+        fun masquerChargement()
     }
 
     interface IListeDeVolsPrésentateur {

@@ -1,9 +1,15 @@
 package com.nicholson.client_reservation_vol.présentation.bienvenue
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBienvenuePrésentateur {
     private val modèle: Modèle = Modèle.obtenirInstance()
+
     override fun traiterDemandeRedirectionListeReservations() {
         vue.redirigerAListeReservation()
     }
@@ -19,5 +25,26 @@ class BienvenuePrésentateur( var vue : IBienvenueVue = BienvenueVue() ) : IBien
             modèle.messageErreurRéseauExistant = false
             vue.afficherMessageErreur()
         }
+
+        val token = vue.obtenirToken()
+        if ( token != null && !modèle.estConnecté ){
+            modèle.effectuerLogin( token )
+            vue.montrerDéconnexion()
+        } else if( modèle.estConnecté ) {
+            vue.montrerDéconnexion()
+        }
+    }
+
+    override fun traiterDéconnexion() {
+        vue.seDéconnecter(
+            réussite = {
+                vue.cacherDéconnexion()
+                modèle.seDeconecté()
+            },
+            échec = {
+                vue.afficherMessageErreur()
+                modèle.seDeconecté()
+            }
+        )
     }
 }

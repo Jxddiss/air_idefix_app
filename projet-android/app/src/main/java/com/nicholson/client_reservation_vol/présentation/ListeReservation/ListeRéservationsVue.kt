@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -19,8 +20,9 @@ import com.nicholson.client_reservation_vol.présentation.OTD.RéservationListIt
 import com.nicholson.client_reservation_vol.présentation.OTD.VolListItemOTD
 import com.nicholson.client_reservation_vol.présentation.listeVols.ContratVuePrésentateurListeVols.*
 import com.nicholson.client_reservation_vol.présentation.ListeReservation.ContratVuePrésentateurListeRéservation.*
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 
-class ListeRéservationsVue : Fragment(),
+class ListeRéservationsVue : VueAuthentifié(),
     ContratVuePrésentateurListeRéservation.IListeDeRéservationsVue {
 
     var présentateur : IListeDeRéservationsPrésentateur? = ListeRéservationsPrésentateur(this)
@@ -28,6 +30,7 @@ class ListeRéservationsVue : Fragment(),
     lateinit var btnRechercherVoyages : Button
     lateinit var adaptateur : RecyclerAdapter
     lateinit var navController: NavController
+    private lateinit var layoutBarChargement : ConstraintLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,7 @@ class ListeRéservationsVue : Fragment(),
     override fun onViewCreated(vue: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vue, savedInstanceState)
 
+        layoutBarChargement = vue.findViewById(R.id.barDeChargement)
         btnRechercherVoyages = vue.findViewById(R.id.btnRechercherFromVoyages)
         btnRechercherVoyages.setOnClickListener{
             présentateur?.traiterBtnRechercheVolCliqué()
@@ -67,6 +71,18 @@ class ListeRéservationsVue : Fragment(),
         navController.navigate(R.id.action_listeRéservationsVue_vers_rechercherUnVolVue)
     }
 
+    override fun masquerChargement() {
+        layoutBarChargement.visibility = View.GONE
+    }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate(R.id.action_listeRéservationsVue_vers_bienvenueVue)
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
+    }
+
     fun ajouterAdaptateurRéservationAuRecycler(listeDeRéservation: MutableList<RéservationListItemOTD>){//, listeDeVols: MutableList<VolListItemOTD>, vue: View){
         adaptateur = RecyclerAdapter(listeDeRéservation)
         adaptateur.itemCliquéÉvènement = {
@@ -79,5 +95,7 @@ class ListeRéservationsVue : Fragment(),
 
 
     }
+
+
 
 }

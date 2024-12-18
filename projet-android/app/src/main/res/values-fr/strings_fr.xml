@@ -68,6 +68,7 @@
     <string name="mon_historique">Mon historique</string>
     <string name="supprimer">Supprimer</string>
 
+    <string name="connexion_en_cours">Connexion en cours...</string>
 
 
 </resources>

@@ -58,7 +58,7 @@ class DécodeurJSONAéroportTest{
                 "USA")
         )
 
-        val résultat_obtenu = DécodeurJSONAéroport.décodéListeAéroports(json)
+        val résultat_obtenu = DécodeurJSONAéroport.décoderListeAéroports(json)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }
@@ -80,7 +80,7 @@ class DécodeurJSONAéroportTest{
                 },
         """
         assertFailsWith<SourceDeDonnéesException>("Format JSON invalide") {
-            DécodeurJSONAéroport.décodéListeAéroports(json)
+            DécodeurJSONAéroport.décoderListeAéroports(json)
         }
     }
 
@@ -109,7 +109,7 @@ class DécodeurJSONAéroportTest{
                 "https://example.com/paris.jpg"),
             "France")
 
-        val résultat_obtenu = DécodeurJSONAéroport.décodéAeroport(reader)
+        val résultat_obtenu = DécodeurJSONAéroport.décoderAeroport(reader)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }
@@ -140,7 +140,7 @@ class DécodeurJSONAéroportTest{
                 "https://example.com/paris.jpg"),
             "France")
 
-        val résultat_obtenu = DécodeurJSONAéroport.décodéAeroport(reader)
+        val résultat_obtenu = DécodeurJSONAéroport.décoderAeroport(reader)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }
@@ -157,7 +157,7 @@ class DécodeurJSONAéroportTest{
         val reader = JsonReader(StringReader(json))
 
         assertFailsWith<SourceDeDonnéesException>("Format JSON invalide") {
-            DécodeurJSONAéroport.décodéAeroport(reader)
+            DécodeurJSONAéroport.décoderAeroport(reader)
         }
     }
 }

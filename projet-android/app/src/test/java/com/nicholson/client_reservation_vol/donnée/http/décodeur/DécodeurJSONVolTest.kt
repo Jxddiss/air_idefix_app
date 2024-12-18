@@ -93,7 +93,7 @@ class DécodeurJSONVolTest{
 
         val résultat_attendue = listOf( vol )
 
-        val résultat_obtenu = DécodeurJSONVol.décodéListeVols(json)
+        val résultat_obtenu = DécodeurJSONVol.décoderListeVols(json)
 
         assertEquals(résultat_attendue, résultat_obtenu)
     }
@@ -109,7 +109,7 @@ class DécodeurJSONVolTest{
                     }
         """
         assertFailsWith<SourceDeDonnéesException>("Format JSON invalide") {
-            DécodeurJSONVol.décodéListeVols(json)
+            DécodeurJSONVol.décoderListeVols(json)
         }
     }
 
@@ -168,7 +168,7 @@ class DécodeurJSONVolTest{
 
         val résultat_attendue = vol
 
-        val résultat_obtenu = DécodeurJSONVol.décodéVol(json)
+        val résultat_obtenu = DécodeurJSONVol.décoderVol(json)
 
         assertEquals(résultat_attendue, résultat_obtenu)
     }

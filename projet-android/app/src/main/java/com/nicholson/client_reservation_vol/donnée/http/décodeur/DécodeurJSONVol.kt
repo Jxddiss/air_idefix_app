@@ -13,19 +13,17 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 class DécodeurJSONVol {
     companion object {
-        fun décodéListeVols(json : String ) : List<Vol> {
+        fun décoderListeVols(json : String ) : List<Vol> {
             val reader = JsonReader( StringReader( json ) )
             val listVol = mutableListOf<Vol>()
 
             try {
                 reader.beginArray()
                 while ( reader.hasNext() ){
-                    listVol.add( décodéVol( reader ) )
+                    listVol.add( décoderVol( reader ) )
                 }
                 reader.endArray()
             } catch ( ex : EOFException) {
@@ -37,12 +35,12 @@ class DécodeurJSONVol {
             return listVol
         }
 
-        fun décodéVol(json : String ) : Vol {
+        fun décoderVol(json : String ) : Vol {
             val reader = JsonReader( StringReader( json ) )
-            return décodéVol( reader )
+            return décoderVol( reader )
         }
 
-        private fun décodéVol(reader: JsonReader ) : Vol {
+        private fun décoderVol(reader: JsonReader ) : Vol {
             var id  = 0
             lateinit var numeroVol: String
             lateinit var aeroportDebut: Aeroport
@@ -66,9 +64,9 @@ class DécodeurJSONVol {
                                 when (reader.nextName()) {
                                     "numéroTrajet" -> numeroVol = reader.nextString()
                                     "aéroportDébut" -> aeroportDebut =
-                                        DécodeurJSONAéroport.décodéAeroport(reader)
+                                        DécodeurJSONAéroport.décoderAeroport(reader)
                                     "aéroportFin" -> aeroportFin =
-                                        DécodeurJSONAéroport.décodéAeroport(reader)
+                                        DécodeurJSONAéroport.décoderAeroport(reader)
                                     else -> reader.skipValue()
                                 }
                             }
@@ -76,7 +74,7 @@ class DécodeurJSONVol {
                         }
                         "dateDepart" -> dateDepart = LocalDateTime.parse( reader.nextString() )
                         "dateArrivee" -> dateArrivee = LocalDateTime.parse( reader.nextString() )
-                        "avion" -> avion = DécodeurJSONAvion.décodéAvion( reader )
+                        "avion" -> avion = DécodeurJSONAvion.décoderAvion( reader )
                         "prixParClasse" -> {
                             val tempMap = mutableMapOf<String, Double>()
                             reader.beginObject()
@@ -104,7 +102,7 @@ class DécodeurJSONVol {
                             prixParClasse = tempMap
                         }
                         "poidsMaxBag" -> poidsMaxBag = reader.nextInt()
-                        "vol_statut" -> statutVol = décodéStatutVol( reader )
+                        "vol_statut" -> statutVol = décoderStatutVol( reader )
                         "duree" -> durée = Duration.parseIsoString( reader.nextString() )
                         else -> reader.skipValue()
                     }
@@ -118,7 +116,7 @@ class DécodeurJSONVol {
             }
         }
 
-        private fun décodéStatutVol(reader: JsonReader ) : List<VolStatut>{
+        private fun décoderStatutVol(reader: JsonReader ) : List<VolStatut>{
             val listStatutVol = mutableListOf<VolStatut>()
             try {
                 reader.beginArray()

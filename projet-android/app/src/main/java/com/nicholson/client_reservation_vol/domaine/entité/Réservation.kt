@@ -4,6 +4,7 @@ data class Réservation (
     var id : Int,
     var numéroRéservation: String,
     val idVol: Int,
-    var clients: List<Client>,
-    val sièges: List<Siège>,
+    var client: Client?,
+    val siège: Siège?,
+    val classe: String = "économique"
 )
