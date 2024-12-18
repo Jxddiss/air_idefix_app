@@ -105,80 +105,60 @@ class SourceDonnéesFictive : SourceDeDonnées {
                 numéro = "A1",
                 classe = "Économique",
                 statut = "occupée",
-                idRéservation = 1,
-                idVol = 1
             ),
             Siège(
                 id = 2,
                 numéro = "B2",
                 classe = "Économique",
                 statut = "libre",
-                idRéservation = 0,
-                idVol = 1
             ),
             Siège(
                 id = 3,
                 numéro = "C3",
                 classe = "Affaire",
                 statut = "libre",
-                idRéservation = 0,
-                idVol = 2
             ),
             Siège(
                 id = 4,
                 numéro = "D4",
                 classe = "Première",
                 statut = "occupée",
-                idRéservation = 2,
-                idVol = 2
             ),
             Siège(
                 id = 5,
                 numéro = "C3",
                 classe = "Affaire",
                 statut = "libre",
-                idRéservation = 0,
-                idVol = 3
             ),
             Siège(
                 id = 6,
                 numéro = "D4",
                 classe = "Première",
                 statut = "occupée",
-                idRéservation = 2,
-                idVol = 3
             ),
             Siège(
                 id = 7,
                 numéro = "C3",
                 classe = "Affaire",
                 statut = "libre",
-                idRéservation = 0,
-                idVol = 4
             ),
             Siège(
                 id = 8,
                 numéro = "D4",
                 classe = "Première",
                 statut = "occupée",
-                idRéservation = 2,
-                idVol = 4
             ),
             Siège(
                 id = 9,
                 numéro = "C3",
                 classe = "Affaire",
                 statut = "libre",
-                idRéservation = 0,
-                idVol = 5
             ),
             Siège(
                 id = 10,
                 numéro = "D4",
                 classe = "Première",
                 statut = "occupée",
-                idRéservation = 2,
-                idVol = 5
             )
         )
 
@@ -205,7 +185,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                     )
                 ),
                 durée = 8.toDuration(DurationUnit.HOURS),
-                sièges = listSièges.filter { it.idVol == 1 }.toMutableList()
+                sièges = listSièges
             ),
             Vol(
                 id = 2,
@@ -229,7 +209,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                     )
                 ),
                 durée = 9.toDuration(DurationUnit.HOURS),
-                sièges = listSièges.filter { it.idVol == 2 }.toMutableList()
+                sièges = listSièges
             ),
             Vol(
                 id = 3,
@@ -253,7 +233,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                     )
                 ),
                 durée = 9.toDuration(DurationUnit.HOURS),
-                sièges = listSièges.filter { it.idVol == 3 }.toMutableList()
+                sièges = listSièges
             ),
             Vol(
                 id = 4,
@@ -277,7 +257,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                     )
                 ),
                 durée = 9.toDuration(DurationUnit.HOURS),
-                sièges = listSièges.filter { it.idVol == 4 }.toMutableList()
+                sièges = listSièges
             ),
             Vol(
                 id = 5,
@@ -301,7 +281,7 @@ class SourceDonnéesFictive : SourceDeDonnées {
                     )
                 ),
                 durée = 9.toDuration(DurationUnit.HOURS),
-                sièges = listSièges.filter { it.idVol == 5 }.toMutableList()
+                sièges = listSièges
             )
         )
 
@@ -343,8 +323,6 @@ class SourceDonnéesFictive : SourceDeDonnées {
         réservation.id = listeRéservation.size + 1
         réservation.numéroRéservation = "RES00${listeRéservation.size + 1}"
         réservation.siège.let {
-            it?.idRéservation = réservation.id
-            it?.idVol = réservation.idVol
             if (it != null) {
                 obtenirVolParId( réservation.idVol )?.sièges?.add( it )
             }

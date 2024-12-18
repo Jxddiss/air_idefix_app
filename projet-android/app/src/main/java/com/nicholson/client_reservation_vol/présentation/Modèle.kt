@@ -250,8 +250,6 @@ class Modèle private constructor() {
                     numéro = "",
                     classe = classeChoisis,
                     statut = "Occupée",
-                    idRéservation = 0,
-                    idVol = getVolCourrantAller(indiceVolAller).id
                 ),
             classe = classeChoisis
         )
@@ -270,8 +268,6 @@ class Modèle private constructor() {
                 numéro = "",
                 classe = classeChoisis,
                 statut = "Occupée",
-                idRéservation = 0,
-                idVol = getVolCourrantAller(indiceVolAller).id
             ),
             classe = classeChoisis
         )

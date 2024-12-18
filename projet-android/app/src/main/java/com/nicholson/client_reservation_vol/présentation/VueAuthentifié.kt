@@ -25,10 +25,7 @@ open class VueAuthentifié : Fragment()  {
         super.onCreate(savedInstanceState)
         audience   = getString( R.string.com_auth0_audience )
         scheme  = getString( R.string.com_auth0_scheme )
-        account = Auth0(
-            getString( R.string.com_auth0_client_id ),
-            getString( R.string.com_auth0_domain )
-        )
+        account = Auth0( requireContext() )
         préférences = EncryptedSharedPreferences.create(
             requireContext(),
             "auth_prefs",

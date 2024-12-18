@@ -62,8 +62,6 @@ class DécodeurJSONRéservation {
 
                 }
                 reader.endObject()
-                siege.idRéservation = id
-                siege.idVol = idVol
                 return Réservation(id,numéroRéservation,idVol,client,siege,classe)
             }
             catch ( ex : EOFException) {

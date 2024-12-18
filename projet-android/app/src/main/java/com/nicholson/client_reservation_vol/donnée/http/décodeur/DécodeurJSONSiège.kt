@@ -14,8 +14,6 @@ class DécodeurJSONSiège {
             lateinit var numéro : String
             lateinit var classe : String
             lateinit var statut : String
-            var idRéservation = 0
-            var idVol = 0
 
             try{
                 reader.beginObject()
@@ -31,7 +29,7 @@ class DécodeurJSONSiège {
                 }
                 reader.endObject()
 
-                return Siège(id,numéro,classe,statut,idRéservation,idVol)
+                return Siège(id,numéro,classe,statut)
             }
             catch ( ex : EOFException) {
                 throw SourceDeDonnéesException("Format JSON invalide : ${ex.message}")

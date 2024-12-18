@@ -20,8 +20,6 @@ class SourceDeDonnéesRéservationFictive: ISourceDeDonnéesRéservation {
         réservation.id = listeRéservation.size + 1
         réservation.numéroRéservation = "RES00${listeRéservation.size + 1}"
         réservation.siège.let {
-            it?.idRéservation = réservation.id
-            it?.idVol = réservation.idVol
             if (it != null) {
                 sourceFictive.obtenirVolParId( réservation.idVol )?.sièges?.add( it )
             }
