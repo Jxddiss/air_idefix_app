@@ -20,7 +20,7 @@ class DécodeurJSONSiègeTest {
                 "statut": "disponible"
             }
         """
-        val résultatAttendu = Siège(1, "12A", "économique", "disponible", 0, 0)
+        val résultatAttendu = Siège(1, "12A", "économique", "disponible")
         val reader = JsonReader(StringReader(json))
 
         val résultatObtenu = DécodeurJSONSiège.décoderSiege(reader)
@@ -66,7 +66,7 @@ class DécodeurJSONSiègeTest {
                 "extra": "Ignoré"
             }
         """
-        val résultatAttendu = Siège(1, "12A", "économique", "disponible", 0, 0)
+        val résultatAttendu = Siège(1, "12A", "économique", "disponible")
         val reader = JsonReader(StringReader(json))
 
         val résultatObtenu = DécodeurJSONSiège.décoderSiege(reader)

@@ -53,8 +53,6 @@ class DécodeurJSONRéservationTest{
                 numéro = "C2",
                 classe = "économique",
                 statut = "occupé",
-                idVol = 1,
-                idRéservation = 1
             ),
             classe = "économique"
         )
@@ -133,8 +131,6 @@ class DécodeurJSONRéservationTest{
                 numéro = "C2",
                 classe = "économique",
                 statut = "occupé",
-                idVol = 1,
-                idRéservation = 1
             ),
             classe = "économique"
         )
