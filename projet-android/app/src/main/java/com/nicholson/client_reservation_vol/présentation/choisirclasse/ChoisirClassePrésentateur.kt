@@ -21,7 +21,7 @@ class ChoisirClassePrésentateur(
     private val modèle : Modèle = Modèle.obtenirInstance()
     private val formatterDate = DateTimeFormatter.ofPattern( "dd MMMM yyyy" )
     private val formatterHeure = DateTimeFormatter.ofPattern( "HH:MM" )
-    private var classeChoisis = "Économique"
+    private var classeChoisis = "économique"
     private var job : Job? = null
 
     override fun traiterDémarage() {

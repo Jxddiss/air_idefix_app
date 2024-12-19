@@ -1,5 +1,7 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
+import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
@@ -16,6 +18,7 @@ class ChoisirSiègePrésentateur(
 
     private val modèle : Modèle = Modèle.obtenirInstance()
     private lateinit var volCourrant : Vol
+    private var sièges : List<Siège> = listOf()
     private var numSiègeCourrant : String = ""
     private var idAndroidDernierSiègeCliqué = 0
     private var job : Job? = null
@@ -39,6 +42,8 @@ class ChoisirSiègePrésentateur(
                     classe = réservationRetour.siège.classe
                 }
             }
+
+            sièges = modèle.obtenirSiègesVolCourrant(volCourrant.id)
 
             CoroutineScope(Dispatchers.Main).launch {
                 vue.miseEnPlace(
@@ -109,9 +114,10 @@ class ChoisirSiègePrésentateur(
 
     override fun vérifierStatutSiège( id: Int, code: String ) {
         job = CoroutineScope( iocontext ).launch {
-            val siège = volCourrant.sièges.firstOrNull {
+            val siège = sièges.firstOrNull {
                 it.numéro == code
-                        && it.classe == modèle.réservationAller.siège?.classe
+                        && it.classe == modèle.réservationAller.siège?.classe?.lowercase()
+                        && it.statut == "occupé"
             }
 
             if ( siège != null ){

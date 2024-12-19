@@ -14,6 +14,7 @@ import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirReservation
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirSièges
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
 import com.nicholson.client_reservation_vol.donnée.http.ClientHttp
@@ -83,8 +84,6 @@ class Modèle private constructor() {
     var listeVolAller: List<Vol> = listOf()
     var listeVolRetour: List<Vol> = listOf()
     var listeRéservation: List<Réservation> = listOf()
-
-
 
     var listeClient: MutableList<Client> = mutableListOf()
         get() {
@@ -283,6 +282,10 @@ class Modèle private constructor() {
             listeAéroports = ObtenirAéroport.obtenirListeAeroport()
         }
         return listeAéroports
+    }
+
+    suspend fun obtenirSiègesVolCourrant( idVol : Int ) : List<Siège> {
+        return ObtenirSièges.obtenirSiègesParIdVol( idVol )
     }
 
     fun créerHistorique( historique: Historique ) {
