@@ -128,6 +128,9 @@
         <action
             android:id="@+id/action_choisirSiegeVue_self"
             app:destination="@id/choisirSiegeVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"

@@ -3,6 +3,7 @@ package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 import android.util.Log
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +18,7 @@ class ChoisirSiègePrésentateur(
     ) : IChoisirSiègePrésentateur {
 
     private val modèle : Modèle = Modèle.obtenirInstance()
-    private lateinit var volCourrant : Vol
+    private var volCourrant : Vol? = null
     private var sièges : List<Siège> = listOf()
     private var numSiègeCourrant : String = ""
     private var idAndroidDernierSiègeCliqué = 0
@@ -26,9 +27,18 @@ class ChoisirSiègePrésentateur(
 
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
-            var classe : String = ""
+            var classe = ""
             if(modèle.siegeVolAller){
-                volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
+
+                try {
+                    volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
+                } catch ( ex : SourceDeDonnéesException ) {
+                    modèle.messageErreurRéseauExistant = true
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerÀBienvenueErreur()
+                    }
+                }
+
                 val réservationAller = modèle.réservationAller
                 if(réservationAller.siège != null){
                     classe = réservationAller.siège.classe
@@ -43,16 +53,25 @@ class ChoisirSiègePrésentateur(
                 }
             }
 
-            sièges = modèle.obtenirSiègesVolCourrant(volCourrant.id)
+            if ( volCourrant != null ) {
+                try {
+                    sièges = modèle.obtenirSiègesVolCourrant(volCourrant!!.id)
+                } catch ( ex : SourceDeDonnéesException ) {
+                    modèle.messageErreurRéseauExistant = true
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerÀBienvenueErreur()
+                    }
+                }
 
-            CoroutineScope(Dispatchers.Main).launch {
-                vue.miseEnPlace(
-                    nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
-                    nomVilleArrivée = volCourrant.aeroportFin.ville.nom,
-                    urlPhoto = volCourrant.aeroportFin.ville.url_photo,
-                    classeChoisis = classe
-                )
-                vue.miseEnPlaceSièges()
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.miseEnPlace(
+                        nomVilleDépart = volCourrant!!.aeroportDebut.ville.nom,
+                        nomVilleArrivée = volCourrant!!.aeroportFin.ville.nom,
+                        urlPhoto = volCourrant!!.aeroportFin.ville.url_photo,
+                        classeChoisis = classe
+                    )
+                    vue.miseEnPlaceSièges()
+                }
             }
         }
     }

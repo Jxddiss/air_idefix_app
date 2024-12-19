@@ -84,6 +84,10 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
     }
 
+    override fun redirigerÀBienvenueErreur() {
+        navController.navigate( R.id.action_choisirSiegeVue_vers_bienvenueVue )
+    }
+
     override fun miseÀjourSiègeCliquéVersSélectionnée(id : Int ) {
         this.view?.findViewById<ImageView>( id )
             ?.setColorFilter(Color.argb(255, 255, 205, 0))
