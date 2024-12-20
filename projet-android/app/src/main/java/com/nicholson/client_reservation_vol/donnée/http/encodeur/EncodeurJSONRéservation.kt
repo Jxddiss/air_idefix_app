@@ -10,17 +10,12 @@ class EncodeurJSONRéservation {
         fun encoderRéservation(writer: JsonWriter , réservation: Réservation) {
 
             writer.beginObject()
-            writer.name("id").value(réservation.id)
-            writer.name("numéroRéservation").value(réservation.numéroRéservation)
             writer.name("idVol").value(réservation.idVol)
-
 
             if (réservation.client == null) {
                 throw SourceDeDonnéesException("Client est null")
             }
-            writer.name("client")
-            EncodeurJSONClient.encoderClient(writer, réservation.client!!)
-
+            writer.name("clientCourriel").value(réservation.client!!.email)
 
             if (réservation.siège == null) {
                 throw SourceDeDonnéesException("Siège est null")
@@ -29,6 +24,7 @@ class EncodeurJSONRéservation {
             EncodeurJSONSiège.encoderSiège(writer, réservation.siège)
 
             writer.name("classe").value(réservation.classe)
+            writer.name("bagages").value(1)
             writer.endObject()
         }
 

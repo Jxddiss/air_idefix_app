@@ -9,10 +9,8 @@ class EncodeurJSONSiège {
     companion object {
         fun encoderSiège(writer: JsonWriter, siège: Siège) {
             writer.beginObject()
-            writer.name("id").value(siège.id)
             writer.name("numéroSiège").value(siège.numéro)
             writer.name("classe").value(siège.classe)
-            writer.name("statut").value(siège.statut)
             writer.endObject()
         }
     }

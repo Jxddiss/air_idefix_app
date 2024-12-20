@@ -50,7 +50,7 @@ class  MainActivity : AppCompatActivity() {
         ModifierClient.sourceDeDonnées = sourceClient
         val sourceRéservation = SourceDeDonnéesRéservationHttp( getString( R.string.api_url ) )
         ObtenirReservation.sourceDeDonnées = sourceRéservation
-        //ManipulerReservation.sourceDeDonnées = sourceRéservation
+        ManipulerReservation.sourceDeDonnées = sourceRéservation
         ObtenirSièges.sourceDeDonnées = SourceDeDonnéesSiègesHttp( getString( R.string.api_url ) )
 
 
