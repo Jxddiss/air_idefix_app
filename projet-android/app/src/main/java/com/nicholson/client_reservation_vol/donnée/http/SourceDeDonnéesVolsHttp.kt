@@ -7,7 +7,6 @@ import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSON
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import okhttp3.Request
 import okio.IOException
-import java.io.IOException
 
 class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
 

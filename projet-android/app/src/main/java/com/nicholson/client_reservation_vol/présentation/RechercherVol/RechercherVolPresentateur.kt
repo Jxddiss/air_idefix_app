@@ -170,7 +170,9 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
 
     fun validerDate(dateString: String, errorMessage: String): LocalDate? {
         val parsedDate = parseDate(dateString)
-        if (parsedDate.isBefore(LocalDate.now())) {
+        val validationDatePourDemain=LocalDate.now().plusDays(1)
+
+        if (parsedDate.isBefore(validationDatePourDemain)) {
             CoroutineScope(Dispatchers.Main).launch {
                 vue?.afficherToast(errorMessage)
             }
