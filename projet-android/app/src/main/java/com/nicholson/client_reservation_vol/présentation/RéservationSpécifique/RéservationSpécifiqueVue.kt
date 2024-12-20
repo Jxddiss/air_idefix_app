@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -24,24 +25,26 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 import com.nicholson.client_reservation_vol.présentation.RéservationSpécifique.ContratVuePrésentateurRéservationSpécifique.*
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
-    lateinit var textViewSiege : TextView
-    lateinit var textViewDateDépart: TextView
-    lateinit var textViewDateArrivée: TextView
-    lateinit var textViewClasse: TextView
-    lateinit var textViewVille: TextView
-    lateinit var textViewDateDépartPreview: TextView
-    lateinit var textViewNumeroRéservation: TextView
-    lateinit var textViewCompteARebours: TextView
-    lateinit var progressBarRéservationSpecifique: ProgressBar
-    lateinit var textViewHeureArrivéeRéservationSpécifique: TextView
-    lateinit var textViewHeureDépartRéservationSpécifique: TextView
-    lateinit var imageViewVilleRéservationSpecifique: ImageView
-    lateinit var navController: NavController
-    lateinit var calendarImageView: ImageView
+class RéservationSpécifiqueVue : VueAuthentifié(), IRéservationSpécifiqueVue{
+    private lateinit var textViewSiege : TextView
+    private lateinit var textViewDateDépart: TextView
+    private lateinit var textViewDateArrivée: TextView
+    private lateinit var textViewClasse: TextView
+    private lateinit var textViewVille: TextView
+    private lateinit var textViewDateDépartPreview: TextView
+    private lateinit var textViewNumeroRéservation: TextView
+    private lateinit var textViewCompteARebours: TextView
+    private lateinit var progressBarRéservationSpecifique: ProgressBar
+    private lateinit var textViewHeureArrivéeRéservationSpécifique: TextView
+    private lateinit var textViewHeureDépartRéservationSpécifique: TextView
+    private lateinit var imageViewVilleRéservationSpecifique: ImageView
+    private lateinit var navController: NavController
+    private lateinit var calendarImageView: ImageView
+    private lateinit var layoutBarChargement : ConstraintLayout
     var présentateur : IRéservationSpécifiquePrésentateur? = RéservationSpécifiquePrésentateur( this )
 
 
@@ -73,16 +76,15 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        layoutBarChargement = view.findViewById(R.id.barDeChargement)
         val BtnModifierReservation: ImageButton = view.findViewById(R.id.BtnModifierReservation)
 
         BtnModifierReservation.setOnClickListener {
             présentateur?.traiterModifier()
         }
 
-
         présentateur?.traiterDémarage()
     }
-
 
     override fun miseEnPlace(réservationSpécifiqueOTD: RéservationSpécifiqueOTD){
         textViewSiege.text = réservationSpécifiqueOTD.siège
@@ -96,8 +98,6 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
         progressBarRéservationSpecifique.progress = réservationSpécifiqueOTD.barProgres.toInt()
         textViewHeureArrivéeRéservationSpécifique.text = réservationSpécifiqueOTD.heureArrivée
         textViewHeureDépartRéservationSpécifique.text = réservationSpécifiqueOTD.heureDepart
-
-
 
         calendarImageView.setOnClickListener(){
             présentateur?.traiterCalendrier(réservationSpécifiqueOTD)
@@ -125,6 +125,18 @@ class RéservationSpécifiqueVue : Fragment(), IRéservationSpécifiqueVue{
 
     override fun afficherErreur(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate(R.id.action_réservationSpécifiqueVue_vers_bienvenueVue)
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
+    }
+
+    override fun masquerChargement() {
+        layoutBarChargement.visibility = View.GONE
     }
 
 }
