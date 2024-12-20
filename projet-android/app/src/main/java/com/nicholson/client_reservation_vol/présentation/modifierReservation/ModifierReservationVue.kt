@@ -6,21 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.OTD.ClientOTD
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 
-class ModifierReservationVue : Fragment(), ContratVueModifierReservation.IModifierReservationVue {
+class ModifierReservationVue : VueAuthentifié(), ContratVueModifierReservation.IModifierReservationVue {
 
-    var présentateur: ContratVueModifierReservation.IModifierReservationPrésentateur? = ModifierReservationPresentateur(this)
-    lateinit var navController: NavController
-    lateinit var textViewModifierNomReservation: TextView
-    lateinit var textViewModifierPrenomReservation: TextView
-    lateinit var textViewModifiernuméroPasseportReservation: TextView
-    lateinit var textViewModifierEmailReservation: TextView
-    lateinit var textViewModifierTelephoneReservation: TextView
+    private var présentateur: ContratVueModifierReservation.IModifierReservationPrésentateur? = ModifierReservationPresentateur(this)
+    private lateinit var navController: NavController
+    private lateinit var textViewModifierNomReservation: TextView
+    private lateinit var textViewModifierPrenomReservation: TextView
+    private lateinit var textViewModifiernuméroPasseportReservation: TextView
+    private lateinit var textViewModifierEmailReservation: TextView
+    private lateinit var textViewModifierTelephoneReservation: TextView
+    private lateinit var layoutBarChargement : ConstraintLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +44,10 @@ class ModifierReservationVue : Fragment(), ContratVueModifierReservation.IModifi
         textViewModifiernuméroPasseportReservation = view.findViewById(R.id.textViewModifiernuméroPasseportReservation)
         textViewModifierEmailReservation = view.findViewById(R.id.textViewModifierEmailReservation)
         textViewModifierTelephoneReservation = view.findViewById(R.id.textViewModifierTelephoneReservation)
+        layoutBarChargement = view.findViewById(R.id.barDeChargement)
         navController = Navigation.findNavController(view)
 
         présentateur?.traiterDémarage()
-
 
     }
 
@@ -55,6 +58,19 @@ class ModifierReservationVue : Fragment(), ContratVueModifierReservation.IModifi
         textViewModifierEmailReservation.text = clientOTD.email
         textViewModifierTelephoneReservation.text = clientOTD.téléphone
     }
+
+    override fun redirigerBienvenueErreur() {
+        navController.navigate(R.id.action_modifierReservationVue_vers_bienvenueVue)
+    }
+
+    override fun montrerChargement() {
+        layoutBarChargement.visibility = View.VISIBLE
+    }
+
+    override fun masquerChargement() {
+        layoutBarChargement.visibility = View.GONE
+    }
+
 
 
 }
