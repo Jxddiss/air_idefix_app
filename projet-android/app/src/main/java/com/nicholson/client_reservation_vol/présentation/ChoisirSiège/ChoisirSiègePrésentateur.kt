@@ -144,9 +144,17 @@ class ChoisirSiègePrésentateur(
 
     override fun vérifierStatutSiège( id: Int, code: String ) {
         job = CoroutineScope( iocontext ).launch {
+            var classe : String? = null
+
+            if( modèle.siegeVolAller ){
+                classe = modèle.réservationAller.siège?.classe?.lowercase()
+            }else{
+                classe = modèle.réservationRetour.siège?.classe?.lowercase()
+            }
+
             val siège = sièges.firstOrNull {
                 it.numéro == code
-                        && it.classe == modèle.réservationAller.siège?.classe?.lowercase()
+                        && it.classe == classe
                         && it.statut == "occupé"
             }
 
