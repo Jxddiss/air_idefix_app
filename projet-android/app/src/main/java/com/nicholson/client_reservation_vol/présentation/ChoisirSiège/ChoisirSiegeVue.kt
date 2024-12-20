@@ -51,6 +51,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
             présentateur?.traiterDialogConfirmer()
         }
         dialogConfirmation.setNegativeButton( getString( R.string.annuler ) ) { dialog, _ ->
+            réactiverBtnConfirmer()
             dialog.dismiss()
         }
 
@@ -88,6 +89,14 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         navController.navigate( R.id.action_choisirSiegeVue_vers_bienvenueVue )
     }
 
+    override fun désactiverBtnConfirmer() {
+        btnConfirmerRéservation.isClickable = false
+    }
+
+    override fun réactiverBtnConfirmer() {
+        btnConfirmerRéservation.isClickable = true
+    }
+
     override fun miseÀjourSiègeCliquéVersSélectionnée(id : Int ) {
         this.view?.findViewById<ImageView>( id )
             ?.setColorFilter(Color.argb(255, 255, 205, 0))
@@ -119,16 +128,6 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
         dialogErreur.show()
     }
-
-    override fun afficherErreurRéseau() {
-        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
-        dialogErreur.setMessage( getString( R.string.une_erreur_r_seau_c_est_produite ) )
-        dialogErreur.setPositiveButton( "OK" ) { it, _ ->
-            it.dismiss()
-        }
-        dialogErreur.show()
-    }
-
 
     override fun afficherDialogConfirmer() {
         dialogConfirmation.show()

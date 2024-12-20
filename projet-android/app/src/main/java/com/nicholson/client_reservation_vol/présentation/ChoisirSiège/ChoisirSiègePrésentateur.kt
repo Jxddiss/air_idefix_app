@@ -90,6 +90,7 @@ class ChoisirSiègePrésentateur(
     }
 
     override fun traiterDialogConfirmer() {
+        vue.désactiverBtnConfirmer()
         job = CoroutineScope( iocontext ).launch {
             if(modèle.siegeVolAller){
                 modèle.indiceVolCourrant = modèle.indiceVolAller
@@ -103,7 +104,8 @@ class ChoisirSiègePrésentateur(
                         }
                     } catch ( ex : SourceDeDonnéesException ) {
                         CoroutineScope( Dispatchers.Main ).launch {
-                            vue.afficherErreurRéseau()
+                            modèle.messageErreurRéseauExistant = true
+                            vue.redirigerÀBienvenueErreur()
                         }
                     }
                 }
@@ -124,7 +126,8 @@ class ChoisirSiègePrésentateur(
                     }
                 } catch ( ex : SourceDeDonnéesException ) {
                     CoroutineScope( Dispatchers.Main ).launch {
-                        vue.afficherErreurRéseau()
+                        modèle.messageErreurRéseauExistant = true
+                        vue.redirigerÀBienvenueErreur()
                     }
                 }
             }

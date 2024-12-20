@@ -11,12 +11,13 @@ interface ContratVuePrésentateurChoisirSiège {
         fun placerStatutSiègeOccupée( id : Int )
         fun placerStatutSiègeDisponible( id : Int )
         fun afficherErreurChampsVides()
-        fun afficherErreurRéseau()
         fun afficherDialogConfirmer()
         fun redirigerVersMesRéservation()
         fun redirigerVersChoisirSiegeRetour()
         fun miseEnPlaceSièges()
         fun redirigerÀBienvenueErreur()
+        fun désactiverBtnConfirmer()
+        fun réactiverBtnConfirmer()
     }
     interface IChoisirSiègePrésentateur {
         fun traiterDémarage()

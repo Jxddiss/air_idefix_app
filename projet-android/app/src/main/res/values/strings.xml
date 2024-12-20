@@ -71,4 +71,5 @@
     <string name="com_auth0_client_id" translatable="false">x0WbvDakzuBRRjjDR7zDHZP0ammpZCZ7</string>
     <string name="com_auth0_audience" translatable="false">https://air.idéfix.com/</string>
     <string name="connexion_en_cours">Connexion en cours...</string>
+    <string name="siege_vide">Veuillez choisir un siège</string>
 </resources>
