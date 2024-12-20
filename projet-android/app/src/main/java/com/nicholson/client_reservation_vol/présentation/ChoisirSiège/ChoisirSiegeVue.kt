@@ -122,7 +122,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
 
     override fun afficherErreurChampsVides() {
         val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
-        dialogErreur.setMessage( "Veuillez remplir tout les champs" )
+        dialogErreur.setMessage( getString( R.string.siege_vide ) )
         dialogErreur.setPositiveButton( "OK" ) { it, _ ->
             it.dismiss()
         }
