@@ -26,10 +26,10 @@ class ListeRéservationsVue : VueAuthentifié(),
     ContratVuePrésentateurListeRéservation.IListeDeRéservationsVue {
 
     var présentateur : IListeDeRéservationsPrésentateur? = ListeRéservationsPrésentateur(this)
-    lateinit var recycler: RecyclerView
-    lateinit var btnRechercherVoyages : Button
-    lateinit var adaptateur : RecyclerAdapter
-    lateinit var navController: NavController
+    private lateinit var recycler: RecyclerView
+    private lateinit var btnRechercherVoyages : Button
+    private lateinit var adaptateur : RecyclerAdapter
+    private lateinit var navController: NavController
     private lateinit var layoutBarChargement : ConstraintLayout
 
 
