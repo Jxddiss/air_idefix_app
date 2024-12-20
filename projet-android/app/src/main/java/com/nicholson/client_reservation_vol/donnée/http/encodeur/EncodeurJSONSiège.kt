@@ -10,7 +10,7 @@ class EncodeurJSONSiège {
         fun encoderSiège(writer: JsonWriter, siège: Siège) {
             writer.beginObject()
             writer.name("numéroSiège").value(siège.numéro)
-            writer.name("classe").value(siège.classe)
+            writer.name("classe").value(siège.classe.lowercase())
             writer.endObject()
         }
     }

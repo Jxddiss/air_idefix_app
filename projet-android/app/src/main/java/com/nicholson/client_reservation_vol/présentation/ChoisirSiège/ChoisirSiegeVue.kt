@@ -18,13 +18,13 @@ import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 
 class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
-    lateinit var textViewNomDestination: TextView
-    lateinit var textViewClasse : TextView
-    lateinit var imageViewVillechoisirInformation: ImageView
-    lateinit var btnConfirmerRéservation : Button
-    lateinit var navController: NavController
-    lateinit var dialogConfirmation: MaterialAlertDialogBuilder
-    var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
+    private lateinit var textViewNomDestination: TextView
+    private lateinit var textViewClasse : TextView
+    private lateinit var imageViewVillechoisirInformation: ImageView
+    private lateinit var btnConfirmerRéservation : Button
+    private lateinit var navController: NavController
+    private lateinit var dialogConfirmation: MaterialAlertDialogBuilder
+    private var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -111,11 +111,24 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
     }
 
-    override fun afficherErreur( message: String ) {
-        requireActivity().runOnUiThread {
-            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    override fun afficherErreurChampsVides() {
+        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
+        dialogErreur.setMessage( "Veuillez remplir tout les champs" )
+        dialogErreur.setPositiveButton( "OK" ) { it, _ ->
+            it.dismiss()
         }
+        dialogErreur.show()
     }
+
+    override fun afficherErreurRéseau() {
+        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
+        dialogErreur.setMessage( getString( R.string.une_erreur_r_seau_c_est_produite ) )
+        dialogErreur.setPositiveButton( "OK" ) { it, _ ->
+            it.dismiss()
+        }
+        dialogErreur.show()
+    }
+
 
     override fun afficherDialogConfirmer() {
         dialogConfirmation.show()

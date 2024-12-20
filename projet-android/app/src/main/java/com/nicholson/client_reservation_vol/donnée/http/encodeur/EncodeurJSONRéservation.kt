@@ -23,7 +23,7 @@ class EncodeurJSONRéservation {
             writer.name("siège")
             EncodeurJSONSiège.encoderSiège(writer, réservation.siège)
 
-            writer.name("classe").value(réservation.classe)
+            writer.name("classe").value(réservation.classe.lowercase())
             writer.name("bagages").value(1)
             writer.endObject()
         }
