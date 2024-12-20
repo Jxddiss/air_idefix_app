@@ -97,6 +97,9 @@
             android:id="@+id/action_réservationSpécifiqueVue_to_modifierReservationVue"
             app:destination="@id/modifierReservationVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_réservationSpécifiqueVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/modifierReservationVue"
@@ -114,6 +117,9 @@
             android:id="@+id/action_modifierReservationVue_to_choisirClasseVue"
             app:destination="@id/choisirClasseVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirSiegeVue"
