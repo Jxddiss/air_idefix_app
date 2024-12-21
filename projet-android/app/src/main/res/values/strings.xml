@@ -66,6 +66,8 @@
     <string name="api_url" translatable="false">http://10.0.2.2:8080</string>
     <string name="une_erreur_r_seau_c_est_produite">Une erreur réseau c\'est produite</string>
     <string name="mon_historique">Mon historique</string>
+    <string name="supprimer">Supprimer</string>
+
     <string name="com_auth0_domain" translatable="false">dev-7ld81pbss3pk7sic.us.auth0.com</string>
     <string name="com_auth0_scheme" translatable="false">air</string>
     <string name="com_auth0_client_id" translatable="false">x0WbvDakzuBRRjjDR7zDHZP0ammpZCZ7</string>

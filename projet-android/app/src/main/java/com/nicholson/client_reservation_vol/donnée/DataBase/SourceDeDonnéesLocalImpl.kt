@@ -74,4 +74,10 @@ class SourceDeDonnéesLocalImpl( context: Context ) : ISourceDeDonnéesHistoriqu
         return listHistorique
     }
 
+    override fun supprimerHistorique(historique: Historique) {
+        dbHelper.supprimerHistorique(historique)
+    }
+
+
+
 }

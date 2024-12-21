@@ -30,7 +30,7 @@ class SourceDeDonnéesAeroportHttp( val urlApi : String ) : ISourceDeDonnéesAer
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}")
             }
-        } catch( ex : IOException ) {
+        } catch( ex : IOException) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
         }
     }

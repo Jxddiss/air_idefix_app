@@ -104,4 +104,19 @@
         app:layout_constraintStart_toEndOf="@id/iconAvion"
         app:layout_constraintTop_toBottomOf="@id/VilleDE" />
 
+    <Button
+        android:id="@+id/buttonSupprimer"
+        android:layout_width="112dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/couleur_btn_jaune"
+        android:fontFamily="@font/lexend"
+        android:text="@string/supprimer"
+        android:textColor="@color/couleur_principale"
+        android:textSize="11sp"
+        app:cornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

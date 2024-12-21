@@ -34,7 +34,7 @@ class SourceDeDonnéesVolsHttp( val urlApi : String ) : ISourceDeDonnéesVols {
             } else {
                 throw SourceDeDonnéesException("Code : ${réponse.code}, url : $urlRequête")
             }
-        } catch( ex : IOException ) {
+        } catch( ex : IOException) {
             throw SourceDeDonnéesException("Erreur inconnue : ${ex.message}")
         }
     }

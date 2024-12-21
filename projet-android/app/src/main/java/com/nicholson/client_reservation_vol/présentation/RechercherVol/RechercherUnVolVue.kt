@@ -70,7 +70,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
         // Set up pour le date (chosir date)
         calendrier = Calendar.getInstance()
         choisirDate.setOnClickListener {
-            afficherDatePicker(choisirDate) //afficher le calendrier
+            afficherDatePicker(choisirDate)
         }
 
         // Set OnClickListener pour "Aller Simple" button
@@ -96,7 +96,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
             estAllerSimple = false
         }
         choisirDateRetour.setOnClickListener {
-            afficherDatePicker(choisirDateRetour) //afficher le calendrier
+            afficherDatePicker(choisirDateRetour)
         }
 
         btnRechercher.setOnClickListener {
@@ -128,9 +128,9 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
 
     // Fonction pour afficher le calendrier
     private fun afficherDatePicker(editText: EditText) {
-        val year = calendrier.get(Calendar.YEAR)
-        val month = calendrier.get(Calendar.MONTH)
-        val day = calendrier.get(Calendar.DAY_OF_MONTH)
+        val année  = calendrier.get(Calendar.YEAR)
+        val mois  = calendrier.get(Calendar.MONTH)
+        val jour  = calendrier.get(Calendar.DAY_OF_MONTH)
 
         datePickerDialog =
             DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
@@ -138,7 +138,8 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
                         "/${String.format("%02d", selectedMonth + 1)}" +
                         "/$selectedYear"
                 editText.setText(dateSelectione)
-            }, year, month, day)
+            }, année , mois , jour )
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
         datePickerDialog.show()
     }
 

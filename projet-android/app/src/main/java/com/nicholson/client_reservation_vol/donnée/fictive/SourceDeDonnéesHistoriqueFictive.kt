@@ -40,4 +40,9 @@ class SourceDeDonnéesHistoriqueFictive : ISourceDeDonnéesHistorique {
     override fun ajouterHistorique(historique: Historique) {
         listHistorique.add(historique)
     }
+
+    override fun supprimerHistorique(historique: Historique) {
+        listHistorique.remove(historique)
+    }
+
 }

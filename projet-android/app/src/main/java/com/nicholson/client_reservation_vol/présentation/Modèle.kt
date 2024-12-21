@@ -305,4 +305,10 @@ class Modèle private constructor() {
         ClientHttp.retirerIntercepteurs()
         estConnecté = false
     }
+
+    fun supprimerHistorique(historique: Historique) {
+        historiqueService?.supprimerHistorique(historique)
+        listeHistorique = listeHistorique.filter { it != historique }
+    }
+
 }
