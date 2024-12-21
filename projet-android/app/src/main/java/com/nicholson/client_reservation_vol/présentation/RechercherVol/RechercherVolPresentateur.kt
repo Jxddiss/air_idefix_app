@@ -81,6 +81,13 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
                 villeAeroportVers.contains(it.code)
             }
 
+            if (validerVilleAirport(aeroportDe, aeroportVers)) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue?.afficherToast("Les aéroports de départ et d'arrivée sont identiques.")
+                }
+                return@launch
+            }
+
             try {
                 val dateDebut = validerDate(dateDebutString, "La date de départ ne peut pas être avant aujourd'hui.")
                 if (dateDebut == null) return@launch
@@ -179,5 +186,9 @@ class RechercherVolPresentateur( iocontext : CoroutineContext = Dispatchers.IO )
             return null
         }
         return parsedDate
+    }
+
+    private fun validerVilleAirport(aeroportDe: Aeroport, aeroportVers: Aeroport): Boolean {
+        return aeroportDe.code == aeroportVers.code
     }
 }
