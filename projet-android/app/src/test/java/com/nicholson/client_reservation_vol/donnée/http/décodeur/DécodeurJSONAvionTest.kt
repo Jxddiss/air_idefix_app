@@ -1,6 +1,6 @@
 package com.nicholson.client_reservation_vol.donnée.http.décodeur
 
-import android.util.JsonReader
+import com.google.gson.stream.JsonReader
 import com.nicholson.client_reservation_vol.domaine.entité.Avion
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONAvion.Companion.décoderAvion
