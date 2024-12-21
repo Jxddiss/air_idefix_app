@@ -31,11 +31,10 @@ class HistoriqueRechercheVue : Fragment(), IListeDeHistoriqueVue {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Initialize the RecyclerView
+
         recyclerView = view.findViewById(R.id.recycler_historique_list)
         navController = findNavController()
 
-        // get historique data apres l'initialization
         historiquePrésentateur.traiterObtenirHistorique()
         historiquePrésentateur.traiterObtenirHistorique()
 

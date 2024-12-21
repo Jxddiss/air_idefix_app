@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
-import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -68,10 +66,21 @@ class HistoriqueRechercheAdapter(private var rechercheHistoriqueList:  List<Hist
     }
 
     fun supprimerItem(position: Int) {
-        val mutableList = rechercheHistoriqueList.toMutableList()
-        mutableList.removeAt(position)
-        rechercheHistoriqueList = mutableList
-        notifyItemRemoved(position)
+        if (position in rechercheHistoriqueList.indices) {
+            rechercheHistoriqueList = rechercheHistoriqueList.toMutableList().apply {
+                removeAt(position)
+            }
+            val tailleAprès = rechercheHistoriqueList.size
+
+            notifyItemRemoved(position)
+
+            if (tailleAprès > 0) {
+                notifyItemRangeChanged(position, tailleAprès)
+            } else {
+                notifyDataSetChanged()
+            }
+        }
     }
+
 
 }

@@ -70,7 +70,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
         // Set up pour le date (chosir date)
         calendrier = Calendar.getInstance()
         choisirDate.setOnClickListener {
-            afficherDatePicker(choisirDate) //afficher le calendrier
+            afficherDatePicker(choisirDate)
         }
 
         // Set OnClickListener pour "Aller Simple" button
@@ -96,7 +96,7 @@ class RechercherUnVolVue : Fragment(), IRechercheVolVue {
             estAllerSimple = false
         }
         choisirDateRetour.setOnClickListener {
-            afficherDatePicker(choisirDateRetour) //afficher le calendrier
+            afficherDatePicker(choisirDateRetour)
         }
 
         btnRechercher.setOnClickListener {

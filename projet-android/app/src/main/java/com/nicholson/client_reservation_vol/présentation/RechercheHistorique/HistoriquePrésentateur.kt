@@ -26,20 +26,24 @@ class HistoriquePrésentateur (
             )
         }
 
-
         vue.afficherHistorique(listeHistoriqueOTD)
     }
 
     override fun traiterHistoriqueCliqué(indice: Int) {
-        modèle.historiqueCliqué = true
-        modèle.indiceHistoriqueCourrant = indice
-        vue.redirigerVersRechercherUnVolVue()
+        if (indice in modèle.listeHistorique.indices) {
+            modèle.historiqueCliqué = true
+            modèle.indiceHistoriqueCourrant = indice
+            vue.redirigerVersRechercherUnVolVue()
+        }
     }
 
     override fun traiterSupprimerHistorique(indice: Int) {
-        val historique = modèle.listeHistorique[indice]
-        modèle.supprimerHistorique(historique)
-        vue.supprimerHistorique(indice)
+        if (indice in modèle.listeHistorique.indices) {
+            val historique = modèle.listeHistorique[indice]
+            modèle.supprimerHistorique(historique)
+            vue.supprimerHistorique(indice)
+        }
     }
 
-}
+
+    }
