@@ -3,7 +3,7 @@ package com.nicholson.client_reservation_vol.donnée.http.décodeur
 import com.google.gson.stream.JsonReader
 import com.nicholson.client_reservation_vol.domaine.entité.Ville
 import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
-import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONVille.Companion.décodéVille
+import com.nicholson.client_reservation_vol.donnée.http.décodeur.DécodeurJSONVille.Companion.décoderVille
 import org.junit.Assert.*
 import java.io.StringReader
 import kotlin.test.Test
@@ -23,7 +23,7 @@ class DécodeurJSONVilleTest{
         val résultat_attendu = Ville(1, "Paris", "France", "https://example.com/paris.jpg")
         val reader = JsonReader(StringReader(json))
 
-        val résultat_obtenu = décodéVille(reader)
+        val résultat_obtenu = décoderVille(reader)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }
@@ -36,7 +36,7 @@ class DécodeurJSONVilleTest{
         val reader = JsonReader(StringReader(json))
 
         assertFailsWith<SourceDeDonnéesException>("Format JSON invalide") {
-            décodéVille(reader)
+            décoderVille(reader)
         }
     }
 
@@ -52,7 +52,7 @@ class DécodeurJSONVilleTest{
         val résultat_attendu = Ville(1, "Paris", "France", "")
         val reader = JsonReader(StringReader(json))
 
-        val résultat_obtenu = décodéVille(reader)
+        val résultat_obtenu = décoderVille(reader)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }
@@ -71,7 +71,7 @@ class DécodeurJSONVilleTest{
         val résultat_attendu = Ville(1, "Paris", "France", "https://example.com/paris.jpg")
         val reader = JsonReader(StringReader(json))
 
-        val résultat_obtenu = décodéVille(reader)
+        val résultat_obtenu = décoderVille(reader)
 
         assertEquals(résultat_attendu, résultat_obtenu)
     }

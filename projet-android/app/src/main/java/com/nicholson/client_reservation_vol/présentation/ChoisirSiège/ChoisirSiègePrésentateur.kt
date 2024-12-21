@@ -1,6 +1,9 @@
 package com.nicholson.client_reservation_vol.présentation.ChoisirSiège
 
+import android.util.Log
+import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +18,8 @@ class ChoisirSiègePrésentateur(
     ) : IChoisirSiègePrésentateur {
 
     private val modèle : Modèle = Modèle.obtenirInstance()
-    private lateinit var volCourrant : Vol
+    private var volCourrant : Vol? = null
+    private var sièges : List<Siège> = listOf()
     private var numSiègeCourrant : String = ""
     private var idAndroidDernierSiègeCliqué = 0
     private var job : Job? = null
@@ -23,31 +27,57 @@ class ChoisirSiègePrésentateur(
 
     override fun traiterDémarage() {
         job = CoroutineScope( iocontext ).launch {
-            var classe : String
+            var classe = ""
             if(modèle.siegeVolAller){
-                volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
-                classe = modèle.réservationAller.sièges[0].classe
+
+                try {
+                    volCourrant = modèle.getVolCourrantAller(modèle.indiceVolAller)
+                } catch ( ex : SourceDeDonnéesException ) {
+                    modèle.messageErreurRéseauExistant = true
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerÀBienvenueErreur()
+                    }
+                }
+
+                val réservationAller = modèle.réservationAller
+                if(réservationAller.siège != null){
+                    classe = réservationAller.siège.classe
+                }
+
             }
             else{
                 volCourrant = modèle.getVolCourrantRetour(modèle.indiceVolRetour)
-                classe = modèle.réservationRetour.sièges[0].classe
+                val réservationRetour = modèle.réservationRetour
+                if(réservationRetour.siège != null) {
+                    classe = réservationRetour.siège.classe
+                }
             }
 
-            CoroutineScope(Dispatchers.Main).launch {
-                vue.miseEnPlace(
-                    nomVilleDépart = volCourrant.aeroportDebut.ville.nom,
-                    nomVilleArrivée = volCourrant.aeroportFin.ville.nom,
-                    urlPhoto = volCourrant.aeroportFin.ville.url_photo,
-                    classe
-                )
-                vue.miseEnPlaceSièges()
+            if ( volCourrant != null ) {
+                try {
+                    sièges = modèle.obtenirSiègesVolCourrant(volCourrant!!.id)
+                } catch ( ex : SourceDeDonnéesException ) {
+                    modèle.messageErreurRéseauExistant = true
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerÀBienvenueErreur()
+                    }
+                }
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.miseEnPlace(
+                        nomVilleDépart = volCourrant!!.aeroportDebut.ville.nom,
+                        nomVilleArrivée = volCourrant!!.aeroportFin.ville.nom,
+                        urlPhoto = volCourrant!!.aeroportFin.ville.url_photo,
+                        classeChoisis = classe
+                    )
+                    vue.miseEnPlaceSièges()
+                }
             }
         }
     }
 
     override fun traiterSiègeCliqué( id : Int, code : String ) {
         numSiègeCourrant = code
-
 
         if ( idAndroidDernierSiègeCliqué == 0 ){
             idAndroidDernierSiègeCliqué = id
@@ -60,41 +90,72 @@ class ChoisirSiègePrésentateur(
     }
 
     override fun traiterDialogConfirmer() {
-        if ( numSiègeCourrant.isNotEmpty() ){
+        vue.désactiverBtnConfirmer()
+        job = CoroutineScope( iocontext ).launch {
             if(modèle.siegeVolAller){
                 modèle.indiceVolCourrant = modèle.indiceVolAller
-                modèle.réservationAller.sièges[0].numéro = numSiègeCourrant
+                modèle.réservationAller.siège?.numéro = numSiègeCourrant
                 modèle.siegeVolAller = false
                 if(modèle.listeVolRetour.isEmpty()){
-                    modèle.ajouterReservation(modèle.réservationAller)
-                    vue.redirigerVersMesRéservation()
+                    try {
+                        modèle.ajouterReservation(modèle.réservationAller)
+                        CoroutineScope( Dispatchers.Main ).launch {
+                            vue.redirigerVersMesRéservation()
+                        }
+                    } catch ( ex : SourceDeDonnéesException ) {
+                        CoroutineScope( Dispatchers.Main ).launch {
+                            modèle.messageErreurRéseauExistant = true
+                            vue.redirigerÀBienvenueErreur()
+                        }
+                    }
                 }
                 else {
-                    vue.redirigerVersChoisirSiegeRetour()
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerVersChoisirSiegeRetour()
+                    }
                 }
             }
             else{
                 modèle.indiceVolCourrant = modèle.indiceVolRetour
-                modèle.réservationRetour.sièges[0].numéro = numSiègeCourrant
-                modèle.ajouterReservation(modèle.réservationAller)
-                modèle.ajouterReservation(modèle.réservationRetour)
-                vue.redirigerVersMesRéservation()
+                modèle.réservationRetour.siège?.numéro = numSiègeCourrant
+                try {
+                    modèle.ajouterReservation(modèle.réservationAller)
+                    modèle.ajouterReservation(modèle.réservationRetour)
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        vue.redirigerVersMesRéservation()
+                    }
+                } catch ( ex : SourceDeDonnéesException ) {
+                    CoroutineScope( Dispatchers.Main ).launch {
+                        modèle.messageErreurRéseauExistant = true
+                        vue.redirigerÀBienvenueErreur()
+                    }
+                }
             }
-
-        }else{
-            vue.afficherErreur( "Veuillez choisir un siège" )
         }
     }
 
     override fun traiterConfirmerRéservation() {
-        vue.afficherDialogConfirmer()
+        if ( numSiègeCourrant.isEmpty() ){
+            vue.afficherErreurChampsVides()
+        } else{
+            vue.afficherDialogConfirmer()
+        }
     }
 
     override fun vérifierStatutSiège( id: Int, code: String ) {
         job = CoroutineScope( iocontext ).launch {
-            val siège = volCourrant.sièges.firstOrNull {
+            var classe : String? = null
+
+            if( modèle.siegeVolAller ){
+                classe = modèle.réservationAller.siège?.classe?.lowercase()
+            }else{
+                classe = modèle.réservationRetour.siège?.classe?.lowercase()
+            }
+
+            val siège = sièges.firstOrNull {
                 it.numéro == code
-                        && it.classe == modèle.réservationAller.sièges[0].classe
+                        && it.classe == classe
+                        && it.statut == "occupé"
             }
 
             if ( siège != null ){

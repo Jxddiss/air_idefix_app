@@ -1,5 +1,9 @@
 package com.nicholson.client_reservation_vol.présentation.RéservationSpécifique
 
+import com.nicholson.client_reservation_vol.domaine.entité.Réservation
+import com.nicholson.client_reservation_vol.domaine.entité.Vol
+import com.nicholson.client_reservation_vol.donnée.exceptions.SourceDeDonnéesException
+import com.nicholson.client_reservation_vol.donnée.http.exception.AuthentificationException
 import com.nicholson.client_reservation_vol.présentation.Modèle
 import com.nicholson.client_reservation_vol.présentation.OTD.RéservationSpécifiqueOTD
 import com.nicholson.client_reservation_vol.présentation.RéservationSpécifique.ContratVuePrésentateurRéservationSpécifique.*
@@ -26,54 +30,80 @@ class RéservationSpécifiquePrésentateur(
     private var job : Job? = null
 
     override fun traiterDémarage() {
+
+        vue.montrerChargement()
         job = CoroutineScope( iocontext ).launch {
-            val réservation = modèle.obtenirReservationCourrante()
-            val vol = modèle.obtenirVolParId(réservation.idVol)
-            val siègeString = StringBuilder()
-            réservation.sièges.forEach {
-                siègeString.append("${it.numéro} ")
-
+            var réservation : Réservation? = null
+            var vol : Vol? = null
+            try{
+                réservation = modèle.obtenirReservationCourrante()
+                vol = modèle.obtenirVolParId(réservation.idVol)
             }
-            val tempMtn = LocalDateTime.now()
-            var tempsRestant = ChronoUnit.HOURS.between(tempMtn, vol.dateDepart).toString()
+            catch(ex : AuthentificationException){
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.seConnecter(
+                        réussite = {
+                            modèle.effectuerLogin( it )
+                            traiterDémarage()
+                        },
+                        échec = {
+                            modèle.messageErreurRéseauExistant = true
+                            vue.redirigerBienvenueErreur()
+                        }
 
-            var tempsUnite = "Heures"
-
-            var barProgres : Int
-
-            if(tempsRestant.toLong() > 24){
-                tempsRestant = ChronoUnit.DAYS.between(tempMtn, vol.dateDepart).toString()
-                tempsUnite = "Jours"
+                    )
+                }
             }
-
-            if(tempsUnite == "Jours") {
-                barProgres = 30 - tempsRestant.toInt()
+            catch(ex : SourceDeDonnéesException){
+                modèle.messageErreurRéseauExistant = true
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.redirigerBienvenueErreur()
+                }
             }
-            else{
-                barProgres = 29
-            }
+            if(vol != null && réservation != null){
+                val tempMtn = LocalDateTime.now()
+                var tempsRestant = ChronoUnit.HOURS.between(tempMtn, vol.dateDepart).toString()
+
+                var tempsUnite = "Heures"
+
+                var barProgres : Int
+
+                if(tempsRestant.toLong() > 24){
+                    tempsRestant = ChronoUnit.DAYS.between(tempMtn, vol.dateDepart).toString()
+                    tempsUnite = "Jours"
+                }
+
+                if(tempsUnite == "Jours") {
+                    barProgres = 30 - tempsRestant.toInt()
+                }
+                else{
+                    barProgres = 29
+                }
 
 
-            val réservationOTD = RéservationSpécifiqueOTD(
-                classe = réservation.sièges[0].classe,
-                dateArrivée = vol.dateArrivee.format(formatterDate),
-                dateDepart = vol.dateDepart.format(formatterDate),
-                durée = vol.durée.toComponents {
-                        hrs, min, _, _ ->
-                    "${hrs}h${min}"
-                },
-                heureArrivée = vol.dateArrivee.format(formatterHeure),
-                heureDepart = vol.dateDepart.format(formatterHeure),
-                nomVille = vol.aeroportFin.ville.nom,
-                numéroRéservation = réservation.numéroRéservation,
-                siège = siègeString.toString(),
-                tempsRestant = tempsRestant,
-                tempsUnite = tempsUnite,
-                barProgres = barProgres.toString(),
-                url_photo = vol.aeroportFin.ville.url_photo
-            )
-            CoroutineScope( Dispatchers.Main ).launch {
-                vue.miseEnPlace(réservationOTD)
+                val réservationOTD = RéservationSpécifiqueOTD(
+                    classe = réservation.siège?.classe ?: "Économique",
+                    dateArrivée = vol.dateArrivee.format(formatterDate),
+                    dateDepart = vol.dateDepart.format(formatterDate),
+                    durée = vol.durée.toComponents {
+                            hrs, min, _, _ ->
+                        "${hrs}h${min}"
+                    },
+                    heureArrivée = vol.dateArrivee.format(formatterHeure),
+                    heureDepart = vol.dateDepart.format(formatterHeure),
+                    nomVille = vol.aeroportFin.ville.nom,
+                    numéroRéservation = réservation.numéroRéservation,
+                    siège = réservation.siège?.numéro ?: "",
+                    tempsRestant = tempsRestant,
+                    tempsUnite = tempsUnite,
+                    barProgres = barProgres.toString(),
+                    url_photo = vol.aeroportFin.ville.url_photo
+                )
+                CoroutineScope( Dispatchers.Main ).launch {
+                    vue.masquerChargement()
+                    vue.miseEnPlace(réservationOTD)
+                }
+
             }
         }
     }

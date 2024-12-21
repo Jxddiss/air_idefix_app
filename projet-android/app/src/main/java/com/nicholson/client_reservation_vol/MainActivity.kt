@@ -5,18 +5,26 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.NavController
-import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nicholson.client_reservation_vol.domaine.interacteur.ManipulerReservation
+import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirReservation
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirSièges
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.DataBase.SourceDeDonnéesLocalImpl
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesAeroportHttp
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesClientHttp
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesRéservationHttp
+import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesSiègesHttp
 import com.nicholson.client_reservation_vol.donnée.http.SourceDeDonnéesVolsHttp
+import com.nicholson.client_reservation_vol.présentation.CréateurDeFragment
 import com.nicholson.client_reservation_vol.présentation.Modèle
-import com.nicholson.client_reservation_vol.présentation.OTD.HistoriqueListItemOTD
-import java.util.Locale
+import okhttp3.OkHttpClient
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class  MainActivity : AppCompatActivity() {
 
@@ -37,5 +45,16 @@ class  MainActivity : AppCompatActivity() {
 
         RechercherVol.sourceDeDonnéesVol = SourceDeDonnéesVolsHttp( getString( R.string.api_url ) )
         ObtenirAéroport.sourceDeDonnées = SourceDeDonnéesAeroportHttp( getString( R.string.api_url ) )
+        val sourceClient = SourceDeDonnéesClientHttp( getString( R.string.api_url ) )
+        ObtenirClient.sourceDeDonnées = sourceClient
+        ModifierClient.sourceDeDonnées = sourceClient
+        val sourceRéservation = SourceDeDonnéesRéservationHttp( getString( R.string.api_url ) )
+        ObtenirReservation.sourceDeDonnées = sourceRéservation
+        ManipulerReservation.sourceDeDonnées = sourceRéservation
+        ObtenirSièges.sourceDeDonnées = SourceDeDonnéesSiègesHttp( getString( R.string.api_url ) )
+
+
+        Logger.getLogger(OkHttpClient::class.java.name).level = Level.FINE
+        supportFragmentManager.fragmentFactory = CréateurDeFragment()
     }
 }

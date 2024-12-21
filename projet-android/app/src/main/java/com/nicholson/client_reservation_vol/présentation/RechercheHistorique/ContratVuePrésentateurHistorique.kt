@@ -6,10 +6,12 @@ interface ContratVuePrésentateurHistorique {
     interface IListeDeHistoriqueVue  {
         fun afficherHistorique( listeDeHistorique: List<HistoriqueListItemOTD> )
         fun redirigerVersRechercherUnVolVue()
+        fun supprimerHistorique(indice: Int)
     }
 
     interface IListeDeHistoriquePrésentateur {
         fun traiterObtenirHistorique()
         fun traiterHistoriqueCliqué(indice : Int)
+        fun traiterSupprimerHistorique(indice: Int)
     }
 }

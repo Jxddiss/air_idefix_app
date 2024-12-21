@@ -1,23 +1,23 @@
 package com.nicholson.client_reservation_vol.présentation.bienvenue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nicholson.client_reservation_vol.R
+import com.nicholson.client_reservation_vol.présentation.VueAuthentifié
 import com.nicholson.client_reservation_vol.présentation.bienvenue.ContratVuePrésentateurBienvenue.*
 
-class BienvenueVue : Fragment(), IBienvenueVue {
-
+class BienvenueVue : VueAuthentifié(), IBienvenueVue {
     var présentateur : IBienvenuePrésentateur? = BienvenuePrésentateur( this )
     lateinit var btnGoMesVoyages : ConstraintLayout
     lateinit var btnGoRechercherUnVol : ConstraintLayout
+    lateinit var bouttonDéconnexion : FloatingActionButton
     lateinit var navController : NavController
 
     override fun onCreate( savedInstanceState: Bundle? ) {
@@ -28,15 +28,18 @@ class BienvenueVue : Fragment(), IBienvenueVue {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate( R.layout.fragment_bienvenue_vue, container, false )
     }
 
     override fun onViewCreated( vue: View, savedInstanceState: Bundle? ) {
         super.onViewCreated( vue, savedInstanceState )
         navController = Navigation.findNavController( vue )
+        bouttonDéconnexion = vue.findViewById( R.id.bouttonDéconnexion )
         attacherÉcouteurRedirectionListeReservations( vue )
         attacherÉcouteurRedirectionRechercherUnVol( vue )
+        bouttonDéconnexion.setOnClickListener {
+            présentateur?.traiterDéconnexion()
+        }
         présentateur?.traiterDémarage()
     }
 
@@ -55,6 +58,20 @@ class BienvenueVue : Fragment(), IBienvenueVue {
             dialog.dismiss()
         }
         dialogErreur.show()
+    }
+
+    override fun montrerDéconnexion() {
+        bouttonDéconnexion.isClickable = true
+        bouttonDéconnexion.visibility = View.VISIBLE
+    }
+
+    override fun cacherDéconnexion() {
+        bouttonDéconnexion.isClickable = false
+        bouttonDéconnexion.visibility = View.GONE
+    }
+
+    override fun obtenirToken(): String? {
+        return préférences.getString( "token", null )
     }
 
     private fun attacherÉcouteurRedirectionListeReservations( vue : View ){

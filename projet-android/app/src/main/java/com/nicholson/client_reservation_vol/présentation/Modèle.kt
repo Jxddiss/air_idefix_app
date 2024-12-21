@@ -8,11 +8,16 @@ import com.nicholson.client_reservation_vol.domaine.entité.Réservation
 import com.nicholson.client_reservation_vol.domaine.entité.Siège
 import com.nicholson.client_reservation_vol.domaine.entité.Vol
 import com.nicholson.client_reservation_vol.domaine.interacteur.ClientService
-import com.nicholson.client_reservation_vol.domaine.interacteur.RéservationService
 import com.nicholson.client_reservation_vol.domaine.interacteur.HistoriqueService
+import com.nicholson.client_reservation_vol.domaine.interacteur.ManipulerReservation
+import com.nicholson.client_reservation_vol.domaine.interacteur.ModifierClient
 import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirAéroport
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirClient
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirReservation
+import com.nicholson.client_reservation_vol.domaine.interacteur.ObtenirSièges
 import com.nicholson.client_reservation_vol.domaine.interacteur.RechercherVol
 import com.nicholson.client_reservation_vol.donnée.ISourceDeDonnéesHistorique
+import com.nicholson.client_reservation_vol.donnée.http.ClientHttp
 import com.nicholson.client_reservation_vol.présentation.OTD.FiltreRechercheVol
 import java.time.LocalDateTime
 
@@ -20,7 +25,7 @@ import java.time.LocalDateTime
 class Modèle private constructor() {
 
     private val clientService: ClientService = ClientService()
-    private val réservationService: RéservationService = RéservationService()
+
     private var historiqueService: HistoriqueService? = null
 
     companion object {
@@ -39,9 +44,10 @@ class Modèle private constructor() {
     var indiceHistoriqueCourrant : Int = 0
     var historiqueCliqué = false
     var indiceRéservationCourrante: Int = 0
-    var indiceClientCourrant: Int = 0
     var pageCourrante : String? = null
     var messageErreurRéseauExistant = false
+    var client : Client? = null
+    var estConnecté = false
 
     // Setter pour sourceDeDonnées
     fun initialiserSourceDeDonnées( sourceHistorique : ISourceDeDonnéesHistorique) {
@@ -60,33 +66,15 @@ class Modèle private constructor() {
         id = 0,
         numéroRéservation = "",
         idVol = 1,
-        clients = listOf(),
-        sièges = mutableListOf(
-            Siège(
-                1,
-                numéro = "",
-                classe = "",
-                statut = "",
-                idRéservation = 0,
-                idVol = 1
-            )
-        )
+        client = null,
+        siège = null
     )
     var réservationRetour = Réservation(
         id = 0,
         numéroRéservation = "",
         idVol = 1,
-        clients = listOf(),
-        sièges = mutableListOf(
-            Siège(
-                1,
-                numéro = "",
-                classe = "",
-                statut = "",
-                idRéservation = 0,
-                idVol = 1
-            )
-        )
+        client = null,
+        siège = null
     )
 
     var volRetourExiste: Boolean = false
@@ -95,13 +83,7 @@ class Modèle private constructor() {
 
     var listeVolAller: List<Vol> = listOf()
     var listeVolRetour: List<Vol> = listOf()
-    var listeRéservation: MutableList<Réservation> = mutableListOf()
-        get() {
-            if (field.isEmpty()) {
-                field = réservationService.obtenirListeRéservation()
-            }
-            return field
-        }
+    var listeRéservation: List<Réservation> = listOf()
 
     var listeClient: MutableList<Client> = mutableListOf()
         get() {
@@ -116,6 +98,8 @@ class Modèle private constructor() {
             field = historiqueService?.obtenirListeHistorique() ?: listOf()
             return field
         }
+
+    var listeAéroports : List<Aeroport> = listOf()
 
     suspend fun getVolCourrantAller(indice: Int): Vol {
         return RechercherVol.obtenirDétailVol(listeVolAller[indice].id)
@@ -230,21 +214,27 @@ class Modèle private constructor() {
         }
     }
 
-    fun obtenirReservationParId(id: Int): Réservation {
-        return réservationService.obtenirRéservationParid(id)
+    suspend fun obtenirReservationCourrante(): Réservation {
+        return ObtenirReservation.obtenirDétailsRéservation(listeRéservation[indiceRéservationCourrante].id)
     }
 
-    fun obtenirReservationCourrante(): Réservation {
-        return réservationService.obtenirRéservationParid(listeRéservation[indiceRéservationCourrante].id)
+    suspend fun obtenirListReservation():List<Réservation>{
+        listeRéservation = ObtenirReservation.obtenirListeRéservation()
+        return listeRéservation
     }
 
-    fun obtenirClientCourrant(): Client {
-        return listeClient[indiceClientCourrant]
+    suspend fun obtenirClientCourrant(): Client {
+        if ( client == null ){
+            client = ObtenirClient.obtenirClientCourrant()
+        }
+        return client as Client
     }
 
-    fun ajouterClient(client: Client) {
-        listeClient = mutableListOf(client)
-        clientService.ajouterClient(client)
+    suspend fun modifierClient( clientModifié : Client ) {
+        if( client != clientModifié ){
+            ModifierClient.modifierClient( clientModifié )
+            client = clientModifié
+        }
     }
 
     suspend fun créerRéservationAller(classeChoisis : String) : Réservation {
@@ -252,47 +242,50 @@ class Modèle private constructor() {
             id = 0,
             numéroRéservation = "",
             idVol = getVolCourrantAller(indiceVolAller).id,
-            clients = listeClient,
-            sièges = mutableListOf(
+            client = client,
+            siège =
                 Siège(
                     1,
                     numéro = "",
                     classe = classeChoisis,
                     statut = "Occupée",
-                    idRéservation = 0,
-                    idVol = getVolCourrantAller(indiceVolAller).id
-                )
-            )
+                ),
+            classe = classeChoisis
         )
         return réservation
     }
+
     suspend fun créerRéservationRetour(classeChoisis : String) : Réservation {
         val réservation = Réservation(
             id = 0,
             numéroRéservation = "",
             idVol = getVolCourrantRetour(indiceVolRetour).id,
-            clients = listeClient,
-            sièges = mutableListOf(
-                Siège(
-                    1,
-                    numéro = "",
-                    classe = classeChoisis,
-                    statut = "Occupée",
-                    idRéservation = 0,
-                    idVol = getVolCourrantRetour(indiceVolRetour).id
-                )
-            )
+            client = client,
+            siège =
+            Siège(
+                1,
+                numéro = "",
+                classe = classeChoisis,
+                statut = "Occupée",
+            ),
+            classe = classeChoisis
         )
         return réservation
     }
 
-
-    fun ajouterReservation(réservation : Réservation) {
-        réservationService.ajouterRéservation(réservation)
+    suspend fun ajouterReservation(réservation : Réservation) {
+        ManipulerReservation.ajouterRéservation(réservation)
     }
 
     suspend fun obtenirListeAéroports(): List<Aeroport> {
-        return ObtenirAéroport.obtenirListeAeroport()
+        if ( listeAéroports.isEmpty() ){
+            listeAéroports = ObtenirAéroport.obtenirListeAeroport()
+        }
+        return listeAéroports
+    }
+
+    suspend fun obtenirSiègesVolCourrant( idVol : Int ) : List<Siège> {
+        return ObtenirSièges.obtenirSiègesParIdVol( idVol )
     }
 
     fun créerHistorique( historique: Historique ) {
@@ -301,6 +294,21 @@ class Modèle private constructor() {
 
     fun obtenirHistoriqueCourrant() : Historique{
         return listeHistorique[indiceHistoriqueCourrant]
+    }
+
+    fun effectuerLogin( token : String ) {
+        ClientHttp.ajouterToken( token )
+        estConnecté = true
+    }
+
+     fun seDeconecté() {
+        ClientHttp.retirerIntercepteurs()
+        estConnecté = false
+    }
+
+    fun supprimerHistorique(historique: Historique) {
+        historiqueService?.supprimerHistorique(historique)
+        listeHistorique = listeHistorique.filter { it != historique }
     }
 
 }

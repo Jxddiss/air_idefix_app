@@ -18,13 +18,13 @@ import com.nicholson.client_reservation_vol.R
 import com.nicholson.client_reservation_vol.présentation.ChoisirSiège.ContratVuePrésentateurChoisirSiège.*
 
 class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
-    lateinit var textViewNomDestination: TextView
-    lateinit var textViewClasse : TextView
-    lateinit var imageViewVillechoisirInformation: ImageView
-    lateinit var btnConfirmerRéservation : Button
-    lateinit var navController: NavController
-    lateinit var dialogConfirmation: MaterialAlertDialogBuilder
-    var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
+    private lateinit var textViewNomDestination: TextView
+    private lateinit var textViewClasse : TextView
+    private lateinit var imageViewVillechoisirInformation: ImageView
+    private lateinit var btnConfirmerRéservation : Button
+    private lateinit var navController: NavController
+    private lateinit var dialogConfirmation: MaterialAlertDialogBuilder
+    private var présentateur : IChoisirSiègePrésentateur? = ChoisirSiègePrésentateur( this )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +51,7 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
             présentateur?.traiterDialogConfirmer()
         }
         dialogConfirmation.setNegativeButton( getString( R.string.annuler ) ) { dialog, _ ->
+            réactiverBtnConfirmer()
             dialog.dismiss()
         }
 
@@ -84,6 +85,18 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
     }
 
+    override fun redirigerÀBienvenueErreur() {
+        navController.navigate( R.id.action_choisirSiegeVue_vers_bienvenueVue )
+    }
+
+    override fun désactiverBtnConfirmer() {
+        btnConfirmerRéservation.isClickable = false
+    }
+
+    override fun réactiverBtnConfirmer() {
+        btnConfirmerRéservation.isClickable = true
+    }
+
     override fun miseÀjourSiègeCliquéVersSélectionnée(id : Int ) {
         this.view?.findViewById<ImageView>( id )
             ?.setColorFilter(Color.argb(255, 255, 205, 0))
@@ -107,10 +120,13 @@ class ChoisirSiegeVue : Fragment(), IChoisirSiègeVue {
         }
     }
 
-    override fun afficherErreur( message: String ) {
-        requireActivity().runOnUiThread {
-            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    override fun afficherErreurChampsVides() {
+        val dialogErreur = MaterialAlertDialogBuilder( requireContext() )
+        dialogErreur.setMessage( getString( R.string.siege_vide ) )
+        dialogErreur.setPositiveButton( "OK" ) { it, _ ->
+            it.dismiss()
         }
+        dialogErreur.show()
     }
 
     override fun afficherDialogConfirmer() {

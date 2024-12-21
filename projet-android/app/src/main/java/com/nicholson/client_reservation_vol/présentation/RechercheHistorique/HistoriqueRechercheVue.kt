@@ -31,12 +31,13 @@ class HistoriqueRechercheVue : Fragment(), IListeDeHistoriqueVue {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Initialize the RecyclerView
+
         recyclerView = view.findViewById(R.id.recycler_historique_list)
         navController = findNavController()
 
-        // get historique data apres l'initialization
         historiquePrésentateur.traiterObtenirHistorique()
+        historiquePrésentateur.traiterObtenirHistorique()
+
     }
 
     override fun onCreateView(
@@ -52,17 +53,28 @@ class HistoriqueRechercheVue : Fragment(), IListeDeHistoriqueVue {
         if (::rechercheHistoriqueAdapter.isInitialized) {
             rechercheHistoriqueAdapter.updateData(listeDeHistorique)
         } else {
-            rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique) {
-                historiquePrésentateur.traiterHistoriqueCliqué(it)
-            }
+            rechercheHistoriqueAdapter = HistoriqueRechercheAdapter(listeDeHistorique,
+                onItemClick = {
+                    historiquePrésentateur.traiterHistoriqueCliqué(it)
+                },
+                onDeleteClick = { position ->
+                    // Appelle le preseteur pour delete the item
+                    historiquePrésentateur.traiterSupprimerHistorique(position)
+                }
+            )
+        }
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.adapter = rechercheHistoriqueAdapter
         }
-    }
+
 
     override fun redirigerVersRechercherUnVolVue() {
         navController.navigate(R.id.action_historiqueRechercheVue_to_rechercherUnVolVue)
+    }
+
+    override fun supprimerHistorique(indice: Int) {
+        rechercheHistoriqueAdapter.supprimerItem(indice)
     }
 
 }

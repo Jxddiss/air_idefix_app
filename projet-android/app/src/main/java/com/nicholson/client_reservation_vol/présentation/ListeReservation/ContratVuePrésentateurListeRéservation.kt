@@ -10,6 +10,10 @@ interface ContratVuePrésentateurListeRéservation {
         fun afficherRéservations( listeDeReservation : MutableList<RéservationListItemOTD>)//, listeDeVols : MutableList<VolListItemOTD>?, vue : View?)
         fun redirigerPageRéservationSpécifique();
         fun redirigerVueRechercherVol();
+        fun seConnecter( réussite: ( String ) -> Unit, échec : ( String ) -> Unit )
+        fun montrerChargement()
+        fun masquerChargement()
+        fun redirigerBienvenueErreur()
     }
 
     interface IListeDeRéservationsPrésentateur{

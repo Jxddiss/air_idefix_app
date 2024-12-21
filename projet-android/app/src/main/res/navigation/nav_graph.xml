@@ -66,6 +66,9 @@
             app:destination="@id/choisirClasseVue"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_listeDeVolsVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/listeRéservationsVue"
@@ -81,6 +84,9 @@
             android:id="@+id/action_listeRéservationsVue_vers_réservationSpécifiqueVue"
             app:destination="@id/réservationSpécifiqueVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_listeRéservationsVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/réservationSpécifiqueVue"
@@ -91,6 +97,9 @@
             android:id="@+id/action_réservationSpécifiqueVue_to_modifierReservationVue"
             app:destination="@id/modifierReservationVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_réservationSpécifiqueVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/modifierReservationVue"
@@ -108,6 +117,9 @@
             android:id="@+id/action_modifierReservationVue_to_choisirClasseVue"
             app:destination="@id/choisirClasseVue"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_modifierReservationVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirSiegeVue"
@@ -122,6 +134,9 @@
         <action
             android:id="@+id/action_choisirSiegeVue_self"
             app:destination="@id/choisirSiegeVue" />
+        <action
+            android:id="@+id/action_choisirSiegeVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirInfoVue"
@@ -132,6 +147,9 @@
             app:destination="@id/choisirSiegeVue"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_choisirInfoVue_vers_bienvenueVue"
+            app:destination="@id/bienvenueVue" />
     </fragment>
     <fragment
         android:id="@+id/choisirClasseVue"
