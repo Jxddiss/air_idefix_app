@@ -1,0 +1,46 @@
+* Sprint 1
+|                                           | Note | Nicholson | Teddy | Cristina | Rami | Commentaires |
+| Qualité du prototype d'interface :        | A    |           |       |          |      |              |
+|                                           |      |           |       |          |      |              |
+| Présentation :                            | A    |           |       |          |      |              |
+|                                           |      |           |       |          |      |              |
+| Évaluation du travail par les pairs (50%) | ×    | A         | A     | A        | A    |              |
+| Participation à la présentation     (50%) | ×    | A         | A     | A        | A    |              |
+|-------------------------------------------+------+-----------+-------+----------+------+--------------|
+| Total                                     |      | 10        | 10    | 10       | 10   |              |
+
+* Sprint 2
+|                                           | Note | Rami | Cristina | Nicholson | Teddy                |
+| Qualité du produit :                      | A    |      |          |           |                      |
+|                                           |      |      |          |           |                      |
+| Présentation :                            | A    |      |          |           |                      |
+|                                           |      |      |          |           |                      |
+| Évaluation du travail par les pairs (33%) | ×    | A    | A        | A         | E - Pas d'évaluation |
+| Participation à la présentation     (33%) | ×    | A    | A        | A         | A                    |
+| Participation au développement      (33%) | ×    | A    | A        | A         | A                    |
+|-------------------------------------------+------+------+----------+-----------+----------------------|
+| Total                                     |      | 10   | 10       | 10        | 6.7                  |
+
+* Sprint 3
+|                                           | Note | Cristina | Nicholson | Teddy                | Rami | Commentaires |
+| Qualité du produit :                      | A    |          |           |                      |      |              |
+|                                           |      |          |           |                      |      |              |
+| Présentation :                            | A    |          |           |                      |      |              |
+|                                           |      |          |           |                      |      |              |
+| Évaluation du travail par les pairs (33%) | ×    | A        | A         | E - Pas d'évaluation | A    |              |
+| Participation à la présentation     (33%) | ×    | A        | A         | A                    | A    |              |
+| Participation au développement      (33%) | ×    | A        | A         | A                    | A    |              |
+|-------------------------------------------+------+----------+-----------+----------------------+------+--------------|
+| Total                                     |      | 10       | 10        | 6.7                  | 10   |              |
+
+* Sprint 4
+|                                           | Note | Nicholson | Cristina             | Teddy | Rami | Commentaires |
+| Qualité du produit :                      | A    |           |                      |       |      |              |
+|                                           |      |           |                      |       |      |              |
+| Présentation :                            | A    |           |                      |       |      |              |
+|                                           |      |           |                      |       |      |              |
+| Évaluation du travail par les pairs (33%) | ×    | A         | E - pas d'évaluation | A     | A    |              |
+| Participation à la présentation     (33%) | ×    | A         | A                    | A     | A    |              |
+| Participation au développement      (33%) | ×    | A         | A                    | A     | A    |              |
+|-------------------------------------------+------+-----------+----------------------+-------+------+--------------|
+| Total                                     |      | 10        | 6.7                  | 10    | 10   |              |
